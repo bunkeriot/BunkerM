@@ -11,8 +11,9 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 
 > **License**: Free for non-commercial use  
 > **Website**: https://bunkeriot.com  
-> **Let's connect**:  
- [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehdi-idrissi/)
+> **Let's connect**!  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)
+
 
 ## Architecture Overview
 ![alt text](/screenshots/image-5.png)
