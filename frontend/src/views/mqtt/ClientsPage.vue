@@ -17,7 +17,8 @@
             </template>
           </v-text-field>
         </div>
-        <v-data-table :headers="headers" :items="filteredClients" :loading="loading" :search="search" class="elevation-1">
+        <v-data-table :headers="headers" :items="filteredClients" :loading="loading" :search="search"
+          class="elevation-1">
           <template v-slot:item.actions="{ item }">
             <div class="d-flex align-center justify-center">
               <v-btn color="info" class="ml-2" @click="openRoleManagement(item)">
@@ -48,10 +49,13 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="editedItem.username" label="Username" required />
+                <v-text-field v-model="editedItem.username" label="Username" required
+                  :rules="[rules.required, rules.alphanumeric]" :error-messages="usernameError"
+                  @input="clearUsernameError" />
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="editedItem.password" label="Password" type="password" required />
+                <v-text-field v-model="editedItem.password" label="Password" type="password" required
+                  :rules="[rules.required]" :error-messages="passwordError" @input="clearPasswordError" />
               </v-col>
             </v-row>
           </v-container>
@@ -179,7 +183,8 @@
 //ClientsPage.vue script section
 import { ref, computed, onMounted, inject } from 'vue';
 import { mqttService } from '@/services/mqtt.service';
-import { useSnackbar } from '@/composables/useSnackbar'; // Add snackbar for notifications
+import { useSnackbar } from '@/composables/useSnackbar';
+
 const search = ref('');
 const roleDialog = ref(false);
 const selectedClient = ref(null);
@@ -191,11 +196,8 @@ const selectedGroup = ref(null);
 const groupPriority = ref(null);
 const availableGroups = ref([]);
 
-
 const confirmDialog = ref(false);
-
 const showNotification = inject('showNotification');
-
 const { showSuccess, showError } = useSnackbar();
 
 const dialog = ref(false);
@@ -207,6 +209,25 @@ const editedItem = ref({
   password: '',
 });
 
+// Add these refs for error handling
+const usernameError = ref('');
+const passwordError = ref('');
+
+// Add validation rules
+const rules = {
+  required: value => !!value || 'This field is required',
+  alphanumeric: value => /^[a-zA-Z0-9]+$/.test(value) || 'Only letters and numbers are allowed'
+};
+
+// Clear error functions
+const clearUsernameError = () => {
+  usernameError.value = '';
+};
+
+const clearPasswordError = () => {
+  passwordError.value = '';
+};
+
 const headers = [
   { title: 'Username', key: 'username', sortable: true },
   { title: '', key: 'actions', sortable: false },
@@ -214,7 +235,6 @@ const headers = [
 
 // Computed
 const formTitle = computed(() => editedIndex.value === -1 ? 'New Client' : 'Edit Client');
-//const loading = computed(() => clientsLoading.value || rolesLoading.value || groupsLoading.value);
 
 const filteredClients = computed(() => {
   return clients.value.filter(client => client.username !== 'bunker');
@@ -225,7 +245,6 @@ onMounted(async () => {
 });
 
 // Client Management
-
 async function fetchClients() {
   try {
     loading.value = true;
@@ -239,42 +258,58 @@ async function fetchClients() {
   }
 }
 
-
 function closeDialog() {
   dialog.value = false;
   groupDialog.value = false;
   roleDialog.value = false;
   confirmDialog.value = false;
+  // Clear form errors when closing
+  usernameError.value = '';
+  passwordError.value = '';
+  // Reset form
+  editedItem.value = {
+    username: '',
+    password: ''
+  };
   fetchClients();
 }
 
 async function save() {
-/*   if (!editedItem.value.username || !editedItem.value.password) return;
-  const success = await mqttService.createClient({
-    username: editedItem.value.username,
-    password: editedItem.value.password
-  });
-  if (success) {
-    closeDialog();
-  } */
-
-  if (!editedItem.value.username || !editedItem.value.password) return;
+  // Reset error messages
+  usernameError.value = '';
+  passwordError.value = '';
+  
+  // Validate username and password
+  if (!editedItem.value.username) {
+    usernameError.value = 'Please enter a username';
+    return;
+  }
+  
+  if (!editedItem.value.password) {
+    passwordError.value = 'Please enter a password';
+    return;
+  }
+  
+  // Validate username format
+  if (!rules.alphanumeric(editedItem.value.username)) {
+    usernameError.value = 'Username can only contain letters and numbers';
+    return;
+  }
+  
   try {
     loading.value = true;
     await mqttService.createClient({
-    username: editedItem.value.username,
-    password: editedItem.value.password
-  });
-
+      username: editedItem.value.username,
+      password: editedItem.value.password
+    });
+    showSuccess('Client created successfully');
   } catch (error) {
     showError('Failed to Add New Client');
     console.error('Error:', error);
-  }
-  finally {
+  } finally {
     loading.value = false;
     closeDialog();
   }
-
 }
 
 function confirmDelete(client) {
@@ -283,32 +318,20 @@ function confirmDelete(client) {
 }
 
 async function handleDeleteClient() {
-/*   if (!selectedClient.value) return;
-  const success = await mqttService.deleteClient(selectedClient.value.username);
-  if (success) {
-    closeDialog();
-  } */
-
   if (!selectedClient.value) return;
   try {
     loading.value = true;
     await mqttService.deleteClient(selectedClient.value.username);
-
   } catch (error) {
     showError('Failed to Delete Client');
     console.error('Error:', error);
-  }
-  finally {
+  } finally {
     loading.value = false;
     closeDialog();
   }
-
 }
 
-
-
 //role management
-
 async function fetchRoles() {
   try {
     const roles = await mqttService.getRoles();
@@ -337,12 +360,6 @@ async function openRoleManagement(client) {
 }
 
 async function addRoleToClient() {
-  /*   if (!selectedClient.value || !selectedRole.value) return;
-    const success = await mqttService.addRoleToClient(selectedClient.value.username, selectedRole.value);
-    if (success) {
-      closeDialog();
-    } */
-
   if (!selectedClient.value || !selectedRole.value) return;
   try {
     loading.value = true;
@@ -354,16 +371,9 @@ async function addRoleToClient() {
     loading.value = false;
     closeDialog();
   }
-
 }
 
 async function removeRoleFromClient(username, roleName) {
-  /*   const success = await mqttService.removeRoleFromClient(username, roleName);
-    if (success) {
-      closeDialog();
-    }
-   */
-
   try {
     loading.value = true;
     await mqttService.removeRoleFromClient(username, roleName);
@@ -377,7 +387,6 @@ async function removeRoleFromClient(username, roleName) {
 }
 
 // group management
-
 async function fetchGroups() {
   try {
     loading.value = true;
@@ -386,37 +395,21 @@ async function fetchGroups() {
   } catch (error) {
     showError('Failed to fetch groups');
     console.error('Error:', error);
-  }
-  finally {
+  } finally {
     loading.value = false;
-
   }
 }
 
-
 async function openGroupAssignment(client) {
-
   const success = await mqttService.getClient(client.username);
   if (success) {
     selectedClient.value = success.client;
     await fetchGroups();
     groupDialog.value = true;
-
   }
 }
 
 async function assignClientToGroup() {
-/*   if (!selectedClient.value || !selectedGroup.value) return;
-  const success = await mqttService.addClientToGroup(
-    selectedGroup.value,
-    selectedClient.value.username,
-    groupPriority.value ? parseInt(groupPriority.value) : null
-  );
-  if (success) {
-
-    closeDialog();
-  } */
-
   if (!selectedClient.value || !selectedGroup.value) return;
   try {
     loading.value = true;
@@ -425,37 +418,26 @@ async function assignClientToGroup() {
       selectedClient.value.username,
       groupPriority.value ? parseInt(groupPriority.value) : null
     );
-
   } catch (error) {
     showError('Failed to Assign Client to Group');
     console.error('Error:', error);
-  }
-  finally {
+  } finally {
     loading.value = false;
     closeDialog();
   }
-
 }
 
 async function removeClientFromGroup(groupName, username) {
-/*   const success = await mqttService.removeClientFromGroup(groupName, username);
-  if (success) {
-    closeDialog();
-  }
- */
   try {
     loading.value = true;
     await mqttService.removeClientFromGroup(groupName, username);
-
   } catch (error) {
     showError('Failed to Remove Client from Group');
     console.error('Error:', error);
-  }
-  finally {
+  } finally {
     loading.value = false;
     closeDialog();
   }
-
 }
 
 

@@ -1,0 +1,16 @@
+{
+  "daily_messages": [],
+  "hourly": [
+    {
+      "timestamp": "2025-02-19 18:07",
+      "bytes_received": 1202.51,
+      "bytes_sent": 676.82
+    },
+    {
+      "timestamp": "2025-02-19 18:34",
+      "bytes_received": 565.99,
+      "bytes_sent": 577.42
+    }
+  ],
+  "daily": []
+}

@@ -10721,3 +10721,108 @@ Successfully removed client: test
 Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T16:59:57.365656
 Listing clients. Nonce: None, Timestamp: None
 Successfully retrieved client list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:27.755170
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/groups?nonce=1739989288266:qg1ukwp83j&timestamp=1739989288 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:28.271456
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:29.462711
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:47.871856
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:52.731924
+Creating new client with username: test
+Successfully created client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:21:52.842056
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:34.137522
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:44.620002
+Creating new client with username: test
+Successfully created client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:44.725207
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: DELETE https://localhost/api/v1/clients/test Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:47.837534
+Removing client: test
+Successfully removed client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:47.895117
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/groups?nonce=1739990029648:3kiylnqx279&timestamp=1739990029 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:49.654996
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:33:54.519476
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/groups?nonce=1739990041819:zh8f15xppyg&timestamp=1739990041 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:01.824319
+Fetching list of all groups
+Successfully retrieved group list
+Request: POST https://localhost/api/v1/groups?nonce=1739990047969:3mte0kagy6i&timestamp=1739990047 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:07.975446
+Creating new group: test-tedt
+Successfully created group: test-tedt
+Request: GET https://localhost/api/v1/groups?nonce=1739990048030:isgqoldcz4o&timestamp=1739990048 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:08.034409
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:11.836721
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: POST https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:16.211008
+Creating new role: test-te
+Successfully created role: test-te
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:16.274744
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:16.345287
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:21.858655
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/groups?nonce=1739990064720:s85g7bzxlg&timestamp=1739990064 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:24.730012
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:27.021333
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:30.971684
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:32.973388
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:33.036352
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:33.789023
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/groups?nonce=1739990075234:11095himndal&timestamp=1739990075 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:35.240115
+Fetching list of all groups
+Successfully retrieved group list
+Request: DELETE https://localhost/api/v1/groups/test-tedt?nonce=1739990076915:rlnu9ueejaj&timestamp=1739990076 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:36.920371
+Deleting group: test-tedt
+Successfully deleted group: test-tedt
+Request: GET https://localhost/api/v1/groups?nonce=1739990076988:xh9j0693g6&timestamp=1739990076 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:36.992143
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:47.527517
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/groups?nonce=1739990088464:2q4it2be3oo&timestamp=1739990088 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:48.472957
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:49.703604
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved role list
+Request: GET https://localhost/api/v1/groups?nonce=1739990091469:prjbj4ks15l&timestamp=1739990091 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:51.474489
+Fetching list of all groups
+Successfully retrieved group list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:51.966936
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list

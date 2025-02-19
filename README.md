@@ -10,7 +10,9 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
 > **License**: Free for non-commercial use  
-> **Website**: https://bunkeriot.com
+> **Website**: https://bunkeriot.com  
+> **Let's connect**:  
+ [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehdi-idrissi/)
 
 ## Core Components
 * Mosquitto MQTT Broker (pre-configured)
@@ -25,8 +27,8 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 
 1. Clone the repository and navigate to the project directory:
 ```bash
-git clone [repository-url]
-cd [repository-name]
+git clone https://github.com/bunkeriot/Bunker-M.git
+cd Bunker-M
 ```
 
 2. Launch the application:
@@ -39,8 +41,11 @@ docker compose up --build
    - You'll see a security warning about the SSL certificate
    ![alt text](image.png)
    - Click "Advanced" and then "Proceed to localhost (unsafe)"
-   - This warning is normal and appears because we use a self-signed certificate for development
+   - This warning is normal and appears because we use a self-signed certificate for development  
 
+4. MQTT Broker:
+   - Default port : 1900
+   - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
 ## Core Features
 
 ### 1. Broker Dashboard

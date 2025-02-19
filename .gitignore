@@ -1,4 +1,4 @@
-ssl_certificates/
 .env
+*.log
 ssl_certificates/cert.pem
 ssl_certificates/key.pem
