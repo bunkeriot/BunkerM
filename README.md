@@ -14,14 +14,16 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 > **Let's connect**:  
  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehdi-idrissi/)
 
-## Core Components
+## Architecture Overview
+![alt text](/screenshots/image-5.png)
+
 * Mosquitto MQTT Broker (pre-configured)
 * Backend Management Services
 * Web-based Management Interface
 * Dynamic Security Module
 * Monitoring and Logging System
 * Cloud Bridge Integration (Pro Feature)
-![alt text](image-5.png)
+
 
 ## Quick Start
 
