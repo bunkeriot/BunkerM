@@ -42,7 +42,7 @@ docker compose up --build
 3. Access the interface:
    - Open your browser and navigate to `https://localhost:2000`
    - You'll see a security warning about the SSL certificate
-   ![alt text](image.png)
+   ![alt text](/screenshots/image.png)
    - Click "Advanced" and then "Proceed to localhost (unsafe)"
    - This warning is normal and appears because we use a self-signed certificate for development  
 
