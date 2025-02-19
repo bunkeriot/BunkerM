@@ -1,1 +1,29 @@
 
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1739992758006:bncri2jvm5q&timestamp=1739992758.006 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:18.542407
+Received request with nonce: 1739992758006:bncri2jvm5q, timestamp: 1739992758.006
+Nonce validation passed
+Successfully retrieved stats
+Connected to MQTT Broker!
+Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1739993131841:utl6kyji9y&timestamp=1739993131.841 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:32.373862
+Received request with nonce: 1739993131841:utl6kyji9y, timestamp: 1739993131.841
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1739993136462:4tu8561sbxn&timestamp=1739993136.462 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:36.980218
+Received request with nonce: 1739993136462:4tu8561sbxn, timestamp: 1739993136.462
+Nonce validation passed
+Successfully retrieved statsConnected to MQTT Broker!
+Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics

@@ -10826,3 +10826,388 @@ Successfully retrieved group list
 Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T18:34:51.966936
 Listing clients. Nonce: None, Timestamp: None
 Successfully retrieved client list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:28.965542
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/groups?nonce=1739992769493:u0qeubm4bqo&timestamp=1739992769 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:29.499518
+Fetching list of all groups
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list groups: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing groups: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:29.962283
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:36.674341
+Creating new client with username: test
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Error creating client test: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:36.684626
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:41.766335
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:45.334988
+Creating new client with username: test
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Error creating client test: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:19:45.344992
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:20:18.622055
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:20:49.407606
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:20:51.197392
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:20:54.661548
+Creating new client with username: test
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Error creating client test: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:20:54.673247
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:23:04.490107
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:06.265497
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:22.005990
+Creating new client with username: test
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Error creating client test: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:22.018942
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:42.222344
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/groups?nonce=1739993143859:yh5wjkspmpa&timestamp=1739993143 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:43.865051
+Fetching list of all groups
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list groups: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing groups: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:25:45.209960
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list roles: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing roles: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/roles Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:27:54.343007
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list roles: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing roles: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:27:58.255791
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:28:01.693662
+Creating new client with username: test
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Error creating client test: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:28:01.707223
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:30:03.683395
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/groups?nonce=1739993457427:3sgcpee1du8&timestamp=1739993457 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:30:57.438713
+Fetching list of all groups
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list groups: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing groups: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:31:00.297457
+Listing clients. Nonce: None, Timestamp: None
+Command failed: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Failed to list clients: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Unexpected error listing clients: 400: Warning: You are running mosquitto_ctrl without encryption.
+This means all of the configuration changes you are making are visible on the network, including passwords.
+
+Error: Connection refused
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:44:10.166522
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:44:15.377665
+Creating new client with username: test
+Successfully created client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:44:15.500333
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: DELETE https://localhost/api/v1/clients/test Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:44:21.889662
+Removing client: test
+Successfully removed client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:44:21.947399
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:45:09.467092
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: POST https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:45:14.082429
+Creating new client with username: test
+Successfully created client: test
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:45:14.195714
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list
+Request: GET https://localhost/api/v1/clients Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-19T19:45:36.571260
+Listing clients. Nonce: None, Timestamp: None
+Successfully retrieved client list

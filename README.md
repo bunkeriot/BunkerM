@@ -1,7 +1,7 @@
 # BunkerM - MQTT Broker Management Suite
 
 <p align="center">
-  <img src="/screenshots/image-6.png" alt="alt text">
+  <img src="screenshots/image-6.png" alt="alt text">
 </p>
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
@@ -47,7 +47,7 @@ docker compose up --build
    - This warning is normal and appears because we use a self-signed certificate for development  
 
 4. MQTT Broker:
-   - Default port : 1900
+   - Default port : 1883
    - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
 ## Core Features
 
@@ -62,7 +62,7 @@ Monitor and control MQTT client connections in real-time through the "Recent MQT
 ![alt text](/screenshots/image-2.png)
 
 
-### 2. Dynamic Security Module
+### 2. Dynamic security plugin
 Manage your MQTT broker's clients:
 
 ![alt text](/screenshots/image-4.png)

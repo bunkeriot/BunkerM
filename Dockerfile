@@ -79,7 +79,6 @@ RUN pip install --no-cache-dir \
     python-json-logger \
     pyOpenSSL \
     fastapi-limiter \
-    redis \
     aiofiles \
     types-aiofiles \
     typing-extensions
