@@ -1,0 +1,25 @@
+.v-footer {
+  background: rgb(var(--v-theme-containerbg));
+  padding: 24px 16px 0px;
+  margin-top: auto;
+  position: unset;
+  a {
+    text-decoration: unset;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .footer {
+    text-align: center;
+    .v-col-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      &.text-right {
+        text-align: center !important;
+      }
+    }
+  }
+}

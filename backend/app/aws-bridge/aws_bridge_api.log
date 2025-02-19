@@ -1,0 +1,62 @@
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:27:44.336392
+Creating AWS bridge for client: bridge
+Unexpected error creating AWS bridge: name 'validate_certificate' is not defined
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:32:03.998166
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Error restarting Mosquitto: [Errno 2] No such file or directory: 'systemctl'
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:46:24.436266
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Error restarting Mosquitto: [Errno 2] No such file or directory: 'systemctl'
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:48:28.517128
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Error restarting Mosquitto: [Errno 2] No such file or directory: 'systemctl'
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:52:39.388549
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T16:53:00.725828
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T17:43:46.439465
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T18:10:52.675849
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Failed to restart Mosquitto broker
+Request: POST https://localhost/api/v1/aws-bridge Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Time: 2025-01-10T18:41:44.407011
+Creating AWS bridge for client: bridge
+Saved cert certificate to /etc/mosquitto/certs/bridge_cert.pem
+Saved key certificate to /etc/mosquitto/certs/bridge_key.pem
+Saved ca certificate to /etc/mosquitto/certs/bridge_ca.pem
+Saved bridge configuration to /etc/mosquitto/conf.d/aws_bridge_bridge.conf
+Failed to restart Mosquitto broker

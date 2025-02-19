@@ -1,0 +1,55 @@
+.v-input--density-default:not(.v-autocomplete--multiple),
+.v-field--variant-solo,
+.v-field--variant-filled {
+  --v-input-control-height: 39px;
+  --v-input-padding-top: 2px;
+  input.v-field__input {
+    padding-bottom: 2px;
+  }
+  .v-field__input {
+    padding-bottom: 2px;
+  }
+  textarea {
+    padding-top: 11px;
+  }
+}
+.v-input--density-default {
+  .v-field__input {
+    min-height: 41px;
+  }
+}
+.v-field--variant-outlined {
+  &.v-field--focused {
+    .v-field__outline {
+      --v-field-border-width: 1px;
+    }
+  }
+}
+.v-input {
+  .v-input__details {
+    padding-inline: 0;
+  }
+}
+
+.v-input--density-comfortable {
+  --v-input-control-height: 56px;
+  --v-input-padding-top: 17px;
+}
+.v-label {
+  font-size: 0.875rem;
+  --v-medium-emphasis-opacity: 0.8;
+}
+.v-switch .v-label,
+.v-checkbox .v-label {
+  opacity: 1;
+}
+
+textarea.v-field__input {
+  font-size: 14px;
+}
+
+.textarea-input {
+  .v-label {
+    top: 15px;
+  }
+}

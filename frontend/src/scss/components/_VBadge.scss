@@ -1,0 +1,11 @@
+.v-badge__badge {
+  min-width: 16px;
+  height: 16px;
+  padding: 4px;
+}
+.v-badge--dot {
+  .v-badge__badge {
+    height: 8px;
+    width: 8px;
+  }
+}

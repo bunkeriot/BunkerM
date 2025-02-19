@@ -1,0 +1,41 @@
+.profileBtn {
+  height: 44px !important;
+  margin: 0 20px 0 10px !important;
+  padding: 0 6px;
+  .v-avatar {
+    width: 32px;
+    height: 32px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .profileBtn {
+    min-width: 42px;
+    margin: 0 12px 0 0 !important;
+    .v-avatar {
+      width: 24px;
+      height: 24px;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .notification-dropdown {
+    width: 332px !important;
+    .v-list-item__content {
+      .d-inline-flex {
+        .text-caption {
+          min-width: 50px;
+        }
+      }
+    }
+  }
+}

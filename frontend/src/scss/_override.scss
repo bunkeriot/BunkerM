@@ -1,0 +1,115 @@
+html {
+  .bg-success,
+  .bg-info,
+  .bg-warning {
+    color: white !important;
+  }
+}
+
+.v-row + .v-row {
+  margin-top: 0px;
+}
+
+.v-divider {
+  opacity: 1;
+  border-color: rgb(var(--v-theme-borderLight));
+}
+
+.v-table > .v-table__wrapper > table > thead > tr > th {
+  color: inherit;
+}
+
+.border-blue-right {
+  border-right: 1px solid rgba(var(--v-theme-borderLight), 0.36);
+}
+
+.link-hover {
+  text-decoration: unset;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.v-selection-control {
+  flex: unset;
+}
+
+.customizer-btn .icon {
+  animation: progress-circular-rotate 1.4s linear infinite;
+  transform-origin: center center;
+  transition: all 0.2s ease-in-out;
+}
+
+.no-spacer {
+  .v-list-item__spacer {
+    display: none !important;
+  }
+}
+
+@keyframes progress-circular-rotate {
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+header {
+  &.v-toolbar--border {
+    border-color: rgb(var(--v-theme-borderLight));
+  }
+}
+
+.v-toolbar {
+  &.v-app-bar {
+    border-bottom: 1px solid rgba(var(--v-theme-borderLight), 0.8);
+  }
+}
+
+.v-sheet--border {
+  border: 1px solid rgba(var(--v-theme-borderLight), 0.8);
+}
+
+// table css
+.v-table {
+  &.v-table--hover {
+    > .v-table__wrapper {
+      > table {
+        > tbody {
+          > tr {
+            &:hover {
+              td {
+                background: rgb(var(--v-theme-gray100));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// accordion page css
+.v-expansion-panel {
+  border: 1px solid rgb(var(--v-theme-borderLight));
+  &:not(:first-child) {
+    margin-top: -1px;
+  }
+  .v-expansion-panel-text__wrapper {
+    border-top: 1px solid rgb(var(--v-theme-borderLight));
+    padding: 16px 24px;
+  }
+  &.v-expansion-panel--active {
+    .v-expansion-panel-title--active {
+      .v-expansion-panel-title__overlay {
+        background-color: rgb(var(--v-theme-gray100));
+      }
+    }
+  }
+}
+.v-expansion-panel--active {
+  > .v-expansion-panel-title {
+    min-height: unset;
+  }
+}
+.v-expansion-panel--disabled .v-expansion-panel-title {
+  color: rgba(var(--v-theme-on-surface), 0.15);
+}
