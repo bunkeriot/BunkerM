@@ -5,8 +5,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'X-API-Key': import.meta.env.VITE_API_KEY
-  },
-
+  }
 });
 
 export const mqttService = {

@@ -78,7 +78,7 @@ const handleLogout = async () => {
     <!-- Github -->
     <!-- ---------------------------------------------- -->
     <v-btn icon class="text-secondary hidden-sm-and-down d-flex" color="darkText" rounded="sm" variant="text"
-      href="" target="_blank">
+      href="https://github.com/bunkeriot/Bunker-M" target="_blank">
       <GithubOutlined :style="{ fontSize: '16px' }" />
     </v-btn>
 

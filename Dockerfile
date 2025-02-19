@@ -21,6 +21,7 @@ RUN npm run build
 # Use Eclipse Temurin as final base
 FROM eclipse-temurin:17-jdk-alpine
 
+
 # Install system packages including Python dev headers, SSL dependencies, and Node.js
 RUN apk update && apk add --no-cache \
     python3 \
@@ -83,6 +84,8 @@ RUN pip install --no-cache-dir \
     types-aiofiles \
     typing-extensions
 
+
+
 # Configure nginx
 RUN mkdir -p /run/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
@@ -137,6 +140,7 @@ RUN echo '#!/bin/sh' > /start.sh && \
 COPY backend/mosquitto/config/mosquitto.conf /etc/mosquitto/mosquitto.conf
 COPY backend/app /app
 RUN touch /app/monitor/__init__.py
+COPY ssl_certificates/ /app/certs
 COPY backend/mosquitto/dynsec/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
 COPY backend/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
@@ -144,6 +148,7 @@ COPY backend/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY --from=frontend-build /frontend/dist /frontend
 
 # Set permissions
+
 RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
     chmod -R 775 /var/lib/mosquitto && \
     chown -R root:root /app && \
@@ -154,6 +159,7 @@ RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
 RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
     echo "API_KEY=$(openssl rand -hex 32)" >> /app/.env && \
     chmod 600 /app/.env
+
 
 # Set Python path
 ENV PYTHONPATH=/app/monitor:$PYTHONPATH

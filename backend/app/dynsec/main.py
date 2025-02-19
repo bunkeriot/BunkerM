@@ -17,6 +17,8 @@ import ssl
 from dotenv import load_dotenv
 from enum import Enum
 from datetime import datetime, timedelta
+import secrets
+from logging.handlers import RotatingFileHandler
 from pydantic import BaseModel, Field
 
 # Load environment variables from .env file
@@ -28,7 +30,13 @@ class RequestParams(BaseModel):
     timestamp: Optional[int] = None
 
 
-
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+handler = RotatingFileHandler(
+    "dynsec_api_activity.log", maxBytes=10000000, backupCount=5  # 10MB
+)
+logger.addHandler(handler)
 
 # Environment variables
 MOSQUITTO_ADMIN_USERNAME = os.getenv("MOSQUITTO_ADMIN_USERNAME")
@@ -44,7 +52,10 @@ app = FastAPI(
     docs_url="/api/v1/docs",
     openapi_url="/api/v1/openapi.json",
 )
-
+""" # Rate limiting
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler) """
 
 # CORS middleware
 app.add_middleware(
