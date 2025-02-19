@@ -1,12 +1,12 @@
 # BunkerM - MQTT Broker Management Suite
 
 <p align="center">
-  <img src="image-6.png" alt="alt text">
+  <img src="/screenshots/image-6.png" alt="alt text">
 </p>
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
-![alt text](image-2.png)
+![alt text](/screenshots/image-2.png)
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
 > **License**: Free for non-commercial use  
@@ -56,13 +56,13 @@ Monitor and control MQTT client connections in real-time through the "Recent MQT
 - Subscription tracking
 - Retained message counts
 
-![alt text](image-2.png)
+![alt text](/screenshots/image-2.png)
 
 
 ### 2. Dynamic Security Module
 Manage your MQTT broker's clients:
 
-![alt text](image-4.png)
+![alt text](/screenshots/image-4.png)
 
 - **Client Management**
   - Create new MQTT clients
@@ -99,7 +99,7 @@ Connect to major cloud providers:
   - Topic routing
 
 ## MQTT Clients Administration
-![alt text](image-3.png)
+![alt text]/screenshots/(image-3.png)
 1. **Access the Logging Interface**
    - Navigate to "Recent MQTT Events"
    - View real-time client activities
