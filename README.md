@@ -1,10 +1,15 @@
 # BunkerM - MQTT Broker Management Suite
 
+<p align="center">
+  <img src="image-6.png" alt="alt text">
+</p>
+
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
+![alt text](image-2.png)
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
-> **License**: Free for non-commercial use
+> **License**: Free for non-commercial use  
 > **Website**: https://bunkeriot.com
 
 ## Core Components
@@ -14,6 +19,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 * Dynamic Security Module
 * Monitoring and Logging System
 * Cloud Bridge Integration (Pro Feature)
+![alt text](image-5.png)
 
 ## Quick Start
 
@@ -37,31 +43,21 @@ docker compose up --build
 
 ## Core Features
 
-### 1. Client Connection Management
+### 1. Broker Dashboard
 Monitor and control MQTT client connections in real-time through the "Recent MQTT Events" dashboard:
+- Connected clients count
+- Message statistics
+- Byte transfer rates
+- Subscription tracking
+- Retained message counts
 
-- **View Connection Status**
-  - Real-time connection events
-  - Client IDs and usernames
-  - Connection timestamps
-  - Protocol details
-  - Status indicators (connected/disconnected)
+![alt text](image-2.png)
 
-- **Control Client Access**
-  - Enable/disable clients instantly
-  - Green checkmark indicates connected clients
-  - Red stop icon shows disconnected status
-  - Immediate feedback on actions
-  - Real-time status updates
 
-- **Search and Filter**
-  - Find specific clients quickly
-  - Filter by username or client ID
-  - Track connection patterns
-  - View historical connections
+### 2. Dynamic Security Module
+Manage your MQTT broker's clients:
 
-### 2. Dynamic Security Features
-Manage your MQTT broker's security:
+![alt text](image-4.png)
 
 - **Client Management**
   - Create new MQTT clients
@@ -81,16 +77,8 @@ Manage your MQTT broker's security:
   - Manage group members
   - Set priorities
 
-### 3. Monitoring Dashboard
-Track your broker's performance:
 
-- Connected clients count
-- Message statistics
-- Byte transfer rates
-- Subscription tracking
-- Retained message counts
-
-### 4. Cloud Integration (Pro Feature)
+### 3. Cloud Integration (Pro Feature)
 Connect to major cloud providers:
 
 - **AWS IoT Core Bridge**
@@ -105,8 +93,8 @@ Connect to major cloud providers:
   - SAS token management
   - Topic routing
 
-## Using the Enable/Disable Feature
-
+## MQTT Clients Administration
+![alt text](image-3.png)
 1. **Access the Logging Interface**
    - Navigate to "Recent MQTT Events"
    - View real-time client activities
@@ -123,29 +111,13 @@ Connect to major cloud providers:
      - Client can reconnect immediately
      - Status updates when client connects
 
-3. **Monitor Actions**
-   - Watch for success/error notifications
-   - Check status indicators
-   - Track client reconnection attempts
-   - View updated connection logs
 
-4. **Search and Filter**
+3. **Search and Filter**
    - Use search bar for specific clients
    - Filter by connection status
    - Track specific client activities
    - Monitor multiple clients
 
-## Best Practices
-
-- Regularly review connected clients
-- Monitor connection patterns
-- Use descriptive client IDs
-- Document client access changes
-- Keep track of disabled clients
-
-## Security Note
-
-The SSL warning on first access is normal and expected in development environments. The application generates a self-signed certificate during build, which is secure for local use. For production deployment, replace with your own SSL certificate.
 
 ## Troubleshooting
 
@@ -155,11 +127,10 @@ The SSL warning on first access is normal and expected in development environmen
 - Verify network connectivity
 - Check SSL certificate configuration
 
-## Support
+## Support & Custom Devevelopment
 
 For issues or questions:
 * Visit our website: https://bunkeriot.com
-* Submit through repository
 * Check documentation (Coming soon)
 * Contact me :  
  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehdi-idrissi/)

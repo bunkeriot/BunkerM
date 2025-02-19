@@ -1,1 +1,4 @@
 ssl_certificates/
+.env
+ssl_certificates/cert.pem
+ssl_certificates/key.pem

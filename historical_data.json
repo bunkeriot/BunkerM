@@ -1,0 +1,101 @@
+{
+  "hourly": [
+    {
+      "timestamp": "2025-02-19 12:40",
+      "bytes_received": 4379681.66,
+      "bytes_sent": 2885464.1986779277
+    },
+    {
+      "timestamp": "2025-02-19 13:10",
+      "bytes_received": 5147317.92,
+      "bytes_sent": 10649952.7639446
+    },
+    {
+      "timestamp": "2025-02-19 13:40",
+      "bytes_received": 12918623.83,
+      "bytes_sent": 7027505.754807484
+    },
+    {
+      "timestamp": "2025-02-19 14:10",
+      "bytes_received": 5576267.31,
+      "bytes_sent": 13180200.527195137
+    },
+    {
+      "timestamp": "2025-02-19 14:40",
+      "bytes_received": 11709007.46,
+      "bytes_sent": 14266779.421015687
+    },
+    {
+      "timestamp": "2025-02-19 15:10",
+      "bytes_received": 11809581.22,
+      "bytes_sent": 5036330.46323619
+    },
+    {
+      "timestamp": "2025-02-19 15:40",
+      "bytes_received": 15101063.89,
+      "bytes_sent": 2705391.0434166556
+    },
+    {
+      "timestamp": "2025-02-19 16:10",
+      "bytes_received": 12058526.09,
+      "bytes_sent": 5570484.08029213
+    },
+    {
+      "timestamp": "2025-02-19 16:40",
+      "bytes_received": 11030058.75,
+      "bytes_sent": 8322675.259064937
+    },
+    {
+      "timestamp": "2025-02-19 17:10",
+      "bytes_received": 2152935.49,
+      "bytes_sent": 2672171.3531913776
+    },
+    {
+      "timestamp": "2025-02-19 17:40",
+      "bytes_received": 3249147.86,
+      "bytes_sent": 2588773.5977136176
+    },
+    {
+      "timestamp": "2025-02-19 18:10",
+      "bytes_received": 3085830.77,
+      "bytes_sent": 1141748.9167822069
+    }
+  ],
+  "daily": [
+    {
+      "date": "2025-02-13",
+      "bytes_received": 4519376.491666667,
+      "bytes_sent": 3971758.28018024
+    },
+    {
+      "date": "2025-02-14",
+      "bytes_received": 4304849.088333334,
+      "bytes_sent": 3522758.609193329
+    },
+    {
+      "date": "2025-02-15",
+      "bytes_received": 4018731.4433333334,
+      "bytes_sent": 3085780.9931387473
+    },
+    {
+      "date": "2025-02-16",
+      "bytes_received": 5026695.149166667,
+      "bytes_sent": 4471392.751853275
+    },
+    {
+      "date": "2025-02-17",
+      "bytes_received": 4540468.4175,
+      "bytes_sent": 3702790.092262968
+    },
+    {
+      "date": "2025-02-18",
+      "bytes_received": 4349731.771666666,
+      "bytes_sent": 3123112.9945484707
+    },
+    {
+      "date": "2025-02-19",
+      "bytes_received": 4325266.327083333,
+      "bytes_sent": 3225690.4501103433
+    }
+  ]
+}
