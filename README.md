@@ -102,7 +102,7 @@ Connect to major cloud providers:
   - Topic routing
 
 ## MQTT Clients Administration
-![alt text]/screenshots/(image-3.png)
+![alt text](/screenshots/image-3.png)
 1. **Access the Logging Interface**
    - Navigate to "Recent MQTT Events"
    - View real-time client activities
