@@ -163,8 +163,7 @@ RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
 # Set Python path
 ENV PYTHONPATH=/app/monitor:$PYTHONPATH
 
-# Expose ports (including frontend port)
-EXPOSE 1883 8080 1000 1001 1002 1003 2000
+EXPOSE  2000
 
 # Use the startup script
 CMD ["/start.sh"]

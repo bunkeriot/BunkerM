@@ -18080,3 +18080,593 @@
 1740058487: Client auto-AA411975-0185-573F-B901-36EF49AEAF81 closed its connection.
 1740058487: mosquitto version 2.0.20 terminating
 1740058487: Saving in-memory database to /var/lib/mosquitto//mosquitto.db.
+1740067389: mosquitto version 2.0.20 starting
+1740067389: Config loaded from /etc/mosquitto/mosquitto.conf.
+1740067389: Loading plugin: /usr/lib/mosquitto_dynamic_security.so
+1740067389: Opening ipv4 listen socket on port 1883.
+1740067389: Opening ipv6 listen socket on port 1883.
+1740067389: Opening ipv4 listen socket on port 8080.
+1740067389: Opening ipv6 listen socket on port 8080.
+1740067389: mosquitto version 2.0.20 running
+1740067392: New connection from ::1:48393 on port 1883.
+1740067392: New client connected from ::1:48393 as auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (p2, c1, k60, u'bunker').
+1740067392: No will message specified.
+1740067392: Sending CONNACK to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (0, 0)
+1740067392: Received SUBSCRIBE from auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067392: 	$SYS/broker/# (QoS 0)
+1740067392: auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 0 $SYS/broker/#
+1740067392: 	# (QoS 0)
+1740067392: auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 0 #
+1740067392: Sending SUBACK to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/version', ... (24 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/uptime', ... (9 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/total', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/inactive', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/disconnected', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/active', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/connected', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/clients/expired', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/received/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/sent/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/sent/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/dropped/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/dropped/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/dropped/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/sent/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/sent/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/received/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/received/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/received/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/sent/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/sent/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/bytes/sent/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/messages/stored', ... (2 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/messages/received', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/messages/sent', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/store/messages/count', ... (2 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/subscriptions/count', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/shared_subscriptions/count', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/retained messages/count', ... (2 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/publish/messages/dropped', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/publish/messages/received', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/publish/messages/sent', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/publish/bytes/received', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/publish/bytes/sent', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/bytes/received', ... (1 bytes))
+1740067392: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r1, m0, '$SYS/broker/bytes/sent', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/clients/total', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/clients/maximum', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/clients/active', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/clients/connected', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (5 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/stored', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/count', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/subscriptions/count', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/retained messages/count', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (1 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (2 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (4 bytes))
+1740067400: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (3 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (5 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (4 bytes))
+1740067411: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (3 bytes))
+1740067415: New connection from ::1:40204 on port 1883.
+1740067415: New client connected from ::1:40204 as auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA (p5, c1, k60, u'bunker').
+1740067415: No will message specified.
+1740067415: Sending CONNACK to auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA (0, 0)
+1740067415: Received SUBSCRIBE from auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA
+1740067415: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067415: auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA 1 $CONTROL/dynamic-security/v1/response
+1740067415: Sending SUBACK to auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA
+1740067415: Received PUBLISH from auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (40 bytes))
+1740067415: dynsec: auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA/bunker | listClients | verbose=false | count=-1 | offset=0
+1740067415: Sending PUBACK to auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA (m2, rc0)
+1740067415: Sending PUBLISH to auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (86 bytes))
+1740067415: Client auto-D2FCCA6D-7887-015B-3901-3FB08B6AFDEA closed its connection.
+1740067420: New connection from ::1:40214 on port 1883.
+1740067420: New client connected from ::1:40214 as auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 (p5, c1, k60, u'bunker').
+1740067420: No will message specified.
+1740067420: Sending CONNACK to auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 (0, 0)
+1740067420: Received SUBSCRIBE from auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7
+1740067420: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067420: auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 1 $CONTROL/dynamic-security/v1/response
+1740067420: Sending SUBACK to auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7
+1740067420: Received PUBLISH from auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (59 bytes))
+1740067420: dynsec: auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7/bunker | createClient | username=test | password=no password
+1740067420: Sending PUBACK to auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 (m2, rc0)
+1740067420: Sending PUBLISH to auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (42 bytes))
+1740067420: Client auto-3A32CE70-88B0-CFD0-8C6D-465BF1D214B7 closed its connection.
+1740067420: New connection from ::1:40218 on port 1883.
+1740067420: New client connected from ::1:40218 as auto-4BC53D72-DA79-5766-F815-6A6C255E793B (p5, c1, k60, u'bunker').
+1740067420: No will message specified.
+1740067420: Sending CONNACK to auto-4BC53D72-DA79-5766-F815-6A6C255E793B (0, 0)
+1740067420: Received SUBSCRIBE from auto-4BC53D72-DA79-5766-F815-6A6C255E793B
+1740067420: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067420: auto-4BC53D72-DA79-5766-F815-6A6C255E793B 1 $CONTROL/dynamic-security/v1/response
+1740067420: Sending SUBACK to auto-4BC53D72-DA79-5766-F815-6A6C255E793B
+1740067420: Received PUBLISH from auto-4BC53D72-DA79-5766-F815-6A6C255E793B (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (82 bytes))
+1740067420: dynsec: auto-4BC53D72-DA79-5766-F815-6A6C255E793B/bunker | setClientPassword | username=test | password=******
+1740067420: Sending PUBACK to auto-4BC53D72-DA79-5766-F815-6A6C255E793B (m2, rc0)
+1740067420: Sending PUBLISH to auto-4BC53D72-DA79-5766-F815-6A6C255E793B (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (47 bytes))
+1740067420: Client auto-4BC53D72-DA79-5766-F815-6A6C255E793B closed its connection.
+1740067420: New connection from ::1:40232 on port 1883.
+1740067420: New client connected from ::1:40232 as auto-A351F380-FF67-CEDE-985E-51D51E7BE711 (p5, c1, k60, u'bunker').
+1740067420: No will message specified.
+1740067420: Sending CONNACK to auto-A351F380-FF67-CEDE-985E-51D51E7BE711 (0, 0)
+1740067420: Received SUBSCRIBE from auto-A351F380-FF67-CEDE-985E-51D51E7BE711
+1740067420: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067420: auto-A351F380-FF67-CEDE-985E-51D51E7BE711 1 $CONTROL/dynamic-security/v1/response
+1740067420: Sending SUBACK to auto-A351F380-FF67-CEDE-985E-51D51E7BE711
+1740067420: Received PUBLISH from auto-A351F380-FF67-CEDE-985E-51D51E7BE711 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (40 bytes))
+1740067420: dynsec: auto-A351F380-FF67-CEDE-985E-51D51E7BE711/bunker | listClients | verbose=false | count=-1 | offset=0
+1740067420: Sending PUBACK to auto-A351F380-FF67-CEDE-985E-51D51E7BE711 (m2, rc0)
+1740067420: Sending PUBLISH to auto-A351F380-FF67-CEDE-985E-51D51E7BE711 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (93 bytes))
+1740067420: Client auto-A351F380-FF67-CEDE-985E-51D51E7BE711 closed its connection.
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (5 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (2 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/received', ... (1 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (3 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (4 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/received', ... (3 bytes))
+1740067422: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (3 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (5 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (4 bytes))
+1740067433: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (3 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (5 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (4 bytes))
+1740067444: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067451: New connection from ::1:44980 on port 1883.
+1740067451: New client connected from ::1:44980 as auto-19838643-96F6-CADB-847C-BD11C655EFEF (p5, c1, k60, u'bunker').
+1740067451: No will message specified.
+1740067451: Sending CONNACK to auto-19838643-96F6-CADB-847C-BD11C655EFEF (0, 0)
+1740067451: Received SUBSCRIBE from auto-19838643-96F6-CADB-847C-BD11C655EFEF
+1740067451: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067451: auto-19838643-96F6-CADB-847C-BD11C655EFEF 1 $CONTROL/dynamic-security/v1/response
+1740067451: Sending SUBACK to auto-19838643-96F6-CADB-847C-BD11C655EFEF
+1740067451: Received PUBLISH from auto-19838643-96F6-CADB-847C-BD11C655EFEF (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (59 bytes))
+1740067451: dynsec: auto-19838643-96F6-CADB-847C-BD11C655EFEF/bunker | deleteClient | username=test
+1740067451: Sending PUBACK to auto-19838643-96F6-CADB-847C-BD11C655EFEF (m2, rc0)
+1740067451: Sending PUBLISH to auto-19838643-96F6-CADB-847C-BD11C655EFEF (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (42 bytes))
+1740067451: Client auto-19838643-96F6-CADB-847C-BD11C655EFEF closed its connection.
+1740067451: New connection from ::1:44984 on port 1883.
+1740067451: New client connected from ::1:44984 as auto-A3EF5323-A796-C084-F230-834E59807035 (p5, c1, k60, u'bunker').
+1740067451: No will message specified.
+1740067451: Sending CONNACK to auto-A3EF5323-A796-C084-F230-834E59807035 (0, 0)
+1740067451: Received SUBSCRIBE from auto-A3EF5323-A796-C084-F230-834E59807035
+1740067451: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067451: auto-A3EF5323-A796-C084-F230-834E59807035 1 $CONTROL/dynamic-security/v1/response
+1740067451: Sending SUBACK to auto-A3EF5323-A796-C084-F230-834E59807035
+1740067451: Received PUBLISH from auto-A3EF5323-A796-C084-F230-834E59807035 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (40 bytes))
+1740067451: dynsec: auto-A3EF5323-A796-C084-F230-834E59807035/bunker | listClients | verbose=false | count=-1 | offset=0
+1740067451: Sending PUBACK to auto-A3EF5323-A796-C084-F230-834E59807035 (m2, rc0)
+1740067451: Sending PUBLISH to auto-A3EF5323-A796-C084-F230-834E59807035 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (86 bytes))
+1740067451: Client auto-A3EF5323-A796-C084-F230-834E59807035 closed its connection.
+1740067453: Received PINGREQ from auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067453: Sending PINGRESP to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (2 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/received', ... (1 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (4 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/received', ... (3 bytes))
+1740067455: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067455: New connection from ::1:44990 on port 1883.
+1740067455: New client connected from ::1:44990 as auto-85712780-49F3-4A65-4324-4270DDB3132C (p5, c1, k60, u'bunker').
+1740067455: No will message specified.
+1740067455: Sending CONNACK to auto-85712780-49F3-4A65-4324-4270DDB3132C (0, 0)
+1740067455: Received SUBSCRIBE from auto-85712780-49F3-4A65-4324-4270DDB3132C
+1740067455: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067455: auto-85712780-49F3-4A65-4324-4270DDB3132C 1 $CONTROL/dynamic-security/v1/response
+1740067455: Sending SUBACK to auto-85712780-49F3-4A65-4324-4270DDB3132C
+1740067455: Received PUBLISH from auto-85712780-49F3-4A65-4324-4270DDB3132C (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (39 bytes))
+1740067455: dynsec: auto-85712780-49F3-4A65-4324-4270DDB3132C/bunker | listGroups | verbose=false | count=-1 | offset=0
+1740067455: Sending PUBACK to auto-85712780-49F3-4A65-4324-4270DDB3132C (m2, rc0)
+1740067455: Sending PUBLISH to auto-85712780-49F3-4A65-4324-4270DDB3132C (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (76 bytes))
+1740067455: Client auto-85712780-49F3-4A65-4324-4270DDB3132C closed its connection.
+1740067459: New connection from ::1:44992 on port 1883.
+1740067459: New client connected from ::1:44992 as auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D (p5, c1, k60, u'bunker').
+1740067459: No will message specified.
+1740067459: Sending CONNACK to auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D (0, 0)
+1740067459: Received SUBSCRIBE from auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D
+1740067459: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067459: auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D 1 $CONTROL/dynamic-security/v1/response
+1740067459: Sending SUBACK to auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D
+1740067459: Received PUBLISH from auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (59 bytes))
+1740067459: dynsec: auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D/bunker | createGroup | groupname=test
+1740067459: Sending PUBACK to auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D (m2, rc0)
+1740067459: Sending PUBLISH to auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (41 bytes))
+1740067459: Client auto-A402E8FA-74B9-1B48-976C-C94C4DB3919D closed its connection.
+1740067459: New connection from ::1:44996 on port 1883.
+1740067459: New client connected from ::1:44996 as auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD (p5, c1, k60, u'bunker').
+1740067459: No will message specified.
+1740067459: Sending CONNACK to auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD (0, 0)
+1740067459: Received SUBSCRIBE from auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD
+1740067459: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067459: auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD 1 $CONTROL/dynamic-security/v1/response
+1740067459: Sending SUBACK to auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD
+1740067459: Received PUBLISH from auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (39 bytes))
+1740067459: dynsec: auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD/bunker | listGroups | verbose=false | count=-1 | offset=0
+1740067459: Sending PUBACK to auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD (m2, rc0)
+1740067459: Sending PUBLISH to auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (82 bytes))
+1740067459: Client auto-1529AC1F-5690-E6D8-FF8F-8F0AE7FC02CD closed its connection.
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (7 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (2 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/received', ... (1 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (4 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/received', ... (3 bytes))
+1740067466: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067471: New connection from ::1:43164 on port 1883.
+1740067471: New client connected from ::1:43164 as auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 (p5, c1, k60, u'bunker').
+1740067471: No will message specified.
+1740067471: Sending CONNACK to auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 (0, 0)
+1740067471: Received SUBSCRIBE from auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9
+1740067471: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067471: auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 1 $CONTROL/dynamic-security/v1/response
+1740067471: Sending SUBACK to auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9
+1740067471: Received PUBLISH from auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (39 bytes))
+1740067471: dynsec: auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9/bunker | listGroups | verbose=false | count=-1 | offset=0
+1740067471: Sending PUBACK to auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 (m2, rc0)
+1740067471: Sending PUBLISH to auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (82 bytes))
+1740067471: Client auto-1AD0D503-9547-B4CE-DD93-3C7EDB624DD9 closed its connection.
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (6 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (2 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/received', ... (2 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (4 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/received', ... (3 bytes))
+1740067477: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (10 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (6 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067488: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (11 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (6 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067499: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (11 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (6 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067510: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))
+1740067514: Received PINGREQ from auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067514: Sending PINGRESP to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1
+1740067515: New connection from ::1:36736 on port 1883.
+1740067515: New client connected from ::1:36736 as auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 (p5, c1, k60, u'bunker').
+1740067515: No will message specified.
+1740067515: Sending CONNACK to auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 (0, 0)
+1740067515: Received SUBSCRIBE from auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4
+1740067515: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067515: auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 1 $CONTROL/dynamic-security/v1/response
+1740067515: Sending SUBACK to auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4
+1740067515: Received PUBLISH from auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (38 bytes))
+1740067515: dynsec: auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4/bunker | listRoles | verbose=false | count=-1 | offset=0
+1740067515: Sending PUBACK to auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 (m2, rc0)
+1740067515: Sending PUBLISH to auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (81 bytes))
+1740067515: Client auto-C0C3715A-DA8F-09F7-DFF9-40E66CDA20F4 closed its connection.
+1740067516: New connection from ::1:36746 on port 1883.
+1740067516: New client connected from ::1:36746 as auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 (p5, c1, k60, u'bunker').
+1740067516: No will message specified.
+1740067516: Sending CONNACK to auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 (0, 0)
+1740067516: Received SUBSCRIBE from auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81
+1740067516: 	$CONTROL/dynamic-security/v1/response (QoS 1)
+1740067516: auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 1 $CONTROL/dynamic-security/v1/response
+1740067516: Sending SUBACK to auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81
+1740067516: Received PUBLISH from auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 (d0, q1, r0, m2, '$CONTROL/dynamic-security/v1', ... (40 bytes))
+1740067516: dynsec: auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81/bunker | listClients | verbose=false | count=-1 | offset=0
+1740067516: Sending PUBACK to auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 (m2, rc0)
+1740067516: Sending PUBLISH to auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 (d0, q0, r0, m0, '$CONTROL/dynamic-security/v1/response', ... (86 bytes))
+1740067516: Client auto-7D437788-0AF9-A8D5-37EB-67EDB9F43F81 closed its connection.
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/uptime', ... (11 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/1min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/1min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/1min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/1min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/1min', ... (6 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/1min', ... (7 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/1min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/1min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/5min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/5min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/5min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/5min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/5min', ... (6 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/5min', ... (6 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/5min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/5min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/received/15min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/messages/sent/15min', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/received/15min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/publish/sent/15min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/received/15min', ... (6 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/bytes/sent/15min', ... (6 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/sockets/15min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/load/connections/15min', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/store/messages/bytes', ... (3 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/received', ... (2 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/messages/sent', ... (3 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/received', ... (2 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/messages/sent', ... (3 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/received', ... (4 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/bytes/sent', ... (5 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/received', ... (3 bytes))
+1740067521: Sending PUBLISH to auto-24AC1A8C-34E4-08E1-D0D3-5E5B44C562E1 (d0, q0, r0, m0, '$SYS/broker/publish/bytes/sent', ... (4 bytes))

@@ -22,7 +22,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Get client details response:', response);
+    //console.log('Get client details response:', response);
     return response.data;
   },
 
@@ -38,7 +38,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log(response);
+    //console.log(response);
     return response.data;
    },
 
@@ -50,7 +50,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log(response);
+    //console.log(response);
     return response.data;
   },
 
@@ -66,7 +66,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log(response);
+    //console.log(response);
     return response.data;
   },
 
@@ -79,7 +79,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Add client to group response:', response);
+    //console.log('Add client to group response:', response);
     return response.data;
   },
   
@@ -90,7 +90,7 @@ export const mqttService = {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Remove client from group response:', response);
+    //console.log('Remove client from group response:', response);
     return response.data;
   },
 
@@ -106,7 +106,7 @@ export const mqttService = {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Create role response:', response);
+  //console.log('Create role response:', response);
   return response.data;
 },
 
@@ -118,7 +118,7 @@ async getRoles() {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Get roles response:', response);
+  //console.log('Get roles response:', response);
   // Split the string into array and map to objects
   return response.data.roles.split('\n').filter(Boolean).map(name => ({ name }));
 },
@@ -131,7 +131,7 @@ async getRole(name) {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Get role details response:', response);
+  //console.log('Get role details response:', response);
   return response.data;
 },
 
@@ -143,7 +143,7 @@ async deleteRole(name) {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Delete role response:', response);
+  //console.log('Delete role response:', response);
   return response.data;
 },
 
@@ -159,7 +159,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Create group response:', response);
+    //console.log('Create group response:', response);
     return response.data;
   },
 
@@ -171,7 +171,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Get groups response:', response);
+    //console.log('Get groups response:', response);
     return response.data.groups.split('\n').filter(Boolean).map(name => ({ name }));
   },
 
@@ -185,7 +185,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Get group details response:', response);
+    //console.log('Get group details response:', response);
     return response.data;
   },
 
@@ -197,7 +197,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Delete group response:', response);
+    //console.log('Delete group response:', response);
     return response.data;
   },
 
@@ -213,7 +213,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Add role to client response:', response);
+    //console.log('Add role to client response:', response);
     return response.data;
   },
 
@@ -224,7 +224,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Remove role from client response:', response);
+    //console.log('Remove role from client response:', response);
     return response.data;
   },
 
@@ -237,7 +237,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Add role to group response:', response);
+    //console.log('Add role to group response:', response);
     return response.data;
   },
 
@@ -248,7 +248,7 @@ async deleteRole(name) {
         'X-API-Key': import.meta.env.VITE_API_KEY 
       }
     });
-    console.log('Remove role from group response:', response);
+    //console.log('Remove role from group response:', response);
     return response.data;
   },
 
@@ -257,7 +257,7 @@ async deleteRole(name) {
 
 // In mqtt.service.js
 async addRoleACL(roleName, aclData) {
-  console.log('Adding ACL:', { roleName, aclData }); // Debug log
+  //console.log('Adding ACL:', { roleName, aclData }); // Debug log
   const response = await api.post(`/roles/${roleName}/acls`, {
     topic: aclData.topic,
     aclType: aclData.aclType,
@@ -268,7 +268,7 @@ async addRoleACL(roleName, aclData) {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('ACL response:', response); // Debug log
+  //console.log('ACL response:', response); // Debug log
   return response.data;
 },
 
@@ -283,7 +283,7 @@ async addRoleACL(roleName, aclData) {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Remove role ACL response:', response);
+  //console.log('Remove role ACL response:', response);
   return response.data;
 },
  */
@@ -299,7 +299,7 @@ async removeRoleACL(roleName, aclType, topic) {
       }
     }
   );
-  console.log('Remove role ACL response:', response);
+  //console.log('Remove role ACL response:', response);
   return response.data;
 },
 
@@ -310,7 +310,7 @@ async deleteGroup(name) {
       'X-API-Key': import.meta.env.VITE_API_KEY 
     }
   });
-  console.log('Delete group response:', response);
+  //console.log('Delete group response:', response);
   return response.data;
 },
   

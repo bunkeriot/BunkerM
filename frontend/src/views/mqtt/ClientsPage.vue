@@ -251,7 +251,7 @@ async function fetchClients() {
     const response = await mqttService.getClients();
     clients.value = response;
   } catch (error) {
-    console.error('Error fetching clients:', error);
+    /* console.error('Error fetching clients:', error); */
     showNotification('Failed to fetch clients', 'error');
   } finally {
     loading.value = false;
@@ -305,7 +305,7 @@ async function save() {
     showSuccess('Client created successfully');
   } catch (error) {
     showError('Failed to Add New Client');
-    console.error('Error:', error);
+   /*  console.error('Error:', error); */
   } finally {
     loading.value = false;
     closeDialog();
@@ -324,7 +324,7 @@ async function handleDeleteClient() {
     await mqttService.deleteClient(selectedClient.value.username);
   } catch (error) {
     showError('Failed to Delete Client');
-    console.error('Error:', error);
+    /* console.error('Error:', error); */
   } finally {
     loading.value = false;
     closeDialog();
@@ -338,7 +338,7 @@ async function fetchRoles() {
     availableRoles.value = roles;
   } catch (error) {
     showError('Failed to fetch roles');
-    console.error('Error:', error);
+   /*  console.error('Error:', error); */
   }
 }
 
@@ -353,7 +353,7 @@ async function openRoleManagement(client) {
     }
   } catch (error) {
     showNotification('Failed to fetch client details', 'error');
-    console.error('Error:', error);
+    /* console.error('Error:', error); */
   } finally {
     loading.value = false;
   }
@@ -365,7 +365,7 @@ async function addRoleToClient() {
     loading.value = true;
     await mqttService.addRoleToClient(selectedClient.value.username, selectedRole.value);
   } catch (error) {
-    console.error('Error fetching clients:', error);
+    /* console.error('Error fetching clients:', error); */
     showNotification('Failed to Assign Role to Client', 'error');
   } finally {
     loading.value = false;
@@ -378,7 +378,7 @@ async function removeRoleFromClient(username, roleName) {
     loading.value = true;
     await mqttService.removeRoleFromClient(username, roleName);
   } catch (error) {
-    console.error('Error fetching clients:', error);
+    /* console.error('Error fetching clients:', error); */
     showNotification('Failed to Remove Role from Client', 'error');
   } finally {
     loading.value = false;
@@ -394,7 +394,7 @@ async function fetchGroups() {
     availableGroups.value = groups;
   } catch (error) {
     showError('Failed to fetch groups');
-    console.error('Error:', error);
+    /* console.error('Error:', error); */
   } finally {
     loading.value = false;
   }
@@ -420,7 +420,7 @@ async function assignClientToGroup() {
     );
   } catch (error) {
     showError('Failed to Assign Client to Group');
-    console.error('Error:', error);
+    /* console.error('Error:', error); */
   } finally {
     loading.value = false;
     closeDialog();
@@ -433,7 +433,7 @@ async function removeClientFromGroup(groupName, username) {
     await mqttService.removeClientFromGroup(groupName, username);
   } catch (error) {
     showError('Failed to Remove Client from Group');
-    console.error('Error:', error);
+    /* console.error('Error:', error); */
   } finally {
     loading.value = false;
     closeDialog();
