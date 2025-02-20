@@ -16,7 +16,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 
 
 ## Architecture Overview
-![alt text](/screenshots/image-5.png)
+![alt text](/screenshots/diagram.png)
 
 * Mosquitto MQTT Broker (pre-configured)
 * Backend Management Services
