@@ -101,31 +101,10 @@ Connect to major cloud providers:
   - SAS token management
   - Topic routing
 
-## MQTT Clients Administration
-![alt text](/screenshots/image-3.png)
-1. **Access the Logging Interface**
-   - Navigate to "Recent MQTT Events"
-   - View real-time client activities
-   - Monitor connection status
+## MQTT Client Management: Listing, Enabling, and Disabling
+![alt text](/screenshots/image-3.png)  
 
-2. **Control Client Connections**
-   - For active clients:
-     - Click "Disable" to terminate connection
-     - Instant effect on client access
-     - Status updates to disconnected
-   
-   - For disabled clients:
-     - Click "Enable" to restore access
-     - Client can reconnect immediately
-     - Status updates when client connects
-
-
-3. **Search and Filter**
-   - Use search bar for specific clients
-   - Filter by connection status
-   - Track specific client activities
-   - Monitor multiple clients
-
+This module provides a real-time list of currently connected clients on a node, along with the ability to connect or disconnect an MQTT client using the "Enable" and "Disable" buttons.
 
 ## Troubleshooting
 

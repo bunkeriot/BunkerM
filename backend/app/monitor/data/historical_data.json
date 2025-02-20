@@ -30,6 +30,11 @@
       "timestamp": "2025-02-20 13:05",
       "bytes_received": 3.99,
       "bytes_sent": 581.35
+    },
+    {
+      "timestamp": "2025-02-20 16:20",
+      "bytes_received": 47.07,
+      "bytes_sent": 478.06
     }
   ],
   "daily": []
