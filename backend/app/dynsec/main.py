@@ -49,8 +49,8 @@ API_KEY = os.getenv("API_KEY")
 app = FastAPI(
     title="Mosquitto Management API",
     version="1.0.0",
-    docs_url="/api/v1/docs",
-    openapi_url="/api/v1/openapi.json",
+    docs_url="/docs",
+    openapi_url="/openapi.json",
 )
 """ # Rate limiting
 limiter = Limiter(key_func=get_remote_address)
