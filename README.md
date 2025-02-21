@@ -45,26 +45,25 @@ Thank you for supporting open source! 🙏
 * Cloud Bridge Integration (Pro Feature)
 
 
-## Quick Start
+## 🚀 Quick Start with Docker  
 
-1. Clone the repository and navigate to the project directory:
+Get up and running in seconds with **BunkerM**!  
+
+### **1. Run the Docker Container**  
 ```bash
-git clone https://github.com/bunkeriot/Bunker-M.git
-cd Bunker-M
+docker run -d -p 1883:1883 -p 2000:2000 \
+  -v "${PWD}/backend/logs:/var/log/mosquitto" \
+  -v "${PWD}/backend/logs/api:/var/log/api" \
+  bunkeriot/bunkerm
 ```
 
-2. Launch the application:
-```bash
-docker compose up --build
-```
-
-3. Access the interface:
+2. Access the interface:
    - Open your browser and navigate to `https://localhost:2000`
    - You'll see a security warning about the SSL certificate
-   ![alt text](/screenshots/image.png)
+  
    - Click "Advanced" and then "Proceed to localhost (unsafe)"
    - This warning is normal and appears because we use a self-signed certificate for development  
-
+ ![alt text](/screenshots/image.png)
 4. MQTT Broker:
    - Default port : 1883
    - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.

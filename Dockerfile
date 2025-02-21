@@ -137,11 +137,20 @@ RUN echo '#!/bin/sh' > /start.sh && \
 
 # Copy configurations and applications
 COPY backend/mosquitto/config/mosquitto.conf /etc/mosquitto/mosquitto.conf
+COPY backend/etc/mosquitto/certs/ /etc/mosquitto/certs/
+COPY backend/etc/mosquitto/conf.d/ /etc/mosquitto/conf.d/
+COPY ssl_certificates/ /app/certs/
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY backend/app /app
 RUN touch /app/monitor/__init__.py
 COPY ssl_certificates/ /app/certs
 COPY backend/mosquitto/dynsec/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
 COPY backend/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
+
+#COPY .env /app/.env
+
 
 # Copy the built frontend from the build stage
 COPY --from=frontend-build /frontend/dist /frontend
@@ -155,9 +164,35 @@ RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
     chmod -R 755 /usr/share/nginx/html
     
 # Create environment file with secure defaults
-RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
-    echo "API_KEY=$(openssl rand -hex 32)" >> /app/.env && \
-    chmod 600 /app/.env
+#RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
+#    echo "API_KEY=$(openssl rand -hex 32)" >> /app/.env && \
+#    chmod 600 /app/.env
+
+ENV MQTT_BROKER=localhost \
+    MQTT_PORT=1883 \
+    MQTT_USERNAME=bunker \
+    MQTT_PASSWORD=bunker \
+    JWT_SECRET=REDACTED_JWT_SECRET \
+    API_KEY=REDACTED_API_KEY \
+    VITE_API_KEY=REDACTED_API_KEY \
+    FRONTEND_URL=https://localhost:2000 \
+    ALLOWED_ORIGINS=https://localhost:2000 \
+    ALLOWED_HOSTS=localhost,127.0.0.1 \
+    RATE_LIMIT_PER_MINUTE=100 \
+    SSL_CERT_PATH=/app/certs/cert.pem \
+    SSL_KEY_PATH=/app/certs/key.pem \
+    LOG_LEVEL=INFO \
+    API_LOG_FILE=/var/log/api/api_activity.log \
+    VITE_AWS_BRIDGE_API_URL=https://localhost:2000/api/aws-bridge
+
+
+
+RUN mkdir -p /var/lib/mosquitto/db && \
+    mkdir -p /var/log/mosquitto && \
+    mkdir -p /var/log/api && \
+    chown -R mosquitto:mosquitto /var/lib/mosquitto && \
+    chown -R mosquitto:mosquitto /var/log/mosquitto && \
+    chmod -R 755 /var/log/api
 
 
 # Set Python path

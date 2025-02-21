@@ -33,7 +33,7 @@ services:
       # Security Settings
       - JWT_SECRET=${JWT_SECRET:-default_jwt_secret_replace_in_production}
       - API_KEY=REDACTED_API_KEY
-      - VITE_API_KEY=NnSqXybFymzgrpKTWdEjZcHvkeNBtwQY7zYyibeemfBCPU5uWIa7wIxpX4dazcP1yJ52DVFDenvcmnRqX4yaz9TVnaiqoZuDf5ILi7FGsyStvW4TwexMSW2UrUpuEoZ
+      - VITE_API_KEY=REDACTED_API_KEY
       - FRONTEND_URL=https://localhost:2000
       - ALLOWED_ORIGINS=https://localhost:2000
       - ALLOWED_HOSTS=localhost,127.0.0.1
