@@ -51,10 +51,7 @@ Get up and running in seconds with **BunkerM**!
 
 ### **1. Run the Docker Container**  
 ```bash
-docker run -d -p 1883:1883 -p 2000:2000 \
-  -v "${PWD}/backend/logs:/var/log/mosquitto" \
-  -v "${PWD}/backend/logs/api:/var/log/api" \
-  bunkeriot/bunkerm
+docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
 ```
 
 2. Access the interface:
