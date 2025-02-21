@@ -10,11 +10,11 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
 ## Need Custom MQTT Features? Reach Out Today! ⚡
-> **License**: Free for non-commercial use  
 > **Website**: https://bunkeriot.com  
+> **Email me at**: m.idrissi@bunkeriot.com  
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
-> *** Check documentation (Coming soon)
+
 
 ## Support BunkerM Development
 
@@ -237,3 +237,10 @@ This module provides a real-time list of currently connected clients on a node, 
 | Windows | ✓ | ✓ | ✓ |
 | White Labeling | ✗ | ✗ | ✓ |
 
+## License
+
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
+You are free to use, modify, and share this software **for non-commercial purposes only**.  
+
+📜 Full license details: [LICENSE](./LICENSE)  
+💼 For commercial inquiries, contact: m.idrissi@bunkeriot.com

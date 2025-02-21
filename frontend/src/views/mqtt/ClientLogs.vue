@@ -28,6 +28,8 @@ const snackbar = ref(false);
 const snackbarText = ref('');
 const snackbarColor = ref('');
 
+const API_BASE_URL = import.meta.env.VITE_EVENT_API_URL;
+
 const headers = [
   { title: 'Time', key: 'timestamp', sortable: true },
   { title: 'Event Type', key: 'event_type', sortable: true },
@@ -58,7 +60,7 @@ const formatTimestamp = (timestamp: string): string => {
 // Fetch events from the API
 const fetchEvents = async () => {
   try {
-    const response = await fetch('http://localhost:1002/api/mqtt/events');
+    const response = await fetch(`${API_BASE_URL}/events`);  // Changed from /event
     const data = await response.json();
     events.value = data.events;
   } catch (error) {
@@ -68,10 +70,10 @@ const fetchEvents = async () => {
 
 const enableClient = async (username: string) => {
   try {
-    await fetch(`http://localhost:1002/api/mqtt/enable/${username}`, {
+    await fetch(`${API_BASE_URL}/enable/${username}`, {  // Changed from /event/enable
       method: 'POST'
     });
-    await fetchEvents(); // Refresh the list
+    await fetchEvents();
     showNotification(`Client "${username}" has been successfully enabled`);
   } catch (error) {
     console.error('Error enabling client:', error);
@@ -81,10 +83,10 @@ const enableClient = async (username: string) => {
 
 const DisableClient = async (username: string) => {
   try {
-    await fetch(`http://localhost:1002/api/mqtt/disable/${username}`, {
+    await fetch(`${API_BASE_URL}/disable/${username}`, {  // Changed from /event/disable
       method: 'POST'
     });
-    await fetchEvents(); // Refresh the list
+    await fetchEvents();
     showNotification(`Client "${username}" has been successfully disabled`, 'warning');
   } catch (error) {
     console.error('Error disabling client:', error);

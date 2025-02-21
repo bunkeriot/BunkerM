@@ -7,12 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "1883:1883"  # MQTT port
-      - "8883:8883" # Mosquitto DB
-      - "1000:1000"  # Dynsec API port
-      - "1001:1001"  # Monitor API port (HTTPS)
-      - "1002:1002"  # MQTT Monitor API port
-      - "1003:1003"  # AWS Bridge API port
-      - "8080:8080"  # Other apps port
       - "2000:2000"  # Frontend port
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf

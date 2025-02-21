@@ -7,7 +7,7 @@ import IncomeOverview from './components/IncomeOverview.vue';
 import { generateNonce } from '../../utils/security';
 
 // API configuration
-const API_BASE_URL = import.meta.env.VITE_API_MONITOR_URL || 'https://localhost:1001';
+const API_BASE_URL = import.meta.env.VITE_MONITOR_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 interface HistoricalData {
@@ -82,7 +82,7 @@ const fetchStats = async () => {
 
 
     const response = await fetch(
-      `${API_BASE_URL}/api/v1/stats?nonce=${nonce}&timestamp=${timestamp}`, 
+      `${API_BASE_URL}/stats?nonce=${nonce}&timestamp=${timestamp}`, 
       {
         method: 'GET',
         headers: headers,

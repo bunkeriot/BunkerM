@@ -163,7 +163,7 @@ RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
 # Set Python path
 ENV PYTHONPATH=/app/monitor:$PYTHONPATH
 
-EXPOSE  2000
+EXPOSE  2000 1883
 
 # Use the startup script
 CMD ["/start.sh"]
