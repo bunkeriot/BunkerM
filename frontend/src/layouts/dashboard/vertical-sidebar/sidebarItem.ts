@@ -142,7 +142,7 @@ const sidebarItem: menu[] = [
     icon: QuestionOutlined,
     to: 'https://docs.bunkeriot.com',
     type: 'external',
-    chip: 'gitbook',
+   /*  chip: 'gitbook', */
     chipColor: 'secondary',
     chipVariant: 'flat'
   }

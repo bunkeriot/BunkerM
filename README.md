@@ -9,10 +9,29 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 ![alt text](/screenshots/image-2.png)
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
+## Need Custom MQTT Features? Reach Out Today! ⚡
 > **License**: Free for non-commercial use  
 > **Website**: https://bunkeriot.com  
 > **Let's connect**!  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
+> *** Check documentation (Coming soon)
+
+## Support BunkerM Development
+
+BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
+
+Your donation helps support:
+* Continuous development of new features
+* Maintenance and bug fixes
+* Documentation improvements
+* Community support
+
+
+Every contribution, no matter the size, helps keep this project active and growing. If you find BunkerM useful in your projects or learning journey, consider supporting its development. Together, we can make IoT and MQTT technology more accessible to developers worldwide.
+
+[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](YOUR_PAYPAL_LINK)
+
+Thank you for supporting open source! 🙏
 
 
 ## Architecture Overview
@@ -114,13 +133,6 @@ This module provides a real-time list of currently connected clients on a node, 
 - Verify network connectivity
 - Check SSL certificate configuration
 
-## Support & Custom Devevelopment
-
-For issues or questions:
-* Visit our website: https://bunkeriot.com
-* Check documentation (Coming soon)
-* Contact me :  
- [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehdi-idrissi/)
 
 
 ## Features
@@ -145,10 +157,11 @@ For issues or questions:
 | Multiple Connected Brokers | ✓ | ✓ | ✓ |
 | Edge Management UI | ✓ | ✓ | ✓ |
 
-### Security Features
+### Security
 | Feature | Community | Pro | Enterprise |
 |---------|:---------:|:---:|:----------:|
 | Client Authentication (ID+Password) | ✓ | ✓ | ✓ |
+| Offline Authentication | ✗ | ✓ | ✓ |
 | Client Certificate Authentication | ✗ | ✗ | ✓ |
 | Self-Signed SSL | ✓ | ✓ | ✓ |
 | PSK Authentication | ✗ | ✗ | On-demand |
@@ -202,7 +215,7 @@ For issues or questions:
 | MQTT over TLS (MQTTS) | ✓ | ✓ | ✓ |
 | WebSockets (WS) | ✓ | ✓ | ✓ |
 | WebSockets over TLS (WSS) | ✓ | ✓ | ✓ |
-| Sparkplug | ✓ | ✓ | ✓ |
+| Sparkplug | ✗ | ✗ | ✓ |
 | Sparkplug Decoding | ✓ | ✓ | ✓ |
 
 ### MQTT Features

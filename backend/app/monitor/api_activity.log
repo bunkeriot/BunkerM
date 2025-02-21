@@ -65,3 +65,61 @@ Nonce validation passed
 Successfully retrieved stats
 Connected to MQTT Broker!
 Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740067405264:d0bov5amoet&timestamp=1740067405.264 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-20T16:03:25.788787
+Received request with nonce: 1740067405264:d0bov5amoet, timestamp: 1740067405.264
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740067519289:dds5w6wdicc&timestamp=1740067519.289 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-20T16:05:19.809998
+Received request with nonce: 1740067519289:dds5w6wdicc, timestamp: 1740067519.289
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740068419326:7logp05nagl&timestamp=1740068419.326 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-20T16:20:20.335372
+Received request with nonce: 1740068419326:7logp05nagl, timestamp: 1740068419.326
+Nonce validation passed
+Successfully retrieved stats
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740119332749:3bn0ruvnfqe&timestamp=1740119332.749 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T06:28:53.944184
+Received request with nonce: 1740119332749:3bn0ruvnfqe, timestamp: 1740119332.749
+Nonce validation passed
+Successfully retrieved stats
+Connected to MQTT Broker!
+Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740133187299:2m0wz9xal9n&timestamp=1740133187.299 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T10:19:51.458620
+Received request with nonce: 1740133187299:2m0wz9xal9n, timestamp: 1740133187.299
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740133245919:tuoztst5cc&timestamp=1740133245.919 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T10:20:46.444561
+Received request with nonce: 1740133245919:tuoztst5cc, timestamp: 1740133245.919
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740133315849:iomupd4thqn&timestamp=1740133315.849 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T10:21:56.380265
+Received request with nonce: 1740133315849:iomupd4thqn, timestamp: 1740133315.849
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740134216688:tk4n4vosy8n&timestamp=1740134216.688 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T10:36:57.698139
+Received request with nonce: 1740134216688:tk4n4vosy8n, timestamp: 1740134216.688
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740135116682:sm6m7li6mz&timestamp=1740135116.682 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T10:51:57.699480
+Received request with nonce: 1740135116682:sm6m7li6mz, timestamp: 1740135116.682
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost:1001/api/v1/stats?nonce=1740136016695:ab15g18nrqc&timestamp=1740136016.695 Client: 172.19.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Time: 2025-02-21T11:07:33.716155
+Received request with nonce: 1740136016695:ab15g18nrqc, timestamp: 1740136016.695
+Nonce validation passed
+Successfully retrieved stats
