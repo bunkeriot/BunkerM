@@ -59,7 +59,7 @@ docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
    - You'll see a security warning about the SSL certificate
   
    - Click "Advanced" and then "Proceed to localhost (unsafe)"
-   - This warning is normal and appears because the BunkerM automatically generate a self-signed certificate during the build to enable secure communication  
+   - This warning is normal and appears because a self-signed certificate is automatically generated during the build to enable secure communication.  
  ![alt text](/screenshots/image.png)
 4. MQTT Broker:
    - Default port : 1883
