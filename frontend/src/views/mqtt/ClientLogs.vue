@@ -70,7 +70,8 @@ const fetchEvents = async () => {
 
 const enableClient = async (username: string) => {
   try {
-    await fetch(`${API_BASE_URL}/enable/${username}`, {  // Changed from /event/enable
+    const encodedUsername = encodeURIComponent(username);
+    await fetch(`${API_BASE_URL}/enable/${encodedUsername}`, {
       method: 'POST'
     });
     await fetchEvents();
@@ -83,7 +84,8 @@ const enableClient = async (username: string) => {
 
 const DisableClient = async (username: string) => {
   try {
-    await fetch(`${API_BASE_URL}/disable/${username}`, {  // Changed from /event/disable
+    const encodedUsername = encodeURIComponent(username);
+    await fetch(`${API_BASE_URL}/disable/${encodedUsername}`, {
       method: 'POST'
     });
     await fetchEvents();

@@ -215,8 +215,8 @@ const passwordError = ref('');
 
 // Add validation rules
 const rules = {
-  required: value => !!value || 'This field is required',
-  alphanumeric: value => /^[a-zA-Z0-9]+$/.test(value) || 'Only letters and numbers are allowed'
+  required: value => !!value || 'This field is required'
+  //alphanumeric: value => /^[a-zA-Z0-9]+$/.test(value) || 'Only letters and numbers are allowed'
 };
 
 // Clear error functions
@@ -291,10 +291,10 @@ async function save() {
   }
   
   // Validate username format
-  if (!rules.alphanumeric(editedItem.value.username)) {
+/*   if (!rules.alphanumeric(editedItem.value.username)) {
     usernameError.value = 'Username can only contain letters and numbers';
     return;
-  }
+  } */
   
   try {
     loading.value = true;

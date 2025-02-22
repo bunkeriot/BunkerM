@@ -33,7 +33,7 @@ class MQTTMonitor:
         print(f"Processing log line: {log_line}")
 
         # Regular expression to match connection log entries with timestamp
-        pattern = r"(\d+): New client connected from (\d+\.\d+\.\d+\.\d+):(\d+) as (\S+) \(p(\d+), c(\d+), k(\d+), u'(\w+)'\)"
+        pattern = r"(\d+): New client connected from (\d+\.\d+\.\d+\.\d+):(\d+) as (\S+) \(p(\d+), c(\d+), k(\d+), u'([^']+)'\)"
         match = re.match(pattern, log_line)
 
         if match:
