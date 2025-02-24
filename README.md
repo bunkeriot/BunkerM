@@ -46,6 +46,9 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 Get up and running in seconds with **BunkerM**!  
 
 ### **1. Run the Docker Container**  
+Make sure to have [Docker](https://www.docker.com/get-started) installed on your machine before running the command below:
+
+
 ```bash
 docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
 ```
