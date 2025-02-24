@@ -117,7 +117,10 @@ Connect to major cloud providers:
   - IoT Hub connection setup
   - Device authentication
   - SAS token management
-  - Topic routing
+  - Topic routing  
+
+
+### 4. REST API (Coming soon)
 
 ## MQTT Client Management: Listing, Enabling, and Disabling
 ![alt text](/screenshots/image-3.png)  
