@@ -2,7 +2,23 @@
 
 <p align="center">
   <img src="screenshots/image-6.png" alt="alt text">
-</p>
+</p>  
+Table of Contents 
+
+- [Introduction](#bunkerm---mqtt-broker-management-suite)  
+- [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today-⚡)
+
+- [Architecture Overview](#architecture-overview)
+- [Quick Start with Docker](#🚀-quick-start-with-docker)
+- [Core Features](#core-features)
+- [Access Control List (ACL) Management](#2-access-control-list-acl-management)
+- [Cloud Integration](#3-cloud-integration-pro-feature)
+- [REST API (Coming soon)](#4-rest-api-coming-soon)
+- [MQTT Client Management](#mqtt-client-management-listing-enabling-and-disabling)
+- [Troubleshooting](#troubleshooting)
+- [Features](#features)
+- [🚀Support BunkerM Development](#support-bunkerm-development)
+- [License](#license)
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
@@ -14,24 +30,6 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 > **Email me at**: m.idrissi@bunkeriot.com  
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
-
-
-## Support BunkerM Development
-
-BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
-
-Your donation helps support:
-* Continuous development of new features
-* Maintenance and bug fixes
-* Documentation improvements
-* Community support
-
-
-Every contribution, no matter the size, helps keep this project active and growing. If you find BunkerM useful in your projects or learning journey, consider supporting its development. Together, we can make IoT and MQTT technology more accessible to developers worldwide.
-
-[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
-
-Thank you for supporting open source! 🙏
 
 
 ## Architecture Overview
@@ -243,6 +241,24 @@ This module provides a real-time list of currently connected clients on a node, 
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
 You are free to use, modify, and share this software **for non-commercial purposes only**.  
+
+## Support BunkerM Development
+
+BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
+
+Your donation helps support:
+* Continuous development of new features
+* Maintenance and bug fixes
+* Documentation improvements
+* Community support
+
+
+Every contribution, no matter the size, helps keep this project active and growing. If you find BunkerM useful in your projects or learning journey, consider supporting its development. Together, we can make IoT and MQTT technology more accessible to developers worldwide.
+
+[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
+
+Thank you for supporting open source! 🙏
+
 
 📜 Full license details: [LICENSE](./LICENSE)  
 💼 For commercial inquiries, contact: m.idrissi@bunkeriot.com
