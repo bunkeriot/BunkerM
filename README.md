@@ -1,13 +1,10 @@
-# BunkerM - MQTT Broker Management Suite
-
+# BunkerM - MQTT Made Easy ✅  
 <p align="center">
   <img src="screenshots/image-6.png" alt="alt text">
 </p>  
-Table of Contents 
 
-- [Introduction](#bunkerm---mqtt-broker-management-suite)  
+- [What is BunkerM?](#What-is-BunkerM?)  
 - [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today-⚡)
-
 - [Architecture Overview](#architecture-overview)
 - [Quick Start with Docker](#🚀-quick-start-with-docker)
 - [Core Features](#core-features)
@@ -18,8 +15,11 @@ Table of Contents
 - [Troubleshooting](#troubleshooting)
 - [Features](#features)
 - [🚀Support BunkerM Development](#support-bunkerm-development)
-- [License](#license)
+- [License](#license)  
 
+
+
+## What is BunkerM?
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
 ![alt text](/screenshots/image-2.png)
