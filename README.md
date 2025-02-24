@@ -66,6 +66,9 @@ docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
    - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
 ## Core Features
 
+![alt text](image.png)
+
+
 ### 1. Broker Dashboard
 Monitor and control MQTT client connections in real-time through the "Recent MQTT Events" dashboard:
 - Connected clients count
@@ -77,7 +80,7 @@ Monitor and control MQTT client connections in real-time through the "Recent MQT
 ![alt text](/screenshots/image-2.png)
 
 
-### 2. Dynamic security plugin
+### 2. Access Control List (ACL) Management
 Manage your MQTT broker's clients:
 
 ![alt text](/screenshots/image-4.png)
