@@ -1,12 +1,10 @@
 # BunkerM - MQTT Made Easy ✅  
-<p align="center">
-  <img src="screenshots/image-6.png" alt="alt text">
-</p>  
 
-- [What is BunkerM?](#What-is-BunkerM?)  
-- [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today-⚡)
+# Table of Contents
+- [What is BunkerM?](#what-is-bunkerm)
+- [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today)
 - [Architecture Overview](#architecture-overview)
-- [Quick Start with Docker](#🚀-quick-start-with-docker)
+- [Quick Start with Docker](#quick-start-with-docker)
 - [Core Features](#core-features)
 - [Access Control List (ACL) Management](#2-access-control-list-acl-management)
 - [Cloud Integration](#3-cloud-integration-pro-feature)
@@ -14,8 +12,8 @@
 - [MQTT Client Management](#mqtt-client-management-listing-enabling-and-disabling)
 - [Troubleshooting](#troubleshooting)
 - [Features](#features)
-- [🚀Support BunkerM Development](#support-bunkerm-development)
-- [License](#license)  
+- [🚀 Support BunkerM Development](#support-bunkerm-development)
+- [License](#license)
 
 
 
@@ -25,7 +23,7 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 ![alt text](/screenshots/image-2.png)
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
-## Need Custom MQTT Features? Reach Out Today! ⚡
+## Need Custom MQTT Features? Reach Out Today!
 > **Website**: https://bunkeriot.com  
 > **Email me at**: m.idrissi@bunkeriot.com  
 > **Let's connect**!  
@@ -43,7 +41,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 * Cloud Bridge Integration (Pro Feature)
 
 
-## 🚀 Quick Start with Docker  
+##  Quick Start with Docker  
 
 Get up and running in seconds with **BunkerM**!  
 
@@ -237,10 +235,7 @@ This module provides a real-time list of currently connected clients on a node, 
 | Windows | ✓ | ✓ | ✓ |
 | White Labeling | ✗ | ✗ | ✓ |
 
-## License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
-You are free to use, modify, and share this software **for non-commercial purposes only**.  
 
 ## Support BunkerM Development
 
@@ -259,6 +254,10 @@ Every contribution, no matter the size, helps keep this project active and growi
 
 Thank you for supporting open source! 🙏
 
+## License
+
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
+You are free to use, modify, and share this software **for non-commercial purposes only**.  
 
 📜 Full license details: [LICENSE](./LICENSE)  
 💼 For commercial inquiries, contact: m.idrissi@bunkeriot.com
