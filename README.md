@@ -66,7 +66,7 @@ docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
    - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
 ## Core Features
 
-![alt text](/screenshots//bunkerm.png)
+![alt text](/screenshots//bunkerM.png)
 
 
 ### 1. Broker Dashboard
