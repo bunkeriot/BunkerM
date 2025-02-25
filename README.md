@@ -60,9 +60,12 @@ docker run -d -p 1900:1900 -p 2000:2000  bunkeriot/bunkerm
    - Click "Advanced" and then "Proceed to localhost (unsafe)"
    - This warning is normal and appears because a self-signed certificate is automatically generated during the build to enable secure communication.  
  ![alt text](/screenshots/image.png)
-4. MQTT Broker:
-   - Default port : 1900
-   - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
+4. BunkerM MQTT Broker:
+- **Default port:** `1900`
+- **Make sure to add a new MQTT client** from the UI (**Client Accounts** menu) to connect to the broker.
+
+![alt text](/screenshots/Bunkerm-addclient.jpg)
+
 ## Core Features
 
 ![alt text](/screenshots//bunkerM.png)

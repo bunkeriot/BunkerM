@@ -16,3 +16,15 @@ Request: GET https://localhost/api/v1/stats?nonce=1740478652939:xegls4ewrwt&time
 Received request with nonce: 1740478652939:xegls4ewrwt, timestamp: 1740478652.939
 Nonce validation passed
 Successfully retrieved stats
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1740479882631:6kkzi3n0qb5&timestamp=1740479882.631 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-02-25T10:38:03.192518
+Received request with nonce: 1740479882631:6kkzi3n0qb5, timestamp: 1740479882.631
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1740479887482:3dhqphrap4&timestamp=1740479887.482 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-02-25T10:38:07.993029
+Received request with nonce: 1740479887482:3dhqphrap4, timestamp: 1740479887.482
+Nonce validation passed
+Successfully retrieved stats
