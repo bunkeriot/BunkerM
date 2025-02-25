@@ -102,7 +102,15 @@ const fetchStats = async () => {
     }
 
     const data = await response.json();
-    
+
+    // Update stats with the received data
+    stats.value = {
+      ...defaultStats,
+      ...data
+    };
+
+    console.log("Stats updated:", stats.value);
+
     // Check MQTT connection status
     if (!data.mqtt_connected) {
       // Use the error message from the server if available
@@ -111,19 +119,13 @@ const fetchStats = async () => {
       // Only clear error if connected
       error.value = null;
     }
-    
-    // Update stats with the received data
-    stats.value = {
-      ...defaultStats,
-      ...data
-    };
-    
-    console.log("Stats updated:", stats.value);
-    
+
+
   } catch (err) {
     console.error('Error fetching MQTT stats:', err);
     error.value = err instanceof Error ? err.message : 'MQTT Broker Disconnected';
   }
+
 };
 
 // Start polling when component mounts
