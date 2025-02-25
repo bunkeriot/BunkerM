@@ -21,6 +21,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import ssl
 from data_storage import HistoricalDataStorage
+import socket
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -354,23 +355,51 @@ def on_message(client, userdata, msg):
 
 def connect_mqtt():
     """Connect to MQTT broker"""
-    def on_connect(client, userdata, flags, rc):
-        if rc == 0:
-            logger.info("Connected to MQTT Broker!")
-            client.subscribe([
-                ("$SYS/broker/#", 0),
-                ("#", 0)
-            ])
-            logger.info("Subscribed to topics")
-        else:
-            logger.error(f"Failed to connect to MQTT broker, return code {rc}")
+    try:
+        def on_connect(client, userdata, flags, rc):
+            if rc == 0:
+                logger.info("Connected to MQTT Broker!")
+                client.subscribe([
+                    ("$SYS/broker/#", 0),
+                    ("#", 0)
+                ])
+                logger.info("Subscribed to topics")
+            else:
+                logger.error(f"Failed to connect to MQTT broker, return code {rc}")
+                error_codes = {
+                    1: "Incorrect protocol version",
+                    2: "Invalid client identifier",
+                    3: "Server unavailable",
+                    4: "Bad username or password",
+                    5: "Not authorized"
+                }
+                logger.error(f"Error details: {error_codes.get(rc, 'Unknown error')}")
 
-    client = mqtt_client.Client()
-    client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.connect(MQTT_BROKER, MQTT_PORT)
-    return client
+        client = mqtt_client.Client()
+        client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+        client.on_connect = on_connect
+        client.on_message = on_message
+        
+        logger.info(f"Attempting to connect to MQTT broker at {MQTT_BROKER}:{MQTT_PORT}")
+        client.connect(MQTT_BROKER, MQTT_PORT, 60)  # Add timeout of 60 seconds
+        return client
+    
+    except (ConnectionRefusedError, socket.error) as e:
+        logger.error(f"Connection to MQTT broker failed: {e}")
+        logger.error(f"Check if Mosquitto is running on {MQTT_BROKER}:{MQTT_PORT}")
+        # Return a dummy client that won't crash your app
+        dummy_client = mqtt_client.Client()
+        # Override methods to do nothing
+        dummy_client.loop_start = lambda: None
+        return dummy_client
+    except Exception as e:
+        logger.error(f"Unexpected error connecting to MQTT broker: {e}")
+        logger.exception(e)
+        # Return a dummy client that won't crash your app
+        dummy_client = mqtt_client.Client()
+        # Override methods to do nothing
+        dummy_client.loop_start = lambda: None
+        return dummy_client
 
 # API endpoints
 @app.get("/api/v1/stats", dependencies=[Depends(get_api_key)])
@@ -395,14 +424,42 @@ async def get_stats(
         
         try:
             stats = mqtt_stats.get_stats()
-            logger.info("Successfully retrieved stats")
+            
+            # Add MQTT connection status
+            mqtt_connected = mqtt_stats.connected_clients > 0
+            stats["mqtt_connected"] = mqtt_connected
+            
+            # If MQTT is not connected, add a message
+            if not mqtt_connected:
+                stats["connection_error"] = f"MQTT broker connection failed. Check if Mosquitto is running on {MQTT_BROKER}:{MQTT_PORT}"
+                logger.warning(f"Serving stats with MQTT disconnected warning: {MQTT_BROKER}:{MQTT_PORT}")
+            else:
+                logger.info("Successfully retrieved stats with active MQTT connection")
         except Exception as stats_error:
             logger.error(f"Error in mqtt_stats.get_stats(): {str(stats_error)}")
             logger.exception(stats_error)  # This will log the full traceback
-            raise HTTPException(
-                status_code=500,
-                detail=f"Error getting MQTT stats: {str(stats_error)}"
-            )
+            
+            # Return partial stats with error flag
+            stats = {
+                "mqtt_connected": False,
+                "connection_error": f"Error getting MQTT stats: {str(stats_error)}",
+                # Default values for essential fields
+                "total_connected_clients": 0,
+                "total_messages_received": "0",
+                "total_subscriptions": 0,
+                "retained_messages": 0,
+                "messages_history": [0] * 15,
+                "published_history": [0] * 15,
+                "bytes_stats": {
+                    "timestamps": [],
+                    "bytes_received": [],
+                    "bytes_sent": []
+                },
+                "daily_message_stats": {
+                    "dates": [],
+                    "counts": []
+                }
+            }
         
         response = JSONResponse(content=stats)
         response.headers["Access-Control-Allow-Origin"] = os.getenv("FRONTEND_URL", "https://localhost:2000")

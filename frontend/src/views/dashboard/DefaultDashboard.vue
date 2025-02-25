@@ -71,18 +71,14 @@ const fetchStats = async () => {
     const timestamp = Date.now() / 1000;
     const nonce = generateNonce();
 
-
-    
     const headers = {
       'X-API-Key': API_KEY,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
 
-
-
     const response = await fetch(
-      `${API_BASE_URL}/stats?nonce=${nonce}&timestamp=${timestamp}`, 
+      `${API_BASE_URL}/stats?nonce=${nonce}&timestamp=${timestamp}`,
       {
         method: 'GET',
         headers: headers,
@@ -95,7 +91,7 @@ const fetchStats = async () => {
       console.error('Response not OK:', response.status, response.statusText);
       const text = await response.text();
       console.error('Response body:', text);
-      
+
       if (response.status === 403) {
         throw new Error('Authentication failed. Please check API key.');
       }
@@ -106,11 +102,24 @@ const fetchStats = async () => {
     }
 
     const data = await response.json();
+    
+    // Check MQTT connection status
+    if (!data.mqtt_connected) {
+      // Use the error message from the server if available
+      error.value = data.connection_error || "MQTT broker connection lost. Check if Mosquitto is running on port 1900.";
+    } else {
+      // Only clear error if connected
+      error.value = null;
+    }
+    
+    // Update stats with the received data
     stats.value = {
       ...defaultStats,
       ...data
     };
-    error.value = null;
+    
+    console.log("Stats updated:", stats.value);
+    
   } catch (err) {
     console.error('Error fetching MQTT stats:', err);
     error.value = err instanceof Error ? err.message : 'MQTT Broker Disconnected';
@@ -126,7 +135,7 @@ onMounted(() => {
   }
 
   fetchStats();
-  intervalId = window.setInterval(fetchStats, 15*60*1000);//15 min
+  intervalId = window.setInterval(fetchStats, 2000);//15 min
 });
 
 // Clean up when component unmounts
@@ -146,8 +155,7 @@ onUnmounted(() => {
 
     <!-- MQTT Stats Cards -->
     <WidgetFive :total-messages-received="stats.total_messages_received"
-      :total-connected-clients="stats.total_connected_clients" 
-      :total-subscriptions="stats.total_subscriptions"
+      :total-connected-clients="stats.total_connected_clients" :total-subscriptions="stats.total_subscriptions"
       :retained-messages="stats.retained_messages" />
 
     <v-row>
@@ -157,7 +165,7 @@ onUnmounted(() => {
       </v-col>
 
       <!-- Weekly Stats -->
-<!--       <v-col cols="12" sm="12" lg="4">
+      <!--       <v-col cols="12" sm="12" lg="4">
         <IncomeOverview :message-stats="transformedWeeklyStats" />
       </v-col> -->
     </v-row>
