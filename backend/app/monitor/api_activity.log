@@ -4,3 +4,15 @@ Connected to MQTT Broker!
 Subscribed to topics
 Connected to MQTT Broker!
 Subscribed to topics
+Connected to MQTT Broker!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1740478639178:dojqv3kgc55&timestamp=1740478639.178 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-02-25T10:17:19.749924
+Received request with nonce: 1740478639178:dojqv3kgc55, timestamp: 1740478639.178
+Nonce validation passed
+Successfully retrieved stats
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1740478652939:xegls4ewrwt&timestamp=1740478652.939 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-02-25T10:17:33.469102
+Received request with nonce: 1740478652939:xegls4ewrwt, timestamp: 1740478652.939
+Nonce validation passed
+Successfully retrieved stats

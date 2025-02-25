@@ -34,7 +34,7 @@ logger.addHandler(handler)
 
 # MQTT Settings
 MQTT_BROKER = os.getenv("MQTT_BROKER", "localhost")
-MQTT_PORT = int(os.getenv("MQTT_PORT", "1883"))
+MQTT_PORT = int(os.getenv("MQTT_PORT", "1900"))
 MQTT_USERNAME = os.getenv("MQTT_USERNAME", "bunker")
 MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "bunker")
 

@@ -169,7 +169,7 @@ RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
 #    chmod 600 /app/.env
 
 ENV MQTT_BROKER=localhost \
-    MQTT_PORT=1883 \
+    MQTT_PORT=1884 \
     MQTT_USERNAME=bunker \
     MQTT_PASSWORD=bunker \
     JWT_SECRET=REDACTED_JWT_SECRET \
@@ -198,7 +198,7 @@ RUN mkdir -p /var/lib/mosquitto/db && \
 # Set Python path
 ENV PYTHONPATH=/app/monitor:$PYTHONPATH
 
-EXPOSE  2000 1883
+EXPOSE  2000 1900
 
 # Use the startup script
 CMD ["/start.sh"]

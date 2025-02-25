@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException, Security, Depends, Request, status
 from fastapi.security.api_key import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+
 """ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -41,6 +42,8 @@ logger.addHandler(handler)
 # Environment variables
 MOSQUITTO_ADMIN_USERNAME = os.getenv("MOSQUITTO_ADMIN_USERNAME")
 MOSQUITTO_ADMIN_PASSWORD = os.getenv("MOSQUITTO_ADMIN_PASSWORD")
+MOSQUITTO_IP = os.getenv("MOSQUITTO_IP")
+MOSQUITTO_PORT = os.getenv("MOSQUITTO_PORT")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://localhost:2000")
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 API_KEY = os.getenv("API_KEY")
@@ -197,7 +200,6 @@ async def create_client(
         int
     ] = None,  # Make timestamp optional and ensure it's an integer
     api_key: str = Security(get_api_key),
-    
 ):
     # Log the incoming request
     await log_request(request)
@@ -207,6 +209,10 @@ async def create_client(
         # Command to create the client
         create_client_command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -229,6 +235,10 @@ async def create_client(
         # Command to set the client password
         set_password_command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -249,6 +259,10 @@ async def create_client(
             # Try to cleanup the created client if password setting fails
             cleanup_command = [
                 "mosquitto_ctrl",
+                "-h",
+                MOSQUITTO_IP,
+                "-p",
+                MOSQUITTO_PORT,
                 "-u",
                 MOSQUITTO_ADMIN_USERNAME,
                 "-P",
@@ -279,6 +293,10 @@ async def create_client(
         try:
             cleanup_command = [
                 "mosquitto_ctrl",
+                "-h",
+                MOSQUITTO_IP,
+                "-p",
+                MOSQUITTO_PORT,
                 "-u",
                 MOSQUITTO_ADMIN_USERNAME,
                 "-P",
@@ -314,6 +332,10 @@ async def list_clients(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -343,7 +365,6 @@ async def get_client(
     username: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Get details for a specific client"""
     await log_request(request)
@@ -352,6 +373,10 @@ async def get_client(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -431,7 +456,6 @@ async def enable_client(
     username: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Enable a specific MQTT client"""
     await log_request(request)
@@ -440,6 +464,10 @@ async def enable_client(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -473,7 +501,6 @@ async def disable_client(
     username: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Disable a specific MQTT client"""
     await log_request(request)
@@ -482,6 +509,10 @@ async def disable_client(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -515,7 +546,6 @@ async def remove_client(
     username: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Remove a specific MQTT client"""
     await log_request(request)
@@ -524,6 +554,10 @@ async def remove_client(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -561,7 +595,6 @@ async def create_role(
         int
     ] = None,  # Make timestamp optional and ensure it's an integer
     api_key: str = Security(get_api_key),
-    
 ):
     """Create a new role"""
     await log_request(request)
@@ -570,6 +603,10 @@ async def create_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -614,6 +651,10 @@ async def list_roles(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -644,7 +685,6 @@ async def get_role(
     role_name: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Get details for a specific role"""
     await log_request(request)
@@ -653,6 +693,10 @@ async def get_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -739,7 +783,6 @@ async def add_client_role(
     role: RoleAssignment,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Assign a role to a client"""
     await log_request(request)
@@ -748,6 +791,10 @@ async def add_client_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -786,7 +833,6 @@ async def remove_client_role(
     role_name: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Remove a role from a client"""
     await log_request(request)
@@ -795,6 +841,10 @@ async def remove_client_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -832,7 +882,6 @@ async def add_group_role(
     role: RoleAssignment,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Assign a role to a group"""
     await log_request(request)
@@ -841,6 +890,10 @@ async def add_group_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -880,7 +933,6 @@ async def remove_group_role(
     role_name: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Remove a role from a group"""
     await log_request(request)
@@ -889,6 +941,10 @@ async def remove_group_role(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -925,7 +981,6 @@ async def create_group(
     group: GroupCreate,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Create a new group"""
     await log_request(request)
@@ -934,6 +989,10 @@ async def create_group(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -965,7 +1024,6 @@ async def create_group(
 async def list_groups(
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """List all groups"""
     await log_request(request)
@@ -974,6 +1032,10 @@ async def list_groups(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1003,7 +1065,6 @@ async def get_group(
     group_name: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Get details for a specific group"""
     await log_request(request)
@@ -1012,6 +1073,10 @@ async def get_group(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1086,7 +1151,6 @@ async def delete_group(
     group_name: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Delete a specific group"""
     await log_request(request)
@@ -1095,6 +1159,10 @@ async def delete_group(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1129,7 +1197,6 @@ async def add_client_to_group(
     data: dict,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Add a client to a group"""
     await log_request(request)
@@ -1148,6 +1215,10 @@ async def add_client_to_group(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1189,7 +1260,6 @@ async def remove_client_from_group(
     username: str,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Remove a client from a group"""
     await log_request(request)
@@ -1198,6 +1268,10 @@ async def remove_client_from_group(
     try:
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1237,7 +1311,6 @@ async def add_role_acl(
     acl: ACLRequest,
     request: Request,
     api_key: str = Security(get_api_key),
-    
 ):
     """Add an ACL to a role"""
     await log_request(request)
@@ -1262,6 +1335,10 @@ async def add_role_acl(
 
         command = [
             "mosquitto_ctrl",
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
             "-u",
             MOSQUITTO_ADMIN_USERNAME,
             "-P",
@@ -1300,17 +1377,22 @@ async def add_role_acl(
         )
 
 
-
-#remove role
+# remove role
 @app.delete("/api/v1/roles/{role_name}")
 async def delete_role(role_name: str, api_key: str = Security(get_api_key)):
     command = [
         "mosquitto_ctrl",
-        "-u", MOSQUITTO_ADMIN_USERNAME,
-        "-P", MOSQUITTO_ADMIN_PASSWORD,
+        "-h",
+        MOSQUITTO_IP,
+        "-p",
+        MOSQUITTO_PORT,
+        "-u",
+        MOSQUITTO_ADMIN_USERNAME,
+        "-P",
+        MOSQUITTO_ADMIN_PASSWORD,
         "dynsec",
         "deleteRole",
-        role_name
+        role_name,
     ]
     success, result = execute_mosquitto_command(command)
     if not success:
@@ -1320,40 +1402,40 @@ async def delete_role(role_name: str, api_key: str = Security(get_api_key)):
 
 @app.delete("/api/v1/roles/{role_name}/acls")
 async def remove_role_acl(
-    role_name: str,
-    acl_type: ACLType,
-    topic: str,
-    api_key: str = Security(get_api_key)
+    role_name: str, acl_type: ACLType, topic: str, api_key: str = Security(get_api_key)
 ):
     try:
         logger.debug(f"Removing ACL from role {role_name}: {acl_type=}, {topic=}")
-        
+
         command = [
             "mosquitto_ctrl",
-            "-u", MOSQUITTO_ADMIN_USERNAME,
-            "-P", MOSQUITTO_ADMIN_PASSWORD,
+            "-h",
+            MOSQUITTO_IP,
+            "-p",
+            MOSQUITTO_PORT,
+            "-u",
+            MOSQUITTO_ADMIN_USERNAME,
+            "-P",
+            MOSQUITTO_ADMIN_PASSWORD,
             "dynsec",
             "removeRoleACL",
             role_name,
             str(acl_type.value),  # Convert enum to string
-            topic
+            topic,
         ]
-        
+
         logger.debug(f"Executing command: {' '.join(command)}")
-        
+
         success, result = execute_mosquitto_command(command)
         if not success:
             logger.error(f"Command failed: {result}")
             raise HTTPException(status_code=400, detail=result)
-            
+
         return {"message": f"ACL removed from role {role_name} successfully"}
-        
+
     except Exception as e:
         logger.error(f"Error removing ACL: {str(e)}", exc_info=True)
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to remove ACL: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Failed to remove ACL: {str(e)}")
 
 
 # Add a health check endpoint

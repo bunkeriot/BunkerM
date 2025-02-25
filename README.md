@@ -50,7 +50,7 @@ Make sure to have [Docker](https://www.docker.com/get-started) installed on your
 
 
 ```bash
-docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
+docker run -d -p 1900:1900 -p 2000:2000  bunkeriot/bunkerm
 ```
 
 2. Access the interface:
@@ -61,7 +61,7 @@ docker run -d -p 1883:1883 -p 2000:2000  bunkeriot/bunkerm
    - This warning is normal and appears because a self-signed certificate is automatically generated during the build to enable secure communication.  
  ![alt text](/screenshots/image.png)
 4. MQTT Broker:
-   - Default port : 1883
+   - Default port : 1900
    - Make sure to add new MQTT client from the UI (Client Accounts menu), to connect to the broker.
 ## Core Features
 

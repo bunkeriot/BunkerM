@@ -4,7 +4,7 @@ from typing import Optional
 class Settings(BaseSettings):
     # MQTT Settings
     MQTT_BROKER: str = "localhost"
-    MQTT_PORT: int = 1883
+    MQTT_PORT: int = 1900
     MQTT_USERNAME: str = "bunker"
     MQTT_PASSWORD: str = "bunker"
     
