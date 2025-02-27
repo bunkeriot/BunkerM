@@ -46,6 +46,8 @@ services:
       - LOG_LEVEL=INFO
       - API_LOG_FILE=/var/log/api/api_activity.log
       - VITE_AWS_BRIDGE_API_URL=https://localhost:2000/api/aws-bridge
+      - DYNSEC_PATH=/var/lib/mosquitto/dynamic-security.json
+      - MAX_UPLOAD_SIZE=10485760
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "https://localhost:1001/api/v1/health"]

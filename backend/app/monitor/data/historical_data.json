@@ -1,0 +1,211 @@
+{
+  "daily_messages": [],
+  "hourly": [
+    {
+      "timestamp": "2025-02-26 16:53",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 17:06",
+      "bytes_received": 0.0,
+      "bytes_sent": 0.0
+    },
+    {
+      "timestamp": "2025-02-26 17:19",
+      "bytes_received": 0.0,
+      "bytes_sent": 0.0
+    },
+    {
+      "timestamp": "2025-02-26 17:25",
+      "bytes_received": 19.49,
+      "bytes_sent": 253.82
+    },
+    {
+      "timestamp": "2025-02-26 17:28",
+      "bytes_received": 24.31,
+      "bytes_sent": 329.12
+    },
+    {
+      "timestamp": "2025-02-26 19:06",
+      "bytes_received": 13.12,
+      "bytes_sent": 177.55
+    },
+    {
+      "timestamp": "2025-02-26 19:16",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 19:19",
+      "bytes_received": 2.97,
+      "bytes_sent": 276.12
+    },
+    {
+      "timestamp": "2025-02-26 19:30",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 19:40",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 19:44",
+      "bytes_received": 2.95,
+      "bytes_sent": 289.62
+    },
+    {
+      "timestamp": "2025-02-26 19:48",
+      "bytes_received": 2.72,
+      "bytes_sent": 352.98
+    },
+    {
+      "timestamp": "2025-02-26 19:52",
+      "bytes_received": 2.54,
+      "bytes_sent": 401.39
+    },
+    {
+      "timestamp": "2025-02-26 19:55",
+      "bytes_received": 2.45,
+      "bytes_sent": 429.72
+    },
+    {
+      "timestamp": "2025-02-26 19:58",
+      "bytes_received": 2.37,
+      "bytes_sent": 454.23
+    },
+    {
+      "timestamp": "2025-02-26 20:01",
+      "bytes_received": 2.34,
+      "bytes_sent": 480.08
+    },
+    {
+      "timestamp": "2025-02-26 20:04",
+      "bytes_received": 2.29,
+      "bytes_sent": 496.91
+    },
+    {
+      "timestamp": "2025-02-26 20:11",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 20:14",
+      "bytes_received": 2.97,
+      "bytes_sent": 276.12
+    },
+    {
+      "timestamp": "2025-02-26 20:23",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 20:26",
+      "bytes_received": 2.97,
+      "bytes_sent": 276.12
+    },
+    {
+      "timestamp": "2025-02-26 20:29",
+      "bytes_received": 2.8,
+      "bytes_sent": 326.26
+    },
+    {
+      "timestamp": "2025-02-26 20:32",
+      "bytes_received": 2.62,
+      "bytes_sent": 369.78
+    },
+    {
+      "timestamp": "2025-02-26 20:35",
+      "bytes_received": 2.51,
+      "bytes_sent": 403.27
+    },
+    {
+      "timestamp": "2025-02-26 20:40",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 20:43",
+      "bytes_received": 2.97,
+      "bytes_sent": 276.12
+    },
+    {
+      "timestamp": "2025-02-26 20:46",
+      "bytes_received": 2.8,
+      "bytes_sent": 326.26
+    },
+    {
+      "timestamp": "2025-02-26 20:49",
+      "bytes_received": 2.65,
+      "bytes_sent": 367.48
+    },
+    {
+      "timestamp": "2025-02-26 20:52",
+      "bytes_received": 2.51,
+      "bytes_sent": 403.27
+    },
+    {
+      "timestamp": "2025-02-26 20:55",
+      "bytes_received": 2.42,
+      "bytes_sent": 431.33
+    },
+    {
+      "timestamp": "2025-02-26 20:58",
+      "bytes_received": 2.32,
+      "bytes_sent": 456.97
+    },
+    {
+      "timestamp": "2025-02-26 21:06",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 21:09",
+      "bytes_received": 2.97,
+      "bytes_sent": 276.12
+    },
+    {
+      "timestamp": "2025-02-26 21:13",
+      "bytes_received": 2.82,
+      "bytes_sent": 334.67
+    },
+    {
+      "timestamp": "2025-02-26 21:16",
+      "bytes_received": 2.59,
+      "bytes_sent": 380.96
+    },
+    {
+      "timestamp": "2025-02-26 21:20",
+      "bytes_received": 2.52,
+      "bytes_sent": 417.78
+    },
+    {
+      "timestamp": "2025-02-26 21:26",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 21:32",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-26 21:36",
+      "bytes_received": 2.99,
+      "bytes_sent": 286.34
+    },
+    {
+      "timestamp": "2025-02-26 21:49",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    },
+    {
+      "timestamp": "2025-02-27 00:40",
+      "bytes_received": 3.22,
+      "bytes_sent": 210.97
+    }
+  ],
+  "daily": []
+}

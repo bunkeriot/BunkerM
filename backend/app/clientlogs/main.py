@@ -5,6 +5,7 @@ from typing import Dict, List
 import subprocess
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 import uvicorn
 from pydantic import BaseModel
 import uuid
@@ -111,23 +112,27 @@ class MQTTMonitor:
             return None
 
 
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+
 # Initialize FastAPI app with versioning
 app = FastAPI(
-    title="MQTT Event API",
+    title="Mosquitto Management API",
     version="1.0.0",
-    docs_url="/api/v1/docs",
-    openapi_url="/api/v1/openapi.json"
+    docs_url="/docs",
+    openapi_url="/openapi.json",
 )
 
-# Add CORS middleware with proper configuration
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "https://localhost:2000")],
+    allow_origins=[ALLOWED_HOSTS],
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["X-API-Key", "Content-Type"],
-    expose_headers=["X-API-Key"]
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+# Trusted Host middleware
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
 
 # Initialize MQTT monitor
 mqtt_monitor = MQTTMonitor()

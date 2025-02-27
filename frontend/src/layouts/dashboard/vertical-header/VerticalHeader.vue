@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { useCustomizerStore } from '../../../stores/customizer';
 // icons
-import { MenuFoldOutlined, SearchOutlined, GithubOutlined } from '@ant-design/icons-vue';
+import { MenuFoldOutlined, SearchOutlined, GithubOutlined, RedditOutlined, LogoutOutlined, SettingOutlined, MoreOutlined } from '@ant-design/icons-vue';
 
 // dropdown imports
 import NotificationDD from './NotificationDD.vue';
 import Searchbar from './SearchBarPanel.vue';
 import ProfileDD from './ProfileDD.vue';
 
+
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
-import {
-  LogoutOutlined,
-} from '@ant-design/icons-vue';
+
 
 const customizer = useCustomizerStore();
 
@@ -36,7 +35,7 @@ const handleLogout = async () => {
   <v-app-bar elevation="0" height="60">
     <v-btn class="hidden-md-and-down text-secondary mr-3" color="darkText" icon rounded="sm" variant="text"
       @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)" size="small">
-      <MenuFoldOutlined :style="{ fontSize: '16px' }" />
+      <MenuFoldOutlined :style="{ fontSize: '26px' }" />
     </v-btn>
     <v-btn class="hidden-lg-and-up text-secondary ms-3" color="darkText" icon rounded="sm" variant="text"
       @click.stop="customizer.SET_SIDEBAR_DRAWER" size="small">
@@ -63,6 +62,10 @@ const handleLogout = async () => {
     <!-- ---------------------------------------------- -->
     <!-- Search part -->
     <!-- ---------------------------------------------- -->
+
+
+
+
     <v-sheet class="d-none d-lg-block" width="250">
       <Searchbar />
     </v-sheet>
@@ -74,13 +77,15 @@ const handleLogout = async () => {
     <!---right part -->
     <!-- ---------------------------------------------- -->
 
+
     <!-- ---------------------------------------------- -->
     <!-- Github -->
     <!-- ---------------------------------------------- -->
     <v-btn icon class="text-secondary hidden-sm-and-down d-flex" color="darkText" rounded="sm" variant="text"
       href="https://github.com/bunkeriot/BunkerM" target="_blank">
-      <GithubOutlined :style="{ fontSize: '16px' }" />
+      <GithubOutlined :style="{ fontSize: '26px' }" />
     </v-btn>
+
 
     <!-- ---------------------------------------------- -->
     <!-- Notification -->
@@ -92,21 +97,24 @@ const handleLogout = async () => {
     <!-- ---------------------------------------------- -->
     <v-menu :close-on-content-click="false" offset="8, 0">
       <template v-slot:activator="{ props }">
-        <!--         <v-btn class="profileBtn" variant="text" rounded="sm" v-bind="props">
+        <v-btn class="profileBtn" variant="text" rounded="sm" v-bind="props">
           <div class="d-flex align-center">
-            <v-avatar class="mr-sm-2 mr-0 py-2">
+            <!--             <v-avatar class="mr-sm-2 mr-0 py-2">
               <img src="@/assets/images/users/avatar-1.png" alt="Julia" />
-            </v-avatar>
-            <h6 class="text-subtitle-1 mb-0 d-sm-block d-none">JWT User</h6>
+            </v-avatar> -->
+            <MoreOutlined class="v-icon--start" :style="{ fontSize: '26px' }" />
           </div>
-        </v-btn> -->
-        <v-btn variant="text" color="primary" rounded="sm" icon size="large" @click="handleLogout">
-          <LogoutOutlined :style="{ fontSize: '20px' }" />
         </v-btn>
+        <!--         <v-btn variant="text" color="primary" rounded="sm" icon size="large" @click="handleLogout">
+          <LogoutOutlined :style="{ fontSize: '26px' }" />
+        </v-btn> -->
       </template>
       <v-sheet rounded="md" width="290">
         <ProfileDD />
       </v-sheet>
     </v-menu>
+
+
+
   </v-app-bar>
 </template>

@@ -13,9 +13,9 @@ import {
   LinkOutlined,
   GroupOutlined,
   CloudSyncOutlined
-} from '@ant-design/icons-vue';
+} from '@ant-design/icons-vue'; 
 
-import { BrandAwsIcon, BrandAzureIcon,UnlinkIcon,Stack3Icon, DashboardIcon, ShieldPlusIcon, AssemblyIcon } from 'vue-tabler-icons';
+import { BrandAwsIcon, BrandAzureIcon,UnlinkIcon,Stack3Icon, DashboardIcon, ShieldPlusIcon, AssemblyIcon,PasswordIcon } from 'vue-tabler-icons';
 
 export interface menu {
   header?: string;
@@ -95,6 +95,11 @@ const sidebarItem: menu[] = [
     icon: ShieldPlusIcon,
     to: '/mqtt/roles'
   },
+  {
+    title: 'Import Password File',
+    icon: PasswordIcon,
+    to: '/mqtt/import-password'
+  },
 
 
   { header: 'Cloud Bridges' },
@@ -109,8 +114,15 @@ const sidebarItem: menu[] = [
     to: '/cloud/azurebridgemanager'
   },
 
+/* { header: 'Settings' },
+ {
+    title: 'Configuration',
+    icon: FontSizeOutlined,
+    to: '/mqtt/config'
+  }, */
 
-  { header: 'Utilities' },
+
+ /*  { header: 'Utilities' }, */
 /*   {
     title: 'Typography',
     icon: FontSizeOutlined,
@@ -137,15 +149,15 @@ const sidebarItem: menu[] = [
     icon: ChromeOutlined,
     to: '/sample-page'
   }, */
-  {
+/*   {
     title: 'Documentation',
     icon: QuestionOutlined,
     to: 'https://docs.bunkeriot.com',
     type: 'external',
-   /*  chip: 'gitbook', */
+   // chip: 'gitbook',
     chipColor: 'secondary',
     chipVariant: 'flat'
-  }
+  } */
 ];
 
 export default sidebarItem;

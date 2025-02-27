@@ -111,15 +111,6 @@ const fetchStats = async () => {
 
     console.log("Stats updated:", stats.value);
 
-    // Check MQTT connection status
-    if (!data.mqtt_connected) {
-      // Use the error message from the server if available
-      error.value = data.connection_error || "MQTT broker connection lost. Check if Mosquitto is running on port 1900.";
-    } else {
-      // Only clear error if connected
-      error.value = null;
-    }
-
 
   } catch (err) {
     console.error('Error fetching MQTT stats:', err);

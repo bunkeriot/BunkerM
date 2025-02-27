@@ -22,6 +22,16 @@ from logging.handlers import RotatingFileHandler
 import ssl
 from data_storage import HistoricalDataStorage
 import socket
+import uvicorn
+from contextlib import asynccontextmanager
+
+# Add this for environment variable loading
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # If python-dotenv is not installed, just print a warning
+    print("Warning: python-dotenv not installed. Using environment variables directly.")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -33,11 +43,23 @@ handler = RotatingFileHandler(
 )
 logger.addHandler(handler)
 
-# MQTT Settings
-MQTT_BROKER = os.getenv("MQTT_BROKER", "localhost")
-MQTT_PORT = int(os.getenv("MQTT_PORT", "1900"))
-MQTT_USERNAME = os.getenv("MQTT_USERNAME", "bunker")
-MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "bunker")
+# MQTT Settings - Convert port to integer
+MOSQUITTO_ADMIN_USERNAME = os.getenv("MOSQUITTO_ADMIN_USERNAME")
+MOSQUITTO_ADMIN_PASSWORD = os.getenv("MOSQUITTO_ADMIN_PASSWORD")
+MOSQUITTO_IP = os.getenv("MOSQUITTO_IP", "127.0.0.1")
+# Convert to int with a default value
+MOSQUITTO_PORT = int(os.getenv("MOSQUITTO_PORT", "1900"))
+
+# Security settings
+JWT_SECRET = os.getenv("JWT_SECRET", secrets.token_urlsafe(32))
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRATION = 30  # minutes
+
+# API Key settings
+API_KEY_NAME = "X-API-Key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+API_KEY = os.getenv("API_KEY", "default_api_key_replace_in_production")
+API_KEYS = {API_KEY}
 
 # Define the topics we're interested in
 MONITORED_TOPICS = {
@@ -141,32 +163,6 @@ class MQTTStats:
                 "daily_message_stats": daily_messages  # This contains dates and counts
             }
 
-def get_stats(self) -> Dict:
-        """Get current MQTT statistics"""
-        self.update_message_rates()
-        self.update_storage()
-        
-        with self._lock:
-            actual_subscriptions = max(0, self.subscriptions - 2)
-            actual_connected_clients = max(0, self.connected_clients - 1)
-            
-            # Get historical data
-            hourly_data = self.data_storage.get_hourly_data()
-            
-            return {
-                "total_connected_clients": actual_connected_clients,
-                "total_messages_received": self.format_number(self.messages_sent),
-                "total_subscriptions": actual_subscriptions,
-                "retained_messages": self.retained_messages,
-                "messages_history": list(self.messages_history),
-                "published_history": list(self.published_history),
-                "bytes_stats": {
-                    "timestamps": hourly_data['timestamps'],
-                    "bytes_received": hourly_data['bytes_received'],
-                    "bytes_sent": hourly_data['bytes_sent']
-                },
-                "daily_message_stats": self.data_storage.get_daily_messages()
-            }
 class MessageCounter:
     def __init__(self, file_path="message_counts.json"):
         self.file_path = file_path
@@ -223,45 +219,45 @@ class MessageCounter:
 # Initialize MQTT Stats
 mqtt_stats = MQTTStats()
 
-# Initialize FastAPI app with versioning
+# Rate limiting
+limiter = Limiter(key_func=get_remote_address)
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+
+# Define the lifespan context manager for FastAPI
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup code (previously in @app.on_event("startup"))
+    client = connect_mqtt()
+    client.loop_start()
+    yield
+    # Shutdown code if needed
+    client.loop_stop()
+
+# Initialize FastAPI app with versioning (only do this once!)
 app = FastAPI(
     title="MQTT Monitor API",
     version="1.0.0",
     docs_url="/api/v1/docs",
-    openapi_url="/api/v1/openapi.json"
+    openapi_url="/api/v1/openapi.json",
+    lifespan=lifespan  # Use the lifespan context manager
 )
 
-# Security settings
-JWT_SECRET = os.getenv("JWT_SECRET", secrets.token_urlsafe(32))
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION = 30  # minutes
-
-# API Key settings
-API_KEY_NAME = "X-API-Key"
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-API_KEY = os.getenv("API_KEY", "default_api_key_replace_in_production")
-API_KEYS = {API_KEY}
-
-# Rate limiting
-limiter = Limiter(key_func=get_remote_address)
+# Add state for limiter
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS middleware with restricted origins
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "https://localhost:2000")],
+    allow_origins=ALLOWED_HOSTS,
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["X-API-Key", "Content-Type"],
-    expose_headers=["X-API-Key"]
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Update the Trusted Host middleware
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=[os.getenv("ALLOWED_HOST", "localhost")]
-)
+# Trusted Host middleware
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
 
 async def get_api_key(api_key: str = Depends(api_key_header)):
     """Validate API key"""
@@ -356,9 +352,10 @@ def on_message(client, userdata, msg):
 def connect_mqtt():
     """Connect to MQTT broker"""
     try:
-        def on_connect(client, userdata, flags, rc):
+        # Using the v5 callback format
+        def on_connect(client, userdata, flags, rc, properties=None):
             if rc == 0:
-                logger.info("Connected to MQTT Broker!")
+                logger.info(f"Connected to MQTT Broker at {MOSQUITTO_IP}:{MOSQUITTO_PORT}!")
                 client.subscribe([
                     ("$SYS/broker/#", 0),
                     ("#", 0)
@@ -375,35 +372,56 @@ def connect_mqtt():
                 }
                 logger.error(f"Error details: {error_codes.get(rc, 'Unknown error')}")
 
-        client = mqtt_client.Client()
-        client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+        # Use MQTTv5 client
+        try:
+            client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION2)
+        except AttributeError:
+            # Fall back to older MQTT client if necessary
+            client = mqtt_client.Client(client_id="mqtt-monitor", protocol=mqtt_client.MQTTv5)
+        
+        client.username_pw_set(MOSQUITTO_ADMIN_USERNAME, MOSQUITTO_ADMIN_PASSWORD)
         client.on_connect = on_connect
         client.on_message = on_message
         
-        logger.info(f"Attempting to connect to MQTT broker at {MQTT_BROKER}:{MQTT_PORT}")
-        client.connect(MQTT_BROKER, MQTT_PORT, 60)  # Add timeout of 60 seconds
+        logger.info(f"Attempting to connect to MQTT broker at {MOSQUITTO_IP}:{MOSQUITTO_PORT}")
+        
+        # Verify parameters
+        if not MOSQUITTO_IP:
+            logger.error("MOSQUITTO_IP is not set or is None")
+            raise ValueError("MOSQUITTO_IP must be set")
+            
+        # Connect with proper parameters
+        client.connect(MOSQUITTO_IP, MOSQUITTO_PORT, 60)  # Fixed: use variable not string
         return client
     
     except (ConnectionRefusedError, socket.error) as e:
         logger.error(f"Connection to MQTT broker failed: {e}")
-        logger.error(f"Check if Mosquitto is running on {MQTT_BROKER}:{MQTT_PORT}")
+        logger.error(f"Check if Mosquitto is running on {MOSQUITTO_IP}:{MOSQUITTO_PORT}")
         # Return a dummy client that won't crash your app
-        dummy_client = mqtt_client.Client()
+        try:
+            dummy_client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION2)
+        except AttributeError:
+            dummy_client = mqtt_client.Client(client_id="dummy-client", protocol=mqtt_client.MQTTv5)
         # Override methods to do nothing
         dummy_client.loop_start = lambda: None
+        dummy_client.loop_stop = lambda: None
         return dummy_client
     except Exception as e:
         logger.error(f"Unexpected error connecting to MQTT broker: {e}")
         logger.exception(e)
         # Return a dummy client that won't crash your app
-        dummy_client = mqtt_client.Client()
+        try:
+            dummy_client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION2)
+        except AttributeError:
+            dummy_client = mqtt_client.Client(client_id="dummy-client", protocol=mqtt_client.MQTTv5)
         # Override methods to do nothing
         dummy_client.loop_start = lambda: None
+        dummy_client.loop_stop = lambda: None
         return dummy_client
 
 # API endpoints
 @app.get("/api/v1/stats", dependencies=[Depends(get_api_key)])
-async def get_stats(
+async def get_mqtt_stats(
     request: Request,
     nonce: str,
     timestamp: float
@@ -431,8 +449,8 @@ async def get_stats(
             
             # If MQTT is not connected, add a message
             if not mqtt_connected:
-                stats["connection_error"] = f"MQTT broker connection failed. Check if Mosquitto is running on {MQTT_BROKER}:{MQTT_PORT}"
-                logger.warning(f"Serving stats with MQTT disconnected warning: {MQTT_BROKER}:{MQTT_PORT}")
+                stats["connection_error"] = f"MQTT broker connection failed. Check if Mosquitto is running on {MOSQUITTO_IP}:{MOSQUITTO_PORT}"
+                logger.warning(f"Serving stats with MQTT disconnected warning: {MOSQUITTO_IP}:{MOSQUITTO_PORT}")
             else:
                 logger.info("Successfully retrieved stats with active MQTT connection")
         except Exception as stats_error:
@@ -535,24 +553,47 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy"}
 
-@app.on_event("startup")
-async def startup_event():
-    """Start MQTT client on application startup"""
-    client = connect_mqtt()
-    client.loop_start()
-
 if __name__ == "__main__":
-    ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    ssl_context.minimum_version = ssl.TLSVersion.TLSv1_2
-    ssl_context.set_ciphers('ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256')
-    
-    # Update logging level
-    logging.basicConfig(level=logging.WARNING)  # Change from INFO to WARNING
-
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=1001,
-        ssl=ssl_context,
-        log_level="warning"  # Change from debug to warning
-    )
+    try:
+        # Check if the port is already in use
+        port = int(os.getenv("APP_PORT", "1001"))
+        host = os.getenv("APP_HOST", "0.0.0.0")
+        
+        # Try to bind to the port to check if it's available
+        test_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        test_socket.settimeout(1)
+        
+        # Set SO_REUSEADDR option to avoid "address already in use" errors
+        test_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        
+        try:
+            test_socket.bind((host, port))
+            port_available = True
+        except socket.error:
+            port_available = False
+        finally:
+            test_socket.close()
+        
+        if not port_available:
+            logger.warning(f"Port {port} is already in use, switching to port 1002")
+            port = 1002
+        
+        # Configure SSL
+        ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+        ssl_context.minimum_version = ssl.TLSVersion.TLSv1_2
+        ssl_context.set_ciphers('ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256')
+        
+        # Update logging level
+        logging.basicConfig(level=logging.WARNING)
+        
+        # Run the application
+        logger.info(f"Starting MQTT Monitor API on {host}:{port}")
+        uvicorn.run(
+            app,
+            host=host,
+            port=port,
+            log_level="warning"
+        )
+    except Exception as e:
+        logger.critical(f"Failed to start application: {e}")
+        logger.exception(e)

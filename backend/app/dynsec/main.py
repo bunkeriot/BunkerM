@@ -1,6 +1,6 @@
 # app/dynsec/main.py
 import logging
-from fastapi import FastAPI, HTTPException, Security, Depends, Request, status
+from fastapi import FastAPI, HTTPException, Security, Depends, Request, status, UploadFile, File, Form
 from fastapi.security.api_key import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -21,7 +21,8 @@ from datetime import datetime, timedelta
 import secrets
 from logging.handlers import RotatingFileHandler
 from pydantic import BaseModel, Field
-
+from password_import import router as password_import_router
+import uvicorn
 # Load environment variables from .env file
 load_dotenv()
 
@@ -44,9 +45,9 @@ MOSQUITTO_ADMIN_USERNAME = os.getenv("MOSQUITTO_ADMIN_USERNAME")
 MOSQUITTO_ADMIN_PASSWORD = os.getenv("MOSQUITTO_ADMIN_PASSWORD")
 MOSQUITTO_IP = os.getenv("MOSQUITTO_IP")
 MOSQUITTO_PORT = os.getenv("MOSQUITTO_PORT")
-FRONTEND_URL = os.getenv("FRONTEND_URL", "https://localhost:2000")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 API_KEY = os.getenv("API_KEY")
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 # Initialize FastAPI app with versioning
 app = FastAPI(
@@ -55,15 +56,11 @@ app = FastAPI(
     docs_url="/docs",
     openapi_url="/openapi.json",
 )
-""" # Rate limiting
-limiter = Limiter(key_func=get_remote_address)
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler) """
 
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL],
+    allow_origins=[ALLOWED_HOSTS],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -75,6 +72,8 @@ app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
 # API Key security
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
 
+# Import mosquitto password file
+app.include_router(password_import_router, prefix="/api/v1")
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
     if api_key_header != API_KEY:
@@ -1451,7 +1450,6 @@ async def health_check(request: Request):
 
 
 if __name__ == "__main__":
-    import uvicorn
 
     ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
     cert_path = os.getenv("SSL_CERT_PATH", "/app/certs/cert.pem")
@@ -1469,6 +1467,5 @@ if __name__ == "__main__":
         app,
         host="0.0.0.0",  # Bind to all interfaces
         port=1000,
-        ssl=ssl_context,
         log_level="info",
     )

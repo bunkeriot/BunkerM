@@ -34,6 +34,12 @@ const MainRoutes = {
     },
 
     {
+      name: 'ImportPassword',
+      path: '/mqtt/import-password',
+      component: () => import('@/views/mqtt/ImportPasswordPage.vue')
+    },
+
+    {
       name: 'ClientLogs',
       path: '/mqtt/clientlogs',
       component: () => import('@/views/mqtt/ClientLogs.vue')
@@ -48,6 +54,12 @@ const MainRoutes = {
       name: 'Azure',
       path: '/cloud/azurebridgemanager',
       component: () => import('@/views/cloud/AzureBridgeManager.vue')
+    },
+
+    {
+      name: 'Config',
+      path: '/mqtt/config',
+      component: () => import('@/views/mqtt/MosquittoConfigPage.vue')
     },
   ]
 

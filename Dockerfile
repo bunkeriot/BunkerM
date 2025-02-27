@@ -39,12 +39,14 @@ RUN apk update && apk add --no-cache \
     unzip \
     supervisor \
     openssl \
-    openssl-dev \
     ca-certificates \
     nodejs \
     npm\
     nginx\
-    openrc
+    openrc\
+    libressl-dev\
+    gcc\
+    py3-cryptography
 
 # Set up Python virtual environment
 ENV VIRTUAL_ENV=/opt/venv
@@ -52,7 +54,8 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install Python packages
-RUN pip install --no-cache-dir \
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir \
     psutil \
     paho-mqtt \
     fastapi \
@@ -65,25 +68,32 @@ RUN pip install --no-cache-dir \
     pytz \
     statistics \
     python-multipart \
-    python-jose[cryptography] \
     passlib[bcrypt] \
     python-jwt \
     PyJWT \
-    cryptography \
     slowapi \
     secure \
-    fastapi-jwt-auth \
     python-decouple \
     starlette-context \
     structlog \
     python-json-logger \
-    pyOpenSSL \
-    fastapi-limiter \
     aiofiles \
     types-aiofiles \
-    typing-extensions
+    typing-extensions 
 
 
+
+# Install cryptography packages separately to handle dependencies better
+RUN pip install --no-cache-dir \
+    cryptography \
+    pyOpenSSL \
+    python-jose[cryptography]
+
+
+# Install FastAPI packages that depend on cryptography
+RUN pip install --no-cache-dir \
+fastapi-jwt-auth \
+fastapi-limiter
 
 # Configure nginx
 RUN mkdir -p /run/nginx
@@ -103,8 +113,11 @@ RUN echo 'server {' > /etc/nginx/http.d/default.conf && \
 # Create necessary directories
 RUN mkdir -p /app/certs && \
     mkdir -p /var/log/api && \
+    chmod 755 /etc/mosquitto &&\
     mkdir -p /etc/mosquitto/certs && \
     mkdir -p /etc/mosquitto/conf.d && \
+    touch /etc/mosquitto/mosquitto_passwd && \
+    chmod 644 /etc/mosquitto/mosquitto_passwd && \
     mkdir -p /app/jwt && \
     mkdir -p /usr/share/nginx/html && \
     mkdir -p /var/log/supervisor && \
@@ -125,6 +138,10 @@ RUN echo '#!/bin/sh' > /start.sh && \
     echo 'touch /var/log/api/api_activity.log' >> /start.sh && \
     echo 'touch /var/log/supervisor/nginx.out.log' >> /start.sh && \
     echo 'touch /var/log/supervisor/nginx.err.log' >> /start.sh && \
+    # Ensure mosquitto_passwd file exists and has right permissions
+    echo 'touch /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
+    echo 'chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
+    echo 'chmod 664 /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
     echo 'chown -R mosquitto:mosquitto /var/log/mosquitto' >> /start.sh && \
     echo 'chmod -R 755 /var/log/supervisor' >> /start.sh && \
     echo 'chmod -R 755 /var/log/api' >> /start.sh && \
@@ -161,7 +178,9 @@ RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
     chmod -R 775 /var/lib/mosquitto && \
     chown -R root:root /app && \
     chmod -R 755 /app && \
-    chmod -R 755 /usr/share/nginx/html
+    chmod -R 755 /usr/share/nginx/html && \
+    chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd && \
+    chmod 664 /etc/mosquitto/mosquitto_passwd
     
 # Create environment file with secure defaults
 #RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
@@ -183,9 +202,8 @@ ENV MQTT_BROKER=localhost \
     SSL_KEY_PATH=/app/certs/key.pem \
     LOG_LEVEL=INFO \
     API_LOG_FILE=/var/log/api/api_activity.log \
-    VITE_AWS_BRIDGE_API_URL=https://localhost:2000/api/aws-bridge
-
-
+    VITE_AWS_BRIDGE_API_URL=https://localhost:2000/api/aws-bridge \
+    MOSQUITTO_PASSWD_PATH=/etc/mosquitto/mosquitto_passwd    
 
 RUN mkdir -p /var/lib/mosquitto/db && \
     mkdir -p /var/log/mosquitto && \
@@ -194,9 +212,38 @@ RUN mkdir -p /var/lib/mosquitto/db && \
     chown -R mosquitto:mosquitto /var/log/mosquitto && \
     chmod -R 755 /var/log/api
 
+    # Add environment variables for Mosquitto configuration
+ENV MOSQUITTO_CONF_PATH=/etc/mosquitto/mosquitto.conf \
+MOSQUITTO_BACKUP_DIR=/tmp/mosquitto_backups \
+CONFIG_API_PORT=1005
+
+# Create backup directory for Mosquitto configurations
+RUN mkdir -p /tmp/mosquitto_backups && \
+chmod 755 /tmp/mosquitto_backups
+
+# Make sure permissions are set correctly for the Mosquitto configuration
+RUN chown -R mosquitto:mosquitto /etc/mosquitto && \
+chmod -R 755 /etc/mosquitto && \
+chmod 644 /etc/mosquitto/mosquitto.conf
+
+# Create directory for the config API
+RUN mkdir -p /app/config && \
+chmod 755 /app/config
+
+# Copy config API files
+COPY backend/app/config/mosquitto_config.py /app/config/
+COPY backend/app/config/main.py /app/config/
+COPY backend/app/config/.env /app/config/
+
+# Add the new supervisor configuration
+#COPY backend/supervisord/config-api.conf /etc/supervisor/conf.d/
+
+
 
 # Set Python path
-ENV PYTHONPATH=/app/monitor:$PYTHONPATH
+ENV PYTHONPATH=/app/monitor:$PYTHONPATH \
+    DYNSEC_PATH=/var/lib/mosquitto/dynamic-security.json \
+    MAX_UPLOAD_SIZE=10485760
 
 EXPOSE  2000 1900
 

@@ -21,7 +21,7 @@
           </v-avatar>
         </div>
       </div>
-      <v-btn color="primary" block variant="flat" density="comfortable" class="mt-6" href="https://codedthemes.support-hub.io/" target="_"
+      <v-btn color="primary" block variant="flat" density="comfortable" class="mt-6" href="" target="_"
         >Need Help?</v-btn
       >
     </v-card-text>
