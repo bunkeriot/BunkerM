@@ -1,7 +1,24 @@
 # BunkerM - MQTT Made Easy ✅  
 
 
-[![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
+## Support BunkerM Project ❤️🙏 
+**Help Keep MQTT Management Free, Secure, and Accessible for All!**
+
+
+ As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
+
+Your donation helps support:
+* Continuous development of new features
+* Maintenance and bug fixes
+* Documentation improvements
+* Community support
+
+
+Every contribution, no matter the size, helps keep this project active and growing. If you find BunkerM useful in your projects or learning journey, consider supporting its development. Together, we can make IoT and MQTT technology more accessible to developers worldwide.
+
+[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
+
+Thank you for supporting open source! 🙏
 
 # Table of Contents
 - [What is BunkerM?](#what-is-bunkerm)
@@ -245,23 +262,6 @@ This module provides a real-time list of currently connected clients on a node, 
 | White Labeling | ✗ | ✗ | ✓ |
 
 
-
-## Support BunkerM Project
-
-BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
-
-Your donation helps support:
-* Continuous development of new features
-* Maintenance and bug fixes
-* Documentation improvements
-* Community support
-
-
-Every contribution, no matter the size, helps keep this project active and growing. If you find BunkerM useful in your projects or learning journey, consider supporting its development. Together, we can make IoT and MQTT technology more accessible to developers worldwide.
-
-[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
-
-Thank you for supporting open source! 🙏
 
 ## License
 
