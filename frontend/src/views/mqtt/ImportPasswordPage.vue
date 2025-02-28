@@ -344,7 +344,7 @@ async function restartMosquitto() {
     // Close the confirmation dialog and show result dialog
     showRestartDialog.value = false;
     
-    // Add a small delay before showing result
+    // Small delay before showing result
     setTimeout(() => {
       showRestartResultDialog.value = true;
     }, 500);

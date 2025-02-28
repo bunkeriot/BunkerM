@@ -32,7 +32,7 @@ async function validate() {
     router.push('/dashboard'); // or wherever you want to redirect after registration
   } catch (error: any) {
     console.error(error);
-    // Add error display in the UI
+    // error display in the UI
     alert(error.message);
   }
 }

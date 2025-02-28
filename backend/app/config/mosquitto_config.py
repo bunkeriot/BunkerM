@@ -215,18 +215,8 @@ async def get_mosquitto_config(api_key: str = Security(get_api_key)):
 async def save_mosquitto_config(
     config: MosquittoConfig, api_key: str = Security(get_api_key)
 ):
-    """
-    Save Mosquitto configuration
-    """
+
     try:
-        # Create backup of current configuration
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        backup_path = os.path.join(BACKUP_DIR, f"mosquitto.conf.bak.{timestamp}")
-
-        if os.path.exists(MOSQUITTO_CONF_PATH):
-            shutil.copy2(MOSQUITTO_CONF_PATH, backup_path)
-            logger.info(f"Created backup of Mosquitto configuration at {backup_path}")
-
         # Convert listeners to the format expected by generate_mosquitto_conf
         listeners_list = []
         for listener in config.listeners:
@@ -238,6 +228,25 @@ async def save_mosquitto_config(
                     "max_connections": listener.max_connections,
                 }
             )
+
+        # Validate listeners for duplicate ports
+        current_config = parse_mosquitto_conf()
+        is_valid, error_message = validate_listeners(current_config.get("listeners", []), listeners_list)
+        
+        if not is_valid:
+            logger.error(f"Validation error: {error_message}")
+            return {
+                "success": False,
+                "message": error_message
+            }
+
+        # Create backup of current configuration
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_path = os.path.join(BACKUP_DIR, f"mosquitto.conf.bak.{timestamp}")
+
+        if os.path.exists(MOSQUITTO_CONF_PATH):
+            shutil.copy2(MOSQUITTO_CONF_PATH, backup_path)
+            logger.info(f"Created backup of Mosquitto configuration at {backup_path}")
 
         # Generate new configuration content
         new_config_content = generate_mosquitto_conf(config.config, listeners_list)
@@ -262,7 +271,7 @@ async def save_mosquitto_config(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to save Mosquitto configuration: {str(e)}",
         )
-
+        
 
 @router.post("/reset-mosquitto-config")
 async def reset_mosquitto_config(api_key: str = Security(get_api_key)):
@@ -298,3 +307,32 @@ async def reset_mosquitto_config(api_key: str = Security(get_api_key)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to reset Mosquitto configuration: {str(e)}",
         )
+        
+        
+def validate_listeners(current_listeners: List[Dict[str, Any]], new_listeners: List[Dict[str, Any]]) -> tuple[bool, str]:
+    """
+    Validate that there are no duplicate listener ports
+    Returns (is_valid, error_message)
+    """
+    # Get all port numbers from the new listeners
+    port_counts = {}
+    for listener in new_listeners:
+        port = listener.get('port')
+        if port in port_counts:
+            port_counts[port] += 1
+        else:
+            port_counts[port] = 1
+    
+    # Check for duplicates within the new configuration
+    for port, count in port_counts.items():
+        if count > 1:
+            return False, f"Duplicate listener port {port} found in configuration"
+    
+    # Also check for duplicate listener ports in the default configuration that aren't being updated
+    default_ports = [1900, 8080]  # From the DEFAULT_CONFIG
+    
+    for port in port_counts:
+        if port in default_ports and any(l.get('port') != port for l in new_listeners):
+            return False, f"Port {port} is already used by Mosquitto's default configuration"
+    
+    return True, ""

@@ -209,11 +209,11 @@ const editedItem = ref({
   password: '',
 });
 
-// Add these refs for error handling
+// Refs for error handling
 const usernameError = ref('');
 const passwordError = ref('');
 
-// Add validation rules
+// Validation rules
 const rules = {
   required: value => !!value || 'This field is required'
   //alphanumeric: value => /^[a-zA-Z0-9]+$/.test(value) || 'Only letters and numbers are allowed'

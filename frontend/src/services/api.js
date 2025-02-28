@@ -10,8 +10,8 @@ export const api = axios.create({
     'Content-Type': 'application/json',
     'X-API-Key': import.meta.env.VITE_API_KEY
   },
-  // Add timeout
+  // timeout
  // timeout: 10000,
-  // Add validation for status
+  // validation for status
   validateStatus: status => status >= 200 && status < 500
 });

@@ -19,7 +19,7 @@ const customizer = useCustomizerStore();
 const authStore = useAuthStore();
 const router = useRouter(); // Add router instance
 
-// Add logout handler
+//  logout handler
 const handleLogout = async () => {
   try {
     await authStore.logout();

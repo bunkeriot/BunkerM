@@ -1,5 +1,8 @@
 # BunkerM - MQTT Made Easy ✅  
 
+
+[![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
+
 # Table of Contents
 - [What is BunkerM?](#what-is-bunkerm)
 - [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today)
@@ -54,7 +57,7 @@ docker run -d -p 1900:1900 -p 2000:2000  bunkeriot/bunkerm
 ```
 
 2. Access the interface:
-   - Open your browser and navigate to `https://localhost:2000`
+   - Open your browser and navigate to `https://localhost:2000` 
    - You'll see a security warning about the SSL certificate
   
    - Click "Advanced" and then "Proceed to localhost (unsafe)"

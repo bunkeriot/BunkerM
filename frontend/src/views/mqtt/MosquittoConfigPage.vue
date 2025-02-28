@@ -764,8 +764,25 @@ async function loadConfiguration() {
 
 // Add a new listener
 function addListener() {
+  // Default port to use when adding a new listener
+  const defaultPort = 1883;
+  
+  // Check if the default port is already in use
+  const usedPorts = new Set([1900, 8080]); // Default Mosquitto ports
+  
+  // Add existing listener ports to the set
+  listeners.value.forEach(listener => {
+    usedPorts.add(listener.port);
+  });
+  
+  // Find an available port starting from the default
+  let newPort = defaultPort;
+  while (usedPorts.has(newPort)) {
+    newPort++;
+  }
+  
   listeners.value.push({
-    port: 1883,
+    port: newPort,
     bind_address: '',
     per_listener_settings: false,
     max_connections: -1
@@ -810,8 +827,47 @@ function setDefaultConfig() {
   alert.message = 'Configuration has been reset to default values. Click Save to apply these changes.';
 }
 
+
+function validateConfiguration() {
+  // Check for duplicate listener ports
+  const ports = new Set();
+  const reservedPorts = new Set([1900, 8080]); // Default ports that should not be duplicated
+  let error = null;
+  
+  for (const listener of listeners.value) {
+    // Check if port is already used by another listener
+    if (ports.has(listener.port)) {
+      error = `Duplicate listener port ${listener.port} found. Each listener must use a unique port.`;
+      break;
+    }
+    
+    // Check if port is a reserved port that's already in use
+    if (reservedPorts.has(listener.port)) {
+      error = `Port ${listener.port} is already used by Mosquitto's default configuration. Please use a different port.`;
+      break;
+    }
+    
+    ports.add(listener.port);
+  }
+  
+  if (error) {
+    alert.show = true;
+    alert.type = 'error';
+    alert.message = error;
+    return false;
+  }
+  
+  return true;
+}
+
+
 // Save configuration
 async function saveConfiguration() {
+  // Validate configuration before saving
+  if (!validateConfiguration()) {
+    return; // Stop if validation fails
+  }
+  
   try {
     loading.value = true;
 

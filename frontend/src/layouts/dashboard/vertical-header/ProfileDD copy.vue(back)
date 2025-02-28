@@ -37,7 +37,7 @@ const restartMessage = ref('');
 // Computed property for result title class
 const resultTitleClass = computed(() => restartSuccess.value ? 'text-success' : 'text-error');
 
-// Add logout handler
+//  logout handler
 const handleLogout = async () => {
   try {
     await authStore.logout();
@@ -69,7 +69,7 @@ const restartMosquitto = async () => {
     // Close the confirmation dialog and show result dialog
     showRestartDialog.value = false;
     
-    // Add a small delay before showing result
+    // Small delay before showing result
     setTimeout(() => {
       showRestartResultDialog.value = true;
     }, 500);
