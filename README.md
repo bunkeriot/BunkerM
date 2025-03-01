@@ -245,7 +245,7 @@ This module provides a real-time list of currently connected clients on a node, 
 
 
 
-## Support BunkerM Project ❤️🙏 
+## Support BunkerM Project
 
 BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
 
