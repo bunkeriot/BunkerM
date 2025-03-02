@@ -264,8 +264,8 @@ Thank you for supporting open source! 🙏
 
 ## License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
-You are free to use, modify, and share this software **for non-commercial purposes only**.  
+This project is licensed under the Apache License 2.0.
+You are free to use, modify, and distribute this software, even for commercial purposes, under the terms of the license.
 
-📜 Full license details: [LICENSE](./LICENSE)  
-💼 For commercial inquiries, contact: m.idrissi@bunkeriot.com
+📜 Full license details: LICENSE
+💼 For any inquiries, feel free to reach out: m.idrissi@bunkeriot.com

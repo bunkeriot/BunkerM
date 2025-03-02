@@ -1,4 +1,4 @@
-/* # Copyright (c) 2025 BunkerIoT
+/* # Copyright (c) 2025 BunkerM
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -165,6 +165,12 @@ const restartMosquitto = async () => {
                 <SettingOutlined :style="{ fontSize: '14px' }" class="mr-4" />
               </template>
               <v-list-item-title class="text-h6">Broker Config</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="$router.push('/mqtt/dynsec-config')" color="primary" rounded="0" value="ACL">
+              <template v-slot:prepend>
+                <SettingOutlined :style="{ fontSize: '14px' }" class="mr-4" />
+              </template>
+              <v-list-item-title class="text-h6">Import/Export ACL</v-list-item-title>
             </v-list-item>
             <v-list-item @click="openRestartDialog" color="primary" rounded="0" value="Restart Broker">
               <template v-slot:prepend>

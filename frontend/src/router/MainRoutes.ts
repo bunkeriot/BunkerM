@@ -61,6 +61,11 @@ const MainRoutes = {
       path: '/mqtt/config',
       component: () => import('@/views/mqtt/MosquittoConfigPage.vue')
     },
+    {
+      name: 'Dynsec-Config',
+      path: '/mqtt/dynsec-config',
+      component: () => import('@/views/mqtt/DynSecJsonPage.vue')
+    },
   ]
 
 

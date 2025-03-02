@@ -1,4 +1,4 @@
-/* # Copyright (c) 2025 BunkerIoT
+/* # Copyright (c) 2025 BunkerM
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -420,5 +420,110 @@ export const mqttService = {
       console.error('Error resetting Mosquitto configuration:', error);
       throw error;
     }
+  },
+
+
+
+// Get the dynamic security JSON configuration
+async getDynSecJson() {
+  try {
+    const response = await axios.get('/api/config/dynsec-json', {
+      headers: {
+        'X-API-Key': getApiKey()
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error getting dynamic security JSON:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.detail || 'Failed to get dynamic security configuration' 
+    };
   }
+},
+
+// Import a dynamic security JSON file
+async importDynSecJson(formData) {
+  try {
+    const response = await axios.post('/api/config/import-dynsec-json', formData, {
+      headers: {
+        // Let Axios set Content-Type automatically for FormData
+        'X-API-Key': getApiKey()
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error importing dynamic security JSON:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.detail || 'Failed to import dynamic security configuration' 
+    };
+  }
+},
+
+// Reset dynamic security JSON to default
+async resetDynSecJson() {
+  try {
+    const response = await axios.post('/api/config/reset-dynsec-json', {}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': getApiKey()
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error resetting dynamic security JSON:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.detail || 'Failed to reset dynamic security configuration' 
+    };
+  }
+},
+
+async exportDynSecJson() {
+  try {
+    // Make the request with responseType blob to handle binary data
+    const response = await axios.get('/api/config/export-dynsec-json', {
+      headers: {
+        'X-API-Key': getApiKey(),
+        'Accept': 'application/json'
+      },
+      responseType: 'blob' // Important for file downloads
+    });
+    
+    // Create a URL for the blob
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    
+    // Extract filename from Content-Disposition header if available
+    let filename = 'dynamic-security-export.json';
+    const contentDisposition = response.headers['content-disposition'];
+    if (contentDisposition) {
+      const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+      if (filenameMatch && filenameMatch.length > 1) {
+        filename = filenameMatch[1];
+      }
+    }
+    
+    // Create a link element and trigger download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    
+    // Clean up
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+    
+    return { success: true, message: 'Dynamic security configuration exported successfully' };
+  } catch (error) {
+    console.error('Error exporting dynamic security JSON:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.detail || 'Failed to export dynamic security configuration' 
+    };
+  }
+}
+
+
 };

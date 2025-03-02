@@ -1,4 +1,4 @@
-# Copyright (c) 2025 BunkerIoT
+# Copyright (c) 2025 BunkerM
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import uvicorn
 
 # Import the mosquitto_config router
 from mosquitto_config import router as mosquitto_config_router
+from dynsec_config import router as dynsec_config_router
 
 # Load environment variables from .env file
 load_dotenv()
@@ -61,6 +62,7 @@ api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
 
 # Include the mosquitto_config router
 app.include_router(mosquitto_config_router, prefix="/api/v1")
+app.include_router(dynsec_config_router, prefix="/api/v1")
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
     if api_key_header != API_KEY:
