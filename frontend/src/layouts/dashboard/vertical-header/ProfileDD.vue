@@ -19,7 +19,7 @@ import {
   UnorderedListOutlined,
   EditOutlined,
   ProfileOutlined,
-  WalletOutlined,
+  UploadOutlined,
   InfoCircleOutlined,
   RedditOutlined,
   PlayCircleOutlined,
@@ -168,7 +168,7 @@ const restartMosquitto = async () => {
             </v-list-item>
             <v-list-item @click="$router.push('/mqtt/dynsec-config')" color="primary" rounded="0" value="ACL">
               <template v-slot:prepend>
-                <SettingOutlined :style="{ fontSize: '14px' }" class="mr-4" />
+                <UploadOutlined :style="{ fontSize: '14px' }" class="mr-4" />
               </template>
               <v-list-item-title class="text-h6">Import/Export ACL</v-list-item-title>
             </v-list-item>

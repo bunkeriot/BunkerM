@@ -480,8 +480,10 @@ async resetDynSecJson() {
   }
 },
 
+// Export dynamic security JSON file
 async exportDynSecJson() {
   try {
+    console.log("Starting export process...");
     // Make the request with responseType blob to handle binary data
     const response = await axios.get('/api/config/export-dynsec-json', {
       headers: {
@@ -491,18 +493,38 @@ async exportDynSecJson() {
       responseType: 'blob' // Important for file downloads
     });
     
+    console.log("Export response received:", response.status, response.headers);
+    
+    // Check if we got successful response
+    if (response.status !== 200) {
+      throw new Error(`Export failed with status: ${response.status}`);
+    }
+    
+    // Validate the blob type - should be application/json
+    const contentType = response.headers['content-type'];
+    if (contentType && !contentType.includes('application/json')) {
+      console.warn(`Unexpected content type: ${contentType}`);
+    }
+    
     // Create a URL for the blob
     const url = window.URL.createObjectURL(new Blob([response.data]));
     
     // Extract filename from Content-Disposition header if available
     let filename = 'dynamic-security-export.json';
     const contentDisposition = response.headers['content-disposition'];
+    console.log("Content-Disposition:", contentDisposition);
+    
     if (contentDisposition) {
-      const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+      const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
       if (filenameMatch && filenameMatch.length > 1) {
         filename = filenameMatch[1];
       }
+    } else {
+      // Use a timestamp if no filename provided
+      filename = `dynamic-security-export-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
     }
+    
+    console.log("Using filename:", filename);
     
     // Create a link element and trigger download
     const link = document.createElement('a');
@@ -518,9 +540,21 @@ async exportDynSecJson() {
     return { success: true, message: 'Dynamic security configuration exported successfully' };
   } catch (error) {
     console.error('Error exporting dynamic security JSON:', error);
+    // Better error reporting
+    let errorMessage = 'Failed to export dynamic security configuration';
+    
+    if (error.response) {
+      // Server responded with an error
+      errorMessage = `Server error: ${error.response.status} - ${error.response.statusText}`;
+      console.error('Error response:', error.response);
+    } else if (error.request) {
+      // Request made but no response received
+      errorMessage = 'No response received from server. Please check your network connection.';
+    }
+    
     return { 
       success: false, 
-      message: error.response?.data?.detail || 'Failed to export dynamic security configuration' 
+      message: errorMessage
     };
   }
 }

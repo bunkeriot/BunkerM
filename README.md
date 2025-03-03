@@ -13,9 +13,11 @@
 - [REST API (Coming soon)](#4-rest-api-coming-soon)
 - [MQTT Client Management](#mqtt-client-management-listing-enabling-and-disabling)
 - [Troubleshooting](#troubleshooting)
-- [Features](#features)
+- [Features](#features)  
+- [Community vs Paid versions](#community-vs-paid-versions)
 - [🚀 Support BunkerM Project](#support-bunkerm-project)
-- [License](#license)
+- [License](#license)  
+
 
 
 
@@ -244,6 +246,20 @@ This module provides a real-time list of currently connected clients on a node, 
 | White Labeling | ✗ | ✗ | ✓ |
 
 
+## Community vs Paid versions
+My mission with BunkerM is to democratize IoT by making MQTT management accessible to everyone. The Community Version is designed to be lightweight, easy to use, and completely free, offering essential features for individuals and small projects.
+
+However, to sustain the development of the Community Version and continue delivering value, I’m introducing Pro and Enterprise Versions. These versions are tailored for businesses and advanced users, offering additional features like:
+
+- Local authentication (no internet required)  
+- Fine-grained RBAC (Role-Based Access Control)
+- LDAP and SSO integrations
+- Advanced monitoring and analytics
+- Enterprise-grade support
+
+The revenue from the Pro and Enterprise versions will directly support the development and maintenance of the free Community Version. This way, I can keep BunkerM accessible to everyone while also meeting the needs of larger organizations.
+
+If the open-source community shows enough support, I may consider making the Pro version free as well. Your feedback and contributions are invaluable in shaping the future of BunkerM!
 
 ## Support BunkerM Project
 
@@ -267,5 +283,5 @@ Thank you for supporting open source! 🙏
 This project is licensed under the Apache License 2.0.
 You are free to use, modify, and distribute this software, even for commercial purposes, under the terms of the license.
 
-📜 Full license details: LICENSE
+📜 Full license details: LICENSE  
 💼 For any inquiries, feel free to reach out: m.idrissi@bunkeriot.com

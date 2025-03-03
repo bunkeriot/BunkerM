@@ -32,15 +32,15 @@ limitations under the License. -->
           </v-alert>
   
           <div class="mb-4">
-            <p>This feature allows you to import and export BunkerM MQTT ACLs.</p>
+            <p>Easily import /export ACL from and into BunkerM.</p>
           </div>
   
           <v-row>
             <v-col cols="12" sm="6">
               <v-card variant="outlined" class="h-100">
-                <v-card-title>Import ACLs</v-card-title>
+                <v-card-title>Import ACL</v-card-title>
                 <v-card-text>
-                  <p>Upload a dynamic security JSON file to import client lists, roles, and groups.</p>
+                  <p>Upload BunkerM ACL JSON file to import client lists, roles, and groups.</p>
                   <v-form ref="importForm" @submit.prevent="uploadFile">
                     <v-file-input
                       v-model="importFile"
@@ -84,7 +84,7 @@ limitations under the License. -->
               <v-card variant="outlined" class="h-100">
                 <v-card-title>Export ACL</v-card-title>
                 <v-card-text>
-                  <p>Download the current dynamic security JSON configuration file.</p>
+                  <p>Download the current BunkerM ACL file.</p>
                   <p class="mt-4">This will export all clients, roles, and groups currently configured in the system.</p>
                   
                   <div class="d-flex justify-end mt-4">
@@ -392,61 +392,18 @@ limitations under the License. -->
   }
   
  // Export the dynamic security JSON file
-async function exportDynSecJson() {
+ async function exportDynSecJson() {
   try {
     exporting.value = true;
     
-    // Get API key
-    const apiKey = localStorage.getItem('api_key');
+    // Use the mqtt service's exportDynSecJson method
+    const result = await mqttService.exportDynSecJson();
     
-    // Use fetch with API key header and correct URL
-    const response = await fetch('/api/config/export-dynsec-json', {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey || '',
-        'Accept': 'application/json'
-      }
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Export failed: ${response.statusText}`);
+    if (result.success) {
+      showSuccess('Dynamic security configuration exported successfully');
+    } else {
+      throw new Error(result.message || 'Export failed');
     }
-    
-    // Check the content type to ensure we're getting JSON
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error('Received invalid content type: ' + contentType);
-    }
-    
-    // Get the filename from Content-Disposition header or create a default one
-    let filename = 'dynamic-security-export.json';
-    const contentDisposition = response.headers.get('content-disposition');
-    if (contentDisposition) {
-      const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
-      if (filenameMatch && filenameMatch.length > 1) {
-        filename = filenameMatch[1];
-      }
-    }
-    
-    // Get the blob from the response
-    const blob = await response.blob();
-    
-    // Create a download link for the blob
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    
-    // Trigger the download
-    document.body.appendChild(a);
-    a.click();
-    
-    // Clean up
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
-    
-    showSuccess('Dynamic security configuration exported successfully');
-    
   } catch (error) {
     console.error('Error exporting dynamic security JSON:', error);
     showError(`Failed to export dynamic security configuration: ${error.message}`);

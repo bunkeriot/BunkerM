@@ -132,7 +132,6 @@ def write_dynsec_json(data: Dict[str, Any]) -> bool:
         logger.error(f"Error writing dynamic security JSON: {str(e)}")
         return False
 
-
 def validate_dynsec_json(data: Dict[str, Any]) -> Dict[str, Any]:
     """
     Validate the dynamic security JSON structure
@@ -158,25 +157,10 @@ def validate_dynsec_json(data: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(data["roles"], list):
         raise ValueError("'roles' must be a list")
     
-    # Check if admin user and role exist
-    admin_user_exists = False
-    admin_role_exists = False
-    
-    for client in data["clients"]:
-        if "username" in client and client["username"] == "bunker":
-            admin_user_exists = True
-            break
-    
-    for role in data["roles"]:
-        if "rolename" in role and role["rolename"] == "admin":
-            admin_role_exists = True
-            break
-    
-    if not admin_user_exists or not admin_role_exists:
-        raise ValueError("Admin user or admin role is missing")
+    # For files exported by our system, we don't require admin user and role to be present
+    # They will be added back during the merge process
     
     return data
-
 
 def merge_dynsec_configs(imported_config: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -266,9 +250,11 @@ async def export_dynsec_json(api_key: str = Security(get_api_key)):
     Export the dynamic security JSON file for download, excluding default admin user and role
     """
     try:
+        logger.info("Export request received")
         data = read_dynsec_json()
         
         if not data:
+            logger.error("Failed to read dynamic security JSON file")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="Failed to read dynamic security JSON"
@@ -295,12 +281,22 @@ async def export_dynsec_json(api_key: str = Security(get_api_key)):
         content = json.dumps(export_data, indent=4)
         filename = f"dynamic-security-export-{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
         
-        response = Response(content=content)
-        response.headers["Content-Disposition"] = f"attachment; filename={filename}"
-        response.headers["Content-Type"] = "application/json"
+        logger.info(f"Preparing export response with filename: {filename}")
+        
+        # Create response with explicit content type and headers
+        response = Response(
+            content=content,
+            media_type="application/json",
+            headers={
+                "Content-Disposition": f"attachment; filename={filename}",
+                "Content-Type": "application/json",
+                "Content-Length": str(len(content))
+            }
+        )
         
         return response
-    except HTTPException:
+    except HTTPException as he:
+        logger.error(f"HTTP exception during export: {str(he)}")
         raise
     except Exception as e:
         logger.error(f"Error exporting dynamic security JSON: {str(e)}")
@@ -308,6 +304,7 @@ async def export_dynsec_json(api_key: str = Security(get_api_key)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to export dynamic security JSON: {str(e)}"
         )
+
 
 @router.post("/import-dynsec-json")
 async def import_dynsec_json(
@@ -324,7 +321,9 @@ async def import_dynsec_json(
         try:
             # Parse the JSON content
             imported_data = json.loads(content)
+            logger.info(f"Successfully parsed JSON from uploaded file: {file.filename}")
         except json.JSONDecodeError:
+            logger.error(f"Invalid JSON format in uploaded file: {file.filename}")
             return {
                 "success": False,
                 "message": "The uploaded file is not valid JSON"
@@ -332,8 +331,10 @@ async def import_dynsec_json(
         
         # Validate the imported JSON structure
         try:
-            validate_dynsec_json(imported_data)
+            imported_data = validate_dynsec_json(imported_data)
+            logger.info("JSON validation successful")
         except ValueError as e:
+            logger.error(f"Validation error: {str(e)}")
             return {
                 "success": False,
                 "message": f"Invalid dynamic security JSON format: {str(e)}"
@@ -341,9 +342,11 @@ async def import_dynsec_json(
         
         # Create a backup of the current configuration
         backup_path = create_backup()
+        logger.info(f"Created backup at: {backup_path}")
         
         # Merge imported config with default config to preserve critical components
         merged_config = merge_dynsec_configs(imported_data)
+        logger.info("Successfully merged configuration")
         
         # Write the merged configuration
         if write_dynsec_json(merged_config):
@@ -351,6 +354,7 @@ async def import_dynsec_json(
             group_count = len(merged_config["groups"])
             role_count = len(merged_config["roles"]) - 1    # Subtract admin role
             
+            logger.info(f"Successfully imported configuration with {user_count} users, {group_count} groups, {role_count} roles")
             return {
                 "success": True,
                 "message": f"Successfully imported dynamic security configuration",
@@ -363,6 +367,7 @@ async def import_dynsec_json(
                 "need_restart": True
             }
         else:
+            logger.error("Failed to write dynamic security configuration")
             return {
                 "success": False,
                 "message": "Failed to write dynamic security configuration"
@@ -374,7 +379,6 @@ async def import_dynsec_json(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to import dynamic security JSON: {str(e)}"
         )
-
 
 @router.post("/reset-dynsec-json")
 async def reset_dynsec_json(api_key: str = Security(get_api_key)):
