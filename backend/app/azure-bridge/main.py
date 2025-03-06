@@ -73,7 +73,7 @@ API_KEYS = {settings.API_KEY} if settings.API_KEY else {secrets.token_urlsafe(32
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL],
+    allow_origins=["*"],  # Allow all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

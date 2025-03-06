@@ -6,13 +6,12 @@
 # Distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 # */
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons-vue';
 import { useAuthStore } from '@/stores/auth';
 import { Form } from 'vee-validate';
-
-const isGoogleLoading = ref(false);
+import { loginWithPassword } from '@/services/auth';
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -21,6 +20,24 @@ const checkbox = ref(false);
 const show1 = ref(false);
 const password = ref('');
 const email = ref('');
+const showDefaultCredentials = ref(true);
+const loading = ref(false);
+const error = ref('');
+
+// Set default credentials for demo purposes and initialize auth store
+onMounted(async () => {
+  email.value = 'admin@example.com';
+  password.value = 'password123';
+  
+  // Initialize the auth store to check for existing sessions
+  await authStore.initialize();
+  
+  // If already authenticated, redirect to dashboard
+  if (authStore.isAuthenticated()) {
+    console.log('User already authenticated, redirecting to dashboard');
+    router.push('/dashboard');
+  }
+});
 
 const passwordRules = ref([
   (v: string) => !!v || 'Password is required',
@@ -32,25 +49,25 @@ const emailRules = ref([
   (v: string) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
 ]);
 
-async function validate(values: any, { setErrors }: any) {
+async function handleLogin() {
   try {
-    await authStore.login(email.value, password.value);
-    router.push('/dashboard'); // or wherever you want to redirect after login
-  } catch (error: any) {
-    setErrors({ apiError: error.message });
-  }
-}
-
-async function signInWithGoogle() {
-  try {
-    isGoogleLoading.value = true;
-    await authStore.loginWithGoogle();
+    loading.value = true;
+    error.value = '';
+    console.log('Attempting login with:', email.value);
+    
+    const response = await loginWithPassword(email.value, password.value);
+    console.log('Login successful, response:', response);
+    
+    // Store both user and token in the auth store
+    await authStore.setUser(response.user, response.token);
+    console.log('User and token set in store, redirecting...');
+    
     router.push('/dashboard');
-  } catch (error: any) {
-    console.error('Google sign-in error:', error);
-    // Handle error (show alert or message)
+  } catch (err: any) {
+    console.error('Login error:', err);
+    error.value = err.message || 'Login failed. Please try again.';
   } finally {
-    isGoogleLoading.value = false;
+    loading.value = false;
   }
 }
 </script>
@@ -60,11 +77,11 @@ async function signInWithGoogle() {
     <h3 class="text-h3 text-center mb-0">Login</h3>
     <router-link to="/auth/register" class="text-primary text-decoration-none">Don't Have an account?</router-link>
   </div>
-  <Form @submit="validate" class="mt-7 loginForm" v-slot="{ errors, isSubmitting }">
+  
+  <form @submit.prevent="handleLogin" class="mt-7 loginForm">
     <div class="mb-6">
       <v-label>Email Address</v-label>
       <v-text-field
-        aria-label="email address"
         v-model="email"
         :rules="emailRules"
         class="mt-2"
@@ -72,12 +89,13 @@ async function signInWithGoogle() {
         hide-details="auto"
         variant="outlined"
         color="primary"
+        :disabled="loading"
       ></v-text-field>
     </div>
+    
     <div>
       <v-label>Password</v-label>
       <v-text-field
-        aria-label="password"
         v-model="password"
         :rules="passwordRules"
         required
@@ -86,11 +104,12 @@ async function signInWithGoogle() {
         hide-details="auto"
         :type="show1 ? 'text' : 'password'"
         class="mt-2"
+        :disabled="loading"
       >
         <template v-slot:append-inner>
-          <v-btn color="secondary" icon rounded variant="text">
-            <EyeInvisibleOutlined :style="{ color: 'rgb(var(--v-theme-secondary))' }" v-if="show1 == false" @click="show1 = !show1" />
-            <EyeOutlined :style="{ color: 'rgb(var(--v-theme-secondary))' }" v-if="show1 == true" @click="show1 = !show1" />
+          <v-btn color="secondary" icon rounded variant="text" @click="show1 = !show1">
+            <EyeInvisibleOutlined :style="{ color: 'rgb(var(--v-theme-secondary))' }" v-if="!show1" />
+            <EyeOutlined :style="{ color: 'rgb(var(--v-theme-secondary))' }" v-if="show1" />
           </v-btn>
         </template>
       </v-text-field>
@@ -99,42 +118,49 @@ async function signInWithGoogle() {
     <div class="d-flex align-center mt-4 mb-7 mb-sm-0">
       <v-checkbox
         v-model="checkbox"
-        :rules="[(v: any) => !!v || 'You must agree to continue!']"
         label="Keep me sign in"
-        required
         color="primary"
         class="ms-n2"
         hide-details
+        :disabled="loading"
       ></v-checkbox>
       <div class="ml-auto">
         <router-link to="/auth/login" class="text-darkText link-hover">Forgot Password?</router-link>
       </div>
     </div>
-    <v-btn color="primary" :loading="isSubmitting" block class="mt-5" variant="flat" size="large" type="submit">
-      Login
-    </v-btn>
-    <div v-if="errors.apiError" class="mt-2">
-      <v-alert color="error">{{ errors.apiError }}</v-alert>
-    </div>
-  </Form>
 
-  <div class="my-4 text-center">
-    <div class="text-subtitle-1 text-medium-emphasis">Or</div>
-  </div>
-  
-  <v-btn
-    block
-    color="error"
-    class="mb-3"
-    variant="flat"
-    size="large"
-    @click="signInWithGoogle"
-    :loading="isGoogleLoading"
-  >
-    <v-icon start icon="mdi-google" class="mr-2"></v-icon>
-    Continue with Google
-  </v-btn>
-  
+    <v-btn 
+      color="primary" 
+      :loading="loading" 
+      block 
+      class="mt-5" 
+      variant="flat" 
+      size="large" 
+      type="submit"
+      :disabled="loading"
+    >
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </v-btn>
+
+    <v-alert
+      v-if="error"
+      type="error"
+      class="mt-4"
+      closable
+      @click:close="error = ''"
+    >
+      {{ error }}
+    </v-alert>
+    
+    <div v-if="showDefaultCredentials" class="mt-4 pa-3 bg-grey-lighten-4 rounded">
+      <div class="text-subtitle-2 font-weight-bold mb-1">Default Credentials</div>
+      <div class="text-body-2">Email: admin@example.com</div>
+      <div class="text-body-2">Password: password123</div>
+      <v-btn size="small" variant="text" color="primary" class="mt-2" @click="showDefaultCredentials = false">
+        Hide
+      </v-btn>
+    </div>
+  </form>
 </template>
 
 <style lang="scss">

@@ -21357,3 +21357,1704 @@ Request: GET https://localhost/api/v1/stats?nonce=1740617592805:wowhtubz94&times
 Received request with nonce: 1740617592805:wowhtubz94, timestamp: 1740617592.805
 Nonce validation passed
 Successfully retrieved stats with active MQTT connection
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741125377360:0zlvghvvtrsp&timestamp=1741125377.36 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T21:56:17.888147
+Received request with nonce: 1741125377360:0zlvghvvtrsp, timestamp: 1741125377.36
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741125379362:0dyeezkod6ua&timestamp=1741125379.362 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T21:56:19.868250
+Received request with nonce: 1741125379362:0dyeezkod6ua, timestamp: 1741125379.362
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741125381361:jsizg1020x&timestamp=1741125381.361 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T21:56:21.867564
+Received request with nonce: 1741125381361:jsizg1020x, timestamp: 1741125381.361
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741125383367:8ktt5v7jj19&timestamp=1741125383.367 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T21:56:23.874261
+Received request with nonce: 1741125383367:8ktt5v7jj19, timestamp: 1741125383.367
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connection to MQTT broker failed: [Errno 111] Connection refused
+Check if Mosquitto is running on 127.0.0.1:1900
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connection to MQTT broker failed: [Errno 111] Connection refused
+Check if Mosquitto is running on 127.0.0.1:1900
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connection to MQTT broker failed: [Errno 111] Connection refused
+Check if Mosquitto is running on 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128531064:yxl8x5gxflc&timestamp=1741128531.064 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:48:51.598548
+Received request with nonce: 1741128531064:yxl8x5gxflc, timestamp: 1741128531.064
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128533068:xdkwqya17qn&timestamp=1741128533.068 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:48:53.575472
+Received request with nonce: 1741128533068:xdkwqya17qn, timestamp: 1741128533.068
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128536293:ojbz6bprk0q&timestamp=1741128536.293 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:48:56.837161
+Received request with nonce: 1741128536293:ojbz6bprk0q, timestamp: 1741128536.293
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128538300:f7hg2tv7j7m&timestamp=1741128538.3 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:48:58.809353
+Received request with nonce: 1741128538300:f7hg2tv7j7m, timestamp: 1741128538.3
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128540296:sba8lceuzva&timestamp=1741128540.296 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:49:00.807469
+Received request with nonce: 1741128540296:sba8lceuzva, timestamp: 1741128540.296
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128542294:0q0m5l3wc6nj&timestamp=1741128542.294 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:49:02.804924
+Received request with nonce: 1741128542294:0q0m5l3wc6nj, timestamp: 1741128542.294
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128544294:179cdyd831sh&timestamp=1741128544.294 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:49:04.800687
+Received request with nonce: 1741128544294:179cdyd831sh, timestamp: 1741128544.294
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741128546298:sw7xo4swftf&timestamp=1741128546.298 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T22:49:06.810646
+Received request with nonce: 1741128546298:sw7xo4swftf, timestamp: 1741128546.298
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132276107:4nu72az7esf&timestamp=1741132276.107 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:16.632927
+Received request with nonce: 1741132276107:4nu72az7esf, timestamp: 1741132276.107
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132278110:kgkdlupu2jp&timestamp=1741132278.11 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:18.633762
+Received request with nonce: 1741132278110:kgkdlupu2jp, timestamp: 1741132278.11
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132280792:50wzzzli7cf&timestamp=1741132280.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:21.803375
+Received request with nonce: 1741132280792:50wzzzli7cf, timestamp: 1741132280.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132282782:p7s3qa2fdbp&timestamp=1741132282.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:23.795505
+Received request with nonce: 1741132282782:p7s3qa2fdbp, timestamp: 1741132282.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132284793:4l41hjb62a3&timestamp=1741132284.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:25.793387
+Received request with nonce: 1741132284793:4l41hjb62a3, timestamp: 1741132284.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132286785:y11wyzfuqf&timestamp=1741132286.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:27.790335
+Received request with nonce: 1741132286785:y11wyzfuqf, timestamp: 1741132286.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132288789:nbhje5vpnik&timestamp=1741132288.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:29.801339
+Received request with nonce: 1741132288789:nbhje5vpnik, timestamp: 1741132288.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132290796:b8zdsoi7xhl&timestamp=1741132290.796 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:31.792157
+Received request with nonce: 1741132290796:b8zdsoi7xhl, timestamp: 1741132290.796
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132292795:pkk7vwclz&timestamp=1741132292.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:33.791308
+Received request with nonce: 1741132292795:pkk7vwclz, timestamp: 1741132292.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132294785:c0qkokq5osq&timestamp=1741132294.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:35.797055
+Received request with nonce: 1741132294785:c0qkokq5osq, timestamp: 1741132294.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132296795:4jqaohl13cv&timestamp=1741132296.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:37.796576
+Received request with nonce: 1741132296795:4jqaohl13cv, timestamp: 1741132296.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132298783:2k8zbo6oz2u&timestamp=1741132298.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:39.791051
+Received request with nonce: 1741132298783:2k8zbo6oz2u, timestamp: 1741132298.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132300792:193wdqutq0c&timestamp=1741132300.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:41.792154
+Received request with nonce: 1741132300792:193wdqutq0c, timestamp: 1741132300.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132302783:15sbambw3kl&timestamp=1741132302.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:43.798741
+Received request with nonce: 1741132302783:15sbambw3kl, timestamp: 1741132302.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132304788:uh999dx917i&timestamp=1741132304.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:45.790306
+Received request with nonce: 1741132304788:uh999dx917i, timestamp: 1741132304.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132306786:esjnze7b22t&timestamp=1741132306.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:47.797332
+Received request with nonce: 1741132306786:esjnze7b22t, timestamp: 1741132306.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132308783:8bflec7himj&timestamp=1741132308.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:49.790447
+Received request with nonce: 1741132308783:8bflec7himj, timestamp: 1741132308.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132310783:4tv615t2mdj&timestamp=1741132310.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:51.795055
+Received request with nonce: 1741132310783:4tv615t2mdj, timestamp: 1741132310.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132312789:vx09qeil3gn&timestamp=1741132312.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:53.795535
+Received request with nonce: 1741132312789:vx09qeil3gn, timestamp: 1741132312.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132314781:pozye0f79np&timestamp=1741132314.781 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:55.800609
+Received request with nonce: 1741132314781:pozye0f79np, timestamp: 1741132314.781
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132316784:fpramq6q7vt&timestamp=1741132316.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:57.794141
+Received request with nonce: 1741132316784:fpramq6q7vt, timestamp: 1741132316.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132318789:j12t9s5g65o&timestamp=1741132318.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:51:59.793088
+Received request with nonce: 1741132318789:j12t9s5g65o, timestamp: 1741132318.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132320788:aby3eu32yqo&timestamp=1741132320.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:01.792270
+Received request with nonce: 1741132320788:aby3eu32yqo, timestamp: 1741132320.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132322846:awgjklhx5xd&timestamp=1741132322.846 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:03.790299
+Received request with nonce: 1741132322846:awgjklhx5xd, timestamp: 1741132322.846
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132324784:iwsj8hp5w5&timestamp=1741132324.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:05.788891
+Received request with nonce: 1741132324784:iwsj8hp5w5, timestamp: 1741132324.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132326797:uoxjbnjjsn&timestamp=1741132326.797 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:07.792596
+Received request with nonce: 1741132326797:uoxjbnjjsn, timestamp: 1741132326.797
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132328794:1hs4oj7cq79&timestamp=1741132328.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:09.802583
+Received request with nonce: 1741132328794:1hs4oj7cq79, timestamp: 1741132328.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132330785:15wn0wvomf8&timestamp=1741132330.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:11.798472
+Received request with nonce: 1741132330785:15wn0wvomf8, timestamp: 1741132330.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132332783:4d24780zs5z&timestamp=1741132332.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:13.791424
+Received request with nonce: 1741132332783:4d24780zs5z, timestamp: 1741132332.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132334801:37mn7wfoh7x&timestamp=1741132334.801 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:15.790683
+Received request with nonce: 1741132334801:37mn7wfoh7x, timestamp: 1741132334.801
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132336787:12jg59wnjdp&timestamp=1741132336.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:17.801007
+Received request with nonce: 1741132336787:12jg59wnjdp, timestamp: 1741132336.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132338790:651g5a8trs7&timestamp=1741132338.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:32.436183
+Received request with nonce: 1741132338790:651g5a8trs7, timestamp: 1741132338.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132352423:kzqtn03x7p&timestamp=1741132352.423 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:32.930077
+Received request with nonce: 1741132352423:kzqtn03x7p, timestamp: 1741132352.423
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132354111:7ixmc9iyyna&timestamp=1741132354.111 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:34.620277
+Received request with nonce: 1741132354111:7ixmc9iyyna, timestamp: 1741132354.111
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132356869:tnqgl8ucbd&timestamp=1741132356.869 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:37.380419
+Received request with nonce: 1741132356869:tnqgl8ucbd, timestamp: 1741132356.869
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132358876:3bwor98mofy&timestamp=1741132358.876 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:39.385355
+Received request with nonce: 1741132358876:3bwor98mofy, timestamp: 1741132358.876
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132360874:0xrpb7qbr3zi&timestamp=1741132360.874 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:41.792675
+Received request with nonce: 1741132360874:0xrpb7qbr3zi, timestamp: 1741132360.874
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132363784:4zpb46x42d3&timestamp=1741132363.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:44.793575
+Received request with nonce: 1741132363784:4zpb46x42d3, timestamp: 1741132363.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132365784:be5105a3tpw&timestamp=1741132365.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:46.791912
+Received request with nonce: 1741132365784:be5105a3tpw, timestamp: 1741132365.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132367787:1vuqvt26obk&timestamp=1741132367.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:48.795015
+Received request with nonce: 1741132367787:1vuqvt26obk, timestamp: 1741132367.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132369786:g7nq6rk96j&timestamp=1741132369.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:50.797810
+Received request with nonce: 1741132369786:g7nq6rk96j, timestamp: 1741132369.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132371783:vfowjvsaax&timestamp=1741132371.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:52.796299
+Received request with nonce: 1741132371783:vfowjvsaax, timestamp: 1741132371.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132373789:hjmbf3e3szw&timestamp=1741132373.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:54.807493
+Received request with nonce: 1741132373789:hjmbf3e3szw, timestamp: 1741132373.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132375787:2grvpc4s0hf&timestamp=1741132375.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:56.795225
+Received request with nonce: 1741132375787:2grvpc4s0hf, timestamp: 1741132375.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132377784:kv89ad91z1l&timestamp=1741132377.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:52:58.794526
+Received request with nonce: 1741132377784:kv89ad91z1l, timestamp: 1741132377.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132379788:ieiy8m534lr&timestamp=1741132379.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:00.791947
+Received request with nonce: 1741132379788:ieiy8m534lr, timestamp: 1741132379.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132381788:mprjoz2m8xj&timestamp=1741132381.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:02.789168
+Received request with nonce: 1741132381788:mprjoz2m8xj, timestamp: 1741132381.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132383786:cfmd73cyawq&timestamp=1741132383.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:04.792025
+Received request with nonce: 1741132383786:cfmd73cyawq, timestamp: 1741132383.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132385784:1wmahrpq9bx&timestamp=1741132385.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:06.787884
+Received request with nonce: 1741132385784:1wmahrpq9bx, timestamp: 1741132385.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132387783:xfcqx5gf6b&timestamp=1741132387.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:08.804122
+Received request with nonce: 1741132387783:xfcqx5gf6b, timestamp: 1741132387.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132389781:9vwsrwwirdc&timestamp=1741132389.781 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:10.796423
+Received request with nonce: 1741132389781:9vwsrwwirdc, timestamp: 1741132389.781
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132391791:gbmlxe2i5v5&timestamp=1741132391.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:12.808182
+Received request with nonce: 1741132391791:gbmlxe2i5v5, timestamp: 1741132391.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132393786:wxx3268d86e&timestamp=1741132393.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:14.811454
+Received request with nonce: 1741132393786:wxx3268d86e, timestamp: 1741132393.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132395788:en70lwd7t7j&timestamp=1741132395.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:16.794088
+Received request with nonce: 1741132395788:en70lwd7t7j, timestamp: 1741132395.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132397783:qoxzhlpbsp&timestamp=1741132397.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:18.793579
+Received request with nonce: 1741132397783:qoxzhlpbsp, timestamp: 1741132397.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132399785:wpsrvc9fesj&timestamp=1741132399.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:20.791065
+Received request with nonce: 1741132399785:wpsrvc9fesj, timestamp: 1741132399.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132401785:yq3zg7butx&timestamp=1741132401.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:22.798982
+Received request with nonce: 1741132401785:yq3zg7butx, timestamp: 1741132401.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132403793:gvyt5umpq7o&timestamp=1741132403.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:24.801163
+Received request with nonce: 1741132403793:gvyt5umpq7o, timestamp: 1741132403.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132405783:lf3hcnrpx3&timestamp=1741132405.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:26.789829
+Received request with nonce: 1741132405783:lf3hcnrpx3, timestamp: 1741132405.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132407788:qermvlomnhf&timestamp=1741132407.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:28.799666
+Received request with nonce: 1741132407788:qermvlomnhf, timestamp: 1741132407.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132409794:832hfuu6rlv&timestamp=1741132409.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:30.790829
+Received request with nonce: 1741132409794:832hfuu6rlv, timestamp: 1741132409.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132411783:vzxvd1tfy5&timestamp=1741132411.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:32.795021
+Received request with nonce: 1741132411783:vzxvd1tfy5, timestamp: 1741132411.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132413790:xh4e3oukg3&timestamp=1741132413.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:34.799819
+Received request with nonce: 1741132413790:xh4e3oukg3, timestamp: 1741132413.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132415796:nr6krfnvoms&timestamp=1741132415.796 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:36.789451
+Received request with nonce: 1741132415796:nr6krfnvoms, timestamp: 1741132415.796
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132417784:m5tqrr0m4x&timestamp=1741132417.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:38.795139
+Received request with nonce: 1741132417784:m5tqrr0m4x, timestamp: 1741132417.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132419791:b418taka2x&timestamp=1741132419.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:40.789863
+Received request with nonce: 1741132419791:b418taka2x, timestamp: 1741132419.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132437893:1nz3i3aouqz&timestamp=1741132437.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:58.406299
+Received request with nonce: 1741132437893:1nz3i3aouqz, timestamp: 1741132437.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132438870:clffgskzav&timestamp=1741132438.87 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:53:59.395189
+Received request with nonce: 1741132438870:clffgskzav, timestamp: 1741132438.87
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132440872:ap8tdm12gd&timestamp=1741132440.872 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:01.387647
+Received request with nonce: 1741132440872:ap8tdm12gd, timestamp: 1741132440.872
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132442871:mp1sloxowzl&timestamp=1741132442.871 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:03.385000
+Received request with nonce: 1741132442871:mp1sloxowzl, timestamp: 1741132442.871
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132444869:cct1gdmtc0h&timestamp=1741132444.869 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:05.391628
+Received request with nonce: 1741132444869:cct1gdmtc0h, timestamp: 1741132444.869
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132447792:imh6y6y0p18&timestamp=1741132447.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:08.791440
+Received request with nonce: 1741132447792:imh6y6y0p18, timestamp: 1741132447.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132449843:gz7uzela3vi&timestamp=1741132449.843 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:10.359735
+Received request with nonce: 1741132449843:gz7uzela3vi, timestamp: 1741132449.843
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132449789:cd2kblnqiuc&timestamp=1741132449.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:10.788528
+Received request with nonce: 1741132449789:cd2kblnqiuc, timestamp: 1741132449.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132451855:zo76d07961&timestamp=1741132451.855 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:12.362682
+Received request with nonce: 1741132451855:zo76d07961, timestamp: 1741132451.855
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132451786:wu1lnyemcp&timestamp=1741132451.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:12.792406
+Received request with nonce: 1741132451786:wu1lnyemcp, timestamp: 1741132451.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132453792:8akemw59ahh&timestamp=1741132453.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:14.793967
+Received request with nonce: 1741132453792:8akemw59ahh, timestamp: 1741132453.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132455791:mapiuhxz6va&timestamp=1741132455.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:16.305711
+Received request with nonce: 1741132455791:mapiuhxz6va, timestamp: 1741132455.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132456871:wnrfup8x9w&timestamp=1741132456.871 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:17.379437
+Received request with nonce: 1741132456871:wnrfup8x9w, timestamp: 1741132456.871
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132459791:l4guwcyy2j&timestamp=1741132459.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:20.790477
+Received request with nonce: 1741132459791:l4guwcyy2j, timestamp: 1741132459.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132461786:f2oypq0gdcn&timestamp=1741132461.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:22.792776
+Received request with nonce: 1741132461786:f2oypq0gdcn, timestamp: 1741132461.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132463785:5pxh1guuqi5&timestamp=1741132463.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:24.793209
+Received request with nonce: 1741132463785:5pxh1guuqi5, timestamp: 1741132463.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132465786:a839oexupzl&timestamp=1741132465.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:26.798394
+Received request with nonce: 1741132465786:a839oexupzl, timestamp: 1741132465.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132467788:lkn8k9v5xyl&timestamp=1741132467.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:28.807580
+Received request with nonce: 1741132467788:lkn8k9v5xyl, timestamp: 1741132467.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132469788:rq0t0ixyhxq&timestamp=1741132469.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:30.790350
+Received request with nonce: 1741132469788:rq0t0ixyhxq, timestamp: 1741132469.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132471795:3tomt119g84&timestamp=1741132471.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:32.806071
+Received request with nonce: 1741132471795:3tomt119g84, timestamp: 1741132471.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132473787:9j2ku9dk1iv&timestamp=1741132473.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:34.795626
+Received request with nonce: 1741132473787:9j2ku9dk1iv, timestamp: 1741132473.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132475788:qzpfn0pp7wq&timestamp=1741132475.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:36.788991
+Received request with nonce: 1741132475788:qzpfn0pp7wq, timestamp: 1741132475.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132477784:oh712qomr2&timestamp=1741132477.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:38.794528
+Received request with nonce: 1741132477784:oh712qomr2, timestamp: 1741132477.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132479782:hjajazqut26&timestamp=1741132479.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:40.789337
+Received request with nonce: 1741132479782:hjajazqut26, timestamp: 1741132479.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132481785:7189qfveo7w&timestamp=1741132481.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:42.789239
+Received request with nonce: 1741132481785:7189qfveo7w, timestamp: 1741132481.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132483793:au68mbqal3j&timestamp=1741132483.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:44.794376
+Received request with nonce: 1741132483793:au68mbqal3j, timestamp: 1741132483.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132485793:7f8iqg7g19u&timestamp=1741132485.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:46.790104
+Received request with nonce: 1741132485793:7f8iqg7g19u, timestamp: 1741132485.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132487789:fd5n7vugodc&timestamp=1741132487.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:48.788791
+Received request with nonce: 1741132487789:fd5n7vugodc, timestamp: 1741132487.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132489787:hfuw0qqcit6&timestamp=1741132489.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:50.788180
+Received request with nonce: 1741132489787:hfuw0qqcit6, timestamp: 1741132489.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132491790:qquivm0mbl&timestamp=1741132491.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:52.794623
+Received request with nonce: 1741132491790:qquivm0mbl, timestamp: 1741132491.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132493782:8sej1ax8v9m&timestamp=1741132493.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:54.790658
+Received request with nonce: 1741132493782:8sej1ax8v9m, timestamp: 1741132493.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132495795:kvegafllgkm&timestamp=1741132495.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:56.799576
+Received request with nonce: 1741132495795:kvegafllgkm, timestamp: 1741132495.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132497786:9fbetlq6ch6&timestamp=1741132497.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:54:58.795892
+Received request with nonce: 1741132497786:9fbetlq6ch6, timestamp: 1741132497.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132499782:tbfk42akibh&timestamp=1741132499.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:00.801300
+Received request with nonce: 1741132499782:tbfk42akibh, timestamp: 1741132499.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132501784:sv3q3hg3eah&timestamp=1741132501.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:02.801707
+Received request with nonce: 1741132501784:sv3q3hg3eah, timestamp: 1741132501.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132503793:sj8tcqegfsa&timestamp=1741132503.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:04.831225
+Received request with nonce: 1741132503793:sj8tcqegfsa, timestamp: 1741132503.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132505786:thaj545m7j&timestamp=1741132505.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:06.791208
+Received request with nonce: 1741132505786:thaj545m7j, timestamp: 1741132505.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132507783:hvmj689plx9&timestamp=1741132507.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:08.793441
+Received request with nonce: 1741132507783:hvmj689plx9, timestamp: 1741132507.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132509786:iwpoiol7kj8&timestamp=1741132509.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:10.790423
+Received request with nonce: 1741132509786:iwpoiol7kj8, timestamp: 1741132509.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132511786:w8dgzbdtr9f&timestamp=1741132511.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:12.787716
+Received request with nonce: 1741132511786:w8dgzbdtr9f, timestamp: 1741132511.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132513791:dw7xym85aue&timestamp=1741132513.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:14.787109
+Received request with nonce: 1741132513791:dw7xym85aue, timestamp: 1741132513.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132515784:ouw1oy0u0l&timestamp=1741132515.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:16.794506
+Received request with nonce: 1741132515784:ouw1oy0u0l, timestamp: 1741132515.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132534786:i28fef8lq9&timestamp=1741132534.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:41.150044
+Received request with nonce: 1741132534786:i28fef8lq9, timestamp: 1741132534.786
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132541117:jp0p62wihzn&timestamp=1741132541.117 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:41.626035
+Received request with nonce: 1741132541117:jp0p62wihzn, timestamp: 1741132541.117
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132544115:2akjhrvxqzx&timestamp=1741132544.115 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:44.622785
+Received request with nonce: 1741132544115:2akjhrvxqzx, timestamp: 1741132544.115
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132547364:vw59qfsr4dp&timestamp=1741132547.364 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:47.884588
+Received request with nonce: 1741132547364:vw59qfsr4dp, timestamp: 1741132547.364
+Nonce validation passed
+Serving stats with MQTT disconnected warning: 127.0.0.1:1900
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132549372:wqctm0xx2j7&timestamp=1741132549.372 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:50.795082
+Received request with nonce: 1741132549372:wqctm0xx2j7, timestamp: 1741132549.372
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132551788:ebwtw9mcqko&timestamp=1741132551.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:52.800865
+Received request with nonce: 1741132551788:ebwtw9mcqko, timestamp: 1741132551.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132553788:84c8vdrc576&timestamp=1741132553.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:54.788308
+Received request with nonce: 1741132553788:84c8vdrc576, timestamp: 1741132553.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132555792:w7a041bzm8q&timestamp=1741132555.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:56.793648
+Received request with nonce: 1741132555792:w7a041bzm8q, timestamp: 1741132555.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132557784:2vg2c4wwvco&timestamp=1741132557.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:55:58.794359
+Received request with nonce: 1741132557784:2vg2c4wwvco, timestamp: 1741132557.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132559782:f6t7opwtpx5&timestamp=1741132559.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:00.812132
+Received request with nonce: 1741132559782:f6t7opwtpx5, timestamp: 1741132559.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132561786:6xxoazdupym&timestamp=1741132561.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:02.796217
+Received request with nonce: 1741132561786:6xxoazdupym, timestamp: 1741132561.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132563786:6yvzrlgqpfx&timestamp=1741132563.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:04.796129
+Received request with nonce: 1741132563786:6yvzrlgqpfx, timestamp: 1741132563.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132565790:joak4u5uir&timestamp=1741132565.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:06.790412
+Received request with nonce: 1741132565790:joak4u5uir, timestamp: 1741132565.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132567794:boh6ma8pej&timestamp=1741132567.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:08.787084
+Received request with nonce: 1741132567794:boh6ma8pej, timestamp: 1741132567.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132569793:izsc9y8ziy&timestamp=1741132569.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:10.800412
+Received request with nonce: 1741132569793:izsc9y8ziy, timestamp: 1741132569.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132571783:3nub6lhx229&timestamp=1741132571.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:12.787700
+Received request with nonce: 1741132571783:3nub6lhx229, timestamp: 1741132571.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132573786:o9pt9ohrh5j&timestamp=1741132573.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:14.795419
+Received request with nonce: 1741132573786:o9pt9ohrh5j, timestamp: 1741132573.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132575788:t4xqwpxcdtk&timestamp=1741132575.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:16.788680
+Received request with nonce: 1741132575788:t4xqwpxcdtk, timestamp: 1741132575.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132577782:il1q5jdnjp&timestamp=1741132577.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:18.805677
+Received request with nonce: 1741132577782:il1q5jdnjp, timestamp: 1741132577.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132579785:97ptoipoqy&timestamp=1741132579.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:20.800267
+Received request with nonce: 1741132579785:97ptoipoqy, timestamp: 1741132579.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132581788:r93rmrchzr&timestamp=1741132581.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:22.789877
+Received request with nonce: 1741132581788:r93rmrchzr, timestamp: 1741132581.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132583782:ifamkvcl328&timestamp=1741132583.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:24.794000
+Received request with nonce: 1741132583782:ifamkvcl328, timestamp: 1741132583.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132585791:80vtlwm9rbr&timestamp=1741132585.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:26.793813
+Received request with nonce: 1741132585791:80vtlwm9rbr, timestamp: 1741132585.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132587792:9s3c966ku2s&timestamp=1741132587.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:28.790335
+Received request with nonce: 1741132587792:9s3c966ku2s, timestamp: 1741132587.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132589784:8860jcbiki6&timestamp=1741132589.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:30.798789
+Received request with nonce: 1741132589784:8860jcbiki6, timestamp: 1741132589.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132591786:xuo5a0vdfes&timestamp=1741132591.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:32.795769
+Received request with nonce: 1741132591786:xuo5a0vdfes, timestamp: 1741132591.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132593785:g59kugw14zo&timestamp=1741132593.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:34.795425
+Received request with nonce: 1741132593785:g59kugw14zo, timestamp: 1741132593.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132595787:7sctjbtixax&timestamp=1741132595.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:36.795551
+Received request with nonce: 1741132595787:7sctjbtixax, timestamp: 1741132595.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132597789:ty0zbiimygl&timestamp=1741132597.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:38.791143
+Received request with nonce: 1741132597789:ty0zbiimygl, timestamp: 1741132597.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132599794:kxwwrew6fsg&timestamp=1741132599.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:40.825033
+Received request with nonce: 1741132599794:kxwwrew6fsg, timestamp: 1741132599.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132601783:yjy9r84lzw&timestamp=1741132601.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:42.790838
+Received request with nonce: 1741132601783:yjy9r84lzw, timestamp: 1741132601.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132603792:mvlh31brb9&timestamp=1741132603.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:44.804189
+Received request with nonce: 1741132603792:mvlh31brb9, timestamp: 1741132603.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132605791:akgk3znqs9&timestamp=1741132605.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:46.794569
+Received request with nonce: 1741132605791:akgk3znqs9, timestamp: 1741132605.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132607783:y2h0dzm0xxk&timestamp=1741132607.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:48.801113
+Received request with nonce: 1741132607783:y2h0dzm0xxk, timestamp: 1741132607.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132615938:2oxtntskeqd&timestamp=1741132615.938 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:56.530136
+Received request with nonce: 1741132615938:2oxtntskeqd, timestamp: 1741132615.938
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132617365:w4q8uff1cm&timestamp=1741132617.365 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:57.874777
+Received request with nonce: 1741132617365:w4q8uff1cm, timestamp: 1741132617.365
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132618881:qtvtbn7wpe&timestamp=1741132618.881 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:56:59.420628
+Received request with nonce: 1741132618881:qtvtbn7wpe, timestamp: 1741132618.881
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132620893:yho7e9bwg5e&timestamp=1741132620.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:01.433498
+Received request with nonce: 1741132620893:yho7e9bwg5e, timestamp: 1741132620.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132623797:6ed69ek38b8&timestamp=1741132623.797 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:04.797605
+Received request with nonce: 1741132623797:6ed69ek38b8, timestamp: 1741132623.797
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132625796:6df10myn6pv&timestamp=1741132625.796 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:06.794941
+Received request with nonce: 1741132625796:6df10myn6pv, timestamp: 1741132625.796
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132627708:cnvl033vcy&timestamp=1741132627.708 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:08.222833
+Received request with nonce: 1741132627708:cnvl033vcy, timestamp: 1741132627.708
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132628896:wjq8z7vfeng&timestamp=1741132628.896 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:09.800392
+Received request with nonce: 1741132628896:wjq8z7vfeng, timestamp: 1741132628.896
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132631789:lg3acgesqlh&timestamp=1741132631.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:12.806474
+Received request with nonce: 1741132631789:lg3acgesqlh, timestamp: 1741132631.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132633791:xke1b1lt9gq&timestamp=1741132633.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:14.787538
+Received request with nonce: 1741132633791:xke1b1lt9gq, timestamp: 1741132633.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132635784:0jlgp9ttruha&timestamp=1741132635.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:16.806010
+Received request with nonce: 1741132635784:0jlgp9ttruha, timestamp: 1741132635.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132637785:j73ypcl95ao&timestamp=1741132637.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:18.792482
+Received request with nonce: 1741132637785:j73ypcl95ao, timestamp: 1741132637.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132639782:hebus7xb8h9&timestamp=1741132639.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:20.806970
+Received request with nonce: 1741132639782:hebus7xb8h9, timestamp: 1741132639.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132641792:znotdjvp4sb&timestamp=1741132641.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:22.802185
+Received request with nonce: 1741132641792:znotdjvp4sb, timestamp: 1741132641.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132643794:3h62nu1wcvb&timestamp=1741132643.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:24.796969
+Received request with nonce: 1741132643794:3h62nu1wcvb, timestamp: 1741132643.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132645792:4bc87oz93qu&timestamp=1741132645.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:26.793739
+Received request with nonce: 1741132645792:4bc87oz93qu, timestamp: 1741132645.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132647791:nzf0ofr9rg&timestamp=1741132647.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:28.788226
+Received request with nonce: 1741132647791:nzf0ofr9rg, timestamp: 1741132647.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132649789:y3txmcxit8&timestamp=1741132649.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:30.790597
+Received request with nonce: 1741132649789:y3txmcxit8, timestamp: 1741132649.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132651786:nxwwlkzogd9&timestamp=1741132651.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:32.785337
+Received request with nonce: 1741132651786:nxwwlkzogd9, timestamp: 1741132651.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132653788:k7p521qy74&timestamp=1741132653.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:34.824998
+Received request with nonce: 1741132653788:k7p521qy74, timestamp: 1741132653.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132655787:2jnieljzntw&timestamp=1741132655.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:36.802289
+Received request with nonce: 1741132655787:2jnieljzntw, timestamp: 1741132655.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132657787:x5z49iuc8xa&timestamp=1741132657.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:38.801751
+Received request with nonce: 1741132657787:x5z49iuc8xa, timestamp: 1741132657.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132659789:kxw4l1mcwgc&timestamp=1741132659.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:40.805073
+Received request with nonce: 1741132659789:kxw4l1mcwgc, timestamp: 1741132659.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132661786:655jr9w9yep&timestamp=1741132661.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:42.798625
+Received request with nonce: 1741132661786:655jr9w9yep, timestamp: 1741132661.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132663782:zsqqgqb5a8&timestamp=1741132663.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:44.791422
+Received request with nonce: 1741132663782:zsqqgqb5a8, timestamp: 1741132663.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132665454:vpyxlt939b&timestamp=1741132665.454 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:45.980126
+Received request with nonce: 1741132665454:vpyxlt939b, timestamp: 1741132665.454
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132666894:laqljltzv9&timestamp=1741132666.894 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:47.399291
+Received request with nonce: 1741132666894:laqljltzv9, timestamp: 1741132666.894
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132669793:dch6tgt8u5&timestamp=1741132669.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:50.788106
+Received request with nonce: 1741132669793:dch6tgt8u5, timestamp: 1741132669.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132671793:8i78t7mav1h&timestamp=1741132671.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:52.790939
+Received request with nonce: 1741132671793:8i78t7mav1h, timestamp: 1741132671.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132673795:48ylpy453jp&timestamp=1741132673.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:54.797081
+Received request with nonce: 1741132673795:48ylpy453jp, timestamp: 1741132673.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132675791:7w8saa4helj&timestamp=1741132675.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:56.795551
+Received request with nonce: 1741132675791:7w8saa4helj, timestamp: 1741132675.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132677783:yqhof2h5du&timestamp=1741132677.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:57:58.805494
+Received request with nonce: 1741132677783:yqhof2h5du, timestamp: 1741132677.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132679792:m6t16o9ub3p&timestamp=1741132679.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:00.803705
+Received request with nonce: 1741132679792:m6t16o9ub3p, timestamp: 1741132679.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132681794:k10tzxygyzs&timestamp=1741132681.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:02.791903
+Received request with nonce: 1741132681794:k10tzxygyzs, timestamp: 1741132681.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132683782:z7vc4fya3ml&timestamp=1741132683.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:04.802085
+Received request with nonce: 1741132683782:z7vc4fya3ml, timestamp: 1741132683.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132685783:n8nh1kb9eh&timestamp=1741132685.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:06.804232
+Received request with nonce: 1741132685783:n8nh1kb9eh, timestamp: 1741132685.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132687794:ttjro5ghzc&timestamp=1741132687.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:08.798299
+Received request with nonce: 1741132687794:ttjro5ghzc, timestamp: 1741132687.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132689784:ym0ir3e3pyb&timestamp=1741132689.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:10.793023
+Received request with nonce: 1741132689784:ym0ir3e3pyb, timestamp: 1741132689.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132691790:sbn0hlrnv69&timestamp=1741132691.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:12.797807
+Received request with nonce: 1741132691790:sbn0hlrnv69, timestamp: 1741132691.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132693797:wklhpqoyk1a&timestamp=1741132693.797 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:14.305817
+Received request with nonce: 1741132693797:wklhpqoyk1a, timestamp: 1741132693.797
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132694885:9j5ave21czv&timestamp=1741132694.885 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:15.397964
+Received request with nonce: 1741132694885:9j5ave21czv, timestamp: 1741132694.885
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132696890:nr51ixrkzjg&timestamp=1741132696.89 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:17.417927
+Received request with nonce: 1741132696890:nr51ixrkzjg, timestamp: 1741132696.89
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132699377:olwe6lqa9d8&timestamp=1741132699.377 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:19.954393
+Received request with nonce: 1741132699377:olwe6lqa9d8, timestamp: 1741132699.377
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132700886:ar0djqo93an&timestamp=1741132700.886 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:21.408678
+Received request with nonce: 1741132700886:ar0djqo93an, timestamp: 1741132700.886
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132702891:wm641b4ibn&timestamp=1741132702.891 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:23.418886
+Received request with nonce: 1741132702891:wm641b4ibn, timestamp: 1741132702.891
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132705782:3bgft5b76v5&timestamp=1741132705.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:26.791371
+Received request with nonce: 1741132705782:3bgft5b76v5, timestamp: 1741132705.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132707789:grdsqjssyz4&timestamp=1741132707.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:28.800848
+Received request with nonce: 1741132707789:grdsqjssyz4, timestamp: 1741132707.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132709790:o43re8r2w8&timestamp=1741132709.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:30.798289
+Received request with nonce: 1741132709790:o43re8r2w8, timestamp: 1741132709.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132711786:auqoqmvn2vh&timestamp=1741132711.786 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:32.793054
+Received request with nonce: 1741132711786:auqoqmvn2vh, timestamp: 1741132711.786
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132713794:3c3nrtbmayc&timestamp=1741132713.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:34.813319
+Received request with nonce: 1741132713794:3c3nrtbmayc, timestamp: 1741132713.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132715782:h32vh7ox7t7&timestamp=1741132715.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:36.793263
+Received request with nonce: 1741132715782:h32vh7ox7t7, timestamp: 1741132715.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132717784:eymwnkwnad&timestamp=1741132717.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:38.815306
+Received request with nonce: 1741132717784:eymwnkwnad, timestamp: 1741132717.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132719785:mxnuxo3pvjf&timestamp=1741132719.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:40.882862
+Received request with nonce: 1741132719785:mxnuxo3pvjf, timestamp: 1741132719.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132721824:nf2yfs2zgwi&timestamp=1741132721.824 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:42.992618
+Received request with nonce: 1741132721824:nf2yfs2zgwi, timestamp: 1741132721.824
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132722886:jnbntc2yxq&timestamp=1741132722.886 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:43.830848
+Received request with nonce: 1741132722886:jnbntc2yxq, timestamp: 1741132722.886
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132725888:abyacolj2yi&timestamp=1741132725.888 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:46.831152
+Received request with nonce: 1741132725888:abyacolj2yi, timestamp: 1741132725.888
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132727791:8drqg84wqiw&timestamp=1741132727.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:49.026576
+Received request with nonce: 1741132727791:8drqg84wqiw, timestamp: 1741132727.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132729818:qy7c0oc7xqr&timestamp=1741132729.818 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:50.862364
+Received request with nonce: 1741132729818:qy7c0oc7xqr, timestamp: 1741132729.818
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132731808:77w7vc1qcdf&timestamp=1741132731.808 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:53.021745
+Received request with nonce: 1741132731808:77w7vc1qcdf, timestamp: 1741132731.808
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132733790:uni3t9vq1m8&timestamp=1741132733.79 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:55.017265
+Received request with nonce: 1741132733790:uni3t9vq1m8, timestamp: 1741132733.79
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132735869:on2heutex3&timestamp=1741132735.869 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:56.862207
+Received request with nonce: 1741132735869:on2heutex3, timestamp: 1741132735.869
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132737879:pfekl230fdc&timestamp=1741132737.879 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:58:58.905223
+Received request with nonce: 1741132737879:pfekl230fdc, timestamp: 1741132737.879
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132739828:nltj87wbh1&timestamp=1741132739.828 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:00.832694
+Received request with nonce: 1741132739828:nltj87wbh1, timestamp: 1741132739.828
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132741850:vraxryaq5zd&timestamp=1741132741.85 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:02.669941
+Received request with nonce: 1741132741850:vraxryaq5zd, timestamp: 1741132741.85
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132742894:dwdufu9qyej&timestamp=1741132742.894 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:03.434764
+Received request with nonce: 1741132742894:dwdufu9qyej, timestamp: 1741132742.894
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132744883:lceta5f20ad&timestamp=1741132744.883 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:05.410891
+Received request with nonce: 1741132744883:lceta5f20ad, timestamp: 1741132744.883
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132747807:4ai6rfl5zfb&timestamp=1741132747.807 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:08.812799
+Received request with nonce: 1741132747807:4ai6rfl5zfb, timestamp: 1741132747.807
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132749797:796gt0iwm6g&timestamp=1741132749.797 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:11.498635
+Received request with nonce: 1741132749797:796gt0iwm6g, timestamp: 1741132749.797
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132751792:t3kwkp2w91b&timestamp=1741132751.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:13.205723
+Received request with nonce: 1741132751792:t3kwkp2w91b, timestamp: 1741132751.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132753875:gnkhylw8y7m&timestamp=1741132753.875 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:14.859567
+Received request with nonce: 1741132753875:gnkhylw8y7m, timestamp: 1741132753.875
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132755308:9021m48v3b7&timestamp=1741132755.308 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:15.875990
+Received request with nonce: 1741132755308:9021m48v3b7, timestamp: 1741132755.308
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132756895:4v09h71rvs2&timestamp=1741132756.895 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:17.427416
+Received request with nonce: 1741132756895:4v09h71rvs2, timestamp: 1741132756.895
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132758884:nnrqh08b9h&timestamp=1741132758.884 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:19.411650
+Received request with nonce: 1741132758884:nnrqh08b9h, timestamp: 1741132758.884
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132761794:9dxbwwq8zti&timestamp=1741132761.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:22.843894
+Received request with nonce: 1741132761794:9dxbwwq8zti, timestamp: 1741132761.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132763796:hrifbavzap6&timestamp=1741132763.796 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:25.065786
+Received request with nonce: 1741132763796:hrifbavzap6, timestamp: 1741132763.796
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132766485:aup3jqsotww&timestamp=1741132766.485 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:27.070776
+Received request with nonce: 1741132766485:aup3jqsotww, timestamp: 1741132766.485
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132766904:bxrpr4dghrn&timestamp=1741132766.904 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:27.464163
+Received request with nonce: 1741132766904:bxrpr4dghrn, timestamp: 1741132766.904
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132768890:wkjukkdh8o&timestamp=1741132768.89 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:29.428753
+Received request with nonce: 1741132768890:wkjukkdh8o, timestamp: 1741132768.89
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132770891:nimzehld7v&timestamp=1741132770.891 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:31.484331
+Received request with nonce: 1741132770891:nimzehld7v, timestamp: 1741132770.891
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132772887:qiv0ij82bld&timestamp=1741132772.887 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:33.922195
+Received request with nonce: 1741132772887:qiv0ij82bld, timestamp: 1741132772.887
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132774893:ych4wt4wg5&timestamp=1741132774.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:35.521879
+Received request with nonce: 1741132774893:ych4wt4wg5, timestamp: 1741132774.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132776884:xea5hrg9xhb&timestamp=1741132776.884 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:37.448461
+Received request with nonce: 1741132776884:xea5hrg9xhb, timestamp: 1741132776.884
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132778885:z5ky66202xd&timestamp=1741132778.885 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:39.536949
+Received request with nonce: 1741132778885:z5ky66202xd, timestamp: 1741132778.885
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132780893:ccd2fzlnu2k&timestamp=1741132780.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:41.467649
+Received request with nonce: 1741132780893:ccd2fzlnu2k, timestamp: 1741132780.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132782885:ry4dybsbcji&timestamp=1741132782.885 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:43.487793
+Received request with nonce: 1741132782885:ry4dybsbcji, timestamp: 1741132782.885
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132784893:e86hu8pf4po&timestamp=1741132784.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:45.579628
+Received request with nonce: 1741132784893:e86hu8pf4po, timestamp: 1741132784.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132786893:rfgc7cup3u&timestamp=1741132786.893 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:47.486164
+Received request with nonce: 1741132786893:rfgc7cup3u, timestamp: 1741132786.893
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132788823:38p8pbvr0i5&timestamp=1741132788.823 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:49.391059
+Received request with nonce: 1741132788823:38p8pbvr0i5, timestamp: 1741132788.823
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132788894:a1thtuzvj6b&timestamp=1741132788.894 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:49.562455
+Received request with nonce: 1741132788894:a1thtuzvj6b, timestamp: 1741132788.894
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132790839:j69w3618ls&timestamp=1741132790.839 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:51.360978
+Received request with nonce: 1741132790839:j69w3618ls, timestamp: 1741132790.839
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132790888:3xdog9f547d&timestamp=1741132790.888 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:51.608560
+Received request with nonce: 1741132790888:3xdog9f547d, timestamp: 1741132790.888
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132792827:i35b8vys37h&timestamp=1741132792.827 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:53.340719
+Received request with nonce: 1741132792827:i35b8vys37h, timestamp: 1741132792.827
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132792894:7agyx0yohnl&timestamp=1741132792.894 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:53.426033
+Received request with nonce: 1741132792894:7agyx0yohnl, timestamp: 1741132792.894
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132794823:t2xvrpjuftm&timestamp=1741132794.823 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:55.344698
+Received request with nonce: 1741132794823:t2xvrpjuftm, timestamp: 1741132794.823
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132794889:47rpeiey68g&timestamp=1741132794.889 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:55.466913
+Received request with nonce: 1741132794889:47rpeiey68g, timestamp: 1741132794.889
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132796829:ep44cyxsii9&timestamp=1741132796.829 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:57.363120
+Received request with nonce: 1741132796829:ep44cyxsii9, timestamp: 1741132796.829
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132796890:n5zl9o0jded&timestamp=1741132796.89 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:57.462830
+Received request with nonce: 1741132796890:n5zl9o0jded, timestamp: 1741132796.89
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132798829:mt831akrbp&timestamp=1741132798.829 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-04T23:59:59.339748
+Received request with nonce: 1741132798829:mt831akrbp, timestamp: 1741132798.829
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132798894:g7ulcvztty&timestamp=1741132798.894 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-04T23:59:59.447804
+Received request with nonce: 1741132798894:g7ulcvztty, timestamp: 1741132798.894
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132800835:1ljdjdtndrzj&timestamp=1741132800.835 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:01.350578
+Received request with nonce: 1741132800835:1ljdjdtndrzj, timestamp: 1741132800.835
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132800884:n5ifhs2se8m&timestamp=1741132800.884 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-05T00:00:01.500278
+Received request with nonce: 1741132800884:n5ifhs2se8m, timestamp: 1741132800.884
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132802823:oywxtx9abwf&timestamp=1741132802.823 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:03.383291
+Received request with nonce: 1741132802823:oywxtx9abwf, timestamp: 1741132802.823
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132802888:54xh4niffpg&timestamp=1741132802.888 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-05T00:00:03.646266
+Received request with nonce: 1741132802888:54xh4niffpg, timestamp: 1741132802.888
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132804830:lco6zizp57d&timestamp=1741132804.83 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:05.353029
+Received request with nonce: 1741132804830:lco6zizp57d, timestamp: 1741132804.83
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132804899:fg0ur8ioa2g&timestamp=1741132804.899 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-05T00:00:05.536689
+Received request with nonce: 1741132804899:fg0ur8ioa2g, timestamp: 1741132804.899
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132806836:6vxzt2uiftc&timestamp=1741132806.836 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:07.382249
+Received request with nonce: 1741132806836:6vxzt2uiftc, timestamp: 1741132806.836
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132806884:85ylll2ebqv&timestamp=1741132806.884 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Time: 2025-03-05T00:00:07.968221
+Received request with nonce: 1741132806884:85ylll2ebqv, timestamp: 1741132806.884
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132808831:mydzb3js6sk&timestamp=1741132808.83 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:09.774674
+Received request with nonce: 1741132808831:mydzb3js6sk, timestamp: 1741132808.83
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132810823:bxyylvnaxcr&timestamp=1741132810.823 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:11.377740
+Received request with nonce: 1741132810823:bxyylvnaxcr, timestamp: 1741132810.823
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132812826:dj2gf24c3am&timestamp=1741132812.826 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:13.358753
+Received request with nonce: 1741132812826:dj2gf24c3am, timestamp: 1741132812.826
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132814826:4p2sic4fl02&timestamp=1741132814.826 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:15.338967
+Received request with nonce: 1741132814826:4p2sic4fl02, timestamp: 1741132814.826
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132816834:v9o0s46o45&timestamp=1741132816.834 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:17.346130
+Received request with nonce: 1741132816834:v9o0s46o45, timestamp: 1741132816.834
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132818824:ke3ehdstxse&timestamp=1741132818.824 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:19.337626
+Received request with nonce: 1741132818824:ke3ehdstxse, timestamp: 1741132818.824
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132820828:obbf6kub6mk&timestamp=1741132820.828 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:21.339970
+Received request with nonce: 1741132820828:obbf6kub6mk, timestamp: 1741132820.828
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132822835:tsdp829bb6&timestamp=1741132822.835 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:23.377106
+Received request with nonce: 1741132822835:tsdp829bb6, timestamp: 1741132822.835
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132824825:ep0jp2bxcs&timestamp=1741132824.825 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:25.345443
+Received request with nonce: 1741132824825:ep0jp2bxcs, timestamp: 1741132824.825
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132826829:x6lazf01ck&timestamp=1741132826.829 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:27.345442
+Received request with nonce: 1741132826829:x6lazf01ck, timestamp: 1741132826.829
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132828836:zcxeym3ul7f&timestamp=1741132828.836 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:29.363647
+Received request with nonce: 1741132828836:zcxeym3ul7f, timestamp: 1741132828.836
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132830826:ctwk3ulu3yf&timestamp=1741132830.826 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:31.342494
+Received request with nonce: 1741132830826:ctwk3ulu3yf, timestamp: 1741132830.826
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132832831:p0asqbbpnvp&timestamp=1741132832.831 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:33.343595
+Received request with nonce: 1741132832831:p0asqbbpnvp, timestamp: 1741132832.831
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132834837:efcn7hr7xw&timestamp=1741132834.837 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:35.418357
+Received request with nonce: 1741132834837:efcn7hr7xw, timestamp: 1741132834.837
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132836834:fzt1eqywknv&timestamp=1741132836.834 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:37.369358
+Received request with nonce: 1741132836834:fzt1eqywknv, timestamp: 1741132836.834
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132838833:bsitkj06d8i&timestamp=1741132838.833 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:39.364266
+Received request with nonce: 1741132838833:bsitkj06d8i, timestamp: 1741132838.833
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132840831:y4hqigl9sib&timestamp=1741132840.831 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:41.346245
+Received request with nonce: 1741132840831:y4hqigl9sib, timestamp: 1741132840.831
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132842831:qu82fzufps&timestamp=1741132842.831 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:43.409058
+Received request with nonce: 1741132842831:qu82fzufps, timestamp: 1741132842.831
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132844830:h883xx4lua5&timestamp=1741132844.83 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:45.402064
+Received request with nonce: 1741132844830:h883xx4lua5, timestamp: 1741132844.83
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132846825:jokv7s1y95k&timestamp=1741132846.825 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:47.372447
+Received request with nonce: 1741132846825:jokv7s1y95k, timestamp: 1741132846.825
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132848830:4hsmkx5jxgc&timestamp=1741132848.83 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:49.351668
+Received request with nonce: 1741132848830:4hsmkx5jxgc, timestamp: 1741132848.83
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132850825:p6teznhgkx8&timestamp=1741132850.825 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:51.405820
+Received request with nonce: 1741132850825:p6teznhgkx8, timestamp: 1741132850.825
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132852826:75zxul0zsh9&timestamp=1741132852.826 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:53.401892
+Received request with nonce: 1741132852826:75zxul0zsh9, timestamp: 1741132852.826
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132854829:ng5ygt29jq&timestamp=1741132854.829 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:55.352280
+Received request with nonce: 1741132854829:ng5ygt29jq, timestamp: 1741132854.829
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132856840:jy2gx8rhbm&timestamp=1741132856.84 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:57.352666
+Received request with nonce: 1741132856840:jy2gx8rhbm, timestamp: 1741132856.84
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132858825:0yf1d0tnlsrf&timestamp=1741132858.825 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:00:59.335803
+Received request with nonce: 1741132858825:0yf1d0tnlsrf, timestamp: 1741132858.825
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132860831:ekw51hladgu&timestamp=1741132860.831 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:01.343852
+Received request with nonce: 1741132860831:ekw51hladgu, timestamp: 1741132860.831
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132862836:alat2l9uvp4&timestamp=1741132862.836 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:03.345585
+Received request with nonce: 1741132862836:alat2l9uvp4, timestamp: 1741132862.836
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132864827:vykcciej7hs&timestamp=1741132864.827 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:05.353117
+Received request with nonce: 1741132864827:vykcciej7hs, timestamp: 1741132864.827
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132866838:tfxp2d1gmj&timestamp=1741132866.838 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:07.366824
+Received request with nonce: 1741132866838:tfxp2d1gmj, timestamp: 1741132866.838
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132868824:av84m9niwyg&timestamp=1741132868.824 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:09.356942
+Received request with nonce: 1741132868824:av84m9niwyg, timestamp: 1741132868.824
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132870834:xn9jrzl8jof&timestamp=1741132870.834 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:11.346982
+Received request with nonce: 1741132870834:xn9jrzl8jof, timestamp: 1741132870.834
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132872834:2p47uhu0qbf&timestamp=1741132872.834 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:13.358148
+Received request with nonce: 1741132872834:2p47uhu0qbf, timestamp: 1741132872.834
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132874839:ssmpi79ncvg&timestamp=1741132874.839 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:15.349763
+Received request with nonce: 1741132874839:ssmpi79ncvg, timestamp: 1741132874.839
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132876827:4a7wu2l8t5y&timestamp=1741132876.827 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:17.341561
+Received request with nonce: 1741132876827:4a7wu2l8t5y, timestamp: 1741132876.827
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132878835:71ks8n94c4q&timestamp=1741132878.835 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:19.356829
+Received request with nonce: 1741132878835:71ks8n94c4q, timestamp: 1741132878.835
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132880825:5d3a2w04x3e&timestamp=1741132880.825 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:21.333389
+Received request with nonce: 1741132880825:5d3a2w04x3e, timestamp: 1741132880.825
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132882829:zpyqnoi3g6&timestamp=1741132882.829 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:23.338847
+Received request with nonce: 1741132882829:zpyqnoi3g6, timestamp: 1741132882.829
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132884828:1cdwawf0tuo&timestamp=1741132884.828 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:25.346617
+Received request with nonce: 1741132884828:1cdwawf0tuo, timestamp: 1741132884.828
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132886837:2noiku0ier&timestamp=1741132886.837 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:27.353886
+Received request with nonce: 1741132886837:2noiku0ier, timestamp: 1741132886.837
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132888830:wpfqr25g57&timestamp=1741132888.83 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:29.353574
+Received request with nonce: 1741132888830:wpfqr25g57, timestamp: 1741132888.83
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132890824:rgf1mxdnmtq&timestamp=1741132890.824 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:31.343911
+Received request with nonce: 1741132890824:rgf1mxdnmtq, timestamp: 1741132890.824
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132893797:iswbrsoa9lr&timestamp=1741132893.797 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:34.787430
+Received request with nonce: 1741132893797:iswbrsoa9lr, timestamp: 1741132893.797
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132895785:gehusxs72iw&timestamp=1741132895.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:36.794018
+Received request with nonce: 1741132895785:gehusxs72iw, timestamp: 1741132895.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132897793:opvjfskmo8&timestamp=1741132897.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:38.798667
+Received request with nonce: 1741132897793:opvjfskmo8, timestamp: 1741132897.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132899783:hnttdecam7t&timestamp=1741132899.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:40.800257
+Received request with nonce: 1741132899783:hnttdecam7t, timestamp: 1741132899.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132901796:xl2e43m6d7c&timestamp=1741132901.796 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:42.798052
+Received request with nonce: 1741132901796:xl2e43m6d7c, timestamp: 1741132901.796
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132903793:ed9aocux0u4&timestamp=1741132903.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:44.787782
+Received request with nonce: 1741132903793:ed9aocux0u4, timestamp: 1741132903.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132905782:muv2gn9ea09&timestamp=1741132905.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:46.799699
+Received request with nonce: 1741132905782:muv2gn9ea09, timestamp: 1741132905.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132907783:hshj7rbucjc&timestamp=1741132907.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:48.797373
+Received request with nonce: 1741132907783:hshj7rbucjc, timestamp: 1741132907.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132909782:q1h9ntqxck&timestamp=1741132909.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:50.788186
+Received request with nonce: 1741132909782:q1h9ntqxck, timestamp: 1741132909.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132911785:tt1p88e3p6a&timestamp=1741132911.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:52.799981
+Received request with nonce: 1741132911785:tt1p88e3p6a, timestamp: 1741132911.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132913785:2ctvlpsy3w4&timestamp=1741132913.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:54.792366
+Received request with nonce: 1741132913785:2ctvlpsy3w4, timestamp: 1741132913.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132915795:snl6flwjz2&timestamp=1741132915.795 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:56.798153
+Received request with nonce: 1741132915795:snl6flwjz2, timestamp: 1741132915.795
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132917784:lwnnfdixdtn&timestamp=1741132917.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:01:58.789358
+Received request with nonce: 1741132917784:lwnnfdixdtn, timestamp: 1741132917.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132919792:05b8jin3wzjg&timestamp=1741132919.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:00.792667
+Received request with nonce: 1741132919792:05b8jin3wzjg, timestamp: 1741132919.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132921793:ol1rth18wb&timestamp=1741132921.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:02.798740
+Received request with nonce: 1741132921793:ol1rth18wb, timestamp: 1741132921.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132923792:toax9u73vla&timestamp=1741132923.792 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:04.795881
+Received request with nonce: 1741132923792:toax9u73vla, timestamp: 1741132923.792
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132925784:ssjjsvj5f6&timestamp=1741132925.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:06.808308
+Received request with nonce: 1741132925784:ssjjsvj5f6, timestamp: 1741132925.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132927782:vi52j0svh3k&timestamp=1741132927.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:08.806422
+Received request with nonce: 1741132927782:vi52j0svh3k, timestamp: 1741132927.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132929788:cg6txqwyvqh&timestamp=1741132929.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:10.800451
+Received request with nonce: 1741132929788:cg6txqwyvqh, timestamp: 1741132929.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132931794:wtv52i83yf&timestamp=1741132931.794 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:12.787609
+Received request with nonce: 1741132931794:wtv52i83yf, timestamp: 1741132931.794
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132933784:0w07wz8ftkbe&timestamp=1741132933.784 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:14.793575
+Received request with nonce: 1741132933784:0w07wz8ftkbe, timestamp: 1741132933.784
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132935788:qpsm87u7n8&timestamp=1741132935.788 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:16.799592
+Received request with nonce: 1741132935788:qpsm87u7n8, timestamp: 1741132935.788
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132937782:5goz3hf5n6&timestamp=1741132937.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:18.791330
+Received request with nonce: 1741132937782:5goz3hf5n6, timestamp: 1741132937.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132939791:qbp1ueae07&timestamp=1741132939.791 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:20.795870
+Received request with nonce: 1741132939791:qbp1ueae07, timestamp: 1741132939.791
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132941787:wjlcgv831v&timestamp=1741132941.787 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:22.799549
+Received request with nonce: 1741132941787:wjlcgv831v, timestamp: 1741132941.787
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132943782:n8l4dpxtoe9&timestamp=1741132943.782 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:24.789342
+Received request with nonce: 1741132943782:n8l4dpxtoe9, timestamp: 1741132943.782
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132945785:tptuexzhx1b&timestamp=1741132945.785 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:26.795116
+Received request with nonce: 1741132945785:tptuexzhx1b, timestamp: 1741132945.785
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132947793:qltvkf0aguk&timestamp=1741132947.793 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:28.803208
+Received request with nonce: 1741132947793:qltvkf0aguk, timestamp: 1741132947.793
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132949783:bf3v7mftynn&timestamp=1741132949.783 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:30.789782
+Received request with nonce: 1741132949783:bf3v7mftynn, timestamp: 1741132949.783
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Received API Key Header: REDACTED_API_KEY
+Request: GET https://localhost/api/v1/stats?nonce=1741132951789:wl7r7tabo7&timestamp=1741132951.789 Client: 172.18.0.1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0 Time: 2025-03-05T00:02:34.791768
+Received request with nonce: 1741132951789:wl7r7tabo7, timestamp: 1741132951.789
+Nonce validation passed
+Successfully retrieved stats with active MQTT connection
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics
+Attempting to connect to MQTT broker at 127.0.0.1:1900
+Connected to MQTT Broker at 127.0.0.1:1900!
+Subscribed to topics

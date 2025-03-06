@@ -1,0 +1,15 @@
+{
+  "name": "auth-api",
+  "version": "1.0.0",
+  "description": "Authentication API for Bunker-M",
+  "main": "auth-api.js",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1"
+  }
+} 

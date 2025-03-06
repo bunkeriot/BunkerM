@@ -6,14 +6,36 @@
 # Distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 # */
 import axios from 'axios';
+import { getRuntimeConfig } from '@/config/runtime';
 
+const config = getRuntimeConfig();
+
+// Create axios instance with the custom configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_DYNSEC_API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    'X-API-Key': import.meta.env.VITE_API_KEY
-  }
+    baseURL: config.DYNSEC_API_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': import.meta.env.VITE_API_KEY
+    },
+    // Additional axios config for better error handling
+    validateStatus: status => status >= 200 && status < 500,
+    timeout: 10000
 });
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+    response => response,
+    error => {
+        console.error('API Error:', {
+            message: error.message,
+            config: error.config,
+            status: error.response?.status,
+            data: error.response?.data
+        });
+        return Promise.reject(error);
+    }
+);
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 function getApiKey() {
   const storedKey = localStorage.getItem('api_key');

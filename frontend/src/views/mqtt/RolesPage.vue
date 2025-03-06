@@ -12,14 +12,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and  
 limitations under the License. -->
 
-// RolesPage.vue
 <template>
   <v-container>
     <v-card>
       <v-card-title class="d-flex align-center">
         Role Management
         <v-spacer></v-spacer>
-        <v-btn color="info" @click="dialog = true">
+        <v-btn color="info" @click="openAddRoleDialog">
           <PlusIcon stroke-width="1.5" size="22" /> Add role
         </v-btn>
       </v-card-title>
@@ -40,7 +39,7 @@ limitations under the License. -->
               </v-btn>
 
               <v-btn color="primary" class="ml-2" @click="openACLManagement(item)">
-                <SettingsBoltIcon stroke-width="1.5" size="22" />Manage role
+                <CogIcon stroke-width="1.5" size="22" /> Manage role
               </v-btn>
 
               <v-btn color="error" class="ml-2" @click="confirmDeleteRole(item)">
@@ -81,14 +80,7 @@ limitations under the License. -->
               :class="index !== roleDetails.acls.length - 1 ? 'mb-2' : ''">
               <template v-slot:prepend>
                 <v-icon :color="acl.permission === 'allow' ? 'success' : 'error'">
-                  <template v-slot:default>
-                    <template v-if="acl.aclType === 'publishClientSend'">
-                      <SendIcon stroke-width="1.5" size="22" />
-                    </template>
-                    <template v-else>
-                      <ArrowsExchangeIcon stroke-width="1.5" size="22" />
-                    </template>
-                  </template>
+                  {{ acl.aclType === 'publishClientSend' ? 'mdi-send' : 'mdi-swap-horizontal' }}
                 </v-icon>
               </template>
 
@@ -143,7 +135,7 @@ limitations under the License. -->
 
         <v-card-text>
           <!-- Add ACL Form -->
-          <v-form @submit.prevent="addACL" ref="form">
+          <v-form @submit.prevent="addACL">
             <v-text-field v-model="newACL.topic" label="MQTT Topic" required :disabled="loading"></v-text-field>
 
             <v-select v-model="newACL.aclType" :items="aclTypes" item-title="text" item-value="value"
@@ -161,50 +153,32 @@ limitations under the License. -->
               class="ml-2"></v-progress-circular>
           </div>
 
-          <div class="px-4 py-3">
-            <v-text-field v-model="search" label="Search" single-line hide-details>
-              <template v-slot:prepend-inner>
-                <SearchIcon stroke-width="1.5" size="22" />
+          <v-list v-if="roleDetails?.acls?.length" class="bg-grey-lighten-4">
+            <v-list-item v-for="(acl, index) in roleDetails.acls" :key="index" class="mb-2">
+              <template v-slot:prepend>
+                <v-icon :color="acl.permission === 'allow' ? 'success' : 'error'">
+                  {{ acl.aclType === 'publishClientSend' ? 'mdi-send' : 'mdi-swap-horizontal' }}
+                </v-icon>
               </template>
-            </v-text-field>
-          </div>
 
-          <v-data-table v-if="roleDetails?.acls?.length" :items="roleDetails.acls" :loading="loading" :search="search"
-            :items-per-page="itemsPerPage" :page.sync="currentPage" item-value="topic" hide-default-header
-            class="elevation-1 bg-grey-lighten-5">
-            <!-- Optional: Define the structure without headers -->
-            <template v-slot:head>
-              <!-- Empty to hide the headers -->
-            </template>
-            <template v-slot:item="{ item }">
-              <tr>
-                <td>
-                  <v-icon :color="item.permission === 'allow' ? 'success' : 'error'">
-                    <template v-slot:default>
-                      <template v-if="item.aclType === 'publishClientSend'">
-                        <SendIcon stroke-width="1.5" size="22" />
-                      </template>
-                      <template v-else>
-                        <ArrowsExchangeIcon stroke-width="1.5" size="22" />
-                      </template>
-                    </template>
-                  </v-icon>
-                </td>
-                <td class="font-weight-medium">{{ item.topic }}</td>
-                <td>
-                  {{ item.aclType === 'publishClientSend' ? 'Publish' : 'Subscribe' }} -
-                  <v-chip :color="item.permission === 'allow' ? 'success' : 'error'" size="small" label>
-                    {{ item.permission }}
-                  </v-chip>
-                </td>
-                <td>
-                  <v-btn size="small" color="error" variant="plain" :disabled="loading" @click="removeACL(item)">
-                    <TrashIcon stroke-width="1.5" size="22" />
-                  </v-btn>
-                </td>
-              </tr>
-            </template>
-          </v-data-table>
+              <v-list-item-title class="font-weight-medium">
+                Topic: {{ acl.topic }}
+              </v-list-item-title>
+
+              <v-list-item-subtitle>
+                {{ acl.aclType === 'publishClientSend' ? 'Publish' : 'Subscribe' }} -
+                <v-chip :color="acl.permission === 'allow' ? 'success' : 'error'" size="small" label>
+                  {{ acl.permission }}
+                </v-chip>
+              </v-list-item-subtitle>
+
+              <template v-slot:append>
+                <v-btn icon color="error" variant="plain" :disabled="loading" @click="removeACL(acl)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-list-item>
+          </v-list>
 
           <v-alert v-else type="info" variant="tonal" class="mt-2">
             No ACLs configured for this role
@@ -222,9 +196,6 @@ limitations under the License. -->
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <!-- Keep other dialog components the same -->
-    <!-- Your existing dialogs for delete confirmation and details -->
   </v-container>
 </template>
 
@@ -232,15 +203,40 @@ limitations under the License. -->
 import { ref, onMounted, computed } from 'vue';
 import { mqttService } from '@/services/mqtt.service';
 import { useSnackbar } from '@/composables/useSnackbar';
-import { inject } from 'vue'
+import { useRoles } from '@/composables/useRoles';
+
+
+// Initialize the useRoles composable
+const { 
+  roles,
+  roleDetails, 
+  loading, 
+  fetchRoles, 
+  createRole, 
+  deleteRole, 
+  getRole, 
+  addRoleACL, 
+  removeRoleACL 
+} = useRoles();
+
+const { showSuccess, showError } = useSnackbar();
 
 const search = ref('');
 const aclDialog = ref(false);
-const roleDetails = ref(null);
+const dialog = ref(false);
+const detailsDialog = ref(false);
+const confirmDialog = ref(false);
+const selectedRole = ref(null);
+const form = ref(null);
+
 const newACL = ref({
   topic: '',
   aclType: '',
   permission: ''
+});
+
+const newRole = ref({
+  name: ''
 });
 
 const aclTypes = [
@@ -253,6 +249,11 @@ const permissions = [
   { text: 'Deny', value: 'deny' }
 ];
 
+const headers = [
+  { title: 'Name', key: 'name', sortable: true },
+  { title: '', key: 'actions', sortable: false }
+];
+
 const isValidACL = computed(() => {
   return newACL.value.topic &&
     newACL.value.aclType &&
@@ -263,75 +264,39 @@ const filteredRoles = computed(() => {
   return roles.value.filter(role => role.name !== 'admin');
 });
 
-const showNotification = inject('showNotification')
-
-const { showSuccess, showError } = useSnackbar();
-
-const dialog = ref(false);
-const detailsDialog = ref(false);
-const confirmDialog = ref(false);
-const loading = ref(false);
-const roles = ref([]);
-const selectedRole = ref(null);
-const form = ref(null);
-
-const headers = [
-  { title: 'Name', key: 'name', class: 'white--text' },
-  { title: '', key: 'actions', sortable: false, class: 'white--text' }
-];
-
-const newRole = ref({
-  name: ''
-});
-
 // Fetch roles on component mount
 onMounted(async () => {
   await fetchRoles();
 });
 
+function openAddRoleDialog() {
+  newRole.value = { name: '' };
+  dialog.value = true;
+}
 
 function closeDialog() {
   dialog.value = false;
-  confirmDialog.value=false;
-  fetchRoles();
-}
-
-async function fetchRoles() {
-  try {
-    loading.value = true;
-    const response = await mqttService.getRoles();
-    roles.value = response;
-  } catch (error) {
-    showError('Failed to fetch roles');
-    console.error('Error fetching roles:', error);
-  } finally {
-    loading.value = false;
-  }
+  confirmDialog.value = false;
+  detailsDialog.value = false;
+  aclDialog.value = false;
+  
+  // Reset forms
+  newRole.value = { name: '' };
+  newACL.value = {
+    topic: '',
+    aclType: '',
+    permission: ''
+  };
 }
 
 async function handleCreateRole() {
-  if (!newRole.value.name) {
-    showNotification('Role name is required', 'error');
-    return;
-  }
+  if (!newRole.value.name) return;
 
-  try {
-    loading.value = true;
-    await mqttService.createRole(newRole.value.name);
-    await fetchRoles();
-    showNotification(`Role '${newRole.value.name}' created successfully`, 'success');
-    
-  } catch (error) {
-    showNotification('Failed to create role', 'error');
-    console.error('Error creating role:', error);
-  } finally {
-    loading.value = false;
+  const success = await createRole(newRole.value.name);
+  if (success) {
     closeDialog();
   }
 }
-
-
-
 
 function confirmDeleteRole(role) {
   selectedRole.value = role;
@@ -341,114 +306,53 @@ function confirmDeleteRole(role) {
 async function handleDeleteRole() {
   if (!selectedRole.value) return;
 
-  try {
-    loading.value = true;
-    await mqttService.deleteRole(selectedRole.value.name);
-    await fetchRoles();
-    showNotification(`Role '${selectedRole.value.name}' deleted successfully`, 'success');
+  const success = await deleteRole(selectedRole.value.name);
+  if (success) {
     confirmDialog.value = false;
-  } catch (error) {
-    showNotification('Failed to delete role', 'error');
-    console.error('Error deleting role:', error);
-  } finally {
-    loading.value = false;
-    closeDialog();
   }
 }
 
 async function viewRoleDetails(role) {
-  try {
-    loading.value = true;
-    const response = await mqttService.getRole(role.name);
-    roleDetails.value = response;
-    selectedRole.value = role;
+  selectedRole.value = role;
+  const response = await getRole(role.name);
+  if (response) {
     detailsDialog.value = true;
-  } catch (error) {
-    showNotification('Failed to fetch role details', 'error');
-    console.error('Error fetching role details:', error);
-  } finally {
-    loading.value = false;
-  }
-}
-
-
-
-
-async function fetchRoleDetails(roleName) {
-  try {
-    loading.value = true;
-    const response = await mqttService.getRole(roleName);
-    roleDetails.value = response;
-  } catch (error) {
-    showError('Failed to fetch role details');
-    console.error('Error:', error);
-  } finally {
-    loading.value = false;
-  }
-}
-/* async function addACL() {
-  if (!isValidACL.value) return;
-  const success = await mqttService.addRoleACL(selectedRole.value.name, newACL.value);
-  if (success) {
-    fetchRoleDetails(selectedRole.value.name);
-    //closeDialog();    
-  }
-
-} */
-
-
-async function addACL() {
-  if (!isValidACL.value) return;
-
-  try {
-    loading.value = true;
-    await mqttService.addRoleACL(selectedRole.value.name, newACL.value);
-    await fetchRoleDetails(selectedRole.value.name);
-    newACL.value = {
-      topic: '',
-      aclType: '',
-      permission: ''
-    };
-  } catch (error) {
-    showNotification('Failed to add ACL', 'error');
-    console.error('Error:', error);
-  } finally {
-    loading.value = false;
-  }
-}
-
-
-
-async function removeACL(acl) {
-  try {
-    loading.value = true;
-    await mqttService.removeRoleACL(
-      selectedRole.value.name,
-      acl.aclType,
-      acl.topic
-    );
-    showNotification(`ACL for topic '${acl.topic}' removed successfully`, 'success');
-    await fetchRoleDetails(selectedRole.value.name);
-  } catch (error) {
-    showNotification('Failed to remove ACL', 'error');
-    console.error('Error:', error);
-  } finally {
-    loading.value = false;
   }
 }
 
 async function openACLManagement(role) {
   selectedRole.value = role;
-  try {
-    const success = await mqttService.getRole(role.name);
-    roleDetails.value = success;
+  const response = await getRole(role.name);
+  if (response) {
     aclDialog.value = true;
-  } catch (error) {
-    showError('Failed to fetch role details');
-    console.error('Error:', error);
   }
 }
 
+async function addACL() {
+  if (!isValidACL.value) return;
+
+  const success = await addRoleACL(selectedRole.value.name, newACL.value);
+  if (success) {
+    await getRole(selectedRole.value.name);
+    newACL.value = {
+      topic: '',
+      aclType: '',
+      permission: ''
+    };
+  }
+}
+
+async function removeACL(acl) {
+  const success = await removeRoleACL(
+    selectedRole.value.name,
+    acl.aclType,
+    acl.topic
+  );
+  
+  if (success) {
+    await getRole(selectedRole.value.name);
+  }
+}
 </script>
 
 <style scoped>

@@ -1,21 +1,11 @@
 // icons
 import {
-  QuestionOutlined,
-  DashboardOutlined,
-  ChromeOutlined,
-  LoginOutlined,
-  ProfileOutlined,
-  FontSizeOutlined,
-  BgColorsOutlined,
-  BarcodeOutlined,
-  CrownOutlined,
-  SafetyCertificateOutlined,
-  LinkOutlined,
-  GroupOutlined,
-  CloudSyncOutlined
+
+  UserOutlined,
+  FileTextOutlined
 } from '@ant-design/icons-vue'; 
 
-import { BrandAwsIcon, BrandAzureIcon,UnlinkIcon,Stack3Icon, DashboardIcon, ShieldPlusIcon, AssemblyIcon,PasswordIcon } from 'vue-tabler-icons';
+import { BrandAwsIcon, BrandAzureIcon,UnlinkIcon,Stack3Icon, DashboardIcon, ShieldPlusIcon, AssemblyIcon,PasswordIcon, FileAnalyticsIcon } from 'vue-tabler-icons';
 
 export interface menu {
   header?: string;
@@ -37,45 +27,21 @@ export interface menu {
 const sidebarItem: menu[] = [
   { header: 'Monitoring' },
   {
-    title: 'Broker',
+    title: 'Dashboard',
     icon: DashboardIcon,
     to: '/dashboard'
   },
-
+  {
+    title: 'Broker Logs',
+    icon: FileAnalyticsIcon,
+    to: '/mqtt/brokerlogs'
+  },
   {
     title: 'Connected Clients',
     icon: UnlinkIcon,
     to: '/mqtt/clientlogs'
   },
 
-
-
-  
-
-/*   { header: 'Authentication' },
-  {
-    title: 'Login',
-    icon: LoginOutlined,
-    to: '/auth/login'
-  },
-  {
-    title: 'Register',
-    icon: ProfileOutlined,
-    to: '/auth/register'
-  }, */
-
-/*   { header: 'Monitoring' },
-  {
-    title: 'Broker',
-    icon: LineChartOutlined,
-    to: '/mqtt/StatusPage'
-  },
-
-  {
-    title: 'Topic Tree',
-    icon: ApartmentOutlined,
-    to: '/mqtt/MqttTopicTree',
-  }, */
 
 
   { header: 'Security' },
@@ -114,50 +80,15 @@ const sidebarItem: menu[] = [
     to: '/cloud/azurebridgemanager'
   },
 
-/* { header: 'Settings' },
- {
-    title: 'Configuration',
-    icon: FontSizeOutlined,
-    to: '/mqtt/config'
-  }, */
-
-
- /*  { header: 'Utilities' }, */
-/*   {
-    title: 'Typography',
-    icon: FontSizeOutlined,
-    to: '/typography'
-  },
+  { header: 'Administration' },
   {
-    title: 'Color',
-    icon: BgColorsOutlined,
-    to: '/colors'
-  },
-  {
-    title: 'Shadow',
-    icon: BarcodeOutlined,
-    to: '/shadow'
-  },
-  {
-    title: 'Ant Icons',
-    icon: CrownOutlined,
-    to: '/icon/ant'
-  },
-  { header: 'Support' },
-  {
-    title: 'Sample Page',
-    icon: ChromeOutlined,
-    to: '/sample-page'
-  }, */
-/*   {
-    title: 'Documentation',
-    icon: QuestionOutlined,
-    to: 'https://docs.bunkeriot.com',
-    type: 'external',
-   // chip: 'gitbook',
-    chipColor: 'secondary',
+    title: 'Account Manager',
+    icon: UserOutlined,
+    to: '/account-manager',
+    chip: 'Local',
+    chipColor: 'primary',
     chipVariant: 'flat'
-  } */
+  },
 ];
 
 export default sidebarItem;

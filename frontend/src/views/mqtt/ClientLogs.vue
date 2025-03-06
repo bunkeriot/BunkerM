@@ -16,6 +16,8 @@ limitations under the License. -->
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import UiTitleCard from '@/components/shared/UiTitleCard.vue';
+import axios from 'axios';
+import { getRuntimeConfig } from '@/config/runtime';
 
 import {
     CheckCircleOutlined,
@@ -37,13 +39,21 @@ interface MQTTEvent {
   port: number;
 }
 
-const events = ref<MQTTEvent[]>([]);
+const events = ref([] as MQTTEvent[]);
 const search = ref('');
 const snackbar = ref(false);
 const snackbarText = ref('');
 const snackbarColor = ref('');
+const loading = ref(false);
 
-const API_BASE_URL = import.meta.env.VITE_EVENT_API_URL;
+// Create an axios instance with the proper configuration
+const api = axios.create({
+  baseURL: import.meta.env.VITE_EVENT_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-Key': import.meta.env.VITE_API_KEY
+  }
+});
 
 const headers = [
   { title: 'Time', key: 'timestamp', sortable: true },
@@ -57,7 +67,7 @@ const headers = [
 ];
 
 const filteredEvents = computed(() => {
-  return events.value.filter(event => event.username !== 'bunker');
+  return events.value.filter((event: MQTTEvent) => event.username !== 'bunker');
 });
 
 
@@ -74,21 +84,22 @@ const formatTimestamp = (timestamp: string): string => {
 
 // Fetch events from the API
 const fetchEvents = async () => {
+  loading.value = true;
   try {
-    const response = await fetch(`${API_BASE_URL}/events`);  // Changed from /event
-    const data = await response.json();
-    events.value = data.events;
+    const response = await api.get('/events');
+    events.value = response.data.events;
   } catch (error) {
     console.error('Error fetching MQTT events:', error);
+    showNotification('Failed to fetch events. Please try again.', 'error');
+  } finally {
+    loading.value = false;
   }
 };
 
 const enableClient = async (username: string) => {
   try {
     const encodedUsername = encodeURIComponent(username);
-    await fetch(`${API_BASE_URL}/enable/${encodedUsername}`, {
-      method: 'POST'
-    });
+    await api.post(`/enable/${encodedUsername}`);
     await fetchEvents();
     showNotification(`Client "${username}" has been successfully enabled`);
   } catch (error) {
@@ -100,9 +111,7 @@ const enableClient = async (username: string) => {
 const DisableClient = async (username: string) => {
   try {
     const encodedUsername = encodeURIComponent(username);
-    await fetch(`${API_BASE_URL}/disable/${encodedUsername}`, {
-      method: 'POST'
-    });
+    await api.post(`/disable/${encodedUsername}`);
     await fetchEvents();
     showNotification(`Client "${username}" has been successfully disabled`, 'warning');
   } catch (error) {

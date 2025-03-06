@@ -1,44 +1,43 @@
-/* # Copyright (c) 2025 BunkerM
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# You may not use this file except in compliance with the License.
-# http://www.apache.org/licenses/LICENSE-2.0
-# Distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
-# */
-// composables/useRoles.js
 import { ref } from 'vue';
-import { roleService } from '@/services/roleService';
+import { mqttService } from '@/services/mqtt.service';
 import { useSnackbar } from '@/composables/useSnackbar';
 
 export function useRoles() {
   const roles = ref([]);
-  const loading = ref(false);
   const roleDetails = ref(null);
+  const loading = ref(false);
   const { showSuccess, showError } = useSnackbar();
 
   async function fetchRoles() {
     try {
       loading.value = true;
-      const response = await roleService.getRoles();
+      const response = await mqttService.getRoles();
       roles.value = response;
+      return response;
     } catch (error) {
-      showError('Failed to fetch roles list. Please try again.');
-      console.error('Error:', error);
+      showError('Failed to fetch roles');
+      console.error('Error fetching roles:', error);
+      return [];
     } finally {
       loading.value = false;
     }
   }
 
   async function createRole(name) {
+    if (!name) {
+      showError('Role name is required');
+      return false;
+    }
+
     try {
       loading.value = true;
-      await roleService.createRole(name);
-      showSuccess(`Role "${name}" has been successfully created`);
+      await mqttService.createRole(name);
+      showSuccess('Role created successfully');
       await fetchRoles();
       return true;
     } catch (error) {
-      showError(`Failed to create role "${name}". Please try again.`);
-      console.error('Error:', error);
+      showError('Failed to create role');
+      console.error('Error creating role:', error);
       return false;
     } finally {
       loading.value = false;
@@ -48,44 +47,42 @@ export function useRoles() {
   async function deleteRole(name) {
     try {
       loading.value = true;
-      await roleService.deleteRole(name);
-      showSuccess(`Role "${name}" has been successfully deleted`);
+      await mqttService.deleteRole(name);
+      showSuccess('Role deleted successfully');
       await fetchRoles();
       return true;
     } catch (error) {
-      showError(`Failed to delete role "${name}". Please try again.`);
-      console.error('Error:', error);
+      showError('Failed to delete role');
+      console.error('Error deleting role:', error);
       return false;
     } finally {
       loading.value = false;
     }
   }
 
-  async function fetchRoleDetails(name) {
+  async function getRole(name) {
     try {
       loading.value = true;
-      const response = await roleService.getRole(name);
+      const response = await mqttService.getRole(name);
       roleDetails.value = response;
       return response;
     } catch (error) {
-      showError(`Failed to fetch details for role "${name}". Please try again.`);
-      console.error('Error:', error);
+      showError('Failed to fetch role details');
+      console.error('Error fetching role details:', error);
       return null;
     } finally {
       loading.value = false;
     }
   }
 
-  async function addACL(roleName, aclData) {
+  async function addRoleACL(roleName, acl) {
     try {
       loading.value = true;
-      await roleService.addRoleACL(roleName, aclData);
-      const aclType = aclData.aclType === 'publishClientSend' ? 'publish' : 'subscribe';
-      showSuccess(`New ${aclType} permission has been added for topic "${aclData.topic}"`);
-      await fetchRoleDetails(roleName);
+      await mqttService.addRoleACL(roleName, acl);
+      showSuccess('ACL added successfully');
       return true;
     } catch (error) {
-      showError('Failed to add ACL. Please try again.');
+      showError('Failed to add ACL');
       console.error('Error:', error);
       return false;
     } finally {
@@ -93,15 +90,14 @@ export function useRoles() {
     }
   }
 
-  async function removeACL(roleName, aclType, topic) {
+  async function removeRoleACL(roleName, aclType, topic) {
     try {
       loading.value = true;
-      await roleService.removeRoleACL(roleName, aclType, topic);
-      showSuccess(`Permission for topic "${topic}" has been removed`);
-      await fetchRoleDetails(roleName);
+      await mqttService.removeRoleACL(roleName, aclType, topic);
+      showSuccess('ACL removed successfully');
       return true;
     } catch (error) {
-      showError('Failed to remove ACL. Please try again.');
+      showError('Failed to remove ACL');
       console.error('Error:', error);
       return false;
     } finally {
@@ -116,8 +112,8 @@ export function useRoles() {
     fetchRoles,
     createRole,
     deleteRole,
-    fetchRoleDetails,
-    addACL,
-    removeACL
+    getRole,
+    addRoleACL,
+    removeRoleACL
   };
 }

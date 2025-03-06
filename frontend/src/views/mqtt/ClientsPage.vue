@@ -198,6 +198,7 @@ limitations under the License. -->
 import { ref, computed, onMounted, inject } from 'vue';
 import { mqttService } from '@/services/mqtt.service';
 import { useSnackbar } from '@/composables/useSnackbar';
+import axios from 'axios';
 
 const search = ref('');
 const roleDialog = ref(false);
@@ -454,5 +455,37 @@ async function removeClientFromGroup(groupName, username) {
   }
 }
 
+const api = axios.create({
+  baseURL: import.meta.env.VITE_EVENT_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-Key': import.meta.env.VITE_API_KEY
+  }
+});
+
+const enableClient = async (username) => {
+  try {
+    const encodedUsername = encodeURIComponent(username);
+    await api.post(`/enable/${encodedUsername}`);
+    await fetchEvents();
+    showNotification(`Client "${username}" has been successfully enabled`);
+  } catch (error) {
+    console.error('Error enabling client:', error);
+    showNotification('Failed to enable client. Please try again.', 'error');
+  }
+};
+
+const fetchEvents = async () => {
+  loading.value = true;
+  try {
+    const response = await api.get('/events');
+    events.value = response.data.events;
+  } catch (error) {
+    console.error('Error fetching MQTT events:', error);
+    showNotification('Failed to fetch events. Please try again.', 'error');
+  } finally {
+    loading.value = false;
+  }
+};
 
 </script>

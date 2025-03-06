@@ -19,9 +19,11 @@ import WidgetFive from './components/WidgetFive.vue';
 import UniqueVisitor from './components/UniqueVisitor.vue';
 import IncomeOverview from './components/IncomeOverview.vue';
 import { generateNonce } from '../../utils/security';
+import { getRuntimeConfig } from '@/config/runtime';
 
+const config = getRuntimeConfig();
 // API configuration
-const API_BASE_URL = import.meta.env.VITE_MONITOR_API_URL;
+const API_BASE_URL = config.MONITOR_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 interface HistoricalData {
@@ -167,14 +169,14 @@ onUnmounted(() => {
 
     <v-row>
       <!-- Message Rates Chart -->
-      <v-col cols="12" sm="12" lg="12">
+      <v-col cols="12" sm="12" lg="8">
         <UniqueVisitor :byte-stats="stats.bytes_stats" />
       </v-col>
 
       <!-- Weekly Stats -->
-      <!--       <v-col cols="12" sm="12" lg="4">
+            <v-col cols="12" sm="12" lg="4">
         <IncomeOverview :message-stats="transformedWeeklyStats" />
-      </v-col> -->
+      </v-col>
     </v-row>
   </div>
 </template>

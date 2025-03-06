@@ -9,14 +9,32 @@ WORKDIR /frontend
 # Copy frontend files
 COPY frontend/package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies and TypeScript configurations
+RUN npm install && \
+    npm install -D @vue/tsconfig @tsconfig/node20 @types/node typescript
 
 # Copy frontend source
 COPY frontend .
 
 # Build frontend
 RUN npm run build
+
+# Create runtime config template
+RUN echo 'window.__runtime_config__ = { \
+  "API_URL": "RUNTIME_API_URL", \
+  "DYNSEC_API_URL": "RUNTIME_DYNSEC_API_URL", \
+  "AWS_BRIDGE_API_URL": "RUNTIME_AWS_BRIDGE_API_URL", \
+  "MONITOR_API_URL": "RUNTIME_MONITOR_API_URL", \
+  "host": "RUNTIME_HOST", \
+  "debug": true, \
+  "timeout": 10000, \
+  "retryAttempts": 3, \
+  "retryDelay": 1000, \
+  "headers": { \
+    "X-API-Key": "${process.env.VITE_API_KEY}", \
+    "Content-Type": "application/json" \
+  } \
+};' > /frontend/dist/config.js
 
 # Use Eclipse Temurin as final base
 FROM eclipse-temurin:17-jdk-alpine
@@ -101,12 +119,46 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN echo 'server {' > /etc/nginx/http.d/default.conf && \
-    echo '    listen 2000 ssl;' >> /etc/nginx/http.d/default.conf && \
+    echo '    listen 2000 ssl default_server;' >> /etc/nginx/http.d/default.conf && \
+    echo '    server_name _; # Accept any server name' >> /etc/nginx/http.d/default.conf && \
     echo '    ssl_certificate /app/certs/cert.pem;' >> /etc/nginx/http.d/default.conf && \
     echo '    ssl_certificate_key /app/certs/key.pem;' >> /etc/nginx/http.d/default.conf && \
+    echo '    ssl_protocols TLSv1.2 TLSv1.3;' >> /etc/nginx/http.d/default.conf && \
+    echo '    # Allow self-signed certs and disable client verification' >> /etc/nginx/http.d/default.conf && \
+    echo '    ssl_verify_client off;' >> /etc/nginx/http.d/default.conf && \
+    echo '    # Global CORS settings' >> /etc/nginx/http.d/default.conf && \
+    echo '    add_header Access-Control-Allow-Origin $http_origin always;' >> /etc/nginx/http.d/default.conf && \
+    echo '    add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;' >> /etc/nginx/http.d/default.conf && \
+    echo '    add_header Access-Control-Allow-Headers "Authorization, Content-Type, X-API-Key" always;' >> /etc/nginx/http.d/default.conf && \
+    echo '    add_header Access-Control-Allow-Credentials true always;' >> /etc/nginx/http.d/default.conf && \
+    echo '    add_header Access-Control-Max-Age 3600 always;' >> /etc/nginx/http.d/default.conf && \
+    echo '    # Handle preflight requests' >> /etc/nginx/http.d/default.conf && \
+    echo '    if ($request_method = "OPTIONS") {' >> /etc/nginx/http.d/default.conf && \
+    echo '        return 204;' >> /etc/nginx/http.d/default.conf && \
+    echo '    }' >> /etc/nginx/http.d/default.conf && \
+    echo '    # Handle CORS for all locations' >> /etc/nginx/http.d/default.conf && \
+    echo '    set $cors_origin $http_origin;' >> /etc/nginx/http.d/default.conf && \
+    echo '    if ($cors_origin = "") {' >> /etc/nginx/http.d/default.conf && \
+    echo '        set $cors_origin "*";' >> /etc/nginx/http.d/default.conf && \
+    echo '    }' >> /etc/nginx/http.d/default.conf && \
     echo '    location / {' >> /etc/nginx/http.d/default.conf && \
     echo '        root /usr/share/nginx/html;' >> /etc/nginx/http.d/default.conf && \
     echo '        try_files $uri $uri/ /index.html;' >> /etc/nginx/http.d/default.conf && \
+    echo '        add_header Cache-Control "no-store, no-cache, must-revalidate";' >> /etc/nginx/http.d/default.conf && \
+    echo '    }' >> /etc/nginx/http.d/default.conf && \
+    echo '    location /api/ {' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_pass http://127.0.0.1:8000/;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_http_version 1.1;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header Upgrade $http_upgrade;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header Connection "upgrade";' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header Host $host;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header X-Forwarded-Proto $scheme;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_set_header Origin $http_origin;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_cache_bypass $http_upgrade;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_buffering off;' >> /etc/nginx/http.d/default.conf && \
+    echo '        proxy_ssl_verify off;' >> /etc/nginx/http.d/default.conf && \
     echo '    }' >> /etc/nginx/http.d/default.conf && \
     echo '}' >> /etc/nginx/http.d/default.conf
 
@@ -123,9 +175,21 @@ RUN mkdir -p /app/certs && \
     mkdir -p /var/log/supervisor && \
     mkdir -p /run/nginx
 
-# Copy the built frontend from the build stage to nginx html directory
-COPY --from=frontend-build /frontend/dist /usr/share/nginx/html
+# Copy the config-env.sh script
+COPY config-env.sh /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/config-env.sh
 
+# Copy the built frontend and config.js
+COPY --from=frontend-build /frontend/dist /usr/share/nginx/html/
+COPY --from=frontend-build /frontend/dist/config.js /usr/share/nginx/html/
+
+# Copy frontend source for auth-api
+COPY frontend /frontend
+
+# Install Node.js dependencies for auth-api
+RUN cd /frontend/src/auth && \
+    npm init -y && \
+    npm install express cors body-parser bcryptjs jsonwebtoken uuid
 
 # Create startup script with proper order and error handling
 RUN echo '#!/bin/sh' > /start.sh && \
@@ -138,14 +202,21 @@ RUN echo '#!/bin/sh' > /start.sh && \
     echo 'touch /var/log/api/api_activity.log' >> /start.sh && \
     echo 'touch /var/log/supervisor/nginx.out.log' >> /start.sh && \
     echo 'touch /var/log/supervisor/nginx.err.log' >> /start.sh && \
+    echo 'touch /var/log/supervisor/auth-api.out.log' >> /start.sh && \
+    echo 'touch /var/log/supervisor/auth-api.err.log' >> /start.sh && \
     # Ensure mosquitto_passwd file exists and has right permissions
     echo 'touch /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
     echo 'chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
     echo 'chmod 664 /etc/mosquitto/mosquitto_passwd' >> /start.sh && \
-    echo 'chown -R mosquitto:mosquitto /var/log/mosquitto' >> /start.sh && \
+    echo 'chown -R mosquitto:root /var/log/mosquitto' >> /start.sh && \
+    echo 'chmod -R 644 /var/log/mosquitto' >> /start.sh && \
+    echo 'chmod 755 /var/log/mosquitto' >> /start.sh && \
     echo 'chmod -R 755 /var/log/supervisor' >> /start.sh && \
     echo 'chmod -R 755 /var/log/api' >> /start.sh && \
     echo 'chmod -R 755 /var/log/nginx' >> /start.sh && \
+    # Create data directory for auth-api
+    echo 'mkdir -p /data' >> /start.sh && \
+    echo 'chmod 755 /data' >> /start.sh && \
     echo '# Kill any existing nginx process' >> /start.sh && \
     echo 'pkill nginx || true' >> /start.sh && \
     echo '# Start supervisor which will manage all services' >> /start.sh && \
@@ -169,19 +240,20 @@ COPY backend/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 #COPY .env /app/.env
 
 
-# Copy the built frontend from the build stage
-COPY --from=frontend-build /frontend/dist /frontend
-
 # Set permissions
-
 RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
     chmod -R 775 /var/lib/mosquitto && \
     chown -R root:root /app && \
     chmod -R 755 /app && \
     chmod -R 755 /usr/share/nginx/html && \
     chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd && \
-    chmod 664 /etc/mosquitto/mosquitto_passwd
-    
+    chmod 664 /etc/mosquitto/mosquitto_passwd && \
+    # Ensure Mosquitto logs are readable
+    mkdir -p /var/log/mosquitto && \
+    chown -R mosquitto:root /var/log/mosquitto && \
+    chmod -R 644 /var/log/mosquitto && \
+    chmod 755 /var/log/mosquitto
+
 # Create environment file with secure defaults
 #RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
 #    echo "API_KEY=$(openssl rand -hex 32)" >> /app/.env && \
@@ -194,9 +266,10 @@ ENV MQTT_BROKER=localhost \
     JWT_SECRET=REDACTED_JWT_SECRET \
     API_KEY=REDACTED_API_KEY \
     VITE_API_KEY=REDACTED_API_KEY \
+    HOST_ADDRESS=localhost \
     FRONTEND_URL=https://localhost:2000 \
-    ALLOWED_ORIGINS=https://localhost:2000 \
-    ALLOWED_HOSTS=localhost,127.0.0.1 \
+    ALLOWED_ORIGINS=* \
+    ALLOWED_HOSTS=* \
     RATE_LIMIT_PER_MINUTE=100 \
     SSL_CERT_PATH=/app/certs/cert.pem \
     SSL_KEY_PATH=/app/certs/key.pem \
@@ -248,4 +321,12 @@ ENV PYTHONPATH=/app/monitor:$PYTHONPATH \
 EXPOSE  2000 1900
 
 # Use the startup script
-CMD ["/start.sh"]
+CMD ["/bin/sh", "-c", "/docker-entrypoint.d/config-env.sh && /start.sh"]
+
+# Configure Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Create necessary directories
+RUN mkdir -p /run/nginx && \
+    mkdir -p /etc/nginx/conf.d && \
+    mkdir -p /var/log/nginx

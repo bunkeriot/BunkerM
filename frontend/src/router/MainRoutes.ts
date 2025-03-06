@@ -1,59 +1,98 @@
+// icons
+import {
+  DashboardOutlined,
+  UserOutlined
+} from '@ant-design/icons-vue';
+
 const MainRoutes = {
-  path: '/main',
+  path: '/',
   meta: {
     requiresAuth: true
   },
-  redirect: '/main',
+  redirect: '/dashboard',
   component: () => import('@/layouts/dashboard/DashboardLayout.vue'),
   children: [
     {
-      name: 'LandingPage',
-      path: '/',
-      component: () => import('@/views/dashboard/DefaultDashboard.vue')
-    },
-    {
-      name: 'Dashboard',
       path: '/dashboard',
-      component: () => import('@/views/dashboard/DefaultDashboard.vue')
-    },
-
-    {
-      name: 'Clients',
-      path: '/mqtt/clients',
-      component: () => import('@/views/mqtt/ClientsPage.vue')
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/DefaultDashboard.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
-      name: 'Roles',
-      path: '/mqtt/roles',
-      component: () => import('@/views/mqtt/RolesPage.vue')
+      path: '/account-manager',
+      name: 'Account Manager',
+      component: () => import('@/views/dashboard/AccountManager.vue'),
+      meta: {
+        requiresAuth: true,
+        title: 'Account Manager',
+        icon: UserOutlined
+      }
     },
     {
-      name: 'Groups',
-      path: '/mqtt/groups',
-      component: () => import('@/views/mqtt/GroupsPage.vue')
+      path: '/mqtt/brokerlogs',
+      name: 'Broker Logs',
+      component: () => import('@/views/mqtt/BrokerLogs.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
-
     {
-      name: 'ImportPassword',
-      path: '/mqtt/import-password',
-      component: () => import('@/views/mqtt/ImportPasswordPage.vue')
-    },
-
-    {
-      name: 'ClientLogs',
       path: '/mqtt/clientlogs',
-      component: () => import('@/views/mqtt/ClientLogs.vue')
+      name: 'Client Logs',
+      component: () => import('@/views/mqtt/ClientLogs.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
-
     {
-      name: 'AWS',
+      path: '/mqtt/clients',
+      name: 'Client Accounts',
+      component: () => import('@/views/mqtt/ClientsPage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/mqtt/groups',
+      name: 'Client Groups',
+      component: () => import('@/views/mqtt/GroupsPage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/mqtt/roles',
+      name: 'Client Roles',
+      component: () => import('@/views/mqtt/RolesPage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/mqtt/import-password',
+      name: 'Import Password File',
+      component: () => import('@/views/mqtt/ImportPasswordPage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/cloud/awsbridgemanager',
-      component: () => import('@/views/cloud/AwsBridgeManager.vue')
+      name: 'AWS Bridge Manager',
+      component: () => import('@/views/cloud/AwsBridgeManager.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
-      name: 'Azure',
       path: '/cloud/azurebridgemanager',
-      component: () => import('@/views/cloud/AzureBridgeManager.vue')
+      name: 'Azure Bridge Manager',
+      component: () => import('@/views/cloud/AzureBridgeManager.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
 
     {
@@ -66,10 +105,15 @@ const MainRoutes = {
       path: '/mqtt/dynsec-config',
       component: () => import('@/views/mqtt/DynSecJsonPage.vue')
     },
+ /*    {
+      path: '/sample-page',
+      name: 'Sample Page',
+      component: () => import('@/views/StarterPage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    } */
   ]
-
-
-  
 };
 
 export default MainRoutes;

@@ -17,6 +17,26 @@ import uvicorn
 from pydantic import BaseModel
 import uuid
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Environment variables
+MOSQUITTO_ADMIN_USERNAME = os.getenv("MOSQUITTO_ADMIN_USERNAME", "bunker")
+MOSQUITTO_ADMIN_PASSWORD = os.getenv("MOSQUITTO_ADMIN_PASSWORD", "bunker")
+MOSQUITTO_IP = os.getenv("MOSQUITTO_IP", "localhost")
+MOSQUITTO_PORT = os.getenv("MOSQUITTO_PORT", "1883")
+
+# Base command for mosquitto_ctrl
+MOSQUITTO_BASE_COMMAND = [
+    "mosquitto_ctrl",
+    "-h", MOSQUITTO_IP,
+    "-p", MOSQUITTO_PORT,
+    "-u", MOSQUITTO_ADMIN_USERNAME,
+    "-P", MOSQUITTO_ADMIN_PASSWORD,
+    "dynsec"
+]
 
 class MQTTEvent(BaseModel):
     id: str
@@ -144,35 +164,33 @@ app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
 # Initialize MQTT monitor
 mqtt_monitor = MQTTMonitor()
 
+def execute_mosquitto_command(command: list) -> None:
+    """Execute a mosquitto_ctrl command with the base configuration"""
+    try:
+        full_command = MOSQUITTO_BASE_COMMAND + command
+        subprocess.run(full_command, check=True)
+    except subprocess.CalledProcessError as e:
+        raise HTTPException(status_code=500, detail=f"Command failed: {str(e)}")
+
 # Updated endpoint paths to match the frontend expectations
 @app.post("/api/v1/enable/{username}")
 async def enable_client(username: str):
     try:
-        subprocess.run([
-            "mosquitto_ctrl", 
-            "-u", "bunker",
-            "-P", "bunker",
-            "dynsec",
-            "enableClient", 
-            username
-        ], check=True)
+        execute_mosquitto_command(["enableClient", username])
         return {"status": "success", "message": f"Client {username} Enabled"}
-    except subprocess.CalledProcessError as e:
+    except HTTPException:
+        raise
+    except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to enable client: {str(e)}")
 
 @app.post("/api/v1/disable/{username}")
 async def disable_client(username: str):
     try:
-        subprocess.run([
-            "mosquitto_ctrl", 
-            "-u", "bunker",
-            "-P", "bunker",
-            "dynsec",
-            "disableClient", 
-            username
-        ], check=True)
+        execute_mosquitto_command(["disableClient", username])
         return {"status": "success", "message": f"Client {username} Disabled"}
-    except subprocess.CalledProcessError as e:
+    except HTTPException:
+        raise
+    except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to disable client: {str(e)}")
 
 @app.get("/api/v1/events")  # Changed to match frontend expectation

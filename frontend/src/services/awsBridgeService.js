@@ -7,9 +7,11 @@
 # */
 // services/awsBridgeService.js
 import axios from 'axios';
+import { getRuntimeConfig } from '@/config/runtime';
 
+const config = getRuntimeConfig();
 const api = axios.create({
-  baseURL: import.meta.env.VITE_AWS_BRIDGE_API_URL,
+  baseURL: config.AWS_BRIDGE_API_URL,
   headers: {
     'X-API-Key': import.meta.env.VITE_API_KEY
   }

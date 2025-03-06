@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "build-stage": "vue-tsc --noEmit && vite build --base=/vue/free/stage/",
-    "build-prod": "vue-tsc --noEmit && vite build --base=/vue/free/",
+    "build": "vite build",
+    "build-with-types": "vue-tsc --noEmit && vite build",
+    "build-stage": "vite build --base=/vue/free/stage/",
+    "build-prod": "vite build --base=/vue/free/",
     "preview": "vite preview --port 2000",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -37,8 +38,7 @@
     "vue3-apexcharts": "1.5.2",
     "vue3-perfect-scrollbar": "2.0.0",
     "vuetify": "3.6.5",
-    "webpack-plugin-vuetify": "3.0.3",
-    "firebase": "11.2.0"
+    "webpack-plugin-vuetify": "3.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.1.1",

@@ -12,6 +12,7 @@ import 'ant-design-vue/dist/reset.css';
 
 // Import the auth store
 import { useAuthStore } from '@/stores/auth';
+import { initLocalAuth } from '@/services/localAuth';
 
 // google-fonts
 import '@fontsource/public-sans/400.css';
@@ -33,22 +34,39 @@ const i18n = createI18n({
   silentFallbackWarn: true
 });
 
-const app = createApp(App);
-const pinia = createPinia();
+// Initialize the app
+async function initApp() {
+  try {
+    // IMPORTANT: Removed the clearAuthData() call that was resetting authentication on every load
+    
+    // Initialize local authentication system
+    console.log('Initializing local authentication system...');
+    await initLocalAuth();
+    
+    const app = createApp(App);
+    const pinia = createPinia();
+    
+    fakeBackend();
+    app.use(router);
+    app.use(PerfectScrollbarPlugin);
+    app.use(pinia);
+    app.use(VueTablerIcons);
+    app.use(Antd);
+    app.use(i18n);
+    app.use(VueApexCharts);
+    app.use(vuetify);
+    
+    // Initialize auth store
+    const authStore = useAuthStore();
+    
+    // Mount the app
+    app.mount('#app');
+    
+    console.log('Application initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize application:', error);
+  }
+}
 
-fakeBackend();
-app.use(router);
-app.use(PerfectScrollbarPlugin);
-app.use(pinia); // Initialize Pinia first
-app.use(VueTablerIcons);
-app.use(Antd);
-app.use(i18n);
-app.use(VueApexCharts);
-app.use(vuetify);
-
-// Initialize auth store after Pinia is installed but before mounting
-const authStore = useAuthStore();
-authStore.init();
-
-// Mount the app last
-app.mount('#app');
+// Start the application
+initApp();

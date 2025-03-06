@@ -71,17 +71,14 @@ API_KEYS = {settings.API_KEY} if settings.API_KEY else {secrets.token_urlsafe(32
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL],
+    allow_origins=["*"],  # Allow all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Trusted Host middleware
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=settings.ALLOWED_HOSTS.split(",")
-)
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.ALLOWED_HOSTS.split(","))
 
 async def get_api_key(api_key: str = Security(api_key_header)):
     if api_key not in API_KEYS:

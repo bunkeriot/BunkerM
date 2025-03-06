@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getRuntimeConfig } from '@/config/runtime';
+
+const runtimeConfig = getRuntimeConfig();
+const host = runtimeConfig.host || 'localhost';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDf6WG9a48u2qDoeAfIbqwt3Z0QxH7SzFY",
@@ -11,4 +15,14 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+
+// Configure auth to use our proxy
+auth.config.emulator = {
+  url: `https://${host}:2000/auth/`
+};
+
+// Override the default auth domain to use our proxy
+auth.config.authDomain = `${host}:2000`;
+
+export { auth };

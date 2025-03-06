@@ -1,4 +1,5 @@
-import { auth } from '@/firebase';
+import { getCurrentUser } from '@/services/localAuth';
+import { useAuthStore } from '@/stores/auth';
 
 export const fetchWrapper = {
     get: request('GET'),
@@ -25,12 +26,12 @@ function request(method: string) {
 }
 
 async function authHeader(url: string): Promise<HeadersInit> {
-    const isLoggedIn = auth.currentUser;
+    const authStore = useAuthStore();
+    const isLoggedIn = !!authStore.user && !!authStore.token;
     const isApiUrl = url.startsWith(import.meta.env.VITE_API_URL);
     
     if (isLoggedIn && isApiUrl) {
-        const token = await auth.currentUser?.getIdToken();
-        return { Authorization: `Bearer ${token}` };
+        return { Authorization: `Bearer ${authStore.token}` };
     }
     return {};
 }
