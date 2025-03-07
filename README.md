@@ -1,4 +1,11 @@
 # BunkerM - MQTT Made Easy ✅  
+<p align="center">
+  <a href="https://bunkeriot.github.io/BunkerM/">
+    <img
+      src="https://img.shields.io/badge/Full%20documentation%20Available-%20Here-green?style=for-the-badge&logo=read-the-docs"
+      alt="Read the Docs">
+  </a>
+</p>
 
 [![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
 
