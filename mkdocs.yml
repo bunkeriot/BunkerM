@@ -1,73 +1,61 @@
-site_name: BunkerM Documentation
-site_url: https://www.bunkeriot.com/
-site_description: User guide for BunkerM - All-in-one Mosquitto MQTT broker with Web UI
-site_author: BunkerM Team
+site_name: BunkerM - MQTT Made Easy!
 
 theme:
   name: material
-  palette:
-    primary: indigo
-    accent: indigo
-  logo: assets/images/logo.png
-  favicon: assets/images/favicon.ico
   features:
-    - navigation.tabs
+    - navigation.tabs.sticky  # Updated from navigation.tabs
     - navigation.sections
+    - toc.integrate
     - navigation.top
+    - search.suggest
     - search.highlight
-    - search.share
+    - content.tabs.link
+    - content.code.annotation
     - content.code.copy
-
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-  - attr_list
-  - md_in_html
-  - pymdownx.emoji:
-      emoji_index: ":material:"
-      emoji_generator: ":material:"
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: "#011D8F"
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: "#011D8F"
+      accent: lime
+  icon:
+    logo: material/library
+  generator: false
 
 plugins:
   - search
-  - minify:
-      minify_html: true
-
-nav:
-  - Home: index.md
-  - Getting Started:
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quick-start.md
-    - First Login: getting-started/first-login.md
-  - User Interface:
-    - Dashboard: ui/dashboard.md
-    - Navigation: ui/navigation.md
-  - MQTT Management:
-    - Client Management: mqtt/client-management.md
-    - Role Management: mqtt/role-management.md
-    - Group Management: mqtt/group-management.md
-    - ACL Configuration: mqtt/acl-configuration.md
-    - Broker Configuration: mqtt/broker-configuration.md
-  - Monitoring:
-    - Broker Logs: monitoring/broker-logs.md
-    - Client Logs: monitoring/client-logs.md
-    - Performance Metrics: monitoring/performance-metrics.md
-  - Cloud Integration:
-    - AWS IoT Core: cloud/aws-iot-core.md
-    - Azure IoT Hub: cloud/azure-iot-hub.md
-  - Advanced:
-    - Dynamic Security: advanced/dynamic-security.md
-    - Password Management: advanced/password-management.md
-  - Troubleshooting: troubleshooting.md
-  - FAQ: faq.md
 
 extra:
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/bunkeriot/bunkerm
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/bunkeriot/BunkerM
+    - icon: fontawesome/brands/reddit
+      link: https://www.reddit.com/r/BunkerM/
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/mehdi-idrissi/
-  
-copyright: Copyright &copy; 2025 BunkerM 
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji
+
+copyright: |
+  &copy; 2025 <a href="https://github.com/bunkeriot" target="_blank" rel="noopener">BunkerM</a>
