@@ -9,24 +9,7 @@
 
 [![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
 
-## Table of Contents
-- 🔍 [What is BunkerM?](#what-is-bunkerm)
-- 💼 [Need Custom MQTT Features?](#need-custom-mqtt-features-reach-out-today)
-- 🏗️ [Architecture Overview](#architecture-overview)
-- 🚀 [Quick Start with Docker](#quick-start-with-docker)
-- ⭐ [Core Features](#core-features)
-- 🔒 [Access Control List (ACL) Management](#access-control-list-acl-management)
-- ☁️ [Cloud Integration](#cloud-integration-pro-feature)
-- 🔌 [REST API (Coming soon)](#rest-api-coming-soon)
-- 👥 [MQTT Client Management](#mqtt-client-management-listing-enabling-and-disabling)
-- 🛠️ [Troubleshooting](#troubleshooting)
-- ✨ [Features](#features)  
-- 📚 [Documentation](https://bunkeriot.github.io/BunkerM/)  
-- 💰 [Community vs Paid versions](#community-vs-paid-versions)
-- ❤️ [Support BunkerM Project](#support-bunkerm-project)
-- 📜 [License](#license)  
-
-## What is BunkerM?
+## 🔍 What is BunkerM?
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
@@ -34,14 +17,14 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
-## Need Custom MQTT Features? Reach Out Today!
+## 💼 Need Custom MQTT Features? Reach Out Today!
 
 > **Website**: https://bunkeriot.com  
 > **Email me at**: m.idrissi@bunkeriot.com  
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
 
-## Solution Overview
+## 🏗️ Solution Overview
 
 ![BunkerM Features](/screenshots/bunkerM.png)
 
@@ -52,7 +35,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 * Monitoring and Logging System
 * Cloud Bridge Integration (Pro Feature)
 
-## Quick Start with Docker  
+## 🚀 Quick Start with Docker  
 
 Get up and running in seconds with **BunkerM**!  
 
@@ -113,9 +96,7 @@ Replace `<HOST_IP>` with your host machine's IP address or domain name.
 
 ![Add Client Screenshot](/screenshots/Bunkerm-addclient.jpg)
 
-## Core Features
-
-
+## ⭐ Core Features
 
 ### Broker Dashboard
 
@@ -129,7 +110,7 @@ Monitor and control MQTT client connections in real-time through the "Recent MQT
 
 ![Dashboard Screenshot](docs/assets/images/dashboard.png)
 
-### Access Control List (ACL) Management
+### 🔒 Access Control List (ACL) Management
 
 Manage your MQTT broker's clients:
 
@@ -153,7 +134,7 @@ Manage your MQTT broker's clients:
 - Manage group members
 - Set priorities
 
-### Cloud Integration (Pro Feature)
+### ☁️ Cloud Integration (Pro Feature)
 
 Connect to major cloud providers:
 
@@ -169,15 +150,15 @@ Connect to major cloud providers:
 - SAS token management
 - Topic routing  
 
-### REST API (Coming soon)
+### 🔌 REST API (Coming soon)
 
-## MQTT Client Management: Listing, Enabling, and Disabling
+## 👥 MQTT Client Management: Listing, Enabling, and Disabling
 
 ![Connected Clients Screenshot](docs/assets/images/connected-clients.png)  
 
 This module provides a real-time list of currently connected clients on a node, along with the ability to connect or disconnect an MQTT client using the "Enable" and "Disable" buttons.
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 - Verify Docker is running
 - Check port availability (2000)
@@ -185,7 +166,7 @@ This module provides a real-time list of currently connected clients on a node, 
 - Verify network connectivity
 - Check SSL certificate configuration
 
-## Features
+## ✨ Features
 
 ### Infrastructure & Scaling
 | Feature | Community | Pro | Enterprise |
@@ -286,7 +267,7 @@ This module provides a real-time list of currently connected clients on a node, 
 | Windows | ✓ | ✓ | ✓ |
 | White Labeling | ✗ | ✗ | ✓ |
 
-## Community vs Paid versions
+## 💰 Community vs Paid versions
 
 My mission with BunkerM is to democratize IoT by making MQTT management accessible to everyone. The Community Version is designed to be lightweight, easy to use, and completely free, offering essential features for individuals and small projects.
 
@@ -302,7 +283,7 @@ The revenue from the Pro and Enterprise versions will directly support the devel
 
 If the open-source community shows enough support, I may consider making the Pro version free as well. Your feedback and contributions are invaluable in shaping the future of BunkerM!
 
-## Support BunkerM Project
+## ❤️ Support BunkerM Project
 
 BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
 
@@ -318,7 +299,7 @@ Every contribution, no matter the size, helps keep this project active and growi
 
 Thank you for supporting open source! 🙏
 
-## License
+## 📜 License
 
 This project is licensed under the Apache License 2.0.
 You are free to use, modify, and distribute this software, even for commercial purposes, under the terms of the license.
