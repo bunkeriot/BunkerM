@@ -1,0 +1,61 @@
+site_name: BunkerM - MQTT Made Easy!
+
+theme:
+  name: material
+  features:
+    - navigation.tabs.sticky  # Updated from navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: "#011D8F"
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: "#011D8F"
+      accent: lime
+  icon:
+    logo: material/library
+  generator: false
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/bunkeriot/BunkerM
+    - icon: fontawesome/brands/reddit
+      link: https://www.reddit.com/r/BunkerM/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/mehdi-idrissi/
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji
+
+copyright: |
+  &copy; 2025 <a href="https://github.com/bunkeriot" target="_blank" rel="noopener">BunkerM</a>
