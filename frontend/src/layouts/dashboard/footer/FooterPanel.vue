@@ -10,7 +10,8 @@ import { shallowRef } from 'vue';
 
 const footerLink = shallowRef([
   {
-    title: 'About us'
+    title: 'Documentation',
+    href: 'https://bunkeriot.github.io/BunkerM/'
   },
   {
     title: 'Privacy'

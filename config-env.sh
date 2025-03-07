@@ -22,11 +22,6 @@ create_config() {
         \"headers\": {
             \"X-API-Key\": \"\${process.env.VITE_API_KEY}\",
             \"Content-Type\": \"application/json\"
-        },
-        \"firebaseConfig\": {
-            \"authDomain\": \"${host}:2000\",
-            \"useProxy\": true,
-            \"proxyUrl\": \"https://${host}:2000/auth/\"
         }
     };" > /usr/share/nginx/html/config.js
 }
@@ -36,3 +31,4 @@ create_config "$HOST_ADDRESS"
 
 echo "Runtime configuration set to use host: $HOST_ADDRESS"
 echo "Firebase Auth will use proxy at https://$HOST_ADDRESS:2000/auth/"
+

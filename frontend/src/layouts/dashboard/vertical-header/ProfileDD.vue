@@ -140,7 +140,7 @@ const restartMosquitto = async () => {
               <v-list-item-title class="text-h6">Releases</v-list-item-title>
             </v-list-item>
 
-            <v-list-item color="primary" rounded="0" value="Documentation" href="https://docs.bunkeriot.com/bunkerm/"
+            <v-list-item color="primary" rounded="0" value="Documentation" href=" https://bunkeriot.github.io/BunkerM/"
               target="_blank" rel="noopener noreferrer">
               <template v-slot:prepend>
                 <ProfileOutlined :style="{ fontSize: '14px' }" class="mr-4" />

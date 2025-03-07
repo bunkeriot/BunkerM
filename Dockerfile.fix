@@ -1,0 +1,36 @@
+FROM bunkeriot/bunkerm:v1.2.0
+
+# Create the docker-entrypoint.d directory if it doesn't exist
+RUN mkdir -p /docker-entrypoint.d
+
+# Create a fixed config-env.sh script
+RUN echo '#!/bin/sh' > /docker-entrypoint.d/config-env.sh && \
+    echo '' >> /docker-entrypoint.d/config-env.sh && \
+    echo '# Get host address from environment variable' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'HOST_ADDRESS=${HOST_ADDRESS:-localhost}' >> /docker-entrypoint.d/config-env.sh && \
+    echo '' >> /docker-entrypoint.d/config-env.sh && \
+    echo '# Strip any protocol and port from HOST_ADDRESS if present' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'HOST_ADDRESS=$(echo "$HOST_ADDRESS" | sed -E '"'"'s#^(https?://)?([^:/]+).*#\\2#'"'"')' >> /docker-entrypoint.d/config-env.sh && \
+    echo '' >> /docker-entrypoint.d/config-env.sh && \
+    echo '# Create the runtime config' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "window.__runtime_config__ = {" > /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"API_URL\": \"https://${HOST_ADDRESS}:2000/api\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"DYNSEC_API_URL\": \"https://${HOST_ADDRESS}:2000/api/dynsec\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"AWS_BRIDGE_API_URL\": \"https://${HOST_ADDRESS}:2000/api/aws-bridge\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"MONITOR_API_URL\": \"https://${HOST_ADDRESS}:2000/api/monitor\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"host\": \"${HOST_ADDRESS}\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"debug\": true," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"timeout\": 10000," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"retryAttempts\": 3," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"retryDelay\": 1000," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  \"headers\": {" >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "    \"X-API-Key\": \"\${process.env.VITE_API_KEY}\"," >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "    \"Content-Type\": \"application/json\"" >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "  }" >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "};" >> /usr/share/nginx/html/config.js' >> /docker-entrypoint.d/config-env.sh && \
+    echo '' >> /docker-entrypoint.d/config-env.sh && \
+    echo 'echo "Runtime configuration set to use host: $HOST_ADDRESS"' >> /docker-entrypoint.d/config-env.sh && \
+    chmod +x /docker-entrypoint.d/config-env.sh
+
+# Modify the CMD to handle the case when the script doesn't exist
+CMD ["/bin/sh", "-c", "if [ -f /docker-entrypoint.d/config-env.sh ]; then /docker-entrypoint.d/config-env.sh; else echo 'Warning: config-env.sh not found, continuing anyway'; fi && /start.sh"] 

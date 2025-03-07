@@ -4,7 +4,7 @@ This guide covers the different ways to install and deploy BunkerM, the all-in-o
 
 ## System Requirements
 
-Before installing BunkerM, ensure your system meets the following requirements:
+Before deploying BunkerM, ensure your system meets the following requirements:
 
 - **Docker**: Version 19.03 or higher
 - **CPU**: 1+ cores
@@ -16,7 +16,7 @@ Before installing BunkerM, ensure your system meets the following requirements:
 
 The recommended way to install BunkerM is using Docker. This method provides the simplest setup experience and works across all major platforms.
 
-### Basic Installation
+### Basic Deployment
 
 ```bash
 docker run -d -p 1900:1900 -p 2000:2000 bunkeriot/bunkerm
@@ -28,7 +28,7 @@ This command:
 - Maps the Web UI port to 2000 (`-p 2000:2000`)
 - Uses the official BunkerM image (`bunkeriot/bunkerm`)
 
-### Persistent Data Installation
+### Persistent Data Deployment
 
 For production environments, you'll want to persist your data across container restarts:
 
