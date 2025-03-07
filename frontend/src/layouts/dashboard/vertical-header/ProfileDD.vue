@@ -160,6 +160,17 @@ const restartMosquitto = async () => {
 
         <v-window-item value="111">
           <v-list class="py-0" aria-label="profile list">
+
+
+            <v-list-item @click="$router.push('/account-manager')" color="primary" rounded="0" value="Account Settings">
+              <template v-slot:prepend>
+                <UserOutlined :style="{ fontSize: '14px' }" class="mr-4" />
+              </template>
+              <v-list-item-title class="text-h6">Account Settings</v-list-item-title>
+            </v-list-item>
+
+
+
             
             <v-list-item @click="$router.push('/mqtt/config')" color="primary" rounded="0" value="Broker Config">
               <template v-slot:prepend>

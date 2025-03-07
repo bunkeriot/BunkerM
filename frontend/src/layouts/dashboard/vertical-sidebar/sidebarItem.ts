@@ -80,7 +80,7 @@ const sidebarItem: menu[] = [
     to: '/cloud/azurebridgemanager'
   },
 
-  { header: 'Administration' },
+/*   { header: 'Administration' },
   {
     title: 'Account Manager',
     icon: UserOutlined,
@@ -88,7 +88,7 @@ const sidebarItem: menu[] = [
     chip: 'Local',
     chipColor: 'primary',
     chipVariant: 'flat'
-  },
+  }, */
 ];
 
 export default sidebarItem;
