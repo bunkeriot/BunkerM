@@ -1,0 +1,73 @@
+site_name: BunkerM Documentation
+site_url: https://www.bunkeriot.com/
+site_description: User guide for BunkerM - All-in-one Mosquitto MQTT broker with Web UI
+site_author: BunkerM Team
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.ico
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: ":material:"
+      emoji_generator: ":material:"
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quick-start.md
+    - First Login: getting-started/first-login.md
+  - User Interface:
+    - Dashboard: ui/dashboard.md
+    - Navigation: ui/navigation.md
+  - MQTT Management:
+    - Client Management: mqtt/client-management.md
+    - Role Management: mqtt/role-management.md
+    - Group Management: mqtt/group-management.md
+    - ACL Configuration: mqtt/acl-configuration.md
+    - Broker Configuration: mqtt/broker-configuration.md
+  - Monitoring:
+    - Broker Logs: monitoring/broker-logs.md
+    - Client Logs: monitoring/client-logs.md
+    - Performance Metrics: monitoring/performance-metrics.md
+  - Cloud Integration:
+    - AWS IoT Core: cloud/aws-iot-core.md
+    - Azure IoT Hub: cloud/azure-iot-hub.md
+  - Advanced:
+    - Dynamic Security: advanced/dynamic-security.md
+    - Password Management: advanced/password-management.md
+  - Troubleshooting: troubleshooting.md
+  - FAQ: faq.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/bunkeriot/bunkerm
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/mehdi-idrissi/
+  
+copyright: Copyright &copy; 2025 BunkerM 
