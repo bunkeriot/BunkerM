@@ -5,6 +5,7 @@ declare global {
       DYNSEC_API_URL: string;
       AWS_BRIDGE_API_URL: string;
       MONITOR_API_URL: string;
+      EVENT_API_URL: string;
       host: string;
     };
   }
@@ -16,6 +17,7 @@ export const getRuntimeConfig = () => {
     DYNSEC_API_URL: import.meta.env.VITE_DYNSEC_API_URL,
     AWS_BRIDGE_API_URL: import.meta.env.VITE_AWS_BRIDGE_API_URL,
     MONITOR_API_URL: import.meta.env.VITE_MONITOR_API_URL,
+    EVENT_API_URL: import.meta.env.VITE_EVENT_API_URL,
     host: 'localhost'
   };
 }; 

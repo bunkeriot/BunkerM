@@ -156,10 +156,8 @@ kubectl apply -f bunkerm-deployment.yaml
 
 After installation, verify that BunkerM is running correctly:
 
-1. Open your web browser and navigate to `https://localhost:2000`
-2. You'll see a security warning about the SSL certificate (this is normal as BunkerM uses a self-signed certificate)
-3. Click "Advanced" and then "Proceed to localhost (unsafe)"
-4. You should see the BunkerM login page
+1. Open your web browser and navigate to `http://localhost:2000`
+2. You should see the BunkerM login page
 
 ## Troubleshooting
 
@@ -168,7 +166,6 @@ If you encounter issues during installation:
 - **Web UI not accessible**: Verify that port 2000 is not being used by another application
 - **MQTT broker not accessible**: Verify that port 1900 is not being used by another application
 - **Container fails to start**: Check Docker logs with `docker logs <container_id>`
-- **SSL certificate warnings**: These are normal as BunkerM uses a self-signed certificate
 
 ## Next Steps
 

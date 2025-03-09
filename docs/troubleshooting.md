@@ -26,9 +26,9 @@ If you can't access the BunkerM web interface:
 3. **Verify network connectivity**:
    If accessing from another machine, ensure there are no firewall rules blocking port 2000.
 
-4. **Check for SSL certificate issues**:
-   - Make sure you're using `https://` not `http://`
-   - Accept the self-signed certificate warning in your browser
+4. **Check browser compatibility**:
+   - Make sure you're using a modern, up-to-date browser
+   - Clear your browser cache if you're experiencing UI issues
 
 ### MQTT Clients Can't Connect
 
@@ -241,4 +241,8 @@ If you're still experiencing issues after trying these troubleshooting steps:
    Reach out to the BunkerM team at [m.idrissi@bunkeriot.com](mailto:m.idrissi@bunkeriot.com).
 
 4. **Community forums**:
-   Post your question on community forums or discussion groups. 
+   Post your question on community forums or discussion groups.
+
+- Verify that port 2000 is available and not blocked by a firewall
+- Ensure Docker is running properly
+- Check that the container is running with `docker ps` 

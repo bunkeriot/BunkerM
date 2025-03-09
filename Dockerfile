@@ -56,13 +56,11 @@ RUN apk update && apk add --no-cache \
     curl \
     unzip \
     supervisor \
-    openssl \
     ca-certificates \
     nodejs \
     npm\
     nginx\
     openrc\
-    libressl-dev\
     gcc\
     py3-cryptography
 
@@ -119,13 +117,8 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN echo 'server {' > /etc/nginx/http.d/default.conf && \
-    echo '    listen 2000 ssl default_server;' >> /etc/nginx/http.d/default.conf && \
+    echo '    listen 2000 default_server;' >> /etc/nginx/http.d/default.conf && \
     echo '    server_name _; # Accept any server name' >> /etc/nginx/http.d/default.conf && \
-    echo '    ssl_certificate /app/certs/cert.pem;' >> /etc/nginx/http.d/default.conf && \
-    echo '    ssl_certificate_key /app/certs/key.pem;' >> /etc/nginx/http.d/default.conf && \
-    echo '    ssl_protocols TLSv1.2 TLSv1.3;' >> /etc/nginx/http.d/default.conf && \
-    echo '    # Allow self-signed certs and disable client verification' >> /etc/nginx/http.d/default.conf && \
-    echo '    ssl_verify_client off;' >> /etc/nginx/http.d/default.conf && \
     echo '    # Global CORS settings' >> /etc/nginx/http.d/default.conf && \
     echo '    add_header Access-Control-Allow-Origin $http_origin always;' >> /etc/nginx/http.d/default.conf && \
     echo '    add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;' >> /etc/nginx/http.d/default.conf && \
@@ -158,15 +151,13 @@ RUN echo 'server {' > /etc/nginx/http.d/default.conf && \
     echo '        proxy_set_header Origin $http_origin;' >> /etc/nginx/http.d/default.conf && \
     echo '        proxy_cache_bypass $http_upgrade;' >> /etc/nginx/http.d/default.conf && \
     echo '        proxy_buffering off;' >> /etc/nginx/http.d/default.conf && \
-    echo '        proxy_ssl_verify off;' >> /etc/nginx/http.d/default.conf && \
     echo '    }' >> /etc/nginx/http.d/default.conf && \
     echo '}' >> /etc/nginx/http.d/default.conf
 
 # Create necessary directories
-RUN mkdir -p /app/certs && \
+RUN mkdir -p /app && \
     mkdir -p /var/log/api && \
     chmod 755 /etc/mosquitto &&\
-    mkdir -p /etc/mosquitto/certs && \
     mkdir -p /etc/mosquitto/conf.d && \
     touch /etc/mosquitto/mosquitto_passwd && \
     chmod 644 /etc/mosquitto/mosquitto_passwd && \
@@ -225,20 +216,12 @@ RUN echo '#!/bin/sh' > /start.sh && \
 
 # Copy configurations and applications
 COPY backend/mosquitto/config/mosquitto.conf /etc/mosquitto/mosquitto.conf
-COPY backend/etc/mosquitto/certs/ /etc/mosquitto/certs/
 COPY backend/etc/mosquitto/conf.d/ /etc/mosquitto/conf.d/
-COPY ssl_certificates/ /app/certs/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY backend/app /app
 RUN touch /app/monitor/__init__.py
-COPY ssl_certificates/ /app/certs
 COPY backend/mosquitto/dynsec/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
 COPY backend/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-
-
-#COPY .env /app/.env
-
 
 # Set permissions
 RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
@@ -254,11 +237,6 @@ RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
     chmod -R 644 /var/log/mosquitto && \
     chmod 755 /var/log/mosquitto
 
-# Create environment file with secure defaults
-#RUN echo "JWT_SECRET=$(openssl rand -hex 32)" > /app/.env && \
-#    echo "API_KEY=$(openssl rand -hex 32)" >> /app/.env && \
-#    chmod 600 /app/.env
-
 ENV MQTT_BROKER=localhost \
     MQTT_PORT=1900 \
     MQTT_USERNAME=bunker \
@@ -267,15 +245,13 @@ ENV MQTT_BROKER=localhost \
     API_KEY=REDACTED_API_KEY \
     VITE_API_KEY=REDACTED_API_KEY \
     HOST_ADDRESS=localhost \
-    FRONTEND_URL=https://localhost:2000 \
+    FRONTEND_URL=http://localhost:2000 \
     ALLOWED_ORIGINS=* \
     ALLOWED_HOSTS=* \
     RATE_LIMIT_PER_MINUTE=100 \
-    SSL_CERT_PATH=/app/certs/cert.pem \
-    SSL_KEY_PATH=/app/certs/key.pem \
     LOG_LEVEL=INFO \
     API_LOG_FILE=/var/log/api/api_activity.log \
-    VITE_AWS_BRIDGE_API_URL=https://localhost:2000/api/aws-bridge \
+    VITE_AWS_BRIDGE_API_URL=http://localhost:2000/api/aws-bridge \
     MOSQUITTO_PASSWD_PATH=/etc/mosquitto/mosquitto_passwd    
 
 RUN mkdir -p /var/lib/mosquitto/db && \
@@ -308,17 +284,12 @@ COPY backend/app/config/mosquitto_config.py /app/config/
 COPY backend/app/config/main.py /app/config/
 COPY backend/app/config/.env /app/config/
 
-# Add the new supervisor configuration
-#COPY backend/supervisord/config-api.conf /etc/supervisor/conf.d/
-
-
-
 # Set Python path
 ENV PYTHONPATH=/app/monitor:$PYTHONPATH \
     DYNSEC_PATH=/var/lib/mosquitto/dynamic-security.json \
     MAX_UPLOAD_SIZE=10485760
 
-EXPOSE  2000 1900
+EXPOSE 2000 1900
 
 # Use the startup script
 CMD ["/bin/sh", "-c", "/docker-entrypoint.d/config-env.sh && /start.sh"]

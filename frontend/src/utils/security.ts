@@ -9,15 +9,19 @@ export const generateNonce = (): string => {
   };
   
   /**
-   * Validates that the API response came from a secure connection
+   * Validates that the API response is valid
+   * Note: No longer checking for HTTPS headers since we're using HTTP
    */
   export const validateSecureResponse = (response: Response): boolean => {
-    return response.headers.get('Strict-Transport-Security') !== null;
+    // Always return true since we're no longer requiring HTTPS
+    return true;
   };
   
   /**
-   * Checks if the current connection is secure
+   * Checks if the current connection is valid
+   * Note: No longer requiring HTTPS
    */
   export const isSecureConnection = (): boolean => {
-    return window.location.protocol === 'https:';
+    // Always return true since we're no longer requiring HTTPS
+    return true;
   };

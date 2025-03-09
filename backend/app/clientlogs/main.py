@@ -228,11 +228,9 @@ if __name__ == "__main__":
     log_thread = threading.Thread(target=monitor_mosquitto_logs, daemon=True)
     log_thread.start()
     
-    # Start the FastAPI server with SSL
+    # Start the FastAPI server without SSL
     uvicorn.run(
         app,
         host="0.0.0.0",
-        port=1002,
-        ssl_keyfile="/app/certs/key.pem",
-        ssl_certfile="/app/certs/cert.pem"
+        port=1002
     )

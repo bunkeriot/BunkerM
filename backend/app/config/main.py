@@ -81,12 +81,9 @@ async def log_request(request: Request):
         f"Time: {datetime.now().isoformat()}"
     )
 
-@app.middleware("https")
+@app.middleware("http")
 async def add_security_headers(request: Request, call_next):
     response = await call_next(request)
-    response.headers["Strict-Transport-Security"] = (
-        "max-age=31536000; includeSubDomains"
-    )
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["X-XSS-Protection"] = "1; mode=block"
@@ -108,24 +105,6 @@ if __name__ == "__main__":
     # Use port 1005 since 1000-1004 are already in use
     PORT = int(os.getenv("CONFIG_API_PORT", "1005"))
     
-    # Set up SSL context
-    ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    cert_path = os.getenv("SSL_CERT_PATH", "/app/certs/cert.pem")
-    key_path = os.getenv("SSL_KEY_PATH", "/app/certs/key.pem")
-
-    try:
-        ssl_context.load_cert_chain(certfile=cert_path, keyfile=key_path)
-        logger.info(f"Successfully loaded SSL certificates")
-    except Exception as e:
-        logger.error(f"Failed to load SSL certificates: {str(e)}")
-        raise
-
-    logger.info(f"Starting Config API server on port {PORT}...")
-    uvicorn.run(
-        app,
-        host="0.0.0.0",  # Bind to all interfaces
-        port=PORT,
-        log_level="info",
-        ssl_certfile=cert_path,
-        ssl_keyfile=key_path
-    )
+    # Run the application
+    logger.info(f"Starting Config API on port {PORT}")
+    uvicorn.run(app, host="0.0.0.0", port=PORT)

@@ -18,10 +18,8 @@ This command will:
 
 ## Accessing the Web Interface
 
-1. Open your web browser and navigate to `https://localhost:2000`
-2. You'll see a security warning about the SSL certificate (this is normal as BunkerM uses a self-signed certificate)
-3. Click "Advanced" and then "Proceed to localhost (unsafe)"
-4. You should see the BunkerM login page
+1. Open your web browser and navigate to `http://localhost:2000`
+2. You should see the BunkerM login page
 
 ![Login Page](../assets/images/login.png)
 

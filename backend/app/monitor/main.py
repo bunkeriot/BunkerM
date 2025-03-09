@@ -487,7 +487,10 @@ async def get_mqtt_stats(
             }
         
         response = JSONResponse(content=stats)
-        response.headers["Access-Control-Allow-Origin"] = os.getenv("FRONTEND_URL", "https://localhost:2000")
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE, PUT"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-API-Key"
+        response.headers["Access-Control-Allow-Origin"] = os.getenv("FRONTEND_URL", "http://localhost:2000")
+        response.headers["Access-Control-Allow-Credentials"] = "true"
         return response
         
     except HTTPException as he:
@@ -584,11 +587,6 @@ if __name__ == "__main__":
         if not port_available:
             logger.warning(f"Port {port} is already in use, switching to port 1002")
             port = 1002
-        
-        # Configure SSL
-        ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-        ssl_context.minimum_version = ssl.TLSVersion.TLSv1_2
-        ssl_context.set_ciphers('ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256')
         
         # Update logging level
         logging.basicConfig(level=logging.WARNING)

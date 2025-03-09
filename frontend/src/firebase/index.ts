@@ -19,7 +19,7 @@ const auth = getAuth(app);
 
 // Configure auth to use our proxy
 auth.config.emulator = {
-  url: `https://${host}:2000/auth/`
+  url: `http://${host}:2000/auth/`
 };
 
 // Override the default auth domain to use our proxy

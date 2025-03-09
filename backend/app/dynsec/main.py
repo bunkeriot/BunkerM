@@ -1128,22 +1128,6 @@ async def health_check(request: Request):
 
 
 if __name__ == "__main__":
-
-    ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    cert_path = os.getenv("SSL_CERT_PATH", "/app/certs/cert.pem")
-    key_path = os.getenv("SSL_KEY_PATH", "/app/certs/key.pem")
-
-    try:
-        ssl_context.load_cert_chain(certfile=cert_path, keyfile=key_path)
-        logger.info(f"Successfully loaded SSL certificates")
-    except Exception as e:
-        logger.error(f"Failed to load SSL certificates: {str(e)}")
-        raise
-
-    logger.info("Starting API server...")
-    uvicorn.run(
-        app,
-        host="0.0.0.0",  # Bind to all interfaces
-        port=1000,
-        log_level="info",
-    )
+    # Run the application
+    logger.info(f"Starting DynSec API")
+    uvicorn.run(app, host="0.0.0.0", port=1000)

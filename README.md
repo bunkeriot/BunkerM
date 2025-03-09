@@ -82,12 +82,8 @@ Replace `<HOST_IP>` with your host machine's IP address or domain name.
 
 ### 2. Access the Interface
 
-- Open your browser and navigate to `https://localhost:2000` 
-- You'll see a security warning about the SSL certificate
-- Click "Advanced" and then "Proceed to localhost (unsafe)"
-- This warning is normal and appears because a self-signed certificate is automatically generated during the build to enable secure communication.  
-
-![SSL Warning](/screenshots/image.png)
+- Open your browser and navigate to `http://localhost:2000`
+- The BunkerM web interface will load directly without any security warnings
 
 ### 3. Connect to the MQTT Broker
 

@@ -63,7 +63,7 @@ These can be mapped to different ports if needed.
 
 ### How do I access the web interface?
 
-Open your web browser and navigate to `https://localhost:2000` (or the appropriate address if installed on a remote server).
+Open your web browser and navigate to `http://localhost:2000` (or the appropriate address if installed on a remote server).
 
 ### What are the default login credentials?
 
@@ -85,7 +85,7 @@ Yes, BunkerM supports MQTT over WebSockets, allowing web applications to connect
 
 ### Does BunkerM support TLS/SSL?
 
-Yes, BunkerM includes built-in TLS/SSL support with a self-signed certificate. You can also configure it to use your own certificates.
+Yes, BunkerM can be configured to use TLS/SSL for secure communications. The default configuration uses HTTP for simplicity, but you can configure it to use your own certificates for HTTPS.
 
 ### Can I use BunkerM with existing MQTT clients?
 
@@ -172,10 +172,6 @@ Common reasons include:
 - Reaching maximum connection limit
 
 Check the [Troubleshooting Guide](troubleshooting.md) for detailed solutions.
-
-### Why am I seeing SSL certificate warnings?
-
-BunkerM uses a self-signed certificate by default, which browsers flag as untrusted. This is normal and you can safely proceed after accepting the warning.
 
 ### How do I reset the admin password if I forget it?
 

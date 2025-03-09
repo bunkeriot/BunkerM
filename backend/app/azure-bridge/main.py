@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     MQTT_PASSWORD: str
     MOSQUITTO_CERT_PATH: str = "/etc/mosquitto/certs"
     MOSQUITTO_CONF_PATH: str = "/etc/mosquitto/conf.d"
-    FRONTEND_URL: str = "https://localhost:2000"
+    FRONTEND_URL: str = "http://localhost:2000"
     ALLOWED_HOSTS: str = "localhost"
     API_KEY: str = None
     
@@ -264,26 +264,6 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     
-    # SSL context for HTTPS
-    ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    cert_path = os.getenv("SSL_CERT_PATH", "/app/certs/cert.pem")
-    key_path = os.getenv("SSL_KEY_PATH", "/app/certs/key.pem")
-    
-    try:
-        ssl_context.load_cert_chain(
-            certfile=cert_path,
-            keyfile=key_path
-        )
-        logger.info("Successfully loaded SSL certificates")
-    except Exception as e:
-        logger.error(f"Failed to load SSL certificates: {str(e)}")
-        raise
-
-    logger.info("Starting Azure IoT Hub Bridge API server...")
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=1004,  # Different port than AWS bridge
-        ssl=ssl_context,
-        log_level="info"
-    )
+    # Run the application
+    logger.info("Starting Azure Bridge API")
+    uvicorn.run(app, host="0.0.0.0", port=1004)

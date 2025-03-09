@@ -14,7 +14,7 @@ limitations under the License. -->
 
 // DefaultDashboard.vue
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue';  // Add computed import
+import { ref, onMounted, onUnmounted, computed } from 'vue';  // Remove Ref import
 import WidgetFive from './components/WidgetFive.vue';
 import UniqueVisitor from './components/UniqueVisitor.vue';
 import IncomeOverview from './components/IncomeOverview.vue';
@@ -72,8 +72,8 @@ const defaultStats: Stats = {
   }
 };
 
-const stats = ref<Stats>(defaultStats);
-const error = ref<string | null>(null);
+const stats = ref(defaultStats as Stats);
+const error = ref(null as string | null);
 let intervalId: number | null = null;
 
 // Update the computed property for weekly stats
@@ -137,12 +137,7 @@ const fetchStats = async () => {
 
 // Start polling when component mounts
 onMounted(() => {
-  // Check if we're on HTTPS
-  if (window.location.protocol !== 'https:') {
-    error.value = 'Please access this dashboard via HTTPS for security.';
-    return;
-  }
-
+  // Remove HTTPS check since we're now using HTTP
   fetchStats();
   intervalId = window.setInterval(fetchStats, 2000);//15 min
 });

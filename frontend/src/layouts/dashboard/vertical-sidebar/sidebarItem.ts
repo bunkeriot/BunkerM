@@ -1,9 +1,4 @@
 // icons
-import {
-
-  UserOutlined,
-  FileTextOutlined
-} from '@ant-design/icons-vue'; 
 
 import { BrandAwsIcon, BrandAzureIcon,UnlinkIcon,Stack3Icon, DashboardIcon, ShieldPlusIcon, AssemblyIcon,PasswordIcon, FileAnalyticsIcon } from 'vue-tabler-icons';
 

@@ -10,10 +10,11 @@ HOST_ADDRESS=$(echo "$HOST_ADDRESS" | sed -E 's#^(https?://)?([^:/]+).*#\2#')
 create_config() {
     local host=$1
     echo "window.__runtime_config__ = {
-        \"API_URL\": \"https://${host}:2000/api\",
-        \"DYNSEC_API_URL\": \"https://${host}:2000/api/dynsec\",
-        \"AWS_BRIDGE_API_URL\": \"https://${host}:2000/api/aws-bridge\",
-        \"MONITOR_API_URL\": \"https://${host}:2000/api/monitor\",
+        \"API_URL\": \"http://${host}:2000/api\",
+        \"DYNSEC_API_URL\": \"http://${host}:2000/api/dynsec\",
+        \"AWS_BRIDGE_API_URL\": \"http://${host}:2000/api/aws-bridge\",
+        \"MONITOR_API_URL\": \"http://${host}:2000/api/monitor\",
+        \"EVENT_API_URL\": \"http://${host}:2000/api/event\",
         \"host\": \"${host}\",
         \"debug\": true,
         \"timeout\": 10000,
@@ -30,5 +31,5 @@ create_config() {
 create_config "$HOST_ADDRESS"
 
 echo "Runtime configuration set to use host: $HOST_ADDRESS"
-echo "Firebase Auth will use proxy at https://$HOST_ADDRESS:2000/auth/"
+echo "Firebase Auth will use proxy at http://$HOST_ADDRESS:2000/auth/"
 

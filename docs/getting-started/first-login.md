@@ -6,10 +6,8 @@ This guide will walk you through the initial login process and the essential fir
 
 After installing BunkerM, you can access the web interface:
 
-1. Open your web browser and navigate to `https://localhost:2000` (or the appropriate address if installed on a remote server)
-2. You'll see a security warning about the SSL certificate (this is normal as BunkerM uses a self-signed certificate)
-3. Click "Advanced" and then "Proceed to localhost (unsafe)"
-4. You should now see the BunkerM login page
+1. Open your web browser and navigate to `http://localhost:2000` (or the appropriate address if installed on a remote server)
+2. You should now see the BunkerM login page
 
 ![Login Page](../assets/images/login.png)
 
