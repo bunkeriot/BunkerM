@@ -2,6 +2,7 @@ site_name: BunkerM - MQTT Made Easy!
 
 theme:
   name: material
+  custom_dir: theme
   features:
     - navigation.tabs.sticky  # Updated from navigation.tabs
     - navigation.sections
