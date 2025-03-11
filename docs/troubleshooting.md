@@ -131,12 +131,16 @@ If your configuration changes don't persist after container restart:
 
 1. **Use volume mounts**:
    Ensure you're using volume mounts for persistent data:
+
    ```bash
-   docker run -d -p 1900:1900 -p 2000:2000 \
-     -v mosquitto_data:/var/lib/mosquitto \
-     -v auth_data:/data \
-     bunkeriot/bunkerm
-   ```
+docker run -d -p 1900:1900 -p 2000:2000 \
+  -v mosquitto_data:/var/lib/mosquitto \
+  -v mosquitto_conf:/etc/mosquitto \
+  -v auth_data:/data \
+  bunkeriot/bunkerm
+```
+
+   
 
 2. **Check volume permissions**:
    Ensure the container has write permissions to the mounted volumes.

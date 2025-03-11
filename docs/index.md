@@ -73,7 +73,9 @@ Get up and running in seconds with BunkerM:
 docker run -d -p 1900:1900 -p 2000:2000 bunkeriot/bunkerm
 
 # With persistent data
-docker run -d -p 1900:1900 -p 2000:2000 -v mosquitto_data:/var/lib/mosquitto -v auth_data:/data bunkeriot/bunkerm
+```bash
+docker run -d -p 1900:1900 -p 2000:2000 -v mosquitto_data:/var/lib/mosquitto -v mosquitto_conf:/etc/mosquitto -v auth_data:/data bunkeriot/bunkerm
+```
 
 # For remote connection (from outside the host machine)
 docker run -p 2000:2000 -p 1900:1900 -e HOST_ADDRESS=<HOST_IP> bunkeriot/bunkerm

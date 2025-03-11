@@ -35,6 +35,7 @@ For production environments, you'll want to persist your data across container r
 ```bash
 docker run -d -p 1900:1900 -p 2000:2000 \
   -v mosquitto_data:/var/lib/mosquitto \
+  -v mosquitto_conf:/etc/mosquitto \
   -v auth_data:/data \
   bunkeriot/bunkerm
 ```
