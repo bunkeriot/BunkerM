@@ -61,11 +61,38 @@ export const useAuthStore = defineStore('auth', () => {
   // Register a new user
   async function register(email: string, password: string, firstName: string, lastName: string) {
     try {
-      // Create the user
-      const newUser = await addDemoUser(email, password, firstName, lastName);
+      // First try to register with the backend API
+      let newUser;
+      let newToken;
       
-      // Generate a token
-      const newToken = await hashPassword(newUser.id + Date.now().toString());
+      try {
+        // Call the backend API to register the user
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password, firstName, lastName }),
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          newUser = data.user;
+          newToken = data.token;
+          console.log('User registered successfully with backend API');
+        } else {
+          const error = await response.json();
+          console.warn('Backend registration failed, falling back to local storage:', error.error);
+          // Fall back to local storage
+          newUser = await addDemoUser(email, password, firstName, lastName);
+          newToken = await hashPassword(newUser.id + Date.now().toString());
+        }
+      } catch (apiError) {
+        console.warn('API call failed, falling back to local storage:', apiError);
+        // Fall back to local storage if API call fails
+        newUser = await addDemoUser(email, password, firstName, lastName);
+        newToken = await hashPassword(newUser.id + Date.now().toString());
+      }
       
       // Set as current user
       setUser(newUser, newToken);

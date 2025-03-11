@@ -11,12 +11,40 @@
  */
 export async function hashPassword(password: string): Promise<string> {
   try {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hash = await crypto.subtle.digest('SHA-256', data);
-    return Array.from(new Uint8Array(hash))
-      .map(b => b.toString(16).padStart(2, '0'))
-      .join('');
+    // First try the standard Web Crypto API
+    try {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password);
+      const hash = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(hash))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+    } catch (cryptoError) {
+      console.warn('Web Crypto API failed, falling back to simple hash:', cryptoError);
+      
+      // Simple fallback hash function for browsers with restricted Web Crypto API (like Safari)
+      let hash = 0;
+      for (let i = 0; i < password.length; i++) {
+        const char = password.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+      }
+      
+      // Convert to hex string and add salt
+      const salt = 'bunkerM' + new Date().getFullYear();
+      const hashStr = Math.abs(hash).toString(16).padStart(8, '0');
+      const saltedHash = hashStr + salt;
+      
+      // Double hash with a different algorithm to increase security
+      let secondHash = 0;
+      for (let i = 0; i < saltedHash.length; i++) {
+        const char = saltedHash.charCodeAt(i);
+        secondHash = ((secondHash >> 5) + secondHash) + char;
+        secondHash = secondHash & secondHash;
+      }
+      
+      return Math.abs(secondHash).toString(16).padStart(16, '0') + hashStr;
+    }
   } catch (error) {
     console.error('Error hashing password:', error);
     throw new Error('Failed to hash password');
@@ -49,13 +77,41 @@ export async function loginWithPassword(email: string, password: string): Promis
   try {
     console.log('Attempting login for email:', email);
     
+    // First try to login with the backend API
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful with backend API');
+        return {
+          user: data.user,
+          token: data.token
+        };
+      } else {
+        console.warn('Backend login failed, falling back to localStorage');
+        // Fall back to localStorage
+      }
+    } catch (apiError) {
+      console.warn('API call failed, falling back to localStorage:', apiError);
+      // Fall back to localStorage
+    }
+    
     // Get users from localStorage
     const usersJson = localStorage.getItem('users');
     console.log('Users in localStorage:', usersJson);
     
     if (!usersJson) {
       console.error('No users found in localStorage');
-      throw new Error('Invalid email or password');
+      // Try to reinitialize local auth
+      await import('./localAuth').then(module => module.initLocalAuth());
+      throw new Error('User data was missing. Please try logging in again.');
     }
     
     const users = JSON.parse(usersJson);
@@ -76,7 +132,9 @@ export async function loginWithPassword(email: string, password: string): Promis
     
     if (!passwordsJson) {
       console.error('No passwords found in localStorage');
-      throw new Error('Invalid email or password');
+      // Try to reinitialize local auth
+      await import('./localAuth').then(module => module.initLocalAuth());
+      throw new Error('Password data was missing. Please try logging in again.');
     }
     
     const passwords = JSON.parse(passwordsJson);
@@ -85,6 +143,12 @@ export async function loginWithPassword(email: string, password: string): Promis
     
     if (!storedHash) {
       console.error('No password hash found for user:', user.id);
+      // If this is the default user, try to reinitialize the password
+      if (user.email === 'admin@example.com') {
+        console.log('Attempting to reinitialize default user password');
+        await import('./localAuth').then(module => module.initLocalAuth());
+        throw new Error('Default user password was missing. Please try logging in again.');
+      }
       throw new Error('Invalid email or password');
     }
     

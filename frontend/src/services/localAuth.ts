@@ -47,13 +47,30 @@ export async function initLocalAuth() {
     users.push(DEFAULT_USER);
     localStorage.setItem('users', JSON.stringify(users));
     console.log('Default user stored:', DEFAULT_USER);
+  }
     
-    // Hash and store default password
+  // Check if passwords exist, create if not
+  let passwords = {};
+  const passwordsJson = localStorage.getItem('passwords');
+  
+  if (passwordsJson) {
     try {
+      passwords = JSON.parse(passwordsJson);
+      console.log('Existing passwords found');
+    } catch (error) {
+      console.error('Error parsing passwords from localStorage', error);
+      passwords = {};
+    }
+  }
+  
+  // Ensure default user has a password
+  if (!passwords[DEFAULT_USER.id]) {
+    try {
+      console.log('Creating password for default user...');
       const hashedPassword = await hashPassword(DEFAULT_PASSWORD);
       console.log('Default password hashed successfully');
       
-      const passwords = { [DEFAULT_USER.id]: hashedPassword };
+      passwords[DEFAULT_USER.id] = hashedPassword;
       localStorage.setItem('passwords', JSON.stringify(passwords));
       console.log('Default password stored successfully');
     } catch (error) {

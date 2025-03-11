@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Oxmo\Documents\GitHub\Bunker-M\venv"
+VIRTUAL_ENV="C:\Users\Oxmo\Documents\GitHub\BunkerM\Community\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

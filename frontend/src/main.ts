@@ -43,6 +43,13 @@ async function initApp() {
     console.log('Initializing local authentication system...');
     await initLocalAuth();
     
+    // Double-check that passwords are initialized
+    const passwordsJson = localStorage.getItem('passwords');
+    if (!passwordsJson) {
+      console.warn('Passwords not found after initialization, retrying...');
+      await initLocalAuth();
+    }
+    
     const app = createApp(App);
     const pinia = createPinia();
     

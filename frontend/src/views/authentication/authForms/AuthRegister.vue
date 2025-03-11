@@ -25,7 +25,7 @@ const registrationError = ref('');
 // Initialize auth store
 onMounted(async () => {
   // Initialize the auth store to check for existing sessions
-  await authStore.initialize();
+  await authStore.init();
   
   // If already authenticated, redirect to dashboard
   if (authStore.isAuthenticated()) {

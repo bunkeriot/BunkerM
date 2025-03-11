@@ -30,7 +30,7 @@ onMounted(async () => {
   password.value = 'password123';
   
   // Initialize the auth store to check for existing sessions
-  await authStore.initialize();
+  await authStore.init();
   
   // If already authenticated, redirect to dashboard
   if (authStore.isAuthenticated()) {
@@ -55,19 +55,50 @@ async function handleLogin() {
     error.value = '';
     console.log('Attempting login with:', email.value);
     
-    const response = await loginWithPassword(email.value, password.value);
-    console.log('Login successful, response:', response);
-    
-    // Store both user and token in the auth store
-    await authStore.setUser(response.user, response.token);
-    console.log('User and token set in store, redirecting...');
-    
-    router.push('/dashboard');
-  } catch (err: any) {
-    console.error('Login error:', err);
-    error.value = err.message || 'Login failed. Please try again.';
+    try {
+      const response = await loginWithPassword(email.value, password.value);
+      console.log('Login successful, response:', response);
+      
+      // Store both user and token in the auth store
+      await authStore.setUser(response.user, response.token);
+      console.log('User and token set in store, redirecting...');
+      
+      router.push('/dashboard');
+    } catch (err: any) {
+      console.error('Login error:', err);
+      
+      // If the error message indicates missing data, try to reinitialize and retry
+      if (err.message && (
+          err.message.includes('was missing') || 
+          err.message.includes('No passwords found')
+      )) {
+        error.value = 'Login data was missing. Reinitializing and retrying...';
+        
+        // Import and call initLocalAuth
+        const { initLocalAuth } = await import('@/services/localAuth');
+        await initLocalAuth();
+        
+        // Wait a moment and retry
+        setTimeout(async () => {
+          try {
+            const response = await loginWithPassword(email.value, password.value);
+            await authStore.setUser(response.user, response.token);
+            router.push('/dashboard');
+          } catch (retryErr: any) {
+            error.value = retryErr.message || 'Login failed after retry. Please try again.';
+          } finally {
+            loading.value = false;
+          }
+        }, 1000);
+        return;
+      }
+      
+      error.value = err.message || 'Login failed. Please try again.';
+    }
   } finally {
-    loading.value = false;
+    if (!error.value.includes('Reinitializing')) {
+      loading.value = false;
+    }
   }
 }
 </script>
