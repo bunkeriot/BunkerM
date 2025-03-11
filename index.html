@@ -336,33 +336,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support-bunkerm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Support BunkerM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      License
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1054,11 +1027,12 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span>bunkeriot/bunkerm
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># With persistent data</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span>-v<span class="w"> </span>mosquitto_data:/var/lib/mosquitto<span class="w"> </span>-v<span class="w"> </span>auth_data:/data<span class="w"> </span>bunkeriot/bunkerm
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># For remote connection (from outside the host machine)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-e<span class="w"> </span><span class="nv">HOST_ADDRESS</span><span class="o">=</span>&lt;HOST_IP&gt;<span class="w"> </span>bunkeriot/bunkerm
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sb">```</span>bash
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span>-v<span class="w"> </span>mosquitto_data:/var/lib/mosquitto<span class="w"> </span>-v<span class="w"> </span>mosquitto_conf:/etc/mosquitto<span class="w"> </span>-v<span class="w"> </span>auth_data:/data<span class="w"> </span>bunkeriot/bunkerm
 </code></pre></div>
+<h1 id="for-remote-connection-from-outside-the-host-machine">For remote connection (from outside the host machine)</h1>
+<p>docker run -p 2000:2000 -p 1900:1900 -e HOST_ADDRESS=<HOST_IP> bunkeriot/bunkerm
+```</p>
 <h2 id="getting-started">Getting Started</h2>
 <ul>
 <li><a href="getting-started/installation/">Installation</a> - Detailed installation instructions</li>

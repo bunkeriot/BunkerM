@@ -1249,15 +1249,16 @@
 <h3 id="lost-configuration-after-restart">Lost Configuration After Restart</h3>
 <p>If your configuration changes don't persist after container restart:</p>
 <ol>
-<li>
-<p><strong>Use volume mounts</strong>:
-   Ensure you're using volume mounts for persistent data:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-v<span class="w"> </span>mosquitto_data:/var/lib/mosquitto<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-v<span class="w"> </span>auth_data:/data<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>bunkeriot/bunkerm
-</code></pre></div></p>
-</li>
+<li><strong>Use volume mounts</strong>:
+   Ensure you're using volume mounts for persistent data:</li>
+</ol>
+<p><code>bash
+docker run -d -p 1900:1900 -p 2000:2000 \
+  -v mosquitto_data:/var/lib/mosquitto \
+  -v mosquitto_conf:/etc/mosquitto \
+  -v auth_data:/data \
+  bunkeriot/bunkerm</code></p>
+<ol>
 <li>
 <p><strong>Check volume permissions</strong>:
    Ensure the container has write permissions to the mounted volumes.</p>
@@ -1294,9 +1295,9 @@
 <li>
 <p><strong>Backup before updating</strong>:
    Always backup your data before updating:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>mosquitto_data:/data<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/backup:/backup<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>alpine<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;cd /data &amp;&amp; tar czf /backup/mosquitto_data.tar.gz .&quot;</span>
-</code></pre></div></p>
+   <code>bash
+   docker run --rm -v mosquitto_data:/data -v $(pwd)/backup:/backup \
+     alpine sh -c "cd /data &amp;&amp; tar czf /backup/mosquitto_data.tar.gz ."</code></p>
 </li>
 <li>
 <p><strong>Check logs after update</strong>:
@@ -1321,8 +1322,8 @@
 <ol>
 <li>
 <p><strong>Check Docker logs</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>&lt;container_id&gt;
-</code></pre></div></p>
+   <code>bash
+   docker logs &lt;container_id&gt;</code></p>
 </li>
 <li>
 <p><strong>Verify Docker version</strong>:
@@ -1335,9 +1336,9 @@
 <li>
 <p><strong>Try with a clean container</strong>:
    Remove the container and create a new one:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span>bunkeriot/bunkerm
-</code></pre></div></p>
+   <code>bash
+   docker rm &lt;container_id&gt;
+   docker run -d -p 1900:1900 -p 2000:2000 bunkeriot/bunkerm</code></p>
 </li>
 </ol>
 <h3 id="volume-mount-issues">Volume Mount Issues</h3>
@@ -1345,13 +1346,13 @@
 <ol>
 <li>
 <p><strong>Check volume existence</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>mosquitto
-</code></pre></div></p>
+   <code>bash
+   docker volume ls | grep mosquitto</code></p>
 </li>
 <li>
 <p><strong>Inspect volume details</strong>:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>mosquitto_data
-</code></pre></div></p>
+   <code>bash
+   docker volume inspect mosquitto_data</code></p>
 </li>
 <li>
 <p><strong>Check permissions</strong>:
