@@ -56,7 +56,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 ## 💼 Need Custom MQTT Features? Reach Out Today!
 
 > **Website**: https://bunkeriot.com  
-> **Email me at**: m.idrissi@bunkeriot.com  
+> **Email me at**: support@bunkeriot.com  
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
 
@@ -338,4 +338,4 @@ This project is licensed under the Apache License 2.0.
 You are free to use, modify, and distribute this software, even for commercial purposes, under the terms of the license.
 
 📜 Full license details: LICENSE  
-💼 For any inquiries, feel free to reach out: m.idrissi@bunkeriot.com
+💼 For any inquiries, feel free to reach out: support@bunkeriot.com
