@@ -9,6 +9,42 @@
 
 [![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
 
+## 📋 Table of Contents
+
+- [🔍 What is BunkerM?](#-what-is-bunkerm)
+- [💼 Need Custom MQTT Features? Reach Out Today!](#-need-custom-mqtt-features-reach-out-today)
+- [🏗️ Solution Overview](#️-solution-overview)
+- [🚀 Quick Start with Docker](#-quick-start-with-docker)
+  - [1. Run the Docker Container](#1-run-the-docker-container)
+  - [Persistent Data Deployment](#persistent-data-deployment)
+  - [Remote Access Installation](#remote-access-installation)
+  - [2. Access the Interface](#2-access-the-interface)
+  - [3. Connect to the MQTT Broker](#3-connect-to-the-mqtt-broker)
+- [⭐ Core Features](#-core-features)
+  - [Broker Dashboard](#broker-dashboard)
+  - [🔒 Access Control List (ACL) Management](#-access-control-list-acl-management)
+    - [Client Management](#client-management)
+    - [Role Management](#role-management)
+    - [Group Management](#group-management)
+  - [☁️ Cloud Integration (Pro Feature)](#️-cloud-integration-pro-feature)
+    - [AWS IoT Core Bridge](#aws-iot-core-bridge)
+    - [Azure IoT Hub Bridge](#azure-iot-hub-bridge)
+  - [🔌 REST API (Coming soon)](#-rest-api-coming-soon)
+- [👥 MQTT Client Management: Listing, Enabling, and Disabling](#-mqtt-client-management-listing-enabling-and-disabling)
+- [🛠️ Troubleshooting](#️-troubleshooting)
+- [✨ Features](#-features)
+  - [Infrastructure & Scaling](#infrastructure--scaling)
+  - [Core Management](#core-management)
+  - [Security](#security)
+  - [Cloud & Database Integrations](#cloud--database-integrations)
+  - [Monitoring & User Management](#monitoring--user-management)
+  - [Protocol Support](#protocol-support)
+  - [MQTT Features](#mqtt-features)
+  - [Platform Support](#platform-support)
+- [💰 Community vs Paid versions](#-community-vs-paid-versions)
+- [❤️ Support BunkerM Project](#️-support-bunkerm-project)
+- [📜 License](#-license)
+
 ## 🔍 What is BunkerM?
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.

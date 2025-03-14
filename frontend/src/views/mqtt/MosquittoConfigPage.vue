@@ -29,6 +29,48 @@ limitations under the License. -->
           <p>Configure your Mosquitto MQTT broker settings. Changes require a broker restart to take effect.</p>
         </div>
 
+        <!-- Current Configuration Summary -->
+        <v-card variant="outlined" class="mb-4">
+          <v-card-title class="text-subtitle-1">
+            <InfoCircleIcon stroke-width="1.5" size="22" class="me-2" />
+            Current Configuration Summary
+          </v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col cols="12" md="6">
+                <div class="d-flex align-center mb-2">
+                  <ServerIcon stroke-width="1.5" size="18" class="me-2" />
+                  <span class="font-weight-medium">Default Port:</span>
+                  <v-chip size="small" color="primary" class="ml-2">{{ config.listener || 1900 }}</v-chip>
+                </div>
+                <div class="d-flex align-center mb-2">
+                  <ShieldCheckIcon stroke-width="1.5" size="18" class="me-2" />
+                  <span class="font-weight-medium">Anonymous Access:</span>
+                  <v-chip size="small" :color="config.allow_anonymous ? 'warning' : 'success'" class="ml-2">
+                    {{ config.allow_anonymous ? 'Enabled' : 'Disabled' }}
+                  </v-chip>
+                </div>
+              </v-col>
+              <v-col cols="12" md="6">
+                <div class="d-flex align-center mb-2">
+                  <SettingsIcon stroke-width="1.5" size="18" class="me-2" />
+                  <span class="font-weight-medium">Max Connections:</span>
+                  <v-chip size="small" color="info" class="ml-2">
+                    {{ config.max_connections === -1 ? 'Unlimited' : config.max_connections }}
+                  </v-chip>
+                </div>
+                <div class="d-flex align-center mb-2">
+                  <ServerIcon stroke-width="1.5" size="18" class="me-2" />
+                  <span class="font-weight-medium">Additional Listeners:</span>
+                  <v-chip size="small" color="info" class="ml-2">
+                    {{ existingListeners.length }}
+                  </v-chip>
+                </div>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+
         <v-form ref="form" @submit.prevent="saveConfiguration">
           <!-- Configuration Sections -->
           <v-expansion-panels v-model="openPanel">
@@ -55,26 +97,26 @@ limitations under the License. -->
                           <template v-slot:activator="{ props }">
                             <v-icon v-bind="props" color="info">mdi-information-outline</v-icon>
                           </template>
-Port to use for the default MQTT listener.
-</v-tooltip>
-</template>
-</v-text-field>
-</v-col>
+                          Port to use for the default MQTT listener.
+                        </v-tooltip>
+                      </template>
+                    </v-text-field>
+                  </v-col>
 
-<v-col cols="12" md="6">
-  <v-text-field v-model="config.bind_address" label="Bind Address"
-    hint="IP address/hostname to bind the listener to (empty for all interfaces)" persistent-hint>
-    <template v-slot:append>
+                  <v-col cols="12" md="6">
+                    <v-text-field v-model="config.bind_address" label="Bind Address"
+                      hint="IP address/hostname to bind the listener to (empty for all interfaces)" persistent-hint>
+                      <template v-slot:append>
                         <v-tooltip location="bottom">
                           <template v-slot:activator="{ props }">
                             <v-icon v-bind="props" color="info">mdi-information-outline</v-icon>
                           </template>
-    IP address/hostname to bind the default listener to. If not given, the listener will be accessible to all network
-    interfaces.
-    </v-tooltip>
-    </template>
-  </v-text-field>
-</v-col> -->
+                          IP address/hostname to bind the default listener to. If not given, the listener will be accessible to all network
+                          interfaces.
+                        </v-tooltip>
+                      </template>
+                    </v-text-field>
+                  </v-col> -->
 
                   <v-col cols="12" md="6">
                     <v-text-field v-model="config.max_connections" label="Max Connections" type="number"
@@ -481,6 +523,20 @@ Port to use for the default MQTT listener.
                 </div>
               </v-expansion-panel-title>
               <v-expansion-panel-text>
+                <!-- Help section -->
+                <v-alert type="info" variant="tonal" class="mb-4">
+                  <div class="font-weight-bold mt-2 pa-2 border border-warning rounded">
+                    <p class="mb-0">Important: Additional listeners must use different ports than the default port ({{ config.listener || 1900 }}).</p>
+                    <p class="mb-0">Each listener must have a unique port number between 1 and 65535.</p>
+                    <p v-if="existingListeners.some(l => Number(l.port) === 8080)" class="mb-0 mt-2 text-warning">
+                      Note: Port 8080 is already in use by an existing listener and cannot be used for new listeners.
+                    </p>
+                    <p class="mb-0 mt-2 text-warning">
+                      <strong>Important:</strong> Port 8080 is reserved for Mosquitto's default configuration and cannot be used for additional listeners.
+                    </p>
+                  </div>
+                </v-alert>
+                
                 <v-row>
                   <v-col cols="12">
                     <v-btn color="success" @click="addListener" class="mb-4">
@@ -499,8 +555,15 @@ Port to use for the default MQTT listener.
 
                   <v-row>
                     <v-col cols="12" md="6">
-                      <v-text-field v-model="listener.port" label="Port" type="number"
-                        hint="Port number for this listener" persistent-hint></v-text-field>
+                      <v-text-field 
+                        v-model="listener.port" 
+                        label="Port" 
+                        type="number"
+                        hint="Port number for this listener" 
+                        persistent-hint
+                        :error-messages="getPortErrorMessage(listener.port, index)"
+                        @update:model-value="(val) => { listener.port = Number(val); }"
+                      ></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="6">
@@ -518,6 +581,59 @@ Port to use for the default MQTT listener.
                         hint="Maximum client connections allowed (-1 for unlimited)" persistent-hint></v-text-field>
                     </v-col>
                   </v-row>
+                </div>
+                
+                <!-- No listeners message -->
+                <v-alert v-if="listeners.length === 0 && existingListeners.length === 0" type="info" variant="tonal" class="mt-3">
+                  No additional listeners have been added. Click "Add Listener" to create a new listener configuration.
+                </v-alert>
+
+                <!-- Existing listeners from backend -->
+                <div v-if="existingListeners.length > 0" class="mt-6">
+                  <h3 class="text-subtitle-1 mb-3">Existing Listeners</h3>
+
+                  
+                  <!-- Search Bar -->
+                  <div class="mb-4">
+                    <v-text-field
+                      v-model="listenerSearch"
+                      prepend-inner-icon="mdi-magnify"
+                      label="Search listeners"
+                      single-line
+                      hide-details
+                      variant="outlined"
+                      density="compact"
+                    ></v-text-field>
+                  </div>
+                  
+                  <!-- Listeners Table -->
+                  <v-data-table
+                    :headers="listenerHeaders"
+                    :items="existingListeners"
+                    :search="listenerSearch"
+                    hover
+                    class="elevation-1 mb-4"
+                    :items-per-page="5"
+                    :items-per-page-options="[5, 10, 20]"
+                  >
+                    <template v-slot:item.port="{ item }">
+                      <v-chip size="small" color="info">{{ item.port }}</v-chip>
+                    </template>
+                    
+                    <template v-slot:item.bind_address="{ item }">
+                      {{ item.bind_address || 'All Interfaces' }}
+                    </template>
+                    
+                    <template v-slot:item.max_connections="{ item }">
+                      {{ item.max_connections === -1 ? 'Unlimited' : item.max_connections }}
+                    </template>
+                    
+                    <template v-slot:item.actions="{ item, index }">
+                      <v-btn color="error" icon size="small" @click="removeExistingListener(index)">
+                        <TrashIcon stroke-width="1.5" size="18" />
+                      </v-btn>
+                    </template>
+                  </v-data-table>
                 </div>
               </v-expansion-panel-text>
             </v-expansion-panel>
@@ -638,7 +754,8 @@ import {
   PlusIcon,
   TrashIcon,
   UploadIcon,
-  RefreshIcon
+  RefreshIcon,
+  InfoCircleIcon
 } from 'vue-tabler-icons';
 
 const { showSuccess, showError } = useSnackbar();
@@ -704,6 +821,18 @@ const config = reactive({ ...defaultConfig });
 // Listeners configuration
 const listeners = ref([]);
 
+// Store existing listeners from the backend
+const existingListeners = ref([]);
+
+// Search and table configuration for existing listeners
+const listenerSearch = ref('');
+const listenerHeaders = [
+  { title: 'Port', key: 'port', sortable: true },
+  { title: 'Bind Address', key: 'bind_address', sortable: true },
+  { title: 'Max Connections', key: 'max_connections', sortable: true },
+  { title: 'Actions', key: 'actions', sortable: false },
+];
+
 // Log destination options
 const logDestOptions = [
   'stdout',
@@ -737,6 +866,10 @@ onMounted(async () => {
 async function loadConfiguration() {
   try {
     loading.value = true;
+    
+    // Clear existing listeners to avoid validation errors during loading
+    existingListeners.value = [];
+    
     const response = await mqttService.getMosquittoConfig();
 
     if (response && response.success) {
@@ -753,14 +886,76 @@ async function loadConfiguration() {
         }
       });
 
-      // Handle listeners separately
+      // Get the default port
+      const defaultPort = Number(config.listener);
+      console.log('Default port when loading:', defaultPort);
+      
+      // Log all listeners from the backend for debugging
       if (response.listeners && Array.isArray(response.listeners)) {
-        listeners.value = response.listeners.map(listener => ({
-          port: listener.port || 1883,
-          bind_address: listener.bind_address || '',
-          per_listener_settings: listener.per_listener_settings === 'true' || listener.per_listener_settings === true,
-          max_connections: listener.max_connections ? Number(listener.max_connections) : -1
-        }));
+        console.log('All listeners from backend:', response.listeners);
+      }
+
+      // Store existing listeners in a separate variable but don't add them to the UI
+      // Filter out any listeners that use the default port or port 8080
+      if (response.listeners && Array.isArray(response.listeners)) {
+        // Create a set to track unique ports to avoid duplicates
+        const uniquePorts = new Set();
+        
+        // Add default port to the set
+        if (defaultPort) {
+          uniquePorts.add(defaultPort);
+          console.log(`Added default port ${defaultPort} to unique ports set`);
+        }
+        
+        // Add port 8080 to the set
+        uniquePorts.add(8080);
+        console.log(`Added reserved port 8080 to unique ports set`);
+        
+        existingListeners.value = response.listeners
+          .filter(listener => {
+            const listenerPort = Number(listener.port);
+            
+            // Skip invalid ports
+            if (!listenerPort || listenerPort <= 0 || listenerPort > 65535) {
+              console.log(`Filtering out listener with invalid port: ${listener.port}`);
+              return false;
+            }
+            
+            // Skip default port
+            const isDefaultPort = listenerPort === defaultPort;
+            if (isDefaultPort) {
+              console.log(`Filtering out existing listener with default port ${defaultPort}`);
+              return false;
+            }
+            
+            // Skip port 8080
+            const isPort8080 = listenerPort === 8080;
+            if (isPort8080) {
+              console.log(`Filtering out existing listener with port 8080 (reserved port)`);
+              return false;
+            }
+            
+            // Skip duplicate ports
+            if (uniquePorts.has(listenerPort)) {
+              console.log(`Filtering out duplicate listener with port ${listenerPort}`);
+              return false;
+            }
+            
+            // Add this port to the set of unique ports
+            uniquePorts.add(listenerPort);
+            console.log(`Added port ${listenerPort} to unique ports set`);
+            
+            return true;
+          })
+          .map(listener => ({
+            port: Number(listener.port) || 1883,
+            bind_address: listener.bind_address || '',
+            per_listener_settings: listener.per_listener_settings === 'true' || listener.per_listener_settings === true,
+            max_connections: listener.max_connections ? Number(listener.max_connections) : -1
+          }));
+        
+        console.log('Filtered existing listeners:', existingListeners.value);
+        console.log('Unique ports in use:', Array.from(uniquePorts).sort((a, b) => a - b));
       }
 
       showSuccess('Configuration loaded successfully');
@@ -780,26 +975,63 @@ function addListener() {
   // Default port to use when adding a new listener
   const defaultPort = 1883;
   
-  // Check if the default port is already in use
-  const usedPorts = new Set([1900, 8080]); // Default Mosquitto ports
+  // Create a set of used ports
+  const usedPorts = new Set();
+  
+  // Add the default listener port to used ports
+  if (config.listener) {
+    usedPorts.add(Number(config.listener));
+    console.log(`Adding default port ${config.listener} to used ports`);
+  }
   
   // Add existing listener ports to the set
   listeners.value.forEach(listener => {
-    usedPorts.add(listener.port);
+    if (listener.port && listener.port > 0 && listener.port <= 65535) {
+      usedPorts.add(Number(listener.port));
+      console.log(`Adding new listener port ${listener.port} to used ports`);
+    }
   });
+  
+  // Add existing backend listener ports to the set
+  // Only add ports that are actually in use by existing listeners
+  existingListeners.value.forEach(listener => {
+    if (listener.port && listener.port > 0 && listener.port <= 65535) {
+      usedPorts.add(Number(listener.port));
+      console.log(`Adding existing listener port ${listener.port} to used ports`);
+    }
+  });
+  
+  // Always add port 8080 to used ports to avoid suggesting it
+  usedPorts.add(8080);
+  console.log('Adding port 8080 to used ports to avoid conflicts');
+  
+  // Debug information
+  console.log('Used ports for new listener:', Array.from(usedPorts).sort((a, b) => a - b));
   
   // Find an available port starting from the default
   let newPort = defaultPort;
   while (usedPorts.has(newPort)) {
     newPort++;
+    // Avoid going beyond the valid port range
+    if (newPort > 65535) {
+      newPort = 1024; // Start from a common non-privileged port
+      break;
+    }
   }
   
-  listeners.value.push({
+  console.log('Selected new port:', newPort);
+  
+  // Create a new listener with the selected port
+  const newListener = {
     port: newPort,
     bind_address: '',
     per_listener_settings: false,
     max_connections: -1
-  });
+  };
+  
+  // Add the new listener to the list
+  listeners.value.push(newListener);
+  console.log('Added new listener:', newListener);
 }
 
 // Remove a listener
@@ -834,36 +1066,58 @@ function setDefaultConfig() {
   });
 
   listeners.value = [];
+  existingListeners.value = [];
 
   alert.show = true;
   alert.type = 'info';
   alert.message = 'Configuration has been reset to default values. Click Save to apply these changes.';
 }
 
-
 function validateConfiguration() {
-  // Check for duplicate listener ports
-  const ports = new Set();
-  const reservedPorts = new Set([1900, 8080]); // Default ports that should not be duplicated
+  // Check for duplicate listener ports and conflicts
   let error = null;
   
-  for (const listener of listeners.value) {
-    // Check if port is already used by another listener
-    if (ports.has(listener.port)) {
-      error = `Duplicate listener port ${listener.port} found. Each listener must use a unique port.`;
+  // Debug information about all ports in use
+  console.log('Validation - Default port:', Number(config.listener));
+  console.log('Validation - Existing listeners:', existingListeners.value.map(l => Number(l.port)));
+  console.log('Validation - New listeners:', listeners.value.map(l => Number(l.port)));
+  
+  // Check each listener for conflicts
+  for (const [index, listener] of listeners.value.entries()) {
+    // Check for empty or invalid ports first
+    if (!listener.port || listener.port <= 0 || listener.port > 65535) {
+      error = `Listener ${index + 1} has an invalid port number. Port must be between 1 and 65535.`;
       break;
     }
     
-    // Check if port is a reserved port that's already in use
-    if (reservedPorts.has(listener.port)) {
-      error = `Port ${listener.port} is already used by Mosquitto's default configuration. Please use a different port.`;
+    // Special handling for port 8080
+    if (Number(listener.port) === 8080) {
+      error = `Port 8080 is reserved for Mosquitto's default configuration. Please use a different port.`;
       break;
     }
     
-    ports.add(listener.port);
+    // Check for port conflicts
+    const conflicts = checkPortConflicts(listener.port, index);
+    
+    if (conflicts.length > 0) {
+      // Create a more specific error message based on the conflict type
+      if (conflicts.some(c => c.includes('Default Mosquitto listener'))) {
+        error = `Listener ${index + 1} (Port ${listener.port}) conflicts with the default Mosquitto listener. Please use a different port.`;
+      } else if (conflicts.some(c => c.includes('reserved for Mosquitto'))) {
+        error = `Port ${listener.port} is reserved for Mosquitto's default configuration. Please use a different port.`;
+      } else if (conflicts.some(c => c.includes('Existing listener'))) {
+        error = `Port ${listener.port} is already in use by an existing listener. Please use a different port.`;
+      } else if (conflicts.some(c => c.includes('New listener'))) {
+        error = `Port ${listener.port} is already used by another listener in this form. Please use a different port.`;
+      } else {
+        error = `Listener ${index + 1} (Port ${listener.port}) has a conflict. Please use a different port.`;
+      }
+      break;
+    }
   }
   
   if (error) {
+    // Show the error in the alert instead of the modal dialog
     alert.show = true;
     alert.type = 'error';
     alert.message = error;
@@ -873,9 +1127,11 @@ function validateConfiguration() {
   return true;
 }
 
-
 // Save configuration
 async function saveConfiguration() {
+  // Clear any existing error messages
+  alert.show = false;
+  
   // Validate configuration before saving
   if (!validateConfiguration()) {
     return; // Stop if validation fails
@@ -884,10 +1140,117 @@ async function saveConfiguration() {
   try {
     loading.value = true;
 
+    // Get the default port
+    const defaultPort = Number(config.listener);
+    console.log('Default port when saving:', defaultPort);
+    
+    // Create a set of unique ports to avoid duplicates
+    const uniquePorts = new Set();
+    
+    // Add default port to the set
+    if (defaultPort) {
+      uniquePorts.add(defaultPort);
+    }
+    
+    // Add port 8080 to the set
+    uniquePorts.add(8080);
+    
+    // Filter out any listeners that use the default port or port 8080
+    const filteredNewListeners = listeners.value.filter(listener => {
+      const listenerPort = Number(listener.port);
+      
+      // Skip invalid ports
+      if (!listenerPort || listenerPort <= 0 || listenerPort > 65535) {
+        console.log(`Filtering out listener with invalid port: ${listener.port}`);
+        return false;
+      }
+      
+      // Skip default port
+      const isDefaultPort = listenerPort === defaultPort;
+      if (isDefaultPort) {
+        console.log(`Filtering out new listener with default port ${defaultPort}`);
+        return false;
+      }
+      
+      // Skip port 8080
+      const isPort8080 = listenerPort === 8080;
+      if (isPort8080) {
+        console.log(`Filtering out new listener with port 8080 (reserved port)`);
+        return false;
+      }
+      
+      // Skip duplicate ports
+      if (uniquePorts.has(listenerPort)) {
+        console.log(`Filtering out duplicate listener with port ${listenerPort}`);
+        return false;
+      }
+      
+      // Add this port to the set of unique ports
+      uniquePorts.add(listenerPort);
+      
+      return true;
+    });
+    
+    // Reset uniquePorts for existing listeners
+    uniquePorts.clear();
+    
+    // Add default port to the set again
+    if (defaultPort) {
+      uniquePorts.add(defaultPort);
+    }
+    
+    // Add port 8080 to the set again
+    uniquePorts.add(8080);
+    
+    // Add all new listener ports to the set
+    filteredNewListeners.forEach(listener => {
+      uniquePorts.add(Number(listener.port));
+    });
+    
+    const filteredExistingListeners = existingListeners.value.filter(listener => {
+      const listenerPort = Number(listener.port);
+      
+      // Skip invalid ports
+      if (!listenerPort || listenerPort <= 0 || listenerPort > 65535) {
+        console.log(`Filtering out existing listener with invalid port: ${listener.port}`);
+        return false;
+      }
+      
+      // Skip default port
+      const isDefaultPort = listenerPort === defaultPort;
+      if (isDefaultPort) {
+        console.log(`Filtering out existing listener with default port ${defaultPort}`);
+        return false;
+      }
+      
+      // Skip port 8080
+      const isPort8080 = listenerPort === 8080;
+      if (isPort8080) {
+        console.log(`Filtering out existing listener with port 8080 (reserved port)`);
+        return false;
+      }
+      
+      // Skip duplicate ports (including those already in new listeners)
+      if (uniquePorts.has(listenerPort)) {
+        console.log(`Filtering out duplicate existing listener with port ${listenerPort}`);
+        return false;
+      }
+      
+      // Add this port to the set of unique ports
+      uniquePorts.add(listenerPort);
+      
+      return true;
+    });
+    
+    // Combine filtered listeners
+    const allListeners = [...filteredNewListeners, ...filteredExistingListeners];
+    console.log('Filtered listeners for saving:', allListeners);
+    console.log('Unique ports being saved:', Array.from(uniquePorts).sort((a, b) => a - b));
+
     // Prepare data for saving
     const saveData = {
       config: { ...config },
-      listeners: listeners.value
+      listeners: allListeners
     };
 
     const response = await mqttService.saveMosquittoConfig(saveData);
@@ -896,6 +1259,11 @@ async function saveConfiguration() {
       saveResults.success = true;
       saveResults.message = response.message || 'Configuration saved successfully';
       showSuccess(saveResults.message);
+
+      // Reload the configuration to ensure we have the latest data
+      // Temporarily clear existingListeners to avoid false conflicts during reload
+      existingListeners.value = [];
+      await loadConfiguration();
 
       // Show restart dialog after a short delay
       setTimeout(() => {
@@ -955,4 +1323,140 @@ async function restartMosquitto() {
   }
 }
 
+// Debug function to check port conflicts
+function checkPortConflicts(port, currentListenerIndex) {
+  if (!port) return [];
+  
+  const portNum = Number(port);
+  const conflicts = [];
+  
+  // Special handling for port 8080
+  if (portNum === 8080) {
+    conflicts.push(`Port 8080 is reserved for Mosquitto's default configuration`);
+    return conflicts;
+  }
+  
+  // Check if it conflicts with default listener
+  if (portNum === Number(config.listener)) {
+    conflicts.push(`Default Mosquitto listener on port ${config.listener}`);
+  }
+  
+  // Check if it conflicts with existing listeners from the backend
+  // This is the only check we should keep for "already in use" validation
+  existingListeners.value.forEach((listener, idx) => {
+    if (portNum === Number(listener.port)) {
+      conflicts.push(`Existing listener #${idx + 1} on port ${listener.port}`);
+    }
+  });
+  
+  // Check if it conflicts with other new listeners in the current editing session
+  // But only for duplicate detection within the current form, not for "already in use" messages
+  listeners.value.forEach((listener, index) => {
+    // Skip checking against itself if currentListenerIndex is provided
+    if (currentListenerIndex !== undefined && index === currentListenerIndex) {
+      return;
+    }
+    
+    if (portNum === Number(listener.port)) {
+      conflicts.push(`New listener #${index + 1} on port ${listener.port}`);
+    }
+  });
+  
+  // If conflicts are found, log detailed information for debugging
+  if (conflicts.length > 0) {
+    console.log(`Port conflict detected for port ${portNum}:`);
+    console.log(`- Default port: ${config.listener}`);
+    console.log(`- Existing listeners:`, existingListeners.value.map(l => l.port));
+    console.log(`- New listeners:`, listeners.value.map(l => l.port));
+    console.log(`- Conflicts:`, conflicts);
+  }
+  
+  return conflicts;
+}
+
+// New computed function to get port error message
+function getPortErrorMessage(port, index) {
+  // Don't show error messages during loading/saving
+  if (loading.value) return '';
+  
+  if (!port) return '';
+  
+  // Special handling for port 8080
+  if (Number(port) === 8080) {
+    return `Port 8080 is reserved for Mosquitto's default configuration. Please use a different port.`;
+  }
+  
+  const conflicts = checkPortConflicts(port, index);
+  if (conflicts.length > 0) {
+    // Check for specific types of conflicts and provide appropriate messages
+    if (conflicts.some(c => c.includes('reserved for Mosquitto'))) {
+      return `Port ${port} is reserved for Mosquitto's default configuration. Please use a different port.`;
+    } else if (conflicts.some(c => c.includes('Default Mosquitto listener'))) {
+      return `Port ${port} conflicts with the default Mosquitto listener. Please use a different port.`;
+    } else if (conflicts.some(c => c.includes('Existing listener'))) {
+      // Don't show inline error for existing listener conflicts
+      // These will be shown in the top alert during validation
+      return '';
+    } else if (conflicts.some(c => c.includes('New listener'))) {
+      // This is a conflict with another listener being added in the current session
+      return `Port ${port} is already used by another listener in this form. Please use a different port.`;
+    } else {
+      // Generic fallback message
+      return `Port ${port} has a conflict. Please use a different port.`;
+    }
+  }
+  return '';
+}
+
+// Remove existing listener
+function removeExistingListener(index) {
+  // Get the listener to be removed
+  const listener = existingListeners.value[index];
+  console.log(`Removing existing listener at index: ${index}, port: ${listener.port}`);
+  
+  // Show confirmation dialog
+  if (confirm(`Are you sure you want to remove the existing listener on port ${listener.port}?`)) {
+    // Show loading state
+    loading.value = true;
+    
+    // Call API to remove the listener from the configuration file
+    mqttService.removeMosquittoListener(listener.port)
+      .then(response => {
+        if (response && response.success) {
+          // Remove the listener from the array
+          existingListeners.value.splice(index, 1);
+          
+          // Show success message
+          alert.show = true;
+          alert.type = 'success';
+          alert.message = response.message || `Listener on port ${listener.port} has been removed from the configuration.`;
+          
+          // Show restart dialog after a short delay
+          setTimeout(() => {
+            showRestartDialog.value = true;
+          }, 1000);
+        } else {
+          // Show error message
+          alert.show = true;
+          alert.type = 'error';
+          alert.message = response.message || `Failed to remove listener on port ${listener.port}.`;
+        }
+      })
+      .catch(error => {
+        console.error('Error removing listener:', error);
+        
+        // Show error message
+        alert.show = true;
+        alert.type = 'error';
+        alert.message = error.response?.data?.detail || error.message || `An error occurred while removing listener on port ${listener.port}.`;
+      })
+      .finally(() => {
+        loading.value = false;
+      });
+  }
+}
 </script>
+
+<style scoped>
+/* Add your styles here */
+</style>

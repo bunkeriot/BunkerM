@@ -59,31 +59,33 @@ limitations under the License. -->
           <span class="text-h5">{{ formTitle }}</span>
         </v-card-title>
 
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field v-model="editedItem.username" label="Username" required
-                  :rules="[rules.required, rules.alphanumeric]" :error-messages="usernameError"
-                  @input="clearUsernameError" />
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="editedItem.password" label="Password" type="password" required
-                  :rules="[rules.required]" :error-messages="passwordError" @input="clearPasswordError" />
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
+        <v-form @submit.prevent="save">
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field v-model="editedItem.username" label="Username" required
+                    :rules="[rules.required]" :error-messages="usernameError"
+                    @input="clearUsernameError" />
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field v-model="editedItem.password" label="Password" type="password" required
+                    :rules="[rules.required]" :error-messages="passwordError" @input="clearPasswordError" />
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
 
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="blue-darken-1" variant="text" @click="closeDialog">
-            Cancel
-          </v-btn>
-          <v-btn color="blue-darken-1" variant="text" @click="save">
-            Save
-          </v-btn>
-        </v-card-actions>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn color="blue-darken-1" variant="text" @click="closeDialog">
+              Cancel
+            </v-btn>
+            <v-btn color="blue-darken-1" variant="text" type="submit">
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-form>
       </v-card>
     </v-dialog>
 

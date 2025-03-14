@@ -444,7 +444,24 @@ export const mqttService = {
     }
   },
 
-
+  // Remove a listener from Mosquitto configuration
+  async removeMosquittoListener(port) {
+    try {
+      const response = await axios.post('/api/config/remove-mosquitto-listener', 
+        { port: port }, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': getApiKey()
+          }
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error removing Mosquitto listener:', error);
+      throw error;
+    }
+  },
 
 // Get the dynamic security JSON configuration
 async getDynSecJson() {

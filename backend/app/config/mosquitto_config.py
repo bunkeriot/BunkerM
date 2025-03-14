@@ -314,6 +314,76 @@ async def reset_mosquitto_config(api_key: str = Security(get_api_key)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to reset Mosquitto configuration: {str(e)}",
         )
+
+
+@router.post("/remove-mosquitto-listener")
+async def remove_mosquitto_listener(
+    listener_data: dict, api_key: str = Security(get_api_key)
+):
+    """
+    Remove a specific listener from the Mosquitto configuration
+    """
+    try:
+        # Extract listener port from request data
+        port = listener_data.get("port")
+        if not port:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Listener port is required",
+            )
+
+        # Read current configuration
+        config_data = parse_mosquitto_conf()
+        config_dict = config_data["config"]
+        listeners_list = config_data["listeners"]
+        
+        # Find and remove the listener with the specified port
+        found = False
+        for i, listener in enumerate(listeners_list):
+            if listener.get("port") == port:
+                listeners_list.pop(i)
+                found = True
+                break
+        
+        if not found:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Listener with port {port} not found in configuration",
+            )
+        
+        # Create backup of current configuration
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_path = os.path.join(BACKUP_DIR, f"mosquitto.conf.bak.{timestamp}")
+
+        if os.path.exists(MOSQUITTO_CONF_PATH):
+            shutil.copy2(MOSQUITTO_CONF_PATH, backup_path)
+            logger.info(f"Created backup of Mosquitto configuration at {backup_path}")
+
+        # Generate new configuration content
+        new_config_content = generate_mosquitto_conf(config_dict, listeners_list)
+
+        # Write new configuration
+        with open(MOSQUITTO_CONF_PATH, "w") as f:
+            f.write(new_config_content)
+
+        # Set proper permissions
+        os.chmod(MOSQUITTO_CONF_PATH, 0o644)
+
+        logger.info(f"Listener on port {port} removed from Mosquitto configuration")
+        return {
+            "success": True,
+            "message": f"Listener on port {port} removed from Mosquitto configuration",
+            "need_restart": True,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error removing listener from Mosquitto configuration: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to remove listener from Mosquitto configuration: {str(e)}",
+        )
         
         
 def validate_listeners(current_listeners: List[Dict[str, Any]], new_listeners: List[Dict[str, Any]]) -> tuple[bool, str]:
