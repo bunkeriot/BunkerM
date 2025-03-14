@@ -294,7 +294,7 @@ async def log_request(request: Request):
         f"Time: {datetime.now().isoformat()}"
     )
 
-@app.middleware("https")
+@app.middleware("http")
 async def add_security_headers(request: Request, call_next):
     """Add security headers to all responses"""
     response = await call_next(request)

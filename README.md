@@ -7,22 +7,28 @@
   </a>
 </p>
 
+<style>
+a {
+  text-decoration: none !important;
+}
+</style>
+
 [![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
 
 ## 📋 Table of Contents
 
-- [🔍 What is BunkerM?](#-what-is-bunkerm)
-- [💼 Need Custom MQTT Features? Reach Out Today!](#-need-custom-mqtt-features-reach-out-today)
-- [🏗️ Solution Overview](#️-solution-overview)
-- [🚀 Quick Start with Docker](#-quick-start-with-docker)
-- [⭐ Core Features](#-core-features)
+- [ What is BunkerM?](#what-is-bunkerm)
+- [💼 Need Custom MQTT Features? Reach Out Today!](#need-custom-mqtt-features-reach-out-today)
+- [Solution Overview](#solution-overview)
+- [ Quick Start with Docker](#quick-start-with-docker)
+- [⭐ Core Features](#core-features)
   - [Broker Dashboard](#broker-dashboard)
-  - [🔒 Access Control List (ACL) Management](#-access-control-list-acl-management)
-  - [☁️ Cloud Integration (Pro Feature)](#️-cloud-integration-pro-feature)
-  - [🔌 REST API (Coming soon)](#-rest-api-coming-soon)
-- [👥 MQTT Client Management: Listing, Enabling, and Disabling](#-mqtt-client-management-listing-enabling-and-disabling)
-- [🛠️ Troubleshooting](#️-troubleshooting)
-- [✨ Features](#-features)
+  - [Access Control List (ACL) Management](#access-control-list-acl-management)
+  - [Cloud Integration (Pro Feature)](#cloud-integration-pro-feature)
+  - [REST API (Coming soon)](#rest-api-coming-soon)
+  - [MQTT Client Management](#mqtt-client-management)
+- [🛠️ Troubleshooting](#troubleshooting)
+- [✨ Features](#features)
   - [Infrastructure & Scaling](#infrastructure--scaling)
   - [Core Management](#core-management)
   - [Security](#security)
@@ -31,10 +37,11 @@
   - [Protocol Support](#protocol-support)
   - [MQTT Features](#mqtt-features)
   - [Platform Support](#platform-support)
-- [💰 Community vs Paid versions](#-community-vs-paid-versions)
-- [❤️ Support BunkerM Project](#️-support-bunkerm-project)
-- [📜 License](#-license)
+- [💰 Community vs Paid versions](#community-vs-paid-versions)
+- [❤️ Support BunkerM Project](#support-bunkerm-project)
+- [📜 License](#license)
 
+<a id="what-is-bunkerm"></a>
 ## 🔍 What is BunkerM?
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
@@ -43,6 +50,7 @@ BunkerM is an open-source, containerized MQTT management solution that bundles t
 
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
+<a id="need-custom-mqtt-features-reach-out-today"></a>
 ## 💼 Need Custom MQTT Features? Reach Out Today!
 
 > **Website**: https://bunkeriot.com  
@@ -50,6 +58,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
 
+<a id="solution-overview"></a>
 ## 🏗️ Solution Overview
 
 ![BunkerM Features](/screenshots/bunkerM.png)
@@ -61,6 +70,7 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 * Monitoring and Logging System
 * Cloud Bridge Integration (Pro Feature)
 
+<a id="quick-start-with-docker"></a>
 ## 🚀 Quick Start with Docker  
 
 Get up and running in seconds with **BunkerM**!  
@@ -119,6 +129,7 @@ Replace `<HOST_IP>` with your host machine's IP address or domain name.
 
 ![Add Client Screenshot](/screenshots/Bunkerm-addclient.jpg)
 
+<a id="core-features"></a>
 ## ⭐ Core Features
 
 ### Broker Dashboard
@@ -175,12 +186,13 @@ Connect to major cloud providers:
 
 ### 🔌 REST API (Coming soon)
 
-## 👥 MQTT Client Management: Listing, Enabling, and Disabling
+### 👥 MQTT Client Management
 
 ![Connected Clients Screenshot](docs/assets/images/connected-clients.png)  
 
 This module provides a real-time list of currently connected clients on a node, along with the ability to connect or disconnect an MQTT client using the "Enable" and "Disable" buttons.
 
+<a id="troubleshooting"></a>
 ## 🛠️ Troubleshooting
 
 - Verify Docker is running
@@ -189,6 +201,7 @@ This module provides a real-time list of currently connected clients on a node, 
 - Verify network connectivity
 - Check SSL certificate configuration
 
+<a id="features"></a>
 ## ✨ Features
 
 ### Infrastructure & Scaling
@@ -290,6 +303,7 @@ This module provides a real-time list of currently connected clients on a node, 
 | Windows | ✓ | ✓ | ✓ |
 | White Labeling | ✗ | ✗ | ✓ |
 
+<a id="community-vs-paid-versions"></a>
 ## 💰 Community vs Paid versions
 
 My mission with BunkerM is to democratize IoT by making MQTT management accessible to everyone. The Community Version is designed to be lightweight, easy to use, and completely free, offering essential features for individuals and small projects.
@@ -306,6 +320,7 @@ The revenue from the Pro and Enterprise versions will directly support the devel
 
 If the open-source community shows enough support, I may consider making the Pro version free as well. Your feedback and contributions are invaluable in shaping the future of BunkerM!
 
+<a id="support-bunkerm-project"></a>
 ## ❤️ Support BunkerM Project
 
 BunkerM is an open-source project dedicated to making MQTT broker management accessible and secure for everyone. As a solo developer, I've poured countless hours into creating a comprehensive solution that combines the power of Mosquitto with an intuitive management interface, all while keeping it free for non-commercial use.
@@ -322,6 +337,7 @@ Every contribution, no matter the size, helps keep this project active and growi
 
 Thank you for supporting open source! 🙏
 
+<a id="license"></a>
 ## 📜 License
 
 This project is licensed under the Apache License 2.0.
