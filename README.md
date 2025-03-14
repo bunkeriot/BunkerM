@@ -3,7 +3,24 @@
   <a href="https://bunkeriot.github.io/BunkerM/">
     <img
       src="https://img.shields.io/badge/Full%20documentation%20Available-%20Here-green?style=for-the-badge&logo=read-the-docs"
-      alt="Read the Docs">
+      alt="Reddit">
+  </a>
+</p>
+<p align="center">
+  <a href="https://www.reddit.com/r/BunkerM/">
+    <img
+      src="https://img.shields.io/badge/Join our-Community-orange?logo=reddit&logoColor=white"
+      alt="Reddit Community">
+  </a>
+  <a href="https://www.linkedin.com/in/mehdi-idrissi/">
+    <img
+      src="https://img.shields.io/badge/Follow me-LinkedIn-blue?logo=linkedin&logoColor=white"
+      alt="LinkedIn Profile">
+  </a>
+  <a href="https://x.com/BunkerIoT">
+    <img
+      src="https://img.shields.io/badge/Follow me-X (Twitter)-black?logo=x&logoColor=white"
+      alt="X (Twitter) Profile">
   </a>
 </p>
 
