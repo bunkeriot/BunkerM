@@ -24,11 +24,6 @@
   </a>
 </p>
 
-<style>
-a {
-  text-decoration: none !important;
-}
-</style>
 
 [![Support BunkerM](/screenshots/SupportBM.jpg)](https://www.paypal.com/donate/?hosted_button_id=ZFEJHMWKU2Q4Q)
 
