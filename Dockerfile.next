@@ -1,0 +1,207 @@
+# =============================================================================
+# Stage 1: Next.js frontend build
+# =============================================================================
+FROM node:20-alpine AS nextjs-build
+
+WORKDIR /frontend
+
+COPY frontend/package*.json ./
+RUN npm ci --prefer-offline
+
+COPY frontend .
+
+ARG NEXT_PUBLIC_API_KEY=default_api_key_replace_in_production
+ENV AUTH_SECRET=build-time-placeholder \
+    NEXT_TELEMETRY_DISABLED=1 \
+    NEXT_PUBLIC_API_KEY=${NEXT_PUBLIC_API_KEY}
+
+RUN npm run build
+
+# =============================================================================
+# Stage 2: Backend base (Alpine with all services)
+# =============================================================================
+FROM alpine:3.18 AS base
+
+RUN apk update && apk add --no-cache \
+    python3 \
+    python3-dev \
+    musl-dev \
+    linux-headers \
+    py3-pip \
+    mosquitto \
+    mosquitto-clients \
+    mosquitto-dev \
+    libffi-dev \
+    build-base \
+    bash \
+    curl \
+    unzip \
+    supervisor \
+    ca-certificates \
+    nodejs \
+    npm \
+    nginx \
+    openrc \
+    gcc \
+    py3-cryptography && \
+    case "$(apk --print-arch)" in \
+        aarch64) apk add --no-cache openjdk11-jre-headless ;; \
+        armv7) apk add --no-cache openjdk8-jre-base ;; \
+        x86_64) apk add --no-cache openjdk11-jre ;; \
+        *) echo "Unsupported architecture" && exit 1 ;; \
+    esac
+
+# =============================================================================
+# Stage 3: Final image
+# =============================================================================
+FROM base AS final
+
+# Python virtual environment
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install Python packages
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir \
+    psutil \
+    paho-mqtt \
+    fastapi \
+    python-dotenv \
+    pydantic \
+    pydantic-settings \
+    "uvicorn[standard]" \
+    flask \
+    flask-cors \
+    pytz \
+    statistics \
+    python-multipart \
+    "passlib[bcrypt]" \
+    python-jwt \
+    PyJWT \
+    slowapi \
+    secure \
+    python-decouple \
+    starlette-context \
+    structlog \
+    python-json-logger \
+    aiofiles \
+    types-aiofiles \
+    typing-extensions
+
+RUN pip install --no-cache-dir \
+    cryptography \
+    pyOpenSSL \
+    "python-jose[cryptography]"
+
+RUN pip install --no-cache-dir \
+    fastapi-jwt-auth \
+    fastapi-limiter
+
+# Create all required directories
+RUN mkdir -p \
+    /run/nginx \
+    /etc/nginx/conf.d \
+    /etc/supervisor/conf.d \
+    /app \
+    /app/jwt \
+    /var/log/api \
+    /var/log/mosquitto \
+    /var/log/supervisor \
+    /var/log/nginx \
+    /etc/mosquitto/conf.d \
+    /var/lib/mosquitto/db \
+    /tmp/mosquitto_backups \
+    /tmp/dynsec_backups \
+    /nextjs/data && \
+    touch /etc/mosquitto/mosquitto_passwd && \
+    chmod 644 /etc/mosquitto/mosquitto_passwd
+
+# Configure nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default-next.conf /etc/nginx/conf.d/default.conf
+
+# Configure supervisord
+COPY supervisord-next.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Copy backend config and source
+COPY backend/mosquitto/config/mosquitto.conf /etc/mosquitto/mosquitto.conf
+COPY backend/etc/mosquitto/conf.d/ /etc/mosquitto/conf.d/
+COPY backend/app /app
+RUN touch /app/monitor/__init__.py
+COPY backend/mosquitto/dynsec/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
+
+# Copy config-env script
+COPY config-env.sh /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/config-env.sh
+
+# Copy Next.js standalone output
+COPY --from=nextjs-build /frontend/.next/standalone /nextjs/
+COPY --from=nextjs-build /frontend/.next/static /nextjs/.next/static
+
+# Set permissions
+RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
+    chmod -R 775 /var/lib/mosquitto && \
+    chown -R root:root /app && \
+    chmod -R 755 /app && \
+    chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd && \
+    chmod 664 /etc/mosquitto/mosquitto_passwd && \
+    chown -R mosquitto:root /var/log/mosquitto && \
+    chmod -R 644 /var/log/mosquitto && \
+    chmod 755 /var/log/mosquitto && \
+    chown -R mosquitto:mosquitto /etc/mosquitto && \
+    chmod -R 755 /etc/mosquitto && \
+    chmod 644 /etc/mosquitto/mosquitto.conf && \
+    chmod -R 755 /var/log/supervisor && \
+    chmod -R 755 /var/log/api && \
+    chmod -R 755 /nextjs && \
+    chmod 755 /tmp/mosquitto_backups && \
+    chmod 755 /tmp/dynsec_backups
+
+# Environment defaults
+ENV MQTT_BROKER=localhost \
+    MQTT_PORT=1900 \
+    MQTT_USERNAME=bunker \
+    MQTT_PASSWORD=bunker \
+    JWT_SECRET=default_jwt_secret_replace_in_production \
+    API_KEY=default_api_key_replace_in_production \
+    HOST_ADDRESS=localhost \
+    FRONTEND_URL=http://localhost:2000 \
+    ALLOWED_ORIGINS=* \
+    ALLOWED_HOSTS=* \
+    RATE_LIMIT_PER_MINUTE=100 \
+    LOG_LEVEL=INFO \
+    API_LOG_FILE=/var/log/api/api_activity.log \
+    MOSQUITTO_PASSWD_PATH=/etc/mosquitto/mosquitto_passwd \
+    MOSQUITTO_CONF_PATH=/etc/mosquitto/mosquitto.conf \
+    MOSQUITTO_BACKUP_DIR=/tmp/mosquitto_backups \
+    CONFIG_API_PORT=1005 \
+    DYNSEC_PATH=/var/lib/mosquitto/dynamic-security.json \
+    MAX_UPLOAD_SIZE=10485760 \
+    PYTHONPATH=/app/monitor \
+    NODE_ENV=production \
+    BROKER_LOG_PATH=/var/log/mosquitto/mosquitto.log \
+    CLIENT_LOG_PATH=/var/log/api/api_activity.log
+
+# Startup script
+RUN printf '#!/bin/sh\n\
+mkdir -p /var/log/mosquitto /var/log/supervisor /var/log/nginx /var/log/api\n\
+touch /var/log/mosquitto/mosquitto.log\n\
+touch /var/log/mosquitto/mosquitto.err.log\n\
+touch /var/log/api/api_activity.log\n\
+touch /etc/mosquitto/mosquitto_passwd\n\
+chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd\n\
+chmod 664 /etc/mosquitto/mosquitto_passwd\n\
+chown -R mosquitto:root /var/log/mosquitto\n\
+chmod -R 644 /var/log/mosquitto\n\
+chmod 755 /var/log/mosquitto\n\
+chmod -R 755 /var/log/supervisor\n\
+chmod -R 755 /var/log/api\n\
+mkdir -p /nextjs/data && chmod 755 /nextjs/data\n\
+pkill nginx || true\n\
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf\n\
+' > /start.sh && chmod +x /start.sh
+
+EXPOSE 2000 1900
+
+CMD ["/bin/sh", "-c", "/docker-entrypoint.d/config-env.sh && /start.sh"]
