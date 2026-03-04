@@ -6,7 +6,8 @@
 # Distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 #
 # app/monitor/main.py
-from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi import FastAPI, Depends, HTTPException, Request, Body
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -67,6 +68,29 @@ API_KEY_NAME = "X-API-Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 API_KEY = os.getenv("API_KEY", "default_api_key_replace_in_production")
 API_KEYS = {API_KEY}
+
+_api_key_cache: dict = {"key": "", "ts": 0.0}
+
+def _get_current_api_key() -> str:
+    """Return the active API key, refreshing from file every 5 s."""
+    import time as _t
+    now = _t.time()
+    if _api_key_cache["key"] and now - _api_key_cache["ts"] < 5.0:
+        return _api_key_cache["key"]
+    key = os.getenv("API_KEY", "")
+    if not key or key == "default_api_key_replace_in_production":
+        try:
+            with open("/nextjs/data/.api_key") as _fh:
+                file_key = _fh.read().strip()
+                if file_key:
+                    key = file_key
+        except Exception:
+            pass
+    if not key:
+        key = "default_api_key_replace_in_production"
+    _api_key_cache["key"] = key
+    _api_key_cache["ts"] = now
+    return key
 
 # Define the topics we're interested in
 MONITORED_TOPICS = {
@@ -231,15 +255,19 @@ limiter = Limiter(key_func=get_remote_address)
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
+# Global MQTT client reference (set during lifespan startup)
+_mqtt_client = None
+
 # Define the lifespan context manager for FastAPI
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup code (previously in @app.on_event("startup"))
+    global _mqtt_client
     client = connect_mqtt()
+    _mqtt_client = client
     client.loop_start()
     yield
-    # Shutdown code if needed
     client.loop_stop()
+    _mqtt_client = None
 
 # Initialize FastAPI app with versioning (only do this once!)
 app = FastAPI(
@@ -277,7 +305,7 @@ async def get_api_key(api_key: str = Depends(api_key_header)):
             detail="No API key provided"
         )
     
-    if api_key not in API_KEYS:
+    if api_key != _get_current_api_key():
         logger.error(f"Invalid API key provided: {api_key}")
         raise HTTPException(
             status_code=403,
@@ -335,6 +363,30 @@ class NonceManager:
 
 nonce_manager = NonceManager()
 
+class TopicStore:
+    def __init__(self):
+        self._lock = threading.Lock()
+        self._topics: Dict[str, dict] = {}
+
+    def update(self, topic: str, payload: bytes, retained: bool = False, qos: int = 0):
+        with self._lock:
+            value = payload.decode('utf-8', errors='replace') if payload else ''
+            prev = self._topics.get(topic, {})
+            self._topics[topic] = {
+                'topic': topic,
+                'value': value,
+                'timestamp': datetime.now().isoformat(),
+                'count': prev.get('count', 0) + 1,
+                'retained': retained,
+                'qos': qos,
+            }
+
+    def get_all(self) -> list:
+        with self._lock:
+            return sorted(self._topics.values(), key=lambda x: x['topic'])
+
+topic_store = TopicStore()
+
 def on_message(client, userdata, msg):
     """Handle messages from MQTT broker"""
     if msg.topic in MONITORED_TOPICS:
@@ -352,9 +404,10 @@ def on_message(client, userdata, msg):
                     setattr(mqtt_stats, attr_name, value)
         except ValueError as e:
             logger.error(f"Error processing message from {msg.topic}: {e}")
-    # Count non-$SYS messages
+    # Count non-$SYS messages and track topics
     elif not msg.topic.startswith('$SYS/'):
         mqtt_stats.increment_user_messages()
+        topic_store.update(msg.topic, msg.payload, getattr(msg, 'retain', False), msg.qos)
 
 def connect_mqtt():
     """Connect to MQTT broker"""
@@ -557,6 +610,29 @@ async def test_storage():
             status_code=500,
             content={"error": f"Storage test failed: {str(e)}"}
         )
+
+@app.get("/api/v1/topics", dependencies=[Depends(get_api_key)])
+async def get_topics(request: Request):
+    """Get all tracked MQTT topics with latest values"""
+    await log_request(request)
+    return {"topics": topic_store.get_all()}
+
+class PublishRequest(BaseModel):
+    topic: str
+    payload: str = ""
+    qos: int = 0
+    retain: bool = False
+
+@app.post("/api/v1/publish", dependencies=[Depends(get_api_key)])
+async def publish_message(request: Request, body: PublishRequest):
+    """Publish a message to a topic via the broker"""
+    await log_request(request)
+    if _mqtt_client is None:
+        raise HTTPException(status_code=503, detail="MQTT client not connected")
+    result = _mqtt_client.publish(body.topic, body.payload, qos=body.qos, retain=body.retain)
+    if result.rc != 0:
+        raise HTTPException(status_code=500, detail=f"Publish failed (rc={result.rc})")
+    return {"status": "published", "topic": body.topic}
 
 @app.get("/health")
 async def health_check():

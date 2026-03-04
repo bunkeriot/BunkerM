@@ -16,6 +16,11 @@ import {
   Lock,
   ChevronRight,
   Wifi,
+  Radio,
+  KeyRound,
+  BellRing,
+  ScanLine,
+  BarChart2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -48,11 +53,20 @@ const navGroups: NavGroup[] = [
     ],
   },
   {
-    title: 'Monitoring',
+    title: 'Tools',
     items: [
       { label: 'Connected Clients', href: '/mqtt/connected-clients', icon: Wifi },
+      { label: 'MQTT Explorer', href: '/mqtt/explorer', icon: Radio },
       { label: 'Broker Logs', href: '/mqtt/broker-logs', icon: FileText },
       { label: 'Client Logs', href: '/mqtt/client-logs', icon: Activity },
+    ],
+  },
+  {
+    title: 'Monitoring',
+    items: [
+      { label: 'Alerts', href: '/ai/alerts', icon: BellRing },
+      { label: 'Anomalies', href: '/ai/anomalies', icon: ScanLine },
+      { label: 'Metrics', href: '/ai/metrics', icon: BarChart2 },
     ],
   },
   {
@@ -60,6 +74,7 @@ const navGroups: NavGroup[] = [
     items: [
       { label: 'Broker Config', href: '/mqtt/config', icon: Settings },
       { label: 'Import Password', href: '/mqtt/import-password', icon: Upload },
+      { label: 'Settings', href: '/settings', icon: KeyRound },
     ],
   },
   {
@@ -88,7 +103,7 @@ export function Sidebar({ className, onNavClick }: SidebarProps) {
         )}
       >
         {/* Logo */}
-        <div className="flex items-center gap-2 px-4 py-5 border-b border-sidebar-border">
+        <div className="flex items-center gap-2 px-4 h-14 border-b border-sidebar-border">
           <div className="flex items-center justify-center w-8 h-8 bg-sidebar-primary rounded-lg">
             <Lock className="w-4 h-4 text-white" />
           </div>

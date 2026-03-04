@@ -70,6 +70,29 @@ API_KEY_NAME = "X-API-Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=True)
 API_KEYS = {settings.API_KEY} if settings.API_KEY else {secrets.token_urlsafe(32)}
 
+_api_key_cache: dict = {"key": "", "ts": 0.0}
+
+def _get_current_api_key() -> str:
+    """Return the active API key, refreshing from file every 5 s."""
+    import time as _t
+    now = _t.time()
+    if _api_key_cache["key"] and now - _api_key_cache["ts"] < 5.0:
+        return _api_key_cache["key"]
+    key = os.getenv("API_KEY", "")
+    if not key or key == "default_api_key_replace_in_production":
+        try:
+            with open("/nextjs/data/.api_key") as _fh:
+                file_key = _fh.read().strip()
+                if file_key:
+                    key = file_key
+        except Exception:
+            pass
+    if not key:
+        key = "default_api_key_replace_in_production"
+    _api_key_cache["key"] = key
+    _api_key_cache["ts"] = now
+    return key
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -86,7 +109,7 @@ app.add_middleware(
 )
 
 async def get_api_key(api_key: str = Security(api_key_header)):
-    if api_key not in API_KEYS:
+    if api_key != _get_current_api_key():
         logger.warning(f"Invalid API key attempt")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

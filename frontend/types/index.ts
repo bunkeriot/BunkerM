@@ -132,10 +132,60 @@ export interface MQTTEvent {
   port: number
 }
 
+// MQTT Explorer types
+export interface MqttTopic {
+  topic: string
+  value: string
+  timestamp: string
+  count: number
+  retained: boolean
+  qos: number
+}
+
 // Log types
 export interface LogEntry {
   timestamp: string
   level?: string
   message: string
   raw: string
+}
+
+// ── Smart Anomaly Detection types ────────────────────────────────────────────
+
+export type AlertSeverity = 'low' | 'medium' | 'high' | 'critical'
+export type AnomalyType = 'z_score' | 'ewma' | 'spike' | 'silence'
+
+export interface AiAlert {
+  id: string
+  entity_type: string
+  entity_id: string
+  anomaly_type: AnomalyType
+  severity: AlertSeverity
+  description: string
+  acknowledged: boolean
+  created_at: string
+}
+
+export interface AiAnomaly {
+  id: string
+  entity_type: string
+  entity_id: string
+  anomaly_type: AnomalyType
+  score: number
+  details: Record<string, unknown>
+  detected_at: string
+}
+
+export interface MetricField {
+  mean: number | null
+  std: number | null
+  count: number
+  computed_at: string | null
+}
+
+export interface AiMetrics {
+  entity_type: string
+  entity_id: string
+  window: string
+  fields: Record<string, MetricField>
 }

@@ -54,6 +54,29 @@ MOSQUITTO_IP = os.getenv("MOSQUITTO_IP")
 MOSQUITTO_PORT = os.getenv("MOSQUITTO_PORT")
 API_KEY = os.getenv("API_KEY")
 
+_api_key_cache: dict = {"key": "", "ts": 0.0}
+
+def _get_current_api_key() -> str:
+    """Return the active API key, refreshing from file every 5 s."""
+    import time as _t
+    now = _t.time()
+    if _api_key_cache["key"] and now - _api_key_cache["ts"] < 5.0:
+        return _api_key_cache["key"]
+    key = os.getenv("API_KEY", "")
+    if not key or key == "default_api_key_replace_in_production":
+        try:
+            with open("/nextjs/data/.api_key") as _fh:
+                file_key = _fh.read().strip()
+                if file_key:
+                    key = file_key
+        except Exception:
+            pass
+    if not key:
+        key = "default_api_key_replace_in_production"
+    _api_key_cache["key"] = key
+    _api_key_cache["ts"] = now
+    return key
+
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 # Base command for mosquitto_ctrl
@@ -93,7 +116,7 @@ api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
 app.include_router(password_import_router, prefix="/api/v1")
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
-    if api_key_header != API_KEY:
+    if api_key_header != _get_current_api_key():
         logger.warning(f"Invalid API key attempt")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API Key"
@@ -331,7 +354,7 @@ async def get_client(
         # Parse the output
         try:
             lines = result.split("\n")
-            client_info = {"username": "", "clientid": "", "roles": [], "groups": []}
+            client_info = {"username": "", "clientid": "", "disabled": False, "roles": [], "groups": []}
 
             for line in lines:
                 line = line.strip()
@@ -339,6 +362,8 @@ async def get_client(
                     client_info["username"] = line.split("Username:")[1].strip()
                 elif line.startswith("Clientid:"):
                     client_info["clientid"] = line.split("Clientid:")[1].strip()
+                elif line.startswith("Disabled:"):
+                    client_info["disabled"] = line.split("Disabled:")[1].strip().lower() == "true"
                 elif line.startswith("Roles:"):
                     role_info = line.split("Roles:")[1].strip()
                     if role_info:

@@ -6,7 +6,7 @@ const secret = new TextEncoder().encode(AUTH_SECRET)
 const COOKIE_NAME = 'bunkerm_token'
 
 const PUBLIC_PATHS = ['/login', '/register']
-const API_PATHS = ['/api/auth', '/api/logs']
+const API_PATHS = ['/api/auth', '/api/logs', '/api/proxy', '/api/settings']
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl

@@ -25,7 +25,29 @@ router = APIRouter(tags=["mosquitto_config"])
 logger = logging.getLogger(__name__)
 
 # Environment variables
-API_KEY = os.getenv("API_KEY")
+_API_KEY_CACHE: dict = {"key": "", "ts": 0.0}
+
+def _get_current_api_key() -> str:
+    """Return the active API key, refreshing from file every 5 s."""
+    import time as _t
+    now = _t.time()
+    if _API_KEY_CACHE["key"] and now - _API_KEY_CACHE["ts"] < 5.0:
+        return _API_KEY_CACHE["key"]
+    key = os.getenv("API_KEY", "")
+    if not key or key == "default_api_key_replace_in_production":
+        try:
+            with open("/nextjs/data/.api_key") as _fh:
+                file_key = _fh.read().strip()
+                if file_key:
+                    key = file_key
+        except Exception:
+            pass
+    if not key:
+        key = "default_api_key_replace_in_production"
+    _API_KEY_CACHE["key"] = key
+    _API_KEY_CACHE["ts"] = now
+    return key
+
 MOSQUITTO_CONF_PATH = os.getenv("MOSQUITTO_CONF_PATH", "/etc/mosquitto/mosquitto.conf")
 BACKUP_DIR = os.getenv("MOSQUITTO_BACKUP_DIR", "/tmp/mosquitto_backups")
 
@@ -37,7 +59,7 @@ os.makedirs(BACKUP_DIR, exist_ok=True)
 
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
-    if api_key_header != API_KEY:
+    if api_key_header != _get_current_api_key():
         logger.warning(f"Invalid API key attempt")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API Key"

@@ -1,5 +1,5 @@
 import { generateNonce } from './utils'
-import type { MqttClient, Role, Group } from '@/types'
+import type { MqttClient, Role, Group, MqttTopic } from '@/types'
 
 // The Python dynsec API's list endpoints return the raw mosquitto_ctrl stdout
 // as a plain string (e.g. {"clients": "name1\nname2\n..."}).
@@ -28,15 +28,15 @@ function parseGroups(res: unknown): Group[] {
   return parseNameList(raw).map((groupname) => ({ groupname }))
 }
 
-// These defaults use relative paths so they work through nginx when served inside
-// the container. Override via env vars for direct development access.
-const DYNSEC_API_URL = process.env.NEXT_PUBLIC_DYNSEC_API_URL || '/api/dynsec'
-const MONITOR_API_URL = process.env.NEXT_PUBLIC_MONITOR_API_URL || '/api/monitor'
-const AWS_BRIDGE_API_URL = process.env.NEXT_PUBLIC_AWS_BRIDGE_API_URL || '/api/aws-bridge'
-const AZURE_BRIDGE_API_URL = process.env.NEXT_PUBLIC_AZURE_BRIDGE_API_URL || '/api/azure-bridge'
-const CONFIG_API_URL = process.env.NEXT_PUBLIC_CONFIG_API_URL || '/api/config'
-const CLIENTLOGS_API_URL = process.env.NEXT_PUBLIC_CLIENTLOGS_API_URL || '/api/clientlogs'
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY || ''
+// All API calls go through the Next.js server-side proxy at /api/proxy/<service>.
+// The proxy injects the X-API-Key header from the server environment — the key
+// is never exposed to the browser.
+const DYNSEC_API_URL     = '/api/proxy/dynsec'
+const MONITOR_API_URL    = '/api/proxy/monitor'
+const AWS_BRIDGE_API_URL = '/api/proxy/aws-bridge'
+const AZURE_BRIDGE_API_URL = '/api/proxy/azure-bridge'
+const CONFIG_API_URL     = '/api/proxy/config'
+const CLIENTLOGS_API_URL = '/api/proxy/clientlogs'
 
 function buildUrl(base: string, path: string): string {
   const nonce = generateNonce()
@@ -49,7 +49,6 @@ function buildUrl(base: string, path: string): string {
 function getHeaders(extra?: Record<string, string>): HeadersInit {
   return {
     'Content-Type': 'application/json',
-    'X-API-Key': API_KEY,
     ...extra,
   }
 }
@@ -74,8 +73,6 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 // ─── DynSec API ─────────────────────────────────────────────────────────────
-// Nginx: /api/dynsec/* → localhost:1000/api/v1/*
-// So paths here are relative to /api/v1/ on the Python service.
 
 export const dynsecApi = {
   // Clients
@@ -163,78 +160,81 @@ export const dynsecApi = {
       method: 'DELETE',
     }),
 
-  // Password import — nginx has a dedicated location for this exact path
+  // Password import
   importPassword: (formData: FormData) =>
-    fetch(`/api/dynsec/import-password-file?nonce=${generateNonce()}&t=${Date.now()}`, {
+    fetch(`/api/proxy/dynsec/import-password-file?nonce=${generateNonce()}&t=${Date.now()}`, {
       method: 'POST',
-      headers: { 'X-API-Key': API_KEY },
       body: formData,
     }),
 }
 
 // ─── Monitor API ─────────────────────────────────────────────────────────────
-// Nginx: /api/monitor/* → localhost:1001/api/v1/*
 
 export const monitorApi = {
   getStats: () => request(buildUrl(MONITOR_API_URL, '/stats')),
+  getTopics: () => request<{ topics: MqttTopic[] }>(buildUrl(MONITOR_API_URL, '/topics')),
+  publishMessage: (data: { topic: string; payload: string; qos?: number; retain?: boolean }) =>
+    request(buildUrl(MONITOR_API_URL, '/publish'), {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
 
-  // Logs are read server-side by Next.js API routes (mirroring the old auth-api)
+  // Logs are read server-side by Next.js API routes
   getBrokerLogs: () => request<{ logs: string[] }>('/api/logs/broker'),
   getClientLogs: () => request<{ logs: string[] }>('/api/logs/clients'),
 }
 
 // ─── Config API ──────────────────────────────────────────────────────────────
-// Nginx: /api/config/* → localhost:1005/api/v1/*
-// Vue frontend uses absolute paths like /api/config/mosquitto-config
 
 export const configApi = {
   getMosquittoConfig: () =>
     request<{ config: string; content: string }>(
-      `/api/config/mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`
+      `/api/proxy/config/mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`
     ),
   saveMosquittoConfig: (configData: unknown) =>
-    request(`/api/config/mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`, {
+    request(`/api/proxy/config/mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`, {
       method: 'POST',
       body: JSON.stringify(configData),
     }),
   resetMosquittoConfig: () =>
-    request(`/api/config/reset-mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`, {
+    request(`/api/proxy/config/reset-mosquitto-config?nonce=${generateNonce()}&t=${Date.now()}`, {
       method: 'POST',
     }),
 
   getDynSecJson: () =>
-    request(`/api/config/dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`),
+    request(`/api/proxy/config/dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`),
   importDynSecJson: (formData: FormData) =>
-    fetch(`/api/config/import-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
+    fetch(`/api/proxy/config/import-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
       method: 'POST',
-      headers: { 'X-API-Key': API_KEY },
       body: formData,
     }),
+  importAcl: (data: unknown) =>
+    request<{ success: boolean; message: string; stats?: { clients: number; groups: number; roles: number } }>(
+      `/api/proxy/config/import-acl?nonce=${generateNonce()}&t=${Date.now()}`,
+      { method: 'POST', body: JSON.stringify(data) }
+    ),
   exportDynSecJson: () =>
-    fetch(`/api/config/export-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
-      headers: { 'X-API-Key': API_KEY, Accept: 'application/json' },
+    fetch(`/api/proxy/config/export-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
+      headers: { Accept: 'application/json' },
     }),
   resetDynSecJson: () =>
-    request(`/api/config/reset-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
+    request(`/api/proxy/config/reset-dynsec-json?nonce=${generateNonce()}&t=${Date.now()}`, {
       method: 'POST',
     }),
 }
 
 // ─── AWS Bridge API ──────────────────────────────────────────────────────────
-// Nginx: /api/aws-bridge/* → localhost:1003/api/v1/*
 
 export const awsApi = {
   getConfig: () => request(buildUrl(AWS_BRIDGE_API_URL, '/config')),
   saveConfig: (formData: FormData) =>
     fetch(buildUrl(AWS_BRIDGE_API_URL, '/config'), {
       method: 'POST',
-      headers: { 'X-API-Key': API_KEY },
       body: formData,
     }),
 }
 
 // ─── Azure Bridge API ────────────────────────────────────────────────────────
-// Nginx: /api/azure-bridge/* → localhost:1004/api/v1/*
 
 export const azureApi = {
   getConfig: () => request(buildUrl(AZURE_BRIDGE_API_URL, '/config')),
@@ -246,7 +246,6 @@ export const azureApi = {
 }
 
 // ─── Client Logs API ─────────────────────────────────────────────────────────
-// Nginx: /api/clientlogs/* → localhost:1002/api/v1/*
 
 export const clientlogsApi = {
   getEvents: () => request<{ events: unknown[] }>(buildUrl(CLIENTLOGS_API_URL, '/events')),
@@ -255,4 +254,44 @@ export const clientlogsApi = {
     request(buildUrl(CLIENTLOGS_API_URL, `/enable/${encodeURIComponent(username)}`), { method: 'POST' }),
   disableClient: (username: string) =>
     request(buildUrl(CLIENTLOGS_API_URL, `/disable/${encodeURIComponent(username)}`), { method: 'POST' }),
+}
+
+// ─── Smart Anomaly Detection API ─────────────────────────────────────────────
+
+import type { AiAlert, AiAnomaly, AiMetrics } from '@/types'
+
+const AI_API_URL = '/api/proxy/ai'
+
+export const aiApi = {
+  getAlerts: (params?: { severity?: string; acknowledged?: boolean; limit?: number }) => {
+    const qs = new URLSearchParams()
+    if (params?.severity) qs.set('severity', params.severity)
+    if (params?.acknowledged !== undefined) qs.set('acknowledged', String(params.acknowledged))
+    if (params?.limit !== undefined) qs.set('limit', String(params.limit))
+    const query = qs.toString() ? `?${qs}` : ''
+    return request<{ alerts: AiAlert[] }>(buildUrl(AI_API_URL, `/alerts${query}`))
+  },
+  acknowledgeAlert: (id: string) =>
+    request(buildUrl(AI_API_URL, `/alerts/${id}/acknowledge`), { method: 'POST' }),
+
+  getAnomalies: (params?: { entity_id?: string; anomaly_type?: string; limit?: number }) => {
+    const qs = new URLSearchParams()
+    if (params?.entity_id) qs.set('entity_id', params.entity_id)
+    if (params?.anomaly_type) qs.set('anomaly_type', params.anomaly_type)
+    if (params?.limit !== undefined) qs.set('limit', String(params.limit))
+    const query = qs.toString() ? `?${qs}` : ''
+    return request<{ anomalies: AiAnomaly[] }>(buildUrl(AI_API_URL, `/anomalies${query}`))
+  },
+
+  getEntities: (entity_type = 'topic') =>
+    request<{ entity_type: string; entities: string[] }>(
+      buildUrl(AI_API_URL, `/metrics/entities?entity_type=${encodeURIComponent(entity_type)}`)
+    ),
+  getMetrics: (entity_id: string, window: '1h' | '24h' = '1h', entity_type = 'topic') =>
+    request<AiMetrics>(
+      buildUrl(AI_API_URL, `/metrics?entity_type=${encodeURIComponent(entity_type)}&entity_id=${encodeURIComponent(entity_id)}&window=${window}`)
+    ),
+
+  getHealth: () =>
+    request<{ status: string; tier: string }>(buildUrl(AI_API_URL, '/health')),
 }

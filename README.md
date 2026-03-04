@@ -24,9 +24,12 @@
 - [⭐ Core Features](#core-features)
   - [Broker Dashboard](#broker-dashboard)
   - [Access Control List (ACL) Management](#access-control-list-acl-management)
+    - [ACL Import / Export](#acl-import--export)
+  - [Smart Anomaly Detection](#smart-anomaly-detection)
   - [Cloud Integration (Pro Feature)](#cloud-integration-pro-feature)
   - [REST API (Coming soon)](#rest-api-coming-soon)
   - [MQTT Client Management](#mqtt-client-management)
+  - [MQTT Explorer](#mqtt-explorer)
 - [🛠️ Troubleshooting](#troubleshooting)
 - [✨ Features](#features)
   - [Infrastructure & Scaling](#infrastructure--scaling)
@@ -46,7 +49,8 @@
 
 BunkerM is an open-source, containerized MQTT management solution that bundles together a Mosquitto broker with a comprehensive web interface. It provides a complete, ready-to-deploy MQTT environment with built-in management capabilities, eliminating the need for separate broker setup and configuration.
 
-![Dashboard Screenshot](docs/assets/images/dashboard.png)
+![Dashboard Screenshot](docs/assets/images/dashboard-dark.png)
+![Dashboard Screenshot](docs/assets/images/dashboard-light.png)
 
 This all-in-one solution features dynamic security controls, real-time monitoring, client activity logging, and cloud integration capabilities. The entire stack - Mosquitto broker, backend services, and frontend UI - comes pre-configured in Docker containers for easy deployment and management.
 
@@ -142,7 +146,7 @@ Monitor and control MQTT client connections in real-time through the "Recent MQT
 - Subscription tracking
 - Retained message counts
 
-![Dashboard Screenshot](docs/assets/images/dashboard.png)
+![Dashboard Screenshot](docs/assets/images/dashboard-light.png)
 
 ### 🔒 Access Control List (ACL) Management
 
@@ -168,6 +172,40 @@ Manage your MQTT broker's clients:
 - Manage group members
 - Set priorities
 
+#### ACL Import / Export
+
+Back up and restore your complete ACL configuration in one click:
+
+- **Export** — downloads a JSON snapshot of all clients (including password hashes), roles (with topic ACL rules), and groups. The file can be used to migrate or restore your setup.
+- **Import** — upload a previously exported JSON file to overwrite the current ACL configuration. The system validates the file, merges it with internal defaults (preserving the system admin account), writes the new configuration, and automatically reloads the broker. A warning is shown before importing because the operation cannot be undone — export a backup first if needed.
+
+The Import / Export button is available in **ACL → Clients** next to the Create Client button.
+
+### 🤖 Smart Anomaly Detection
+
+BunkerM includes a built-in statistical anomaly detection engine that continuously monitors MQTT traffic and alerts you when behavior deviates from the established baseline. No external AI service or cloud dependency is required — everything runs locally.
+
+#### How It Works
+
+The Smart Anomaly service polls the broker every 10 seconds, ingests topic payloads, and builds statistical baselines over 1-hour and 24-hour sliding windows. Every 60 seconds it runs four independent detectors:
+
+| Detector | What it catches |
+|----------|----------------|
+| **Z-score** | Values that deviate more than 3σ from the rolling mean |
+| **EWMA** | Gradual drift detected via exponentially weighted moving average |
+| **Spike** | Sudden burst in message rate (>3× the 30-minute baseline) |
+| **Silence** | Topics that stop publishing for longer than 2× their usual interval |
+
+When an anomaly is detected an alert is generated with a severity level (low / medium / high / critical) and a human-readable description.
+
+#### Monitoring Pages
+
+Three pages are available under the **Monitoring** sidebar section:
+
+- **Metrics** — per-topic statistical baselines (mean, standard deviation, message count) for both 1-hour and 24-hour windows. Select any tracked topic from the dropdown to inspect its current baseline.
+- **Anomalies** — list of all detected anomalies with entity, type, severity, detection timestamp, and expandable detail rows showing the raw detection context (z-score value, EWMA residual, spike ratio, silence duration, etc.).
+- **Alerts** — actionable alert feed derived from anomalies. Includes severity badges, descriptions, timestamps, and a one-click **Acknowledge** button to mark alerts as reviewed. The page auto-refreshes every 30 seconds.
+
 ### ☁️ Cloud Integration (Pro Feature)
 
 Connect to major cloud providers:
@@ -191,6 +229,18 @@ Connect to major cloud providers:
 ![Connected Clients Screenshot](docs/assets/images/connected-clients.png)  
 
 This module provides a real-time list of currently connected clients on a node, along with the ability to connect or disconnect an MQTT client using the "Enable" and "Disable" buttons.
+
+### 🔭 MQTT Explorer
+
+Inspect live broker traffic directly from the UI with the built-in MQTT Explorer:
+
+![MQTT Explorer Screenshot](docs/assets/images/MQTT-explorer.png)
+
+- **Live topic tree** — all active topics are displayed in a collapsible hierarchy, refreshed every 3 seconds
+- **Per-topic metadata** — view the latest value, message count, QoS level, retained flag, and last-updated timestamp for each topic
+- **Search & filter** — instantly narrow the tree by typing a topic path fragment
+- **Publish panel** — send messages straight from the browser: choose an existing MQTT client from a dropdown, enter a topic, select the payload type (RAW / JSON / XML with built-in validation), set QoS and the retain flag, then hit Publish
+- **Accordion layout** — the publish panel collapses out of the way so the topic tree always has room to breathe
 
 <a id="troubleshooting"></a>
 ## 🛠️ Troubleshooting
@@ -233,6 +283,7 @@ This module provides a real-time list of currently connected clients on a node, 
 | PSK Authentication | ✗ | ✗ | On-demand |
 | Dynamic Security Plugin | ✓ | ✓ | ✓ |
 | ACLs (Client, Role, Group Levels) | ✓ | ✓ | ✓ |
+| ACL Import / Export (JSON backup & restore) | ✓ | ✓ | ✓ |
 | Anonymous Client Access | ✗ | ✓ | ✓ |
 | Custom CAs | ✗ | ✗ | On-demand |
 | HTTPS/TLS Termination | ✗ | ✗ | ✓ |
@@ -272,6 +323,12 @@ This module provides a real-time list of currently connected clients on a node, 
 | REST APIs | ✗ | ✗ | ✓ |
 | Application Tokens | ✓ | ✓ | ✓ |
 | Client Control | ✓ | ✓ | ✓ |
+| Statistical Anomaly Detection | ✓ | ✓ | ✓ |
+| AI Metrics Engine (1h / 24h baselines) | ✓ | ✓ | ✓ |
+| Smart Alert Feed with Severity Levels | ✓ | ✓ | ✓ |
+| LLM-powered Assistant | ✗ | ✓ | ✓ |
+| Behavioral Security Analysis | ✗ | ✗ | ✓ |
+| AI-generated ACL Recommendations | ✗ | ✗ | ✓ |
 
 ### Protocol Support
 | Feature | Community | Pro | Enterprise |

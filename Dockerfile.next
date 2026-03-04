@@ -10,10 +10,8 @@ RUN npm ci --prefer-offline
 
 COPY frontend .
 
-ARG NEXT_PUBLIC_API_KEY=default_api_key_replace_in_production
 ENV AUTH_SECRET=build-time-placeholder \
-    NEXT_TELEMETRY_DISABLED=1 \
-    NEXT_PUBLIC_API_KEY=${NEXT_PUBLIC_API_KEY}
+    NEXT_TELEMETRY_DISABLED=1
 
 RUN npm run build
 
@@ -87,7 +85,12 @@ RUN pip install --upgrade pip && \
     python-json-logger \
     aiofiles \
     types-aiofiles \
-    typing-extensions
+    typing-extensions \
+    "sqlalchemy[asyncio]>=2.0.30" \
+    "aiosqlite>=0.20.0" \
+    "alembic>=1.13.0" \
+    "httpx>=0.27.0" \
+    "numpy>=1.26.0"
 
 RUN pip install --no-cache-dir \
     cryptography \
@@ -184,23 +187,8 @@ ENV MQTT_BROKER=localhost \
     CLIENT_LOG_PATH=/var/log/api/api_activity.log
 
 # Startup script
-RUN printf '#!/bin/sh\n\
-mkdir -p /var/log/mosquitto /var/log/supervisor /var/log/nginx /var/log/api\n\
-touch /var/log/mosquitto/mosquitto.log\n\
-touch /var/log/mosquitto/mosquitto.err.log\n\
-touch /var/log/api/api_activity.log\n\
-touch /etc/mosquitto/mosquitto_passwd\n\
-chown mosquitto:mosquitto /etc/mosquitto/mosquitto_passwd\n\
-chmod 664 /etc/mosquitto/mosquitto_passwd\n\
-chown -R mosquitto:root /var/log/mosquitto\n\
-chmod -R 644 /var/log/mosquitto\n\
-chmod 755 /var/log/mosquitto\n\
-chmod -R 755 /var/log/supervisor\n\
-chmod -R 755 /var/log/api\n\
-mkdir -p /nextjs/data && chmod 755 /nextjs/data\n\
-pkill nginx || true\n\
-exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf\n\
-' > /start.sh && chmod +x /start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 2000 1900
 

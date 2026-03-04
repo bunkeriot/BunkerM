@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.next
+      args:
+        - NEXT_PUBLIC_API_KEY=${API_KEY:-default_api_key_replace_in_production}
     ports:
       - "1900:1900"  # MQTT port
       - "2000:2000"  # Web UI (nginx → Next.js)
