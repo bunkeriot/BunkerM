@@ -57,8 +57,8 @@ This all-in-one solution features dynamic security controls, real-time monitorin
 <a id="need-custom-mqtt-features-reach-out-today"></a>
 ## 💼 Need Custom MQTT Features? Reach Out Today!
 
-> **Website**: https://bunkeriot.com  
-> **Email me at**: support@bunkeriot.com  
+> **Website**: https://bunkerai.dev  
+> **Email me at**: support@bunkerai.dev  
 > **Let's connect**!  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehdi-idrissi/)  
 
@@ -131,7 +131,7 @@ Replace `<HOST_IP>` with your host machine's IP address or domain name.
 - **Default port:** `1900`
 - **Make sure to add a new MQTT client** from the UI (**Client Accounts** menu) to connect to the broker.
 
-![Add Client Screenshot](/screenshots/Bunkerm-addclient.jpg)
+![Dashboard Screenshot](docs/assets/images/add-client.png)
 
 <a id="core-features"></a>
 ## ⭐ Core Features
@@ -401,4 +401,4 @@ This project is licensed under the Apache License 2.0.
 You are free to use, modify, and distribute this software, even for commercial purposes, under the terms of the license.
 
 📜 Full license details: LICENSE  
-💼 For any inquiries, feel free to reach out: support@bunkeriot.com
+💼 For any inquiries, feel free to reach out: support@bunkerai.dev

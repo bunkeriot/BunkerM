@@ -60,6 +60,21 @@
       "timestamp": "2026-03-04 02:17",
       "bytes_received": 156.13,
       "bytes_sent": 1183.0
+    },
+    {
+      "timestamp": "2026-03-04 02:20",
+      "bytes_received": 129.0,
+      "bytes_sent": 1176.93
+    },
+    {
+      "timestamp": "2026-03-04 02:23",
+      "bytes_received": 105.64,
+      "bytes_sent": 1171.87
+    },
+    {
+      "timestamp": "2026-03-04 02:26",
+      "bytes_received": 87.61,
+      "bytes_sent": 1167.91
     }
   ],
   "daily": []
