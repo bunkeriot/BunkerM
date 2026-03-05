@@ -172,7 +172,7 @@ interface PublishPanelProps {
 }
 
 function PublishPanel({ clients }: PublishPanelProps) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [selectedClient, setSelectedClient] = useState('')
   const [topic, setTopic] = useState('')
   const [payload, setPayload] = useState('')
@@ -382,7 +382,7 @@ export default function MqttExplorerPage() {
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <Radio className="h-6 w-6" />
-            MQTT Explorer
+            MQTT Browser
           </h1>
           <p className="text-muted-foreground text-sm">
             Live topic tree with values and metadata

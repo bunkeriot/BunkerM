@@ -8,6 +8,8 @@ import { ClientsTable } from '@/components/mqtt/clients/ClientsTable'
 import { dynsecApi } from '@/lib/api'
 import type { MqttClient, Role, Group } from '@/types'
 
+const BUNKERAI_CLIENT_ID = 'BunkerAI'
+
 export default function ClientsPage() {
   const [clients, setClients] = useState<MqttClient[]>([])
   const [roles, setRoles] = useState<Role[]>([])
@@ -18,12 +20,16 @@ export default function ClientsPage() {
   const fetchData = useCallback(async (showRefreshIndicator = false) => {
     if (showRefreshIndicator) setRefreshing(true)
     try {
-      const [clientsRes, rolesRes, groupsRes] = await Promise.all([
+      const [clientsRes, rolesRes, groupsRes, cloudStatus] = await Promise.all([
         dynsecApi.getClients(),
         dynsecApi.getRoles(),
         dynsecApi.getGroups(),
+        fetch('/api/settings/cloud-status').then(r => r.json()).catch(() => ({ connected: false })),
       ])
-      const clientsList = clientsRes as MqttClient[]
+      const cloudConnected: boolean = cloudStatus?.connected === true
+      const clientsList = (clientsRes as MqttClient[]).filter(
+        (c) => c.username !== BUNKERAI_CLIENT_ID || cloudConnected
+      )
 
       // Fetch each client's details in parallel to get role/group counts and disabled state
       const detailResults = await Promise.allSettled(

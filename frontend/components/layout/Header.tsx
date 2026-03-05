@@ -1,8 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
-import { Moon, Sun, LogOut, User, Menu, ChevronRight, MoreHorizontal, Globe, MessageSquare, Tag, BookOpen, Github } from 'lucide-react'
+import { Moon, Sun, LogOut, User, Menu, ChevronRight, MoreHorizontal, Globe, MessageSquare, Tag, BookOpen, Github, Radio } from 'lucide-react'
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -93,6 +94,14 @@ export function Header({ onMenuClick }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-2">
+        {/* MQTT Browser */}
+        <Button asChild size="sm" className="bg-green-600 hover:bg-green-700 text-white gap-1.5 hidden sm:flex">
+          <Link href="/mqtt/explorer">
+            <Radio className="h-3.5 w-3.5" />
+            MQTT Browser
+          </Link>
+        </Button>
+
         {/* Update notification bell */}
         <UpdateNotification />
 

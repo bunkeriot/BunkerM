@@ -256,9 +256,81 @@ export const clientlogsApi = {
     request(buildUrl(CLIENTLOGS_API_URL, `/disable/${encodeURIComponent(username)}`), { method: 'POST' }),
 }
 
-// ─── Smart Anomaly Detection API ─────────────────────────────────────────────
+// ─── BunkerM Cloud API ────────────────────────────────────────────────────────
 
-import type { AiAlert, AiAnomaly, AiMetrics } from '@/types'
+import type { AiAlert, AiAnomaly, AiMetrics, CloudStatus, TopicAnnotation } from '@/types'
+
+export const cloudApi = {
+  getStatus: () =>
+    fetch('/api/settings/cloud-status').then((r) => r.json()) as Promise<CloudStatus>,
+  getAnnotations: () =>
+    fetch('/api/ai/annotations').then((r) => r.json()) as Promise<TopicAnnotation[]>,
+  saveAnnotations: (annotations: TopicAnnotation[]) =>
+    fetch('/api/ai/annotations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(annotations),
+    }).then((r) => r.json()),
+}
+
+// ─── AI Chat API ─────────────────────────────────────────────────────────────
+
+export const chatApi = {
+  send: (message: string, user_id: string) =>
+    fetch('/api/ai/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, user_id }),
+    }).then((r) => r.json()) as Promise<{ reply?: string; error?: string; pending?: import('@/types').PendingAction }>,
+  getHistory: () =>
+    fetch('/api/ai/chat')
+      .then((r) => r.json()) as Promise<{ messages: Array<{ role: string; content: string; ts: string; connector?: string }> }>,
+  isConfigured: () =>
+    fetch('/api/settings/cloud-config')
+      .then((r) => r.json())
+      .then((c) => !!(c.api_key && c.cloud_url)) as Promise<boolean>,
+  confirm: (pending_id: string, user_id: string) =>
+    fetch('/api/ai/chat/confirm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pending_id, user_id }),
+    }).then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+  cancel: (pending_id: string, user_id: string) =>
+    fetch('/api/ai/chat/cancel', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pending_id, user_id }),
+    }).then((r) => r.json()) as Promise<{ ok?: boolean }>,
+}
+
+// ─── Admin Users API ─────────────────────────────────────────────────────────
+
+import type { User } from '@/types'
+
+export const adminApi = {
+  getUsers: () =>
+    fetch('/api/admin/users').then((r) => r.json()) as Promise<{ users: User[] }>,
+  createUser: (data: { email: string; password: string; firstName: string; lastName: string }) =>
+    fetch('/api/admin/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((r) => r.json()) as Promise<{ user?: User; error?: string }>,
+  updateUser: (id: string, data: Partial<{ firstName: string; lastName: string; email: string; password: string; role: string }>) =>
+    fetch(`/api/admin/users/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((r) => r.json()) as Promise<{ user?: User; error?: string }>,
+  deleteUser: (id: string) =>
+    fetch(`/api/admin/users/${id}`, { method: 'DELETE' })
+      .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+  revokeTelegramConnector: () =>
+    fetch('/api/settings/telegram-setup', { method: 'DELETE' })
+      .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+}
+
+// ─── Smart Anomaly Detection API ─────────────────────────────────────────────
 
 const AI_API_URL = '/api/proxy/ai'
 

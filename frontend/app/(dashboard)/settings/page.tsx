@@ -1,147 +1,208 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
-import { Eye, EyeOff, Copy, RefreshCw, KeyRound, Check } from 'lucide-react'
+import { useCallback, useEffect, useState, useRef } from 'react'
+import { RefreshCw, Loader2, Save, Upload, FileText, CheckCircle, XCircle, RotateCcw, Server } from 'lucide-react'
 import { toast } from 'sonner'
+import { Separator } from '@/components/ui/separator'
+import { configApi, dynsecApi } from '@/lib/api'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Textarea } from '@/components/ui/textarea'
 
-type KeySource = 'env' | 'file' | 'default'
+type Status = 'idle' | 'uploading' | 'success' | 'error'
 
-interface ApiKeyInfo {
-  key: string
-  source: KeySource
-}
+function BrokerConfigSection() {
+  const [config, setConfig] = useState('')
+  const [original, setOriginal] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
-const SOURCE_LABEL: Record<KeySource, { label: string; variant: 'secondary' | 'outline' | 'destructive' }> = {
-  env:     { label: 'Environment variable',  variant: 'secondary' },
-  file:    { label: 'Auto-generated',        variant: 'secondary' },
-  default: { label: 'Insecure default',      variant: 'destructive' },
-}
-
-export default function SettingsPage() {
-  const [info, setInfo] = useState<ApiKeyInfo | null>(null)
-  const [revealed, setRevealed] = useState(false)
-  const [copied, setCopied] = useState(false)
-  const [isRegenerating, setIsRegenerating] = useState(false)
-
-  const fetchKey = useCallback(async () => {
+  const fetchConfig = useCallback(async () => {
+    setIsLoading(true)
     try {
-      const res = await fetch('/api/settings/apikey')
-      const data = await res.json()
-      setInfo(data)
+      const data = await configApi.getMosquittoConfig()
+      const content = data.config || data.content || ''
+      setConfig(content)
+      setOriginal(content)
     } catch {
-      toast.error('Failed to load API key info')
+      toast.error('Failed to load Mosquitto configuration')
+    } finally {
+      setIsLoading(false)
     }
   }, [])
 
-  useEffect(() => { fetchKey() }, [fetchKey])
+  useEffect(() => { fetchConfig() }, [fetchConfig])
 
-  async function copyToClipboard() {
-    if (!info) return
-    await navigator.clipboard.writeText(info.key)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  async function regenerate() {
-    if (!confirm('Generate a new API key? All services will switch to it within ~5 seconds.')) return
-    setIsRegenerating(true)
+  const handleSave = async () => {
+    setIsSaving(true)
     try {
-      const res = await fetch('/api/settings/apikey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'regenerate' }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-      setInfo({ key: data.key, source: 'file' })
-      setRevealed(false)
-      toast.success('API key regenerated successfully')
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : 'Failed to regenerate key')
+      await configApi.saveMosquittoConfig({ config })
+      setOriginal(config)
+      toast.success('Configuration saved successfully')
+    } catch {
+      toast.error('Failed to save configuration')
     } finally {
-      setIsRegenerating(false)
+      setIsSaving(false)
     }
   }
 
-  const maskedKey = info ? `${info.key.slice(0, 6)}${'•'.repeat(20)}${info.key.slice(-4)}` : ''
-  const displayKey = info ? (revealed ? info.key : maskedKey) : '...'
-  const sourceInfo = info ? SOURCE_LABEL[info.source] : null
+  const isDirty = config !== original
 
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>mosquitto.conf</CardTitle>
+        <CardDescription>
+          Edit the Mosquitto broker configuration. Changes require a broker restart to take effect.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {isLoading ? (
+          <div className="flex items-center justify-center h-64">
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : (
+          <Textarea
+            value={config}
+            onChange={(e) => setConfig(e.target.value)}
+            className="font-mono text-sm min-h-[240px] resize-none"
+            placeholder="# Mosquitto configuration"
+            spellCheck={false}
+          />
+        )}
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={fetchConfig} disabled={isLoading}>
+            <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+            Reload
+          </Button>
+          {isDirty && (
+            <Button variant="outline" size="sm" onClick={() => setConfig(original)}>
+              <RotateCcw className="h-4 w-4" />
+              Reset
+            </Button>
+          )}
+          <Button size="sm" onClick={handleSave} disabled={isSaving || !isDirty}>
+            {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+            Save
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function ImportPasswordSection() {
+  const [file, setFile] = useState<File | null>(null)
+  const [status, setStatus] = useState<Status>('idle')
+  const [message, setMessage] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0] || null
+    setFile(f)
+    setStatus('idle')
+    setMessage('')
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    const f = e.dataTransfer.files[0]
+    if (f) { setFile(f); setStatus('idle') }
+  }
+
+  const handleSubmit = async () => {
+    if (!file) return
+    setStatus('uploading')
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      const res = await dynsecApi.importPassword(formData)
+      if (res.ok) {
+        setStatus('success')
+        setMessage('Password file imported successfully')
+        toast.success('Password file imported successfully')
+      } else {
+        const text = await res.text()
+        setStatus('error')
+        setMessage(text || 'Import failed')
+        toast.error('Import failed')
+      }
+    } catch {
+      setStatus('error')
+      setMessage('Failed to connect to the API')
+      toast.error('Failed to connect to the API')
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Import Password File</CardTitle>
+        <CardDescription>
+          Upload a password file generated by <code className="text-xs bg-muted px-1 rounded">mosquitto_passwd</code>
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div
+          onDrop={handleDrop}
+          onDragOver={(e) => e.preventDefault()}
+          onClick={() => inputRef.current?.click()}
+          className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:bg-muted/50 transition-colors"
+        >
+          <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".txt,.passwd,*" />
+          {file ? (
+            <div className="flex flex-col items-center gap-2">
+              <FileText className="h-10 w-10 text-primary" />
+              <p className="font-medium">{file.name}</p>
+              <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(1)} KB</p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-2 text-muted-foreground">
+              <Upload className="h-10 w-10" />
+              <p className="font-medium">Drop file here or click to browse</p>
+              <p className="text-xs">Accepts Mosquitto password files</p>
+            </div>
+          )}
+        </div>
+
+        {status !== 'idle' && (
+          <div className={`flex items-center gap-2 p-3 rounded-lg text-sm ${
+            status === 'success' ? 'bg-green-500/10 text-green-700 dark:text-green-400' :
+            status === 'error' ? 'bg-destructive/10 text-destructive' :
+            'bg-muted text-muted-foreground'
+          }`}>
+            {status === 'success' && <CheckCircle className="h-4 w-4 shrink-0" />}
+            {status === 'error' && <XCircle className="h-4 w-4 shrink-0" />}
+            {status === 'uploading' && <Loader2 className="h-4 w-4 animate-spin shrink-0" />}
+            <span>{status === 'uploading' ? 'Importing...' : message}</span>
+          </div>
+        )}
+
+        <Button onClick={handleSubmit} disabled={!file || status === 'uploading'} className="w-full">
+          {status === 'uploading'
+            ? <><Loader2 className="h-4 w-4 animate-spin" /> Importing...</>
+            : <><Upload className="h-4 w-4" /> Import Password File</>
+          }
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+
+export default function BrokerSettingsPage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
         <h1 className="text-2xl font-bold flex items-center gap-2">
-          <KeyRound className="h-6 w-6" />
-          Settings
+          <Server className="h-6 w-6" />
+          Broker
         </h1>
-        <p className="text-muted-foreground text-sm">Manage your BunkerM instance configuration</p>
+        <p className="text-muted-foreground text-sm">Mosquitto broker configuration and password management</p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">API Key</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            This key authenticates communication between the web interface and the MQTT
-            broker services. It is generated automatically on first startup and persisted
-            across container restarts. It is never exposed to the browser — all API calls
-            are proxied server-side.
-          </p>
-
-          {/* Key display */}
-          <div className="flex items-center gap-2">
-            <code className="flex-1 font-mono text-sm bg-muted rounded-md px-3 py-2 overflow-hidden text-ellipsis whitespace-nowrap">
-              {displayKey}
-            </code>
-            <Button variant="ghost" size="icon" onClick={() => setRevealed((r) => !r)} title={revealed ? 'Hide' : 'Reveal'}>
-              {revealed ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </Button>
-            <Button variant="ghost" size="icon" onClick={copyToClipboard} title="Copy to clipboard">
-              {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-            </Button>
-          </div>
-
-          {/* Source badge */}
-          {sourceInfo && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              Source:
-              <Badge variant={sourceInfo.variant}>{sourceInfo.label}</Badge>
-              {info?.source === 'env' && (
-                <span className="text-xs">(set via <code>API_KEY</code> environment variable — regenerate has no effect)</span>
-              )}
-            </div>
-          )}
-
-          {/* Regenerate */}
-          <div className="pt-2 border-t">
-            <Button
-              variant="outline"
-              onClick={regenerate}
-              disabled={isRegenerating || info?.source === 'env'}
-            >
-              <RefreshCw className={`h-4 w-4 mr-2 ${isRegenerating ? 'animate-spin' : ''}`} />
-              Regenerate Key
-            </Button>
-            {info?.source === 'env' && (
-              <p className="text-xs text-muted-foreground mt-2">
-                The key is controlled by the <code>API_KEY</code> environment variable. Remove it to
-                allow auto-generation.
-              </p>
-            )}
-          </div>
-
-          {/* Custom key note */}
-          <div className="rounded-md bg-muted p-3 text-xs text-muted-foreground space-y-1">
-            <p className="font-medium text-foreground">Using a custom key</p>
-            <p>Pass <code>-e API_KEY=your_key</code> when running the container. The same value is
-            used automatically — no other configuration needed.</p>
-          </div>
-        </CardContent>
-      </Card>
+      <BrokerConfigSection />
+      <Separator className="my-2" />
+      <ImportPasswordSection />
     </div>
   )
 }

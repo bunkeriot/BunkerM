@@ -481,6 +481,11 @@ async def remove_client(
     api_key: str = Security(get_api_key),
 ):
     """Remove a specific MQTT client"""
+    if username == "BunkerAI":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The BunkerAI system client cannot be removed.",
+        )
     await log_request(request)
     logger.info(f"Removing client: {username}")
 

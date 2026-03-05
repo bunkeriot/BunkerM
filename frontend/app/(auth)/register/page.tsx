@@ -72,7 +72,9 @@ export default function RegisterPage() {
         <Card>
           <CardHeader>
             <CardTitle>Register</CardTitle>
-            <CardDescription>Create an account to access the dashboard</CardDescription>
+            <CardDescription>
+              Create an account to access the dashboard. The first registered account becomes the admin.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -99,6 +101,7 @@ export default function RegisterPage() {
                   <Input id="email" type="email" placeholder="you@example.com" className="pl-9" {...register('email')} />
                 </div>
                 {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+                <p className="text-xs text-muted-foreground">Use a valid email — it may be needed for account recovery.</p>
               </div>
 
               <div className="space-y-2">

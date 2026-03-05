@@ -90,7 +90,8 @@ RUN pip install --upgrade pip && \
     "aiosqlite>=0.20.0" \
     "alembic>=1.13.0" \
     "httpx>=0.27.0" \
-    "numpy>=1.26.0"
+    "numpy>=1.26.0" \
+    "websockets>=12.0"
 
 RUN pip install --no-cache-dir \
     cryptography \

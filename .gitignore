@@ -26,6 +26,10 @@ backend/app/*/logs/
 dynamic-security.json
 *.json.backup
 
+# BunkerAI Cloud runtime data (contains API keys — never commit)
+bunkerai_config.json
+.bunkerai_status.json
+
 # Internal documentation (not for public distribution)
 ARCHITECTURE.md
 API_DOCUMENTATION.md

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { findUserByEmail, createUser } from '@/lib/users'
+import { findUserByEmail, createUser, stripHash } from '@/lib/users'
 import { signToken, cookieOptions, COOKIE_NAME } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
@@ -19,8 +19,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email already registered' }, { status: 409 })
     }
 
+    // createUser automatically assigns role:'admin' to the first user, 'user' to all subsequent
     const newUser = await createUser({ email, password, firstName, lastName })
-    const { passwordHash: _, ...userWithoutHash } = newUser
+    const userWithoutHash = stripHash(newUser)
     const token = await signToken(userWithoutHash)
 
     const response = NextResponse.json({ user: userWithoutHash }, { status: 201 })

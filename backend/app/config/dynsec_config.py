@@ -188,37 +188,63 @@ def validate_dynsec_json(data: Dict[str, Any]) -> Dict[str, Any]:
 
 def merge_dynsec_configs(imported_config: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Merge imported config with default config to preserve critical components
+    Merge imported config with default config to preserve critical components.
+    - Always keeps the default 'bunker' admin client and 'admin' role.
+    - Always preserves the 'BunkerAI' system client:
+        * If the imported file contains a BunkerAI entry, that version wins (update).
+        * Otherwise the existing live entry is kept.
+        * If neither exists, BunkerAI is omitted (connector agent recreates it on reconnect).
     """
-    # Start with a deep copy of the default config
+    BUNKERAI_USERNAME = "BunkerAI"
+
     merged_config = DEFAULT_CONFIG.copy()
-    
-    # Copy defaultACLAccess from default config (must be preserved)
-    # merged_config["defaultACLAccess"] = DEFAULT_CONFIG["defaultACLAccess"]
-    
-    # Keep admin user and add other users from imported config
+
+    # ── Clients ───────────────────────────────────────────────────────────────
     admin_user = DEFAULT_CONFIG["clients"][0]
-    
-    # Get all non-admin users from imported config
-    non_admin_users = [user for user in imported_config.get("clients", []) 
-                       if "username" in user and user["username"] != "bunker"]
-    
-    # Combine admin user with non-admin users
-    merged_config["clients"] = [admin_user] + non_admin_users
-    
-    # Keep admin role and add other roles from imported config
+
+    # Resolve the BunkerAI entry: prefer imported, fall back to live config
+    bunkerai_entry = None
+    imported_bunkerai = next(
+        (c for c in imported_config.get("clients", [])
+         if c.get("username") == BUNKERAI_USERNAME),
+        None,
+    )
+    if imported_bunkerai:
+        bunkerai_entry = imported_bunkerai
+    else:
+        try:
+            live_data = read_dynsec_json()
+            bunkerai_entry = next(
+                (c for c in live_data.get("clients", [])
+                 if c.get("username") == BUNKERAI_USERNAME),
+                None,
+            )
+        except Exception:
+            pass
+
+    # All other clients from the imported file (excluding bunker and BunkerAI)
+    other_clients = [
+        c for c in imported_config.get("clients", [])
+        if c.get("username") not in ("bunker", BUNKERAI_USERNAME)
+    ]
+
+    merged_config["clients"] = (
+        [admin_user]
+        + ([bunkerai_entry] if bunkerai_entry else [])
+        + other_clients
+    )
+
+    # ── Roles ─────────────────────────────────────────────────────────────────
     admin_role = DEFAULT_CONFIG["roles"][0]
-    
-    # Get all non-admin roles from imported config
-    non_admin_roles = [role for role in imported_config.get("roles", []) 
-                       if "rolename" in role and role["rolename"] != "admin"]
-    
-    # Combine admin role with non-admin roles
+    non_admin_roles = [
+        r for r in imported_config.get("roles", [])
+        if r.get("rolename") != "admin"
+    ]
     merged_config["roles"] = [admin_role] + non_admin_roles
-    
-    # Import groups from imported config
+
+    # ── Groups ────────────────────────────────────────────────────────────────
     merged_config["groups"] = imported_config.get("groups", [])
-    
+
     return merged_config
 
 

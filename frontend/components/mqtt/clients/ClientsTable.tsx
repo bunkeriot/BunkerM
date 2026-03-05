@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { Search, Plus, Trash2, Shield, Users, RefreshCw, FileJson } from 'lucide-react'
+import { Search, Plus, Trash2, Shield, Users, RefreshCw, FileJson, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -44,6 +44,8 @@ export function ClientsTable({
   availableGroups,
   onRefresh,
 }: ClientsTableProps) {
+  const BUNKERAI_CLIENT_ID = 'BunkerAI'
+
   const [search, setSearch] = useState('')
   const [createOpen, setCreateOpen] = useState(false)
   const [aclDialogOpen, setAclDialogOpen] = useState(false)
@@ -145,7 +147,14 @@ export function ClientsTable({
               ) : (
                 filtered.map((client) => (
                   <TableRow key={client.username}>
-                    <TableCell className="font-medium">{client.username}</TableCell>
+                    <TableCell className="font-medium">
+                      <div className="flex items-center gap-2">
+                        {client.username}
+                        {client.username === BUNKERAI_CLIENT_ID && (
+                          <Badge variant="secondary" className="text-xs">System</Badge>
+                        )}
+                      </div>
+                    </TableCell>
 
                     <TableCell>
                       {(() => {
@@ -223,20 +232,31 @@ export function ClientsTable({
                           <TooltipContent>Manage groups</TooltipContent>
                         </Tooltip>
 
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => setDeleteTarget(client)}
-                              className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                              aria-label={`Delete ${client.username}`}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>Delete client</TooltipContent>
-                        </Tooltip>
+                        {client.username === BUNKERAI_CLIENT_ID ? (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <span className="inline-flex items-center justify-center h-9 w-9 text-muted-foreground">
+                                <Lock className="h-4 w-4" />
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent>BunkerAI system client cannot be removed</TooltipContent>
+                          </Tooltip>
+                        ) : (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setDeleteTarget(client)}
+                                className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                                aria-label={`Delete ${client.username}`}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>Delete client</TooltipContent>
+                          </Tooltip>
+                        )}
                       </div>
                     </TableCell>
                   </TableRow>

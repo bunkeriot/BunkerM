@@ -1,14 +1,19 @@
 // Auth types
+export type UserRole = 'admin' | 'user'
+
 export interface User {
   id: string
   email: string
   firstName: string
   lastName: string
   createdAt: string
+  role: UserRole
 }
 
 export interface UserWithHash extends User {
   passwordHash: string
+  recoveryToken?: string
+  recoveryExpiry?: string
 }
 
 export interface AuthState {
@@ -132,7 +137,7 @@ export interface MQTTEvent {
   port: number
 }
 
-// MQTT Explorer types
+// MQTT Browser types
 export interface MqttTopic {
   topic: string
   value: string
@@ -148,6 +153,43 @@ export interface LogEntry {
   level?: string
   message: string
   raw: string
+}
+
+// ── BunkerM Cloud types ───────────────────────────────────────────────────────
+
+export interface CloudStatus {
+  configured: boolean
+  connected: boolean
+  tier?: 'premium' | 'enterprise'
+  tenant_id?: string
+  connected_at?: string
+}
+
+export interface TopicAnnotation {
+  topic: string
+  description: string
+  direction: 'read' | 'write' | 'both'
+  example_payloads: string[]
+  updated_at: string
+}
+
+// ── AI Chat types ─────────────────────────────────────────────────────────────
+
+export interface PendingAction {
+  id: string
+  topic: string
+  payload: string
+  qos: number
+  retain: boolean
+}
+
+export interface ChatMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  ts: string
+  connector?: string      // 'webchat' | 'telegram' | 'slack' — attribution from shared history
+  pending?: PendingAction
 }
 
 // ── Smart Anomaly Detection types ────────────────────────────────────────────

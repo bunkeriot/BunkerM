@@ -47,6 +47,11 @@ services:
       - MAX_UPLOAD_SIZE=10485760
       - SSL_CERT_PATH=/app/certs/cert.pem
       - SSL_KEY_PATH=/app/certs/key.pem
+      # BunkerM Cloud (optional — leave blank to keep agent dormant)
+      - BUNKERAI_API_KEY=${BUNKERAI_API_KEY:-}
+      - BUNKERAI_WS_URL=${BUNKERAI_WS_URL:-wss://api.bunkerai.dev/connect}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:2000/api/auth/me"]

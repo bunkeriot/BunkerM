@@ -5,8 +5,8 @@ const AUTH_SECRET = process.env.AUTH_SECRET || 'fallback-secret-change-in-produc
 const secret = new TextEncoder().encode(AUTH_SECRET)
 const COOKIE_NAME = 'bunkerm_token'
 
-const PUBLIC_PATHS = ['/login', '/register']
-const API_PATHS = ['/api/auth', '/api/logs', '/api/proxy', '/api/settings']
+const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/reset-password']
+const API_PATHS = ['/api/auth', '/api/logs', '/api/proxy', '/api/settings', '/api/ai']
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -21,20 +21,42 @@ export async function middleware(request: NextRequest) {
 
   if (!token) {
     if (isPublicPath) return NextResponse.next()
-    return NextResponse.redirect(new URL('/login', request.url))
+    const loginUrl = request.nextUrl.clone()
+    loginUrl.pathname = '/login'
+    return NextResponse.redirect(loginUrl)
   }
 
   try {
-    await jwtVerify(token, secret)
-    // Valid token
+    const { payload } = await jwtVerify(token, secret)
+
     if (isPublicPath) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
+      const dashboardUrl = request.nextUrl.clone()
+      dashboardUrl.pathname = '/dashboard'
+      return NextResponse.redirect(dashboardUrl)
     }
+
+    // Protect /admin/* routes — only admin role allowed
+    if (pathname.startsWith('/admin')) {
+      if (payload.role !== 'admin') {
+        const dashboardUrl = request.nextUrl.clone()
+        dashboardUrl.pathname = '/dashboard'
+        return NextResponse.redirect(dashboardUrl)
+      }
+    }
+
+    // Protect /api/admin/* routes — admin only
+    if (pathname.startsWith('/api/admin')) {
+      if (payload.role !== 'admin') {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      }
+    }
+
     return NextResponse.next()
   } catch {
-    // Invalid token - clear cookie and redirect to login
     if (isPublicPath) return NextResponse.next()
-    const response = NextResponse.redirect(new URL('/login', request.url))
+    const loginUrl = request.nextUrl.clone()
+    loginUrl.pathname = '/login'
+    const response = NextResponse.redirect(loginUrl)
     response.cookies.delete(COOKIE_NAME)
     return response
   }

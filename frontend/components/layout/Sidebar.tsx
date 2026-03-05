@@ -9,22 +9,24 @@ import {
   UsersRound,
   FileText,
   Activity,
-  Upload,
   Settings,
-  Cloud,
-  Layers,
   Lock,
   ChevronRight,
   Wifi,
-  Radio,
-  KeyRound,
   BellRing,
   ScanLine,
   BarChart2,
+  Tag,
+  Sparkles,
+  MessageSquare,
+  UserCog,
+  Cable,
+  Server,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface NavItem {
   label: string
@@ -42,6 +44,7 @@ const navGroups: NavGroup[] = [
     title: 'Overview',
     items: [
       { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+      { label: 'Connected Clients', href: '/mqtt/connected-clients', icon: Wifi },
     ],
   },
   {
@@ -52,38 +55,32 @@ const navGroups: NavGroup[] = [
       { label: 'Groups', href: '/mqtt/groups', icon: UsersRound },
     ],
   },
-  {
-    title: 'Tools',
-    items: [
-      { label: 'Connected Clients', href: '/mqtt/connected-clients', icon: Wifi },
-      { label: 'MQTT Explorer', href: '/mqtt/explorer', icon: Radio },
-      { label: 'Broker Logs', href: '/mqtt/broker-logs', icon: FileText },
-      { label: 'Client Logs', href: '/mqtt/client-logs', icon: Activity },
-    ],
-  },
+
   {
     title: 'Monitoring',
     items: [
+      { label: 'Chat', href: '/ai/chat', icon: MessageSquare },
       { label: 'Alerts', href: '/ai/alerts', icon: BellRing },
       { label: 'Anomalies', href: '/ai/anomalies', icon: ScanLine },
       { label: 'Metrics', href: '/ai/metrics', icon: BarChart2 },
     ],
   },
-  {
-    title: 'Configuration',
+    {
+    title: 'Logs',
     items: [
-      { label: 'Broker Config', href: '/mqtt/config', icon: Settings },
-      { label: 'Import Password', href: '/mqtt/import-password', icon: Upload },
-      { label: 'Settings', href: '/settings', icon: KeyRound },
+      { label: 'Broker Logs', href: '/mqtt/broker-logs', icon: FileText },
+      { label: 'Client Logs', href: '/mqtt/client-logs', icon: Activity },
     ],
   },
   {
-    title: 'Cloud',
+    title: 'Settings',
     items: [
-      { label: 'AWS Bridge', href: '/cloud/aws-bridge', icon: Cloud },
-      { label: 'Azure Bridge', href: '/cloud/azure-bridge', icon: Layers },
+      { label: 'Broker', href: '/settings', icon: Server },
+      { label: 'Connectors & APIs', href: '/settings/connectors', icon: Cable },
+      { label: 'Annotations', href: '/ai/annotations', icon: Tag },
     ],
   },
+
 ]
 
 interface SidebarProps {
@@ -93,6 +90,21 @@ interface SidebarProps {
 
 export function Sidebar({ className, onNavClick }: SidebarProps) {
   const pathname = usePathname()
+  const { user } = useAuth()
+  const isAdmin = user?.role === 'admin'
+
+  const activeItem = navGroups
+    .flatMap((group) => group.items)
+    .reduce<NavItem | undefined>((best, item) => {
+      if (pathname === item.href) return item
+      if (pathname.startsWith(item.href + '/')) {
+        if (!best) return item
+        return item.href.length > best.href.length ? item : best
+      }
+      return best
+    }, undefined)
+
+  const activeHref = activeItem?.href
 
   return (
     <TooltipProvider>
@@ -110,6 +122,17 @@ export function Sidebar({ className, onNavClick }: SidebarProps) {
           <span className="font-bold text-lg">BunkerM</span>
         </div>
 
+        {/* Bunker AI Button */}
+        <div className="p-3">
+          <Link
+            href="/ai/chat"
+            className="flex items-center justify-center gap-2 w-full bg-sidebar-primary text-sidebar-primary-foreground rounded-lg py-2.5 px-3 font-medium text-sm hover:opacity-90 transition-opacity"
+            onClick={onNavClick}
+          >
+            <Sparkles className="h-4 w-4" />
+            Ask BunkerAI          </Link>
+        </div>
+
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-6">
           {navGroups.map((group) => (
@@ -119,7 +142,7 @@ export function Sidebar({ className, onNavClick }: SidebarProps) {
               </p>
               <ul className="space-y-0.5">
                 {group.items.map((item) => {
-                  const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+                  const isActive = item.href === activeHref
                   const Icon = item.icon
                   return (
                     <li key={item.href}>
@@ -143,6 +166,38 @@ export function Sidebar({ className, onNavClick }: SidebarProps) {
               </ul>
             </div>
           ))}
+
+          {isAdmin && (
+            <div>
+              <p className="text-xs font-semibold text-sidebar-foreground/40 uppercase tracking-wider px-2 mb-2">
+                Admin
+              </p>
+              <ul className="space-y-0.5">
+                {[{ label: 'Users', href: '/admin/users', icon: UserCog }].map((item) => {
+                  const isActive = item.href === activeHref
+                  const Icon = item.icon
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={onNavClick}
+                        className={cn(
+                          'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                          isActive
+                            ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                            : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground'
+                        )}
+                      >
+                        <Icon className="h-4 w-4 shrink-0" />
+                        {item.label}
+                        {isActive && <ChevronRight className="ml-auto h-3 w-3" />}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
         </nav>
 
         {/* Footer */}

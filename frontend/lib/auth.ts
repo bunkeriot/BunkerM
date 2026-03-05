@@ -12,6 +12,7 @@ export async function signToken(user: User): Promise<string> {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
+    role: user.role,
   })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
@@ -27,8 +28,20 @@ export async function verifyToken(token: string): Promise<User | null> {
       email: payload.email as string,
       firstName: payload.firstName as string,
       lastName: payload.lastName as string,
-      createdAt: payload.createdAt as string || new Date().toISOString(),
+      createdAt: (payload.createdAt as string) || new Date().toISOString(),
+      role: (payload.role as 'admin' | 'user') || 'user',
     }
+  } catch {
+    return null
+  }
+}
+
+/** Extract role from JWT without full validation (for middleware speed). */
+export function getRoleFromToken(token: string): 'admin' | 'user' | null {
+  try {
+    const [, payloadB64] = token.split('.')
+    const payload = JSON.parse(Buffer.from(payloadB64, 'base64url').toString())
+    return payload.role === 'admin' ? 'admin' : 'user'
   } catch {
     return null
   }
