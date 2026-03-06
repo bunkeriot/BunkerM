@@ -271,6 +271,15 @@ export const cloudApi = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(annotations),
     }).then((r) => r.json()),
+  annotateTopics: (topics: string[], payloads: Record<string, string> = {}) =>
+    fetch('/api/ai/annotations/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topics, payloads }),
+    }).then((r) => r.json()) as Promise<{
+      annotations?: Array<{ topic: string; description: string; direction: string; example_payloads: string[] }>
+      error?: string
+    }>,
 }
 
 // ─── AI Chat API ─────────────────────────────────────────────────────────────
@@ -327,6 +336,9 @@ export const adminApi = {
       .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
   revokeTelegramConnector: () =>
     fetch('/api/settings/telegram-setup', { method: 'DELETE' })
+      .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+  revokeSlackConnector: () =>
+    fetch('/api/settings/slack-setup', { method: 'DELETE' })
       .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
 }
 

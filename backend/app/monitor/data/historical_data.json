@@ -2,51 +2,6 @@
   "daily_messages": [],
   "hourly": [
     {
-      "timestamp": "2026-03-04 22:54",
-      "bytes_received": 4.04,
-      "bytes_sent": 1182.1
-    },
-    {
-      "timestamp": "2026-03-04 22:57",
-      "bytes_received": 4.06,
-      "bytes_sent": 1182.14
-    },
-    {
-      "timestamp": "2026-03-04 23:00",
-      "bytes_received": 4.08,
-      "bytes_sent": 1182.18
-    },
-    {
-      "timestamp": "2026-03-04 23:03",
-      "bytes_received": 4.05,
-      "bytes_sent": 1182.17
-    },
-    {
-      "timestamp": "2026-03-04 23:06",
-      "bytes_received": 4.07,
-      "bytes_sent": 1182.2
-    },
-    {
-      "timestamp": "2026-03-04 23:09",
-      "bytes_received": 4.04,
-      "bytes_sent": 1182.18
-    },
-    {
-      "timestamp": "2026-03-04 23:12",
-      "bytes_received": 4.07,
-      "bytes_sent": 1182.21
-    },
-    {
-      "timestamp": "2026-03-04 23:15",
-      "bytes_received": 4.04,
-      "bytes_sent": 1182.19
-    },
-    {
-      "timestamp": "2026-03-04 23:18",
-      "bytes_received": 4.06,
-      "bytes_sent": 1182.21
-    },
-    {
       "timestamp": "2026-03-05 03:03",
       "bytes_received": 94.11,
       "bytes_sent": 371.85
@@ -100,6 +55,21 @@
       "timestamp": "2026-03-05 22:52",
       "bytes_received": 79.04,
       "bytes_sent": 360.54
+    },
+    {
+      "timestamp": "2026-03-06 00:37",
+      "bytes_received": 48.61,
+      "bytes_sent": 401.0
+    },
+    {
+      "timestamp": "2026-03-06 00:51",
+      "bytes_received": 25.88,
+      "bytes_sent": 515.85
+    },
+    {
+      "timestamp": "2026-03-06 01:19",
+      "bytes_received": 167.46,
+      "bytes_sent": 619.49
     }
   ],
   "daily": []

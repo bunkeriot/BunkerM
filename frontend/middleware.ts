@@ -8,6 +8,14 @@ const COOKIE_NAME = 'bunkerm_token'
 const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/reset-password']
 const API_PATHS = ['/api/auth', '/api/logs', '/api/proxy', '/api/settings', '/api/ai']
 
+function publicUrl(request: NextRequest, pathname: string): URL {
+  // request.nextUrl uses Next.js's internal port (3000). Reconstruct using
+  // the Host header forwarded by nginx ($http_host) to get the public port.
+  const host  = request.headers.get('host') ?? request.nextUrl.host
+  const proto = request.headers.get('x-forwarded-proto') ?? 'http'
+  return new URL(pathname, `${proto}://${host}`)
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -21,26 +29,20 @@ export async function middleware(request: NextRequest) {
 
   if (!token) {
     if (isPublicPath) return NextResponse.next()
-    const loginUrl = request.nextUrl.clone()
-    loginUrl.pathname = '/login'
-    return NextResponse.redirect(loginUrl)
+    return NextResponse.redirect(publicUrl(request, '/login'))
   }
 
   try {
     const { payload } = await jwtVerify(token, secret)
 
     if (isPublicPath) {
-      const dashboardUrl = request.nextUrl.clone()
-      dashboardUrl.pathname = '/dashboard'
-      return NextResponse.redirect(dashboardUrl)
+      return NextResponse.redirect(publicUrl(request, '/dashboard'))
     }
 
     // Protect /admin/* routes — only admin role allowed
     if (pathname.startsWith('/admin')) {
       if (payload.role !== 'admin') {
-        const dashboardUrl = request.nextUrl.clone()
-        dashboardUrl.pathname = '/dashboard'
-        return NextResponse.redirect(dashboardUrl)
+        return NextResponse.redirect(publicUrl(request, '/dashboard'))
       }
     }
 
@@ -54,9 +56,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   } catch {
     if (isPublicPath) return NextResponse.next()
-    const loginUrl = request.nextUrl.clone()
-    loginUrl.pathname = '/login'
-    const response = NextResponse.redirect(loginUrl)
+    const response = NextResponse.redirect(publicUrl(request, '/login'))
     response.cookies.delete(COOKIE_NAME)
     return response
   }

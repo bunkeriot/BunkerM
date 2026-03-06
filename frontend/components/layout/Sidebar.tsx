@@ -59,7 +59,6 @@ const navGroups: NavGroup[] = [
   {
     title: 'Monitoring',
     items: [
-      { label: 'Chat', href: '/ai/chat', icon: MessageSquare },
       { label: 'Alerts', href: '/ai/alerts', icon: BellRing },
       { label: 'Anomalies', href: '/ai/anomalies', icon: ScanLine },
       { label: 'Metrics', href: '/ai/metrics', icon: BarChart2 },

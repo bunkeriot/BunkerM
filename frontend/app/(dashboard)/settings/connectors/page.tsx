@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
   Eye, EyeOff, Copy, RefreshCw, KeyRound, Check,
-  Globe, Loader2, Wifi, WifiOff, Bot, ExternalLink,
-  Cable, ShieldOff, Badge as BadgeIcon,
+  Globe, Loader2, Wifi, WifiOff, Bot,
+  Cable, ShieldOff, Hash,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { adminApi } from '@/lib/api'
@@ -31,6 +31,7 @@ interface CloudConfig {
   tenant_id?: string
   telegram_connected?: string
   telegram_bot_token?: string
+  slack_connected?: string
 }
 
 interface CloudStatus {
@@ -72,6 +73,10 @@ export default function ConnectorsPage() {
   const [cloudKeyCopied, setCloudKeyCopied]     = useState(false)
   const [revokingTelegram, setRevokingTelegram] = useState(false)
 
+  // Slack state
+  const [slackStartUrl, setSlackStartUrl] = useState('/api/settings/slack-oauth-start')
+  const [revokingSlack, setRevokingSlack] = useState(false)
+
   // ── Fetch ──────────────────────────────────────────────────────────────────
 
   const fetchApiKey = useCallback(async () => {
@@ -96,7 +101,27 @@ export default function ConnectorsPage() {
   useEffect(() => {
     fetchApiKey()
     fetchCloudState()
+    setSlackStartUrl(
+      `/api/settings/slack-oauth-start?return_to=${encodeURIComponent(window.location.origin)}`
+    )
   }, [fetchApiKey, fetchCloudState])
+
+  // Detect Slack OAuth redirect result
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const slack = params.get('slack')
+    if (!slack) return
+    window.history.replaceState({}, '', '/settings/connectors')
+    if (slack === 'connected') {
+      fetch('/api/settings/slack-sync', { method: 'POST' })
+        .then(() => fetchCloudState())
+        .catch(() => {})
+      toast.success('Slack bot connected!')
+    } else if (slack === 'error') {
+      const reason = params.get('reason') ?? 'unknown'
+      toast.error(`Slack connection failed: ${reason}`)
+    }
+  }, [fetchCloudState])
 
   // Poll connection status while configured but not yet connected
   useEffect(() => {
@@ -228,6 +253,23 @@ export default function ConnectorsPage() {
     }
   }
 
+  async function handleRevokeSlack() {
+    setRevokingSlack(true)
+    try {
+      const res = await adminApi.revokeSlackConnector()
+      if (res.error) {
+        toast.error(res.error)
+      } else {
+        toast.success('Slack connector revoked')
+        await fetchCloudState()
+      }
+    } catch {
+      toast.error('Failed to revoke Slack connector')
+    } finally {
+      setRevokingSlack(false)
+    }
+  }
+
   // ── Derived ────────────────────────────────────────────────────────────────
 
   const maskedKey    = info ? `${info.key.slice(0, 6)}${'•'.repeat(20)}${info.key.slice(-4)}` : ''
@@ -235,6 +277,7 @@ export default function ConnectorsPage() {
   const sourceInfo   = info ? SOURCE_LABEL[info.source] : null
   const hasCloudKey  = !!cloudConfig?.api_key
   const hasTelegram  = cloudConfig?.telegram_connected === 'true'
+  const hasSlack     = cloudConfig?.slack_connected === 'true'
   const maskedCloudKey = cloudConfig?.api_key
     ? `${cloudConfig.api_key.slice(0, 8)}${'•'.repeat(16)}${cloudConfig.api_key.slice(-4)}`
     : ''
@@ -423,6 +466,59 @@ export default function ConnectorsPage() {
         </CardContent>
       </Card>
 
+      {/* ── Slack Connector ── */}
+      {hasCloudKey && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Hash className="h-4 w-4" />
+              Slack Bot
+              {hasSlack && (
+                <Badge variant="default" className="ml-auto gap-1.5 font-normal">
+                  <Check className="h-3 w-3" /> Connected
+                </Badge>
+              )}
+            </CardTitle>
+            <CardDescription>
+              Allow users to chat with BunkerM AI from Slack.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {hasSlack ? (
+              <div className="space-y-3">
+                <div className="rounded-md bg-muted/50 border p-3 text-sm space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <Hash className="h-4 w-4 text-muted-foreground" />
+                    <span className="font-medium">Slack bot active</span>
+                    <Check className="h-4 w-4 text-green-500 ml-auto" />
+                  </div>
+                </div>
+                <div className="rounded-md bg-muted p-3 text-xs text-muted-foreground space-y-1">
+                  <p className="font-medium text-foreground">Ready to use</p>
+                  <p>DM your Slack bot and ask about your broker. Try: <em>&quot;What topics are active?&quot;</em></p>
+                </div>
+                <Button variant="destructive" size="sm" onClick={handleRevokeSlack} disabled={revokingSlack}>
+                  {revokingSlack ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShieldOff className="h-4 w-4" />}
+                  Revoke
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Authorize BunkerAI in your Slack workspace with one click. No app creation or token copy-paste required.
+                </p>
+                <a href={slackStartUrl}>
+                  <Button className="w-full gap-2">
+                    <Hash className="h-4 w-4" />
+                    Add to Slack
+                  </Button>
+                </a>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
       {/* ── Cloud Integration (active tokens) ── */}
       {hasCloudKey && (
         <Card>
@@ -465,6 +561,24 @@ export default function ConnectorsPage() {
               {hasTelegram ? (
                 <Button size="sm" variant="destructive" disabled={revokingTelegram} onClick={handleRevokeTelegram}>
                   {revokingTelegram ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShieldOff className="h-4 w-4" />}
+                  Revoke
+                </Button>
+              ) : (
+                <Badge variant="outline">Not connected</Badge>
+              )}
+            </div>
+
+            {/* Slack */}
+            <div className="flex items-center justify-between py-4">
+              <div>
+                <p className="text-sm font-medium">Slack Bot</p>
+                <p className="text-xs text-muted-foreground">
+                  {hasSlack ? 'Connected — events webhook active' : 'Not connected'}
+                </p>
+              </div>
+              {hasSlack ? (
+                <Button size="sm" variant="destructive" disabled={revokingSlack} onClick={handleRevokeSlack}>
+                  {revokingSlack ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShieldOff className="h-4 w-4" />}
                   Revoke
                 </Button>
               ) : (
