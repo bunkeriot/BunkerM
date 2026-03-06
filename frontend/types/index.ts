@@ -177,10 +177,50 @@ export interface TopicAnnotation {
 
 export interface PendingAction {
   id: string
+  type?: 'publish' | 'schedule' | 'watcher'
+  // publish fields
+  topic?: string
+  payload?: string
+  qos?: number
+  retain?: boolean
+  // schedule / watcher fields
+  description?: string
+  cron?: string
+  condition_operator?: string
+  condition_value?: string
+}
+
+export interface ScheduledJob {
+  id: string
+  description: string
+  cron: string
   topic: string
   payload: string
   qos: number
   retain: boolean
+  active: boolean
+  created_by: string
+  created_at: string
+  last_fired_at: string | null
+  fire_count: number
+}
+
+export interface Watcher {
+  id: string
+  description: string
+  topic: string
+  condition_field: string | null
+  condition_operator: string
+  condition_value: string
+  response_template: string
+  one_shot: boolean
+  cooldown_seconds: number
+  expires_after_days: number | null
+  created_by: string
+  created_at: string
+  last_fired_at: string | null
+  fire_count: number
+  active: boolean
 }
 
 export interface ChatMessage {

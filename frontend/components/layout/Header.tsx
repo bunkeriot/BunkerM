@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
-import { Moon, Sun, LogOut, User, Menu, ChevronRight, MoreHorizontal, Globe, MessageSquare, Tag, BookOpen, Github, Radio } from 'lucide-react'
+import { Moon, Sun, LogOut, User, Menu, ChevronRight, MoreHorizontal, Globe, MessageSquare, Tag, BookOpen, Github, Radio, CloudDownload, CheckCircle, RefreshCw } from 'lucide-react'
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -29,7 +29,8 @@ function RedditIcon({ className }: { className?: string }) {
   )
 }
 import { useAuth } from '@/contexts/AuthContext'
-import { UpdateNotification } from '@/components/layout/UpdateNotification'
+import { WatcherBell } from '@/components/layout/WatcherBell'
+import { useVersionCheck } from '@/hooks/useVersionCheck'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
@@ -74,6 +75,8 @@ export function Header({ onMenuClick }: HeaderProps) {
   const { user, logout } = useAuth()
   const { theme, setTheme } = useTheme()
   const router = useRouter()
+  const { versionInfo, loading: versionLoading, checkForUpdates } = useVersionCheck()
+  const hasUpdate = versionInfo?.updateAvailable ?? false
 
   const initials = user
     ? `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
@@ -102,8 +105,8 @@ export function Header({ onMenuClick }: HeaderProps) {
           </Link>
         </Button>
 
-        {/* Update notification bell */}
-        <UpdateNotification />
+        {/* Watcher alert bell */}
+        <WatcherBell />
 
         {/* More / Support menu */}
         <DropdownMenu>
@@ -114,6 +117,30 @@ export function Header({ onMenuClick }: HeaderProps) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-52" align="end">
+            {hasUpdate && versionInfo ? (
+              <>
+                <DropdownMenuItem
+                  onClick={() => window.open(versionInfo.dockerHubUrl, '_blank')}
+                  className="text-yellow-600 dark:text-yellow-400 flex items-center"
+                >
+                  <CloudDownload className="mr-2 h-4 w-4" />
+                  New update available
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </>
+            ) : (
+              <>
+                <DropdownMenuItem disabled className="flex items-center text-muted-foreground">
+                  <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
+                  Up to date
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={checkForUpdates} disabled={versionLoading} className="flex items-center">
+                  <RefreshCw className={`mr-2 h-4 w-4 ${versionLoading ? 'animate-spin' : ''}`} />
+                  Check for updates
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </>
+            )}
             <DropdownMenuLabel>Support &amp; Resources</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

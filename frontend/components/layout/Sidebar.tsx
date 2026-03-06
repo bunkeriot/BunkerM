@@ -22,6 +22,7 @@ import {
   UserCog,
   Cable,
   Server,
+  Bot,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -62,6 +63,7 @@ const navGroups: NavGroup[] = [
       { label: 'Alerts', href: '/ai/alerts', icon: BellRing },
       { label: 'Anomalies', href: '/ai/anomalies', icon: ScanLine },
       { label: 'Metrics', href: '/ai/metrics', icon: BarChart2 },
+      { label: 'Agents', href: '/ai/agents', icon: Bot },
     ],
   },
     {

@@ -5,6 +5,7 @@ Handles:
 - Auth handshake
 - Heartbeat (ping every 30s)
 - Tool call dispatch
+- Watcher sync / add / remove
 - Exponential backoff reconnect
 - Status file for frontend
 """
@@ -19,6 +20,7 @@ import httpx
 import websockets
 
 from connector_agent.tools import dispatcher
+from connector_agent.watcher.engine import WatcherEngine
 
 DYNSEC_URL = "http://127.0.0.1:1000"
 AI_CLIENT_ID = "BunkerAI"
@@ -35,6 +37,18 @@ class ConnectorClient:
         self.api_key = api_key
         self.ws_url = ws_url
         self.internal_api_key = internal_api_key
+        self._ws_ref = None  # live WebSocket for watcher callbacks
+
+        async def _watcher_fire(watcher_id: str, rendered_message: str, created_by: str):
+            if self._ws_ref:
+                await self._ws_ref.send(json.dumps({
+                    "type": "watcher_fired",
+                    "watcher_id": watcher_id,
+                    "message": rendered_message,
+                    "created_by": created_by,
+                }))
+
+        self._watcher_engine = WatcherEngine(on_fire=_watcher_fire)
 
     async def run_forever(self):
         backoff = 2
@@ -93,6 +107,8 @@ class ConnectorClient:
 
     async def _connect_and_serve(self):
         async with websockets.connect(self.ws_url) as ws:
+            self._ws_ref = ws
+
             # 1. Auth handshake
             await ws.send(json.dumps({
                 "type": "auth",
@@ -112,11 +128,18 @@ class ConnectorClient:
             # 2. Ensure AI MQTT client exists (fire-and-forget, non-blocking)
             asyncio.create_task(self._ensure_ai_mqtt_client())
 
-            # 3. Run heartbeat + message dispatch concurrently
-            await asyncio.gather(
-                self._heartbeat(ws),
-                self._listen(ws),
-            )
+            # 3. Start watcher engine (connects to local MQTT broker)
+            self._watcher_engine.start(asyncio.get_event_loop())
+
+            # 4. Run heartbeat + message dispatch concurrently
+            try:
+                await asyncio.gather(
+                    self._heartbeat(ws),
+                    self._listen(ws),
+                )
+            finally:
+                self._ws_ref = None
+                self._watcher_engine.stop()
 
     async def _listen(self, ws):
         async for raw in ws:
@@ -125,7 +148,17 @@ class ConnectorClient:
             if msg_type == "tool_call":
                 asyncio.create_task(self._handle_tool_call(ws, msg))
             elif msg_type == "pong":
-                pass  # heartbeat ack — no action needed
+                pass
+            elif msg_type == "watcher_sync":
+                self._watcher_engine.sync(msg.get("watchers", []))
+            elif msg_type == "watcher_add":
+                watcher = msg.get("watcher")
+                if watcher:
+                    self._watcher_engine.add(watcher)
+            elif msg_type == "watcher_remove":
+                watcher_id = msg.get("watcher_id")
+                if watcher_id:
+                    self._watcher_engine.remove(watcher_id)
 
     async def _handle_tool_call(self, ws, msg: dict):
         result = await dispatcher.dispatch(

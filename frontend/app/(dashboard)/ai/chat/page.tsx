@@ -269,9 +269,16 @@ export default function ChatPage() {
     setMessages((prev) =>
       prev.map((m) => {
         if (m.id !== msgId) return m
-        const suffix = confirmed
-          ? `\n\n✓ Published \`${m.pending?.payload}\` to \`${m.pending?.topic}\``
-          : '\n\n✗ Cancelled.'
+        let suffix: string
+        if (!confirmed) {
+          suffix = '\n\n✗ Cancelled.'
+        } else if (m.pending?.type === 'schedule') {
+          suffix = `\n\n✓ Scheduled: "${m.pending.description}"`
+        } else if (m.pending?.type === 'watcher') {
+          suffix = `\n\n✓ Watcher activated: "${m.pending.description}"`
+        } else {
+          suffix = `\n\n✓ Published \`${m.pending?.payload}\` to \`${m.pending?.topic}\``
+        }
         return { ...m, content: m.content + suffix, pending: undefined }
       })
     )

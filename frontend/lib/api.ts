@@ -342,6 +342,53 @@ export const adminApi = {
       .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
 }
 
+// ─── Schedules API ───────────────────────────────────────────────────────────
+
+import type { ScheduledJob, Watcher } from '@/types'
+
+export const schedulesApi = {
+  list: () =>
+    fetch('/api/ai/schedules').then((r) => r.json()) as Promise<{ jobs: ScheduledJob[]; error?: string }>,
+  create: (data: { description: string; cron: string; topic: string; payload: string; qos?: number; retain?: boolean }) =>
+    fetch('/api/ai/schedules', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((r) => r.json()) as Promise<{ job?: ScheduledJob; error?: string }>,
+  delete: (id: string) =>
+    fetch(`/api/ai/schedules/${id}`, { method: 'DELETE' })
+      .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+}
+
+// ─── Watchers API ─────────────────────────────────────────────────────────────
+
+export const watchersApi = {
+  list: () =>
+    fetch('/api/ai/watchers').then((r) => r.json()) as Promise<{ watchers: Watcher[]; error?: string }>,
+  events: (since?: string) =>
+    fetch(`/api/ai/watcher-events${since ? `?since=${encodeURIComponent(since)}` : ''}`)
+      .then((r) => r.json()) as Promise<{ events: { id: string; watcher_id: string; watcher_description: string; message: string; fired_at: string }[] }>,
+  create: (data: {
+    description: string
+    topic: string
+    condition_operator: string
+    condition_value: string
+    response_template: string
+    condition_field?: string
+    one_shot?: boolean
+    cooldown_seconds?: number
+    expires_after_days?: number
+  }) =>
+    fetch('/api/ai/watchers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((r) => r.json()) as Promise<{ watcher?: Watcher; error?: string }>,
+  delete: (id: string) =>
+    fetch(`/api/ai/watchers/${id}`, { method: 'DELETE' })
+      .then((r) => r.json()) as Promise<{ ok?: boolean; error?: string }>,
+}
+
 // ─── Smart Anomaly Detection API ─────────────────────────────────────────────
 
 const AI_API_URL = '/api/proxy/ai'
