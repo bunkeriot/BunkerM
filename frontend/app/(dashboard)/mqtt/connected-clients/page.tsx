@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { RefreshCw, Wifi, WifiOff, Ban, Search, Power, PowerOff } from 'lucide-react'
+import { RefreshCw, Wifi, WifiOff, Ban, Search, Power, PowerOff, Globe } from 'lucide-react'
 import { toast } from 'sonner'
 import { dynsecApi, clientlogsApi } from '@/lib/api'
 import { Button } from '@/components/ui/button'
@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/table'
 import type { MQTTEvent, MqttClient } from '@/types'
 
-type ClientStatus = 'connected' | 'disabled' | 'offline'
+type ClientStatus = 'connected' | 'cloud' | 'disabled' | 'offline'
 
 interface ClientRow {
   username: string
@@ -35,6 +35,7 @@ export default function ConnectedClientsPage() {
   const [connectedMap, setConnectedMap] = useState<Map<string, MQTTEvent>>(new Map())
   // username → disabled status from API + local overrides
   const [disabledState, setDisabledState] = useState<Record<string, boolean>>({})
+  const [cloudConnected, setCloudConnected] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [actionUsername, setActionUsername] = useState<string | null>(null)
   const [search, setSearch] = useState('')
@@ -67,10 +68,13 @@ export default function ConnectedClientsPage() {
     }
   }, [])
 
-  // Light poll: only update connected clients (no N+1 detail fetches)
+  // Light poll: update connected clients + cloud status together
   const fetchConnected = useCallback(async () => {
     try {
-      const data = await clientlogsApi.getConnectedClients()
+      const [data, cloudStatus] = await Promise.all([
+        clientlogsApi.getConnectedClients(),
+        fetch('/api/settings/cloud-status').then(r => r.json()).catch(() => ({ connected: false })),
+      ])
       // Deduplicate by username — keep first entry per username
       const map = new Map<string, MQTTEvent>()
       for (const ev of (data.clients ?? []) as MQTTEvent[]) {
@@ -79,6 +83,7 @@ export default function ConnectedClientsPage() {
         }
       }
       setConnectedMap(map)
+      setCloudConnected(cloudStatus?.connected === true)
     } catch {
       // Silently fail on poll errors
     }
@@ -131,10 +136,14 @@ export default function ConnectedClientsPage() {
   const rows: ClientRow[] = allUsernames.map((username) => {
     const isDisabled = disabledState[username] ?? false
     const connInfo = connectedMap.get(username)
+    const isBunkerAI = username === 'BunkerAI'
 
     let status: ClientStatus = 'offline'
     if (isDisabled) status = 'disabled'
     else if (connInfo) status = 'connected'
+    // BunkerAI connects to the broker via cloud WebSocket, not a direct MQTT socket.
+    // Reflect cloud connectivity as its true connection status.
+    else if (isBunkerAI && cloudConnected) status = 'cloud'
 
     return {
       username,
@@ -151,7 +160,7 @@ export default function ConnectedClientsPage() {
     (r) => !search || r.username.toLowerCase().includes(search.toLowerCase())
   )
 
-  const connectedCount = rows.filter((r) => r.status === 'connected').length
+  const connectedCount = rows.filter((r) => r.status === 'connected' || r.status === 'cloud').length
   const disabledCount = rows.filter((r) => r.status === 'disabled').length
 
   return (
@@ -221,6 +230,12 @@ export default function ConnectedClientsPage() {
                       <Badge variant="success" className="gap-1">
                         <Wifi className="h-3 w-3" />
                         Connected
+                      </Badge>
+                    )}
+                    {row.status === 'cloud' && (
+                      <Badge variant="success" className="gap-1">
+                        <Globe className="h-3 w-3" />
+                        Cloud Active
                       </Badge>
                     )}
                     {row.status === 'disabled' && (

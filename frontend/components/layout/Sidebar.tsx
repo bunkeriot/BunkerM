@@ -56,7 +56,7 @@ const navGroups: NavGroup[] = [
   },
 
   {
-    title: 'Monitoring',
+    title: 'Tools',
     items: [
       { label: 'Agents', href: '/ai/agents', icon: Bot },
       { label: 'Anomalies', href: '/ai/monitoring', icon: Activity },
