@@ -181,6 +181,28 @@ Back up and restore your complete ACL configuration in one click:
 
 The Import / Export button is available in **ACL → Clients** next to the Create Client button.
 
+### 🤖 Agents (Schedulers & Watchers)
+
+BunkerM Community includes a local automation engine — no cloud subscription required.
+
+#### Schedulers
+Publish MQTT messages on a recurring cron schedule:
+- Create recurring automations (e.g. "turn on pump every day at 6am")
+- Full cron expression support with built-in presets and live preview
+- Tracks last fired time and total execution count
+
+#### Watchers
+Monitor MQTT topics and trigger notifications when conditions are met:
+- Condition operators: `>` `<` `>=` `<=` `==` `!=` `contains` `starts_with` `any_change`
+- JSON field extraction (dot-path notation)
+- Response templates with `{{value}}`, `{{topic}}`, `{{timestamp}}`
+- Cooldown enforcement and one-shot auto-delete
+- Real-time notification bell in the dashboard (SSE push, sub-2s delivery)
+
+**Community limit:** Up to **2 agents** (schedulers + watchers combined). Agents run fully locally — no cloud connectivity needed to execute them. Once created, agents are yours permanently regardless of subscription status.
+
+**Activation:** A one-time free activation is required to unlock agent creation. BunkerM attempts this automatically on first start. For air-gapped deployments, create a free account at [bunkerai.dev](https://bunkerai.dev) and paste your Community key into the dashboard.
+
 ### 🤖 Smart Anomaly Detection
 
 BunkerM includes a built-in statistical anomaly detection engine that continuously monitors MQTT traffic and alerts you when behavior deviates from the established baseline. No external AI service or cloud dependency is required — everything runs locally.
@@ -310,6 +332,18 @@ Inspect live broker traffic directly from the UI with the built-in MQTT Explorer
 | InfluxDB Metrics Exporter | ✗ | ✗ | On-demand |
 | Prometheus Metrics Exporter | ✗ | ✗ | On-demand |
 
+### Agents & Automation
+| Feature | Community | Pro | Enterprise |
+|---------|:---------:|:---:|:----------:|
+| MQTT Scheduler (cron-based recurring publishes) | Up to 2 | Unlimited | Unlimited |
+| MQTT Watcher (condition-based alerts) | Up to 2 | Unlimited | Unlimited |
+| Agents combined limit (schedulers + watchers) | 2 | Unlimited | Unlimited |
+| Local agent execution (no cloud required) | ✓ | ✓ | ✓ |
+| Agents kept after downgrade / credits exhausted | ✓ | ✓ | ✓ |
+| Real-time notification bell (SSE) | ✓ | ✓ | ✓ |
+| AI-created agents via natural language | ✗ | ✓ | ✓ |
+| Telegram / Slack watcher notifications | ✗ | ✓ | ✓ |
+
 ### Monitoring & User Management
 | Feature | Community | Pro | Enterprise |
 |---------|:---------:|:---:|:----------:|
@@ -326,7 +360,8 @@ Inspect live broker traffic directly from the UI with the built-in MQTT Explorer
 | Statistical Anomaly Detection | ✓ | ✓ | ✓ |
 | AI Metrics Engine (1h / 24h baselines) | ✓ | ✓ | ✓ |
 | Smart Alert Feed with Severity Levels | ✓ | ✓ | ✓ |
-| LLM-powered Assistant | ✗ | ✓ | ✓ |
+| LLM-powered Assistant | ✗ | Credits | Credits |
+| Anomaly alert forwarding (Telegram / Slack) | ✗ | Credits | Credits |
 | Behavioral Security Analysis | ✗ | ✗ | ✓ |
 | AI-generated ACL Recommendations | ✗ | ✗ | ✓ |
 
@@ -363,19 +398,42 @@ Inspect live broker traffic directly from the UI with the built-in MQTT Explorer
 <a id="community-vs-paid-versions"></a>
 ## 💰 Community vs Paid versions
 
-My mission with BunkerM is to democratize IoT by making MQTT management accessible to everyone. The Community Version is designed to be lightweight, easy to use, and completely free, offering essential features for individuals and small projects.
+My mission with BunkerM is to democratize IoT by making MQTT management accessible to everyone. The Community version is free, open-source, and designed to stay that way.
 
-However, to sustain the development of the Community Version and continue delivering value, I'm introducing Pro and Enterprise Versions. These versions are tailored for businesses and advanced users, offering additional features like:
+### Pricing Philosophy — Model A
 
-- Local authentication (no internet required)  
-- Fine-grained RBAC (Role-Based Access Control)
-- LDAP and SSO integrations
-- Advanced monitoring and analytics
-- Enterprise-grade support
+**Pay for AI intelligence. Agents are yours to keep.**
 
-The revenue from the Pro and Enterprise versions will directly support the development and maintenance of the free Community Version. This way, I can keep BunkerM accessible to everyone while also meeting the needs of larger organizations.
+- **Agents** (schedulers + watchers) are a local feature. The Community limit (2 agents) is a one-time upgrade gate — not a recurring subscription. Once you create an agent on any tier, it runs on your infrastructure forever with no cloud dependency.
+- **AI features** (natural language assistant, anomaly alert forwarding, Telegram/Slack notifications) are powered by credits. Run out of credits → AI features pause. Local agents keep running unaffected.
+- **Upgrading to Premium** unlocks unlimited agents and a credit balance for AI features. If you later run out of credits or go offline, your agents continue executing locally without interruption.
 
-If the open-source community shows enough support, I may consider making the Pro version free as well. Your feedback and contributions are invaluable in shaping the future of BunkerM!
+This model is designed for self-hosted, industrial, and air-gapped environments where production automations **cannot be held hostage by a billing event**.
+
+### Tier Comparison
+
+| Feature | Community | Premium |
+|---------|:---------:|:-------:|
+| MQTT broker management | ✓ | ✓ |
+| ACL (clients, roles, groups) | ✓ | ✓ |
+| Smart anomaly detection | ✓ | ✓ |
+| Agents (schedulers + watchers) | Up to 2 | Unlimited |
+| Agent execution (local, offline) | ✓ | ✓ |
+| Agents kept after downgrade / offline | ✓ | ✓ |
+| AI chat assistant | ✗ | Credits |
+| Telegram / Slack notifications | ✗ | Credits |
+| Anomaly alert forwarding | ✗ | Credits |
+| Free activation required | Once | Once |
+
+### Activation
+
+Community requires a **one-time free activation** to enforce the 2-agent limit server-side:
+
+1. On first start, BunkerM silently attempts auto-activation with BunkerAI Cloud.
+2. If your network is air-gapped, a banner guides you to create a free account at [bunkerai.dev](https://bunkerai.dev), copy your Community key, and paste it into the dashboard — no ongoing internet connection required after activation.
+3. Once activated, the license key is stored locally and verified offline using cryptographic signatures. BunkerAI Cloud never needs to be reachable again.
+
+The revenue from Premium subscriptions directly funds development and maintenance of the free Community version.
 
 <a id="support-bunkerm-project"></a>
 ## ❤️ Support BunkerM Project

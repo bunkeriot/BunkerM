@@ -426,3 +426,12 @@ export const aiApi = {
   getHealth: () =>
     request<{ status: string; tier: string }>(buildUrl(AI_API_URL, '/health')),
 }
+
+// ─── Credits API ──────────────────────────────────────────────────────────────
+
+import type { CreditsData, CreditBundle } from '@/types'
+
+export const creditsApi = {
+  getCredits: () =>
+    fetch('/api/ai/credits').then((r) => r.json()) as Promise<CreditsData & { error?: string }>,
+}

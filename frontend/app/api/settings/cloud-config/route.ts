@@ -32,3 +32,13 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true })
 }
+
+export async function PATCH(request: Request) {
+  const patch = await request.json()
+  let existing: Record<string, unknown> = {}
+  try { existing = JSON.parse(readFileSync(CONFIG_FILE, 'utf-8')) } catch {}
+  const merged = { ...existing, ...patch }
+  mkdirSync('/nextjs/data', { recursive: true })
+  writeFileSync(CONFIG_FILE, JSON.stringify(merged, null, 2), { mode: 0o600 })
+  return NextResponse.json({ ok: true })
+}

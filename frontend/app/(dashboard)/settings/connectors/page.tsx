@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import {
   Eye, EyeOff, Copy, RefreshCw, KeyRound, Check,
   Globe, Loader2, Wifi, WifiOff, Bot,
-  Cable, ShieldOff, Hash,
+  Cable, ShieldOff, Hash, BellRing, Lock,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { adminApi } from '@/lib/api'
@@ -32,6 +32,7 @@ interface CloudConfig {
   telegram_connected?: string
   telegram_bot_token?: string
   slack_connected?: string
+  forward_alerts?: boolean
 }
 
 interface CloudStatus {
@@ -77,6 +78,10 @@ export default function ConnectorsPage() {
   const [slackStartUrl, setSlackStartUrl] = useState('/api/settings/slack-oauth-start')
   const [revokingSlack, setRevokingSlack] = useState(false)
 
+  // Alert forwarding
+  const [forwardAlerts, setForwardAlerts] = useState(false)
+  const [savingForward, setSavingForward] = useState(false)
+
   // ── Fetch ──────────────────────────────────────────────────────────────────
 
   const fetchApiKey = useCallback(async () => {
@@ -96,6 +101,7 @@ export default function ConnectorsPage() {
     setCloudConfig(config)
     setCloudStatus(status)
     if (config.cloud_url) setCloudUrl(config.cloud_url)
+    setForwardAlerts(config.forward_alerts ?? false)
   }, [])
 
   useEffect(() => {
@@ -466,6 +472,59 @@ export default function ConnectorsPage() {
         </CardContent>
       </Card>
 
+      {/* ── Disabled connector cards (shown when cloud not yet configured) ── */}
+      {!hasCloudKey && (
+        <>
+          <Card className="opacity-60 pointer-events-none select-none">
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <Bot className="h-4 w-4" />
+                Telegram Bot
+                <Badge variant="outline" className="ml-auto gap-1.5 text-xs font-normal">
+                  <Lock className="h-3 w-3" /> Requires BunkerAI Cloud
+                </Badge>
+              </CardTitle>
+              <CardDescription>
+                Control your broker from Telegram DMs using natural language.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="rounded-md border border-dashed p-4 text-center text-sm text-muted-foreground">
+                Connect BunkerAI Cloud above to enable this connector.
+              </div>
+              <Button className="w-full" disabled>
+                <Bot className="h-4 w-4" />
+                Connect Telegram Bot
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="opacity-60 pointer-events-none select-none">
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <Hash className="h-4 w-4" />
+                Slack Bot
+                <Badge variant="outline" className="ml-auto gap-1.5 text-xs font-normal">
+                  <Lock className="h-3 w-3" /> Requires BunkerAI Cloud
+                </Badge>
+              </CardTitle>
+              <CardDescription>
+                Chat with BunkerM AI from any Slack channel or DM.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="rounded-md border border-dashed p-4 text-center text-sm text-muted-foreground">
+                Connect BunkerAI Cloud above to enable this connector.
+              </div>
+              <Button className="w-full" disabled>
+                <Hash className="h-4 w-4" />
+                Add to Slack
+              </Button>
+            </CardContent>
+          </Card>
+        </>
+      )}
+
       {/* ── Slack Connector ── */}
       {hasCloudKey && (
         <Card>
@@ -586,6 +645,64 @@ export default function ConnectorsPage() {
               )}
             </div>
 
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── Alert Forwarding ── */}
+      {hasCloudKey && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <BellRing className="h-4 w-4" />
+              Anomaly Alert Forwarding
+            </CardTitle>
+            <CardDescription>
+              Automatically push high and critical anomaly alerts to your connected Telegram and Slack channels.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="space-y-0.5">
+                <p className="text-sm font-medium">Forward to connectors</p>
+                <p className="text-xs text-muted-foreground">
+                  New <span className="text-orange-600 dark:text-orange-400 font-medium">high</span> and{' '}
+                  <span className="text-red-600 dark:text-red-400 font-medium">critical</span> anomaly alerts are pushed to Telegram and Slack in real time.
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={forwardAlerts}
+                onClick={async () => {
+                  const next = !forwardAlerts
+                  setForwardAlerts(next)
+                  setSavingForward(true)
+                  try {
+                    await fetch('/api/settings/cloud-config', {
+                      method: 'PATCH',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ forward_alerts: next }),
+                    })
+                    toast.success(next ? 'Alert forwarding enabled' : 'Alert forwarding disabled')
+                  } catch {
+                    toast.error('Failed to save setting')
+                    setForwardAlerts(!next)
+                  } finally {
+                    setSavingForward(false)
+                  }
+                }}
+                disabled={savingForward}
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 ${forwardAlerts ? 'bg-primary' : 'bg-input'}`}
+              >
+                <span className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform ${forwardAlerts ? 'translate-x-5' : 'translate-x-0'}`} />
+              </button>
+            </div>
+            {forwardAlerts && (
+              <div className="rounded-md bg-muted/50 border p-3 text-xs text-muted-foreground">
+                The connector agent polls for new anomaly alerts every 30 seconds and forwards them to all active connectors (Telegram and Slack).
+              </div>
+            )}
           </CardContent>
         </Card>
       )}

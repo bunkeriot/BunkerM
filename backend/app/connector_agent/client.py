@@ -21,6 +21,7 @@ import websockets
 
 from connector_agent.tools import dispatcher
 from connector_agent.watcher.engine import WatcherEngine
+from connector_agent.alert_forwarder import AlertForwarder
 
 DYNSEC_URL = "http://127.0.0.1:1000"
 AI_CLIENT_ID = "BunkerAI"
@@ -49,6 +50,12 @@ class ConnectorClient:
                 }))
 
         self._watcher_engine = WatcherEngine(on_fire=_watcher_fire)
+
+        async def _alert_send(payload: dict):
+            if self._ws_ref:
+                await self._ws_ref.send(json.dumps(payload))
+
+        self._alert_forwarder = AlertForwarder(send_fn=_alert_send)
 
     async def run_forever(self):
         backoff = 2
@@ -131,7 +138,10 @@ class ConnectorClient:
             # 3. Start watcher engine (connects to local MQTT broker)
             self._watcher_engine.start(asyncio.get_event_loop())
 
-            # 4. Run heartbeat + message dispatch concurrently
+            # 4. Start alert forwarder (polls smart-anomaly every 30s)
+            self._alert_forwarder.start()
+
+            # 5. Run heartbeat + message dispatch concurrently
             try:
                 await asyncio.gather(
                     self._heartbeat(ws),
@@ -140,6 +150,7 @@ class ConnectorClient:
             finally:
                 self._ws_ref = None
                 self._watcher_engine.stop()
+                self._alert_forwarder.stop()
 
     async def _listen(self, ws):
         async for raw in ws:

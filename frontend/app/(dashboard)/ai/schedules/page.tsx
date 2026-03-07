@@ -146,7 +146,7 @@ export default function SchedulesPage() {
           <Info className="h-4 w-4 mt-0.5 shrink-0" />
           <p>
             Set up BunkerAI Cloud in{' '}
-            <a href="/settings" className="underline hover:text-foreground">Settings</a>{' '}
+            <a href="/settings/connectors" className="underline hover:text-foreground">Settings</a>{' '}
             to use Scheduled Actions.
           </p>
         </div>

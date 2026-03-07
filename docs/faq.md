@@ -186,18 +186,92 @@ node reset-admin-password.js
 
 This will reset the password to the default "admin".
 
+## Agents (Schedulers & Watchers)
+
+### What are Agents?
+
+Agents are local automations that run directly on your BunkerM instance — no cloud connection required to execute them:
+
+- **Schedulers** publish an MQTT message on a cron schedule (e.g. "turn on pump every day at 6am").
+- **Watchers** monitor an MQTT topic and fire a notification when a condition is met (e.g. "alert me when temperature exceeds 30°C").
+
+### How many agents can I create on the Community edition?
+
+Up to **2 agents** combined (schedulers + watchers). This is enforced both in the UI and server-side.
+
+### Do agents require BunkerAI Cloud to run?
+
+No. Agents execute entirely on your local infrastructure. The MQTT broker, watcher engine, and scheduler all run inside the BunkerM Docker container. BunkerAI Cloud is not involved in agent execution.
+
+### What happens if I run out of credits while having agents running?
+
+Nothing happens to your agents. Credits fund AI features (chat assistant, Telegram/Slack notifications, anomaly alerts). When credits are exhausted, AI features pause. Local agents — schedulers and watchers — keep running indefinitely.
+
+### What happens to my agents if I go offline or cancel my Premium subscription?
+
+Agents you have already created continue running on your local infrastructure. The 2-agent limit for Community applies at **creation time**, not at execution time. Agents are yours to keep permanently.
+
+### Do I need internet to use agents?
+
+Only for the **initial one-time activation** (free). After that, agents work completely offline. For air-gapped deployments, see the activation question below.
+
+## Activation
+
+### Why does BunkerM require activation?
+
+A one-time free activation lets us enforce the 2-agent Community limit server-side (in addition to the frontend), which prevents the limit from being bypassed by calling the API directly. The activation is cryptographically signed and verified locally — no ongoing cloud dependency after the first activation.
+
+### How does activation work?
+
+1. On first start, BunkerM silently attempts auto-activation by contacting BunkerAI Cloud.
+2. If successful, a signed license key is stored locally. Done — you never need to think about it again.
+3. If BunkerAI Cloud is unreachable (air-gapped network), a banner appears in the dashboard with your **Instance ID**.
+
+### How do I activate BunkerM in an air-gapped environment?
+
+1. Note your **Instance ID** shown in the activation banner (e.g. `BKMR-A1B2C3D4`).
+2. From any internet-connected device, visit [bunkerai.dev](https://bunkerai.dev) and create a free account.
+3. Enter your Instance ID to generate your Community key.
+4. Copy the key and paste it into the activation field in the BunkerM dashboard.
+5. Click **Apply**. BunkerM stores the key locally — no internet needed after this point.
+
+### Does the activation key expire?
+
+No. Community license keys do not expire. Once activated, your instance remains activated permanently, even without any internet connection.
+
+### Does my activation key work on multiple BunkerM instances?
+
+No. Each key is cryptographically bound to the Instance ID it was generated for. A separate (free) activation is required for each deployment. This prevents key sharing while keeping the process free.
+
+### What is the Instance ID?
+
+A unique identifier generated on BunkerM's first start, stored in the persistent data volume. It survives container rebuilds on the same host (`docker compose down/up`). A fresh volume on a new host generates a new Instance ID requiring a new (free) activation.
+
 ## Licensing and Support
 
-### What's the difference between Community, Pro, and Enterprise editions?
+### What's the difference between Community and Premium?
 
-- **Community**: Free, open-source edition with core features
-- **Pro**: Adds cloud integration, enhanced monitoring, and commercial support
-- **Enterprise**: Adds clustering, high availability, LDAP integration, and more
+| | Community | Premium |
+|---|---|---|
+| Price | Free forever | Credits-based |
+| Agents | Up to 2 | Unlimited |
+| Agent execution | Local, no cloud | Local, no cloud |
+| AI chat assistant | ✗ | ✓ (credits) |
+| Telegram / Slack alerts | ✗ | ✓ (credits) |
+| Activation | One-time, free | One-time |
+
+**Key principle:** Agents are yours to keep once created — on any tier. Credits fund ongoing AI features, not agent execution.
+
+### How does the credit system work?
+
+Credits are consumed by AI-powered features: natural language chat, anomaly alert forwarding to Telegram/Slack, and AI-generated watchers/schedulers. Local agent execution (the schedulers and watchers firing on your broker) consumes zero credits.
+
+When your credit balance reaches zero, AI features pause until you top up. Your agents, ACL configuration, and monitoring continue working normally.
 
 ### How do I get support for BunkerM?
 
 - **Community Edition**: GitHub issues and community forums
-- **Pro/Enterprise**: Email support, priority issue resolution, and optional SLA
+- **Premium**: Email support at support@bunkerai.dev, priority issue resolution
 
 ### How can I contribute to BunkerM?
 
@@ -207,6 +281,6 @@ You can contribute to BunkerM by:
 - Improving documentation
 - Sharing your experience with the community
 
-### How do I upgrade from Community to Pro or Enterprise?
+### How do I upgrade from Community to Premium?
 
-Contact the BunkerM team at [m.idrissi@bunkeriot.com](mailto:m.idrissi@bunkeriot.com) for information about upgrading to Pro or Enterprise editions.
+Visit [bunkerai.dev](https://bunkerai.dev) to create an account and purchase a credit bundle. Premium unlocks unlimited agents and AI features.

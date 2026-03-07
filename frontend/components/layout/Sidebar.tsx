@@ -13,9 +13,6 @@ import {
   Lock,
   ChevronRight,
   Wifi,
-  BellRing,
-  ScanLine,
-  BarChart2,
   Tag,
   Sparkles,
   MessageSquare,
@@ -23,6 +20,7 @@ import {
   Cable,
   Server,
   Bot,
+  Coins,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -60,10 +58,9 @@ const navGroups: NavGroup[] = [
   {
     title: 'Monitoring',
     items: [
-      { label: 'Alerts', href: '/ai/alerts', icon: BellRing },
-      { label: 'Anomalies', href: '/ai/anomalies', icon: ScanLine },
-      { label: 'Metrics', href: '/ai/metrics', icon: BarChart2 },
       { label: 'Agents', href: '/ai/agents', icon: Bot },
+      { label: 'Anomalies', href: '/ai/monitoring', icon: Activity },
+  
     ],
   },
     {
@@ -76,9 +73,10 @@ const navGroups: NavGroup[] = [
   {
     title: 'Settings',
     items: [
-      { label: 'Broker', href: '/settings', icon: Server },
+      { label: 'Broker', href: '/settings/', icon: Server },
       { label: 'Connectors & APIs', href: '/settings/connectors', icon: Cable },
       { label: 'Annotations', href: '/ai/annotations', icon: Tag },
+      { label: 'Credits', href: '/settings/credits', icon: Coins },
     ],
   },
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Bot, Plus, Trash2, Loader2, Info, RefreshCw, Clock, Eye } from 'lucide-react'
+import { Bot, Plus, Trash2, Loader2, RefreshCw, Clock, Eye, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -59,6 +59,8 @@ function conditionLabel(w: Watcher): string {
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
+const COMMUNITY_AGENT_LIMIT = 2
+
 type AgentType = 'watcher' | 'scheduler'
 type ModalStep = 'select-type' | 'create-form'
 
@@ -68,11 +70,11 @@ export default function AgentsPage() {
   const [jobs, setJobs] = useState<ScheduledJob[]>([])
   const [watchers, setWatchers] = useState<Watcher[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isConfigured, setIsConfigured] = useState(true)
   const [deleting, setDeleting] = useState<string | null>(null)
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false)
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false)
   const [modalStep, setModalStep] = useState<ModalStep>('select-type')
   const [agentType, setAgentType] = useState<AgentType>('watcher')
   const [isSaving, setIsSaving] = useState(false)
@@ -98,15 +100,10 @@ export default function AgentsPage() {
     setIsLoading(true)
     try {
       const [jRes, wRes] = await Promise.all([schedulesApi.list(), watchersApi.list()])
-      if (jRes.error || wRes.error) {
-        setIsConfigured(false)
-      } else {
-        setJobs(jRes.jobs ?? [])
-        setWatchers(wRes.watchers ?? [])
-        setIsConfigured(true)
-      }
+      setJobs(jRes.jobs ?? [])
+      setWatchers(wRes.watchers ?? [])
     } catch {
-      setIsConfigured(false)
+      // agent-api unreachable — leave lists empty
     } finally {
       setIsLoading(false)
     }
@@ -114,9 +111,20 @@ export default function AgentsPage() {
 
   useEffect(() => { load() }, [])
 
+  // ── combined sorted list ──────────────────────────────────────────────────
+
+  const allAgents = [
+    ...jobs.map((j) => ({ kind: 'scheduler' as const, id: j.id, created_at: j.created_at, data: j })),
+    ...watchers.map((w) => ({ kind: 'watcher' as const, id: w.id, created_at: w.created_at, data: w })),
+  ].sort((a, b) => new Date(b.created_at ?? 0).getTime() - new Date(a.created_at ?? 0).getTime())
+
   // ── open/close modal ──────────────────────────────────────────────────────
 
   function openModal() {
+    if (allAgents.length >= COMMUNITY_AGENT_LIMIT) {
+      setUpgradeModalOpen(true)
+      return
+    }
     setModalStep('select-type')
     setAgentType('watcher')
     resetForms()
@@ -172,7 +180,9 @@ export default function AgentsPage() {
         one_shot: wOneShot,
         cooldown_seconds: Number(wCooldown) || 10,
       })
-      if (data.error) throw new Error(data.error)
+      const err = data.error ?? (data as Record<string, string>).detail
+      if (err) throw new Error(err)
+      if (!data.watcher) throw new Error('No watcher returned')
       setWatchers((prev) => [data.watcher!, ...prev])
       setModalOpen(false)
       toast.success('Watcher activated')
@@ -205,13 +215,6 @@ export default function AgentsPage() {
     finally { setDeleting(null) }
   }
 
-  // ── combined sorted list ──────────────────────────────────────────────────
-
-  const allAgents = [
-    ...jobs.map((j) => ({ kind: 'scheduler' as const, id: j.id, created_at: j.created_at, data: j })),
-    ...watchers.map((w) => ({ kind: 'watcher' as const, id: w.id, created_at: w.created_at, data: w })),
-  ].sort((a, b) => new Date(b.created_at ?? 0).getTime() - new Date(a.created_at ?? 0).getTime())
-
   // ── render ────────────────────────────────────────────────────────────────
 
   return (
@@ -231,31 +234,19 @@ export default function AgentsPage() {
           <Button variant="outline" size="icon" onClick={load} disabled={isLoading}>
             <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
           </Button>
-          <Button onClick={openModal} disabled={!isConfigured}>
+          <Button onClick={openModal}>
             <Plus className="h-4 w-4 mr-1.5" />
             New Agent
           </Button>
         </div>
       </div>
 
-      {/* Not configured */}
-      {!isConfigured && (
-        <div className="flex gap-3 rounded-md border bg-muted/50 p-4 text-sm text-muted-foreground">
-          <Info className="h-4 w-4 mt-0.5 shrink-0" />
-          <p>
-            Set up BunkerAI Cloud in{' '}
-            <a href="/settings" className="underline hover:text-foreground">Settings</a>{' '}
-            to use Agents.
-          </p>
-        </div>
-      )}
-
       {/* List */}
       {isLoading ? (
         <div className="flex justify-center py-12">
           <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
         </div>
-      ) : allAgents.length === 0 && isConfigured ? (
+      ) : allAgents.length === 0 ? (
         <div className="text-center py-12 text-muted-foreground text-sm">
           <Bot className="h-10 w-10 mx-auto mb-2 opacity-20" />
           <p>No active agents yet.</p>
@@ -336,6 +327,38 @@ export default function AgentsPage() {
           })}
         </div>
       )}
+
+      {/* ── Community Limit Modal ── */}
+      <Dialog open={upgradeModalOpen} onOpenChange={setUpgradeModalOpen}>
+        <DialogContent className="max-w-sm text-center">
+          <DialogHeader>
+            <div className="flex justify-center mb-2">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10">
+                <Sparkles className="h-6 w-6 text-primary" />
+              </div>
+            </div>
+            <DialogTitle className="text-center">Agent limit reached</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground py-2">
+            The Community version supports up to <span className="font-semibold text-foreground">{COMMUNITY_AGENT_LIMIT} agents</span>.
+            Upgrade to BunkerM Premium for unlimited agents, advanced scheduling, and more.
+          </p>
+          <DialogFooter className="flex-col gap-2 sm:flex-col">
+            <a
+              href="https://bunkerai.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity px-4 py-2 text-sm font-medium"
+            >
+              <Sparkles className="h-4 w-4" />
+              Upgrade to Premium
+            </a>
+            <Button variant="outline" className="w-full" onClick={() => setUpgradeModalOpen(false)}>
+              Maybe later
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* ── New Agent Modal ── */}
       <Dialog open={modalOpen} onOpenChange={(o) => { if (!o) setModalOpen(false) }}>
