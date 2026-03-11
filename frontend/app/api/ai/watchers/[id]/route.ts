@@ -16,7 +16,7 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
   const config = readCloudConfig()
   try {
     if (config.api_key && config.cloud_url) {
-      const resp = await fetch(`${config.cloud_url}/watchers/${params.id}`, {
+      const resp = await fetch(`${config.cloud_url}/watchers/${params.id}`, { cache: 'no-store',
         method: 'DELETE',
         headers: { 'x-api-key': config.api_key },
       })

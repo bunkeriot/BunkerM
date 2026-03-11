@@ -2,9 +2,19 @@
   "daily_messages": [],
   "hourly": [
     {
-      "timestamp": "2026-03-09 13:47",
-      "bytes_received": 2130.11,
-      "bytes_sent": 654.21
+      "timestamp": "2026-03-10 21:30",
+      "bytes_received": 5.31,
+      "bytes_sent": 361.64
+    },
+    {
+      "timestamp": "2026-03-10 23:04",
+      "bytes_received": 5.97,
+      "bytes_sent": 247.92
+    },
+    {
+      "timestamp": "2026-03-11 02:12",
+      "bytes_received": 2795.03,
+      "bytes_sent": 831.3
     }
   ],
   "daily": []

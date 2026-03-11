@@ -232,40 +232,19 @@ export interface ChatMessage {
   pending?: PendingAction
 }
 
-// ── Credits & Billing types ───────────────────────────────────────────────────
+// ── Subscription types ────────────────────────────────────────────────────────
 
-export interface CreditLedgerEntry {
-  id: string
-  delta: number
-  source: 'stripe' | 'ai_request' | 'admin'
-  input_tokens: number | null
-  output_tokens: number | null
-  model: string | null
-  cost_usd: number | null
-  bundle: string | null
-  created_at: string
-}
-
-export interface CreditBundle {
-  id: string
-  label: string
-  price_usd: number
-  credits: number
-  savings: string | null
-  effective_rate: number
-}
-
-export interface CreditDailyUsage {
-  date: string
-  credits_used: number
-}
-
-export interface CreditsData {
-  balance: number
-  balance_usd: number
-  tier: string
-  history: CreditLedgerEntry[]
-  daily_usage: CreditDailyUsage[]
+export interface SubscriptionData {
+  plan: string
+  plan_label: string
+  subscription_status: string   // 'active' | 'trialing' | 'past_due' | 'canceled'
+  interactions_used: number
+  interactions_limit: number | null   // null = unlimited
+  interactions_reset_at: string | null
+  allowed_connectors: string[]
+  agents_limit: number | null         // null = unlimited
+  max_instances: number
+  price_usd: number | null            // null = contact us
 }
 
 // ── Smart Anomaly Detection types ────────────────────────────────────────────

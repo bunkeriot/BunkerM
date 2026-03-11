@@ -17,16 +17,30 @@ HANDLERS = {
     "get_recent_messages":        messages.handle,
     # Write tools
     "publish_message":            publish.handle,
-    # ACL management tools
+    # Client CRUD
     "list_clients":               acl.handle_list_clients,
+    "get_client":                 acl.handle_get_client,
+    "create_client":              acl.handle_create_client,
+    "delete_client":              acl.handle_delete_client,
     "disable_client":             acl.handle_disable_client,
     "enable_client":              acl.handle_enable_client,
+    # Role CRUD
     "list_roles":                 acl.handle_list_roles,
+    "get_role":                   acl.handle_get_role,
+    "create_role":                acl.handle_create_role,
+    "delete_role":                acl.handle_delete_role,
+    # Group CRUD
     "list_groups":                acl.handle_list_groups,
+    "get_group":                  acl.handle_get_group,
+    "create_group":               acl.handle_create_group,
+    "delete_group":               acl.handle_delete_group,
+    # Assignments
     "add_client_role":            acl.handle_add_client_role,
     "remove_client_role":         acl.handle_remove_client_role,
     "add_client_to_group":        acl.handle_add_client_to_group,
     "remove_client_from_group":   acl.handle_remove_client_from_group,
+    "add_group_role":             acl.handle_add_group_role,
+    "remove_group_role":          acl.handle_remove_group_role,
 }
 
 

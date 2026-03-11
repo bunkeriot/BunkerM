@@ -16,7 +16,7 @@ export async function GET() {
   const config = readCloudConfig()
   try {
     if (config.api_key && config.cloud_url) {
-      const resp = await fetch(`${config.cloud_url}/watchers`, {
+      const resp = await fetch(`${config.cloud_url}/watchers`, { cache: 'no-store',
         headers: { 'x-api-key': config.api_key },
       })
       const data = await resp.json()
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     if (config.api_key && config.cloud_url) {
-      const resp = await fetch(`${config.cloud_url}/watchers`, {
+      const resp = await fetch(`${config.cloud_url}/watchers`, { cache: 'no-store',
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': config.api_key },
         body: JSON.stringify(body),

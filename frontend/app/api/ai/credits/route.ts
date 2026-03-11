@@ -13,11 +13,10 @@ function readConfig() {
 export async function GET() {
   const config = readConfig()
   if (!config.api_key || !config.cloud_url) {
-    return NextResponse.json({ error: 'BunkerM Cloud not configured' }, { status: 503 })
+    return NextResponse.json({ error: 'BunkerAI Cloud not configured' }, { status: 503 })
   }
-
   try {
-    const resp = await fetch(`${config.cloud_url}/credits`, {
+    const resp = await fetch(`${config.cloud_url}/subscription`, { cache: 'no-store',
       headers: { 'x-api-key': config.api_key },
     })
     const data = await resp.json()

@@ -427,11 +427,26 @@ export const aiApi = {
     request<{ status: string; tier: string }>(buildUrl(AI_API_URL, '/health')),
 }
 
-// ─── Credits API ──────────────────────────────────────────────────────────────
+// ── Subscription API ──────────────────────────────────────────────────────────
 
-import type { CreditsData, CreditBundle } from '@/types'
+import type { SubscriptionData } from '@/types'
 
-export const creditsApi = {
-  getCredits: () =>
-    fetch('/api/ai/credits').then((r) => r.json()) as Promise<CreditsData & { error?: string }>,
+export const subscriptionApi = {
+  getSubscription: () =>
+    fetch('/api/ai/credits').then((r) => r.json()) as Promise<SubscriptionData & { error?: string }>,
+  getPortalUrl: (returnUrl: string) =>
+    fetch('/api/ai/billing/portal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ return_url: returnUrl }),
+    }).then((r) => r.json()) as Promise<{ portal_url?: string; error?: string }>,
+  subscribe: (plan: string, returnUrl: string) =>
+    fetch('/api/ai/billing/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan, return_url: returnUrl }),
+    }).then((r) => r.json()) as Promise<{ checkout_url?: string; error?: string }>,
 }
+
+// Keep creditsApi as alias for backward compatibility
+export const creditsApi = subscriptionApi

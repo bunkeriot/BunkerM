@@ -128,8 +128,8 @@ class ConnectorClient:
                 raise ValueError(f"Auth failed: {resp.get('reason')} — check BUNKERAI_API_KEY")
 
             tenant_id = resp["tenant_id"]
-            tier = resp["tier"]
-            logger.info(f"Connected to BunkerM Cloud. Tenant: {tenant_id} Tier: {tier}")
+            tier = resp.get("plan") or resp.get("tier", "unknown")
+            logger.info(f"Connected to BunkerM Cloud. Tenant: {tenant_id} Plan: {tier}")
             self._write_status(connected=True, tenant_id=tenant_id, tier=tier)
 
             # 2. Ensure AI MQTT client exists (fire-and-forget, non-blocking)

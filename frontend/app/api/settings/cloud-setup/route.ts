@@ -1,32 +1,48 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { mkdirSync, writeFileSync } from 'fs'
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'fs'
 import { execSync } from 'child_process'
 
-const CONFIG_FILE = '/nextjs/data/bunkerai_config.json'
+const CONFIG_FILE    = '/nextjs/data/bunkerai_config.json'
+const ACTIVATION_FILE = '/nextjs/data/activation.json'
+const INSTANCE_FILE  = '/nextjs/data/instance_id'
+const CLOUD_URL      = process.env.BUNKERAI_CLOUD_URL ?? 'https://api.bunkerai.dev'
 
-export async function POST(request: NextRequest) {
-  const { cloud_url, admin_secret } = await request.json()
-
-  if (!cloud_url || !admin_secret) {
-    return NextResponse.json({ error: 'cloud_url and admin_secret are required' }, { status: 400 })
+export async function POST(_request: NextRequest) {
+  // Read locally-stored activation key (written by agent-api on auto-activation)
+  let activationKey = ''
+  let instanceId    = ''
+  try {
+    if (existsSync(ACTIVATION_FILE)) {
+      const data = JSON.parse(readFileSync(ACTIVATION_FILE, 'utf-8'))
+      activationKey = data.key ?? ''
+    }
+    if (existsSync(INSTANCE_FILE)) {
+      instanceId = readFileSync(INSTANCE_FILE, 'utf-8').trim()
+    }
+  } catch {
+    // files may not exist yet
   }
 
-  // Create tenant in bunkerai-cloud
+  if (!activationKey || !instanceId) {
+    return NextResponse.json(
+      { error: 'Instance is not activated yet. Ensure the BunkerM container has internet access and restart it.' },
+      { status: 503 }
+    )
+  }
+
+  // Register tenant on the cloud using the signed activation key (no admin secret needed)
   let tenantData: { tenant_id: string; api_key: string }
   try {
-    const res = await fetch(`${cloud_url}/admin/tenants`, {
+    const res = await fetch(`${CLOUD_URL}/register`, {
       method: 'POST',
-      headers: {
-        'X-Admin-Secret': admin_secret,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name: 'My BunkerM', tier: 'premium', credits_budget: 1000 }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ activation_key: activationKey, instance_id: instanceId }),
     })
 
     if (!res.ok) {
       const text = await res.text()
       return NextResponse.json(
-        { error: `Cloud API error (${res.status}): ${text}` },
+        { error: `Cloud registration failed (${res.status}): ${text}` },
         { status: 502 }
       )
     }
@@ -34,31 +50,25 @@ export async function POST(request: NextRequest) {
     tenantData = await res.json()
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err)
-    return NextResponse.json(
-      { error: `Could not reach bunkerai-cloud: ${msg}` },
-      { status: 502 }
-    )
+    return NextResponse.json({ error: `Could not reach BunkerAI Cloud: ${msg}` }, { status: 502 })
   }
 
-  // Derive WebSocket URL from HTTP URL
-  const ws_url = cloud_url.replace(/^http/, 'ws') + '/connect'
+  const ws_url = CLOUD_URL.replace(/^http/, 'ws') + '/connect'
 
-  // Persist config
   const config = {
-    cloud_url,
-    admin_secret,
+    cloud_url: CLOUD_URL,
     ws_url,
-    api_key: tenantData.api_key,
+    api_key:   tenantData.api_key,
     tenant_id: tenantData.tenant_id,
   }
   mkdirSync('/nextjs/data', { recursive: true })
   writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2), { mode: 0o600 })
 
-  // Restart connector-agent so it picks up the new key
+  // Restart connector-agent so it picks up the new key immediately
   try {
     execSync('supervisorctl -c /etc/supervisor/conf.d/supervisord.conf restart connector-agent', { timeout: 5000 })
   } catch {
-    // Non-fatal — agent will pick up config on next supervisorctl start
+    // Non-fatal
   }
 
   return NextResponse.json({ ok: true, api_key: tenantData.api_key, tenant_id: tenantData.tenant_id })

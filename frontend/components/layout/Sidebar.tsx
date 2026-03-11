@@ -20,7 +20,6 @@ import {
   Cable,
   Server,
   Bot,
-  Coins,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -74,9 +73,9 @@ const navGroups: NavGroup[] = [
     title: 'Settings',
     items: [
       { label: 'Broker', href: '/settings/', icon: Server },
-      { label: 'Connectors & APIs', href: '/settings/connectors', icon: Cable },
+      { label: 'Integrations', href: '/settings/connectors', icon: Cable },
       { label: 'Annotations', href: '/ai/annotations', icon: Tag },
-      { label: 'Credits', href: '/settings/credits', icon: Coins },
+      { label: 'Subscription', href: '/settings/credits', icon: Sparkles },
     ],
   },
 

@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const resp = await fetch(`${config.cloud_url}/chat`, {
+    const resp = await fetch(`${config.cloud_url}/chat`, { cache: 'no-store',
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': config.api_key },
       body: JSON.stringify({ message, user_id }),

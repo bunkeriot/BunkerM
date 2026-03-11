@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const resp = await fetch(`${config.cloud_url}/chat/cancel`, {
+    const resp = await fetch(`${config.cloud_url}/chat/cancel`, { cache: 'no-store',
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': config.api_key },
       body: JSON.stringify({ pending_id, user_id }),

@@ -17,7 +17,7 @@ export async function GET() {
   }
 
   try {
-    const resp = await fetch(`${config.cloud_url}/billing/bundles`)
+    const resp = await fetch(`${config.cloud_url}/billing/bundles`, { cache: 'no-store' })
     const data = await resp.json()
     return NextResponse.json(data, { status: resp.status })
   } catch {

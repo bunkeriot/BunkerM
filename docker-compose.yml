@@ -50,6 +50,7 @@ services:
       # BunkerM Cloud (optional — leave blank to keep agent dormant)
       - BUNKERAI_API_KEY=${BUNKERAI_API_KEY:-}
       - BUNKERAI_WS_URL=${BUNKERAI_WS_URL:-wss://api.bunkerai.dev/connect}
+      - BUNKERAI_CLOUD_URL=${BUNKERAI_CLOUD_URL:-https://api.bunkerai.dev}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped

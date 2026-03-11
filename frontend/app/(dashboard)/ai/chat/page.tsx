@@ -293,9 +293,10 @@ export default function ChatPage() {
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <MessageSquare className="h-6 w-6" />
-            Control and monitor your MQTT devices with AI
+            BunkerAI Chat
           </h1>
           <p className="text-muted-foreground text-sm">
+            Control and monitor your MQTT devices with AI:
             Ask questions, get summaries, or send commands in natural language.
           </p>
         </div>

@@ -43,7 +43,7 @@ MQTT_PASS    = os.environ.get("MQTT_PASSWORD", "bunker")
 CLOUD_URL    = os.environ.get("BUNKERAI_ACTIVATION_URL", "https://api.bunkerai.dev")
 
 # Ed25519 public key — verifies signatures from BunkerAI Cloud (private key never in repo)
-_PUBLIC_KEY_B64 = "SO9NO1r06a3YKAUEEZbiVro3U0a7CxrYzhM4YvIgCC0="
+_PUBLIC_KEY_B64 = "+OTzThTTSaNsEbqn8+KtgK/EMNJb7QBuM0Dxfr4R4Yo="
 
 COMMUNITY_MAX_AGENTS = 2
 MAX_EVENTS = 200
