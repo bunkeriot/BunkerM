@@ -49,7 +49,7 @@ class ConnectorClient:
                     "created_by": created_by,
                 }))
 
-        self._watcher_engine = WatcherEngine(on_fire=_watcher_fire)
+        self._watcher_engine = WatcherEngine(on_fire=_watcher_fire, client_id="bunkerm-cloud-watcher")
 
         async def _alert_send(payload: dict):
             if self._ws_ref:
@@ -199,6 +199,9 @@ class ConnectorClient:
                 "tier": tier,
                 "connected_at": datetime.now(timezone.utc).isoformat() if connected else None,
             }
-            STATUS_FILE.write_text(json.dumps(status))
+            # Write atomically: temp file → rename (prevents partial reads by frontend)
+            tmp = STATUS_FILE.with_suffix(".tmp")
+            tmp.write_text(json.dumps(status))
+            tmp.rename(STATUS_FILE)
         except Exception as e:
             logger.warning(f"Could not write status file: {e}")

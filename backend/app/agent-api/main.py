@@ -12,6 +12,7 @@ import json
 import logging
 import os
 import secrets
+import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -85,6 +86,10 @@ def _verify_key(key: str, instance_id: str) -> dict | None:
         pub.verify(sig_bytes, payload_bytes)           # raises on bad sig
         payload = json.loads(payload_bytes)
         if payload.get("instance_id") != instance_id:
+            return None
+        # Enforce key expiry (365 days)
+        iat = payload.get("iat", 0)
+        if time.time() - iat > 365 * 86400:
             return None
         return payload
     except Exception:

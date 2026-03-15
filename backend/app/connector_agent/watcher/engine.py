@@ -27,7 +27,7 @@ FireCallback = Callable[[str, str, str], Awaitable[None]]
 
 
 class WatcherEngine:
-    def __init__(self, on_fire: FireCallback):
+    def __init__(self, on_fire: FireCallback, client_id: str = "bunkerm-ai-watcher"):
         self._watchers: dict[str, dict] = {}  # watcher_id -> config dict
         self._cooldowns: dict[str, datetime] = {}  # watcher_id -> last_fired_at
         self._loop: asyncio.AbstractEventLoop | None = None
@@ -35,7 +35,7 @@ class WatcherEngine:
         self._subscribed_topics: set[str] = set()
 
         self._client = mqtt.Client(
-            client_id="bunkerm-ai-watcher",
+            client_id=client_id,
             clean_session=True,
             protocol=mqtt.MQTTv311,
         )

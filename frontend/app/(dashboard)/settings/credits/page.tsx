@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { toast } from 'sonner'
 
-// ─── Plan definitions (must match bunkerai-cloud/app/config.py PLAN_CONFIG) ──
+// ─── Plan definitions (fetched from cloud at runtime) ─────────────────────────
 
 interface PlanDef {
   id: string
@@ -26,45 +26,26 @@ interface PlanDef {
   popular?: boolean
 }
 
-const PLANS: PlanDef[] = [
-  {
-    id: 'starter',
-    label: 'Starter',
-    price: 5,
-    interactions: 300,
-    agents: 2,
-    connectors: ['webchat'],
-    instances: 1,
-  },
-  {
-    id: 'pro',
-    label: 'Pro',
-    price: 15,
-    interactions: 1500,
-    agents: null,
-    connectors: ['webchat', 'telegram', 'slack'],
-    instances: 1,
-    popular: true,
-  },
-  {
-    id: 'team',
-    label: 'Team',
-    price: 49,
-    interactions: 1500,
-    agents: null,
-    connectors: ['webchat', 'telegram', 'slack'],
-    instances: 5,
-  },
-  {
-    id: 'business',
-    label: 'Business',
-    price: null,
-    interactions: null,
-    agents: null,
-    connectors: ['webchat', 'telegram', 'slack'],
-    instances: null,
-  },
+// Fallback shown while loading or if cloud is unreachable
+const PLANS_FALLBACK: PlanDef[] = [
+  { id: 'starter',  label: 'Starter',  price: 5,    interactions: 300,  agents: 2,    connectors: ['webchat'], instances: 1 },
+  { id: 'pro',      label: 'Pro',      price: 15,   interactions: 1500, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
+  { id: 'team',     label: 'Team',     price: 49,   interactions: 1500, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 5 },
+  { id: 'business', label: 'Business', price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
 ]
+
+function normalizePlans(raw: Record<string, unknown>[]): PlanDef[] {
+  return raw.map(p => ({
+    id:           String(p.id ?? ''),
+    label:        String(p.label ?? p.id ?? ''),
+    price:        p.price_usd != null ? Number(p.price_usd) : null,
+    interactions: p.interactions_limit != null ? Number(p.interactions_limit) : null,
+    agents:       p.agents_limit != null ? Number(p.agents_limit) : null,
+    connectors:   Array.isArray(p.connectors) ? p.connectors as string[] : ['webchat'],
+    instances:    p.instances != null ? Number(p.instances) : null,
+    popular:      p.id === 'pro',
+  }))
+}
 
 // ─── Plan card ────────────────────────────────────────────────────────────────
 
@@ -193,6 +174,7 @@ function PlanCard({
 function SubscriptionPage() {
   const searchParams = useSearchParams()
   const [data, setData] = useState<SubscriptionData | null>(null)
+  const [plans, setPlans] = useState<PlanDef[]>(PLANS_FALLBACK)
   const [loading, setLoading] = useState(true)
   const [isConnected, setIsConnected] = useState(false)
   const [connectError, setConnectError] = useState<string | null>(null)
@@ -208,7 +190,7 @@ function SubscriptionPage() {
     return null
   }, [])
 
-  // Auto-connect to BunkerAI Cloud on mount, then load subscription data
+  // Auto-connect to BunkerAI Cloud on mount, then load subscription data + plans
   const init = useCallback(async () => {
     setLoading(true)
     setConnectError(null)
@@ -223,8 +205,16 @@ function SubscriptionPage() {
           return
         }
       }
-      const res = await fetchSubscription()
-      if (res) { setData(res); setIsConnected(true) }
+      // Fetch plans and subscription in parallel
+      const [plansRes, subRes] = await Promise.allSettled([
+        fetch('/api/ai/billing/plans').then(r => r.json()),
+        fetchSubscription(),
+      ])
+      if (plansRes.status === 'fulfilled' && Array.isArray(plansRes.value?.plans)) {
+        setPlans(normalizePlans(plansRes.value.plans))
+      }
+      const subData = subRes.status === 'fulfilled' ? subRes.value : null
+      if (subData) { setData(subData); setIsConnected(true) }
     } catch { /* ignore */ }
     finally { setLoading(false) }
   }, [fetchSubscription])
@@ -532,7 +522,7 @@ function SubscriptionPage() {
           {hasSubscription ? 'Switch Plan' : 'Choose a Plan'}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-          {PLANS.map((p) => (
+          {plans.map((p) => (
             <PlanCard
               key={p.id}
               plan={p}
