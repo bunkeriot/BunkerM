@@ -41,6 +41,9 @@ HANDLERS = {
     "remove_client_from_group":   acl.handle_remove_client_from_group,
     "add_group_role":             acl.handle_add_group_role,
     "remove_group_role":          acl.handle_remove_group_role,
+    # Role ACL rules
+    "add_role_acl":               acl.handle_add_role_acl,
+    "remove_role_acl":            acl.handle_remove_role_acl,
 }
 
 

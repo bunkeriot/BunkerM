@@ -88,6 +88,23 @@ async def handle_create_role(params: dict, api_key: str) -> dict:
 async def handle_delete_role(params: dict, api_key: str) -> dict:
     return await _delete(f"/api/v1/roles/{params['role_name']}", api_key)
 
+async def handle_add_role_acl(params: dict, api_key: str) -> dict:
+    return await _post(f"/api/v1/roles/{params['role_name']}/acls", api_key, {
+        "topic":      params["topic"],
+        "aclType":    params["acl_type"],
+        "permission": params.get("permission", "allow"),
+    })
+
+async def handle_remove_role_acl(params: dict, api_key: str) -> dict:
+    async with httpx.AsyncClient(timeout=TIMEOUT) as client:
+        r = await client.delete(
+            f"{DYNSEC_URL}/api/v1/roles/{params['role_name']}/acls",
+            headers={"X-API-Key": api_key},
+            params={"acl_type": params["acl_type"], "topic": params["topic"]},
+        )
+        r.raise_for_status()
+        return r.json()
+
 
 # ── Groups ────────────────────────────────────────────────────────────────────
 
