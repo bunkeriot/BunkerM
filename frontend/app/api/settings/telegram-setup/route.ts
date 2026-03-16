@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Set up BunkerAI Cloud first' }, { status: 400 })
   }
 
-  const { cloud_url, admin_secret, tenant_id } = config
-  if (!cloud_url || !admin_secret || !tenant_id) {
+  const { cloud_url, api_key } = config
+  if (!cloud_url || !api_key) {
     return NextResponse.json({ error: 'Incomplete cloud config — set up BunkerAI Cloud first' }, { status: 400 })
   }
 
@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
   // (bunkerai-cloud will auto-detect the ngrok URL internally)
   let webhookUrl: string
   try {
-    const res = await fetch(`${cloud_url}/admin/tenants/${tenant_id}/connectors/telegram`, {
+    const res = await fetch(`${cloud_url}/connectors/telegram`, {
       method: 'POST',
       headers: {
-        'X-Admin-Secret': admin_secret,
+        'x-api-key': api_key,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ bot_token }),
@@ -71,16 +71,16 @@ export async function DELETE() {
     return NextResponse.json({ error: 'Config not found' }, { status: 404 })
   }
 
-  const { cloud_url, admin_secret, tenant_id } = config
-  if (!cloud_url || !admin_secret || !tenant_id) {
+  const { cloud_url, api_key } = config
+  if (!cloud_url || !api_key) {
     return NextResponse.json({ error: 'Incomplete cloud config' }, { status: 400 })
   }
 
   // Revoke connector in bunkerai-cloud
   try {
-    const res = await fetch(`${cloud_url}/admin/tenants/${tenant_id}/connectors/telegram`, {
+    const res = await fetch(`${cloud_url}/connectors/telegram`, {
       method: 'DELETE',
-      headers: { 'X-Admin-Secret': admin_secret },
+      headers: { 'x-api-key': api_key },
     })
     if (!res.ok && res.status !== 404) {
       const text = await res.text()

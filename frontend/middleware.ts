@@ -5,7 +5,7 @@ const AUTH_SECRET = process.env.AUTH_SECRET || 'fallback-secret-change-in-produc
 const secret = new TextEncoder().encode(AUTH_SECRET)
 const COOKIE_NAME = 'bunkerm_token'
 
-const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/reset-password']
+const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/reset-password', '/setup']
 const API_PATHS = ['/api/auth', '/api/logs', '/api/proxy', '/api/settings', '/api/ai']
 
 function publicUrl(request: NextRequest, pathname: string): URL {

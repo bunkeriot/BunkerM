@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'   // kept for createUser / verifyPassword
 import { randomUUID } from 'crypto'
 import type { UserWithHash } from '@/types'
 
@@ -9,16 +9,6 @@ const USERS_FILE = path.join(DATA_DIR, 'users.json')
 
 // Recovery tokens expire after 15 minutes
 const RECOVERY_TTL_MS = 15 * 60 * 1000
-
-const DEFAULT_ADMIN: UserWithHash = {
-  id: 'admin-default',
-  email: 'admin@bunker.local',
-  passwordHash: bcrypt.hashSync('admin123', 10),
-  firstName: 'Admin',
-  lastName: 'User',
-  createdAt: new Date().toISOString(),
-  role: 'admin',
-}
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) {
@@ -30,26 +20,25 @@ function ensureDataDir() {
 function normalize(users: UserWithHash[]): UserWithHash[] {
   return users.map((u, i) => {
     if (u.role) return u
-    // First user in the file (or the hardcoded admin id) becomes admin
-    const isDefaultAdmin = u.id === 'admin-default' || u.email === 'admin@bunker.local'
-    return { ...u, role: (i === 0 || isDefaultAdmin) ? 'admin' : 'user' }
+    return { ...u, role: i === 0 ? 'admin' : 'user' }
   })
 }
 
 export function readUsers(): UserWithHash[] {
   ensureDataDir()
-  if (!fs.existsSync(USERS_FILE)) {
-    const users = [DEFAULT_ADMIN]
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2))
-    return users
-  }
+  if (!fs.existsSync(USERS_FILE)) return []
   try {
     const content = fs.readFileSync(USERS_FILE, 'utf-8')
     const users = JSON.parse(content) as UserWithHash[]
     return normalize(users)
   } catch {
-    return [DEFAULT_ADMIN]
+    return []
   }
+}
+
+/** True when no admin account has been created yet — first-run setup required. */
+export function needsSetup(): boolean {
+  return !readUsers().some((u) => u.role === 'admin')
 }
 
 export function writeUsers(users: UserWithHash[]): void {
@@ -66,9 +55,9 @@ export function findUserById(id: string): UserWithHash | undefined {
   return readUsers().find((u) => u.id === id)
 }
 
-/** Returns true if at least one admin account exists in the file. */
+/** Returns true if at least one admin account exists. */
 export function hasAdmin(): boolean {
-  return readUsers().some((u) => u.role === 'admin')
+  return !needsSetup()
 }
 
 export async function createUser(data: {
@@ -76,6 +65,7 @@ export async function createUser(data: {
   password: string
   firstName: string
   lastName: string
+  country?: string
 }): Promise<UserWithHash> {
   const users = readUsers()
   // First user ever becomes admin; all subsequent are regular users
@@ -87,6 +77,7 @@ export async function createUser(data: {
     passwordHash,
     firstName: data.firstName,
     lastName: data.lastName,
+    ...(data.country ? { country: data.country } : {}),
     createdAt: new Date().toISOString(),
     role,
   }

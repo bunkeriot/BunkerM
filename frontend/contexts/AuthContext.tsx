@@ -23,7 +23,7 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
 
 interface AuthContextValue extends AuthState {
   login: (email: string, password: string) => Promise<void>
-  register: (data: { email: string; password: string; firstName: string; lastName: string }) => Promise<void>
+  register: (data: { email: string; password: string; firstName: string; lastName: string; country?: string }) => Promise<void>
   logout: () => Promise<void>
   refresh: () => Promise<void>
 }
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_USER', payload: user })
   }
 
-  const register = async (data: { email: string; password: string; firstName: string; lastName: string }) => {
+  const register = async (data: { email: string; password: string; firstName: string; lastName: string; country?: string }) => {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

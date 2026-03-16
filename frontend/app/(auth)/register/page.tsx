@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -31,6 +31,14 @@ export default function RegisterPage() {
   const router = useRouter()
   const { register: registerUser } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+
+  // If no admin exists yet, the setup wizard must be used first
+  useEffect(() => {
+    fetch('/api/auth/setup-status')
+      .then((r) => r.json())
+      .then(({ needsSetup }) => { if (needsSetup) router.replace('/setup') })
+      .catch(() => {})
+  }, [router])
 
   const {
     register,
@@ -73,7 +81,7 @@ export default function RegisterPage() {
           <CardHeader>
             <CardTitle>Register</CardTitle>
             <CardDescription>
-              Create an account to access the dashboard. The first registered account becomes the admin.
+              Create an account to access the dashboard.
             </CardDescription>
           </CardHeader>
           <CardContent>

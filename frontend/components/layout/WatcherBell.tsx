@@ -109,8 +109,6 @@ export function WatcherBell() {
     }
   }
 
-  if (events.length === 0 && unread === 0) return null
-
   return (
     <DropdownMenu open={open} onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild>

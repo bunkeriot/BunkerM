@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -25,6 +25,14 @@ export default function LoginPage() {
   const router = useRouter()
   const { login } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+
+  // Redirect to setup wizard if no admin account exists yet
+  useEffect(() => {
+    fetch('/api/auth/setup-status')
+      .then((r) => r.json())
+      .then(({ needsSetup }) => { if (needsSetup) router.replace('/setup') })
+      .catch(() => {})
+  }, [router])
 
   const {
     register,
@@ -71,7 +79,7 @@ export default function LoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@bunker.local"
+                    placeholder="you@example.com"
                     className="pl-9"
                     {...register('email')}
                   />
@@ -119,9 +127,6 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-muted-foreground mt-4">
-          Default: admin@bunker.local / admin123
-        </p>
       </div>
     </div>
   )

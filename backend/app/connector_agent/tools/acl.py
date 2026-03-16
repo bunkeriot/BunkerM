@@ -42,7 +42,12 @@ async def _client_exists(username: str, api_key: str) -> bool:
 # ── Clients ───────────────────────────────────────────────────────────────────
 
 async def handle_list_clients(params: dict, api_key: str) -> dict:
-    return await _get("/api/v1/clients", api_key)
+    data = await _get("/api/v1/clients", api_key)
+    raw = data.get("clients", "")
+    if isinstance(raw, str):
+        names = [n.strip() for n in raw.split("\n") if n.strip()]
+        return {"clients": names, "count": len(names)}
+    return data
 
 async def handle_get_client(params: dict, api_key: str) -> dict:
     return await _get(f"/api/v1/clients/{params['username']}", api_key)
@@ -102,7 +107,7 @@ async def handle_delete_group(params: dict, api_key: str) -> dict:
 # ── Assignments ───────────────────────────────────────────────────────────────
 
 async def handle_add_client_role(params: dict, api_key: str) -> dict:
-    return await _post(f"/api/v1/clients/{params['username']}/roles", api_key, {"name": params["role_name"]})
+    return await _post(f"/api/v1/clients/{params['username']}/roles", api_key, {"role_name": params["role_name"]})
 
 async def handle_remove_client_role(params: dict, api_key: str) -> dict:
     return await _delete(f"/api/v1/clients/{params['username']}/roles/{params['role_name']}", api_key)
@@ -114,7 +119,7 @@ async def handle_remove_client_from_group(params: dict, api_key: str) -> dict:
     return await _delete(f"/api/v1/groups/{params['group_name']}/clients/{params['username']}", api_key)
 
 async def handle_add_group_role(params: dict, api_key: str) -> dict:
-    return await _post(f"/api/v1/groups/{params['group_name']}/roles", api_key, {"name": params["role_name"]})
+    return await _post(f"/api/v1/groups/{params['group_name']}/roles", api_key, {"role_name": params["role_name"]})
 
 async def handle_remove_group_role(params: dict, api_key: str) -> dict:
     return await _delete(f"/api/v1/groups/{params['group_name']}/roles/{params['role_name']}", api_key)
