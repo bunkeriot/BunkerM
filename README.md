@@ -74,9 +74,10 @@
 
 **BunkerM** is a free, open-source, containerized MQTT management platform. It bundles **Eclipse Mosquitto** with a full-featured web dashboard, packaging everything into a single Docker container — one command to get a production-ready MQTT broker with a management UI.
 
-![BunkerM Dashboard (Dark)](docs/assets/images/dashboard-dark.png)
 
 ![BunkerM Dashboard (Light)](docs/assets/images/dashboard-light.png)
+
+![Connected Clients](docs/assets/images/connected-clients.png)
 
 On top of the core broker management, BunkerM includes a **local statistical engine** (smart anomaly detection) and a **local automation engine** (schedulers and watchers) that run entirely inside your container. **BunkerAI** is the AI intelligence layer — an optional cloud service that adds a natural-language assistant to your BunkerM instance, reachable via Telegram, Slack, or a built-in web chat.
 
