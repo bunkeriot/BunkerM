@@ -74,6 +74,10 @@
 
 **BunkerM** is a free, open-source, containerized MQTT management platform. It bundles **Eclipse Mosquitto** with a full-featured web dashboard, packaging everything into a single Docker container — one command to get a production-ready MQTT broker with a management UI.
 
+![BunkerM Dashboard (Dark)](docs/assets/images/dashboard-dark.png)
+
+![BunkerM Dashboard (Light)](docs/assets/images/dashboard-light.png)
+
 On top of the core broker management, BunkerM includes a **local statistical engine** (smart anomaly detection) and a **local automation engine** (schedulers and watchers) that run entirely inside your container. **BunkerAI** is the AI intelligence layer — an optional cloud service that adds a natural-language assistant to your BunkerM instance, reachable via Telegram, Slack, or a built-in web chat.
 
 **What you get out of the box:**
@@ -179,6 +183,14 @@ volumes:
 
 Real-time overview of your broker health:
 
+![Connected Clients](docs/assets/images/connected-clients.png)
+
+![Broker Logs](docs/assets/images/broker-logs.png)
+
+![Client Logs](docs/assets/images/client-logs.png)
+
+![Broker Configuration](docs/assets/images/broker-configuration.png)
+
 - Connected clients count and history
 - Message publish/receive rates
 - Byte throughput (in/out)
@@ -191,11 +203,15 @@ Real-time overview of your broker health:
 
 Full dynamic security management powered by Mosquitto's Dynamic Security plugin:
 
+![Dynamic Security](docs/assets/images/dynamic-security.png)
+
 #### Client Management
 - Create, update, and delete MQTT clients
 - Set credentials (username + password hash)
 - Enable / disable clients individually
 - Assign clients to groups
+
+![Add Client](docs/assets/images/add-client.png)
 
 #### Role Management
 - Create roles with fine-grained topic ACL rules
@@ -203,12 +219,18 @@ Full dynamic security management powered by Mosquitto's Dynamic Security plugin:
 - Wildcard topic support (`#`, `+`)
 - ACL types: `publishClientSend`, `subscribeLiteral`, and more
 
+![Role Management](docs/assets/images/role-management.png)
+
 #### Group Management
 - Create groups and assign roles to them
 - Add / remove clients from groups
 - Set role priorities within groups
 
+![ACL Groups](docs/assets/images/ACL-group.png)
+
 #### ACL Import / Export
+![Password Management](docs/assets/images/password-management.png)
+
 Back up and restore your complete security configuration in one click:
 - **Export** — downloads a JSON snapshot of all clients (including password hashes), roles, and groups
 - **Import** — upload a previously exported JSON to fully restore your configuration; the broker reloads automatically
@@ -217,6 +239,8 @@ Back up and restore your complete security configuration in one click:
 ---
 
 ### 🔭 MQTT Explorer
+
+![MQTT Explorer](docs/assets/images/MQTT-explorer.png)
 
 Inspect and interact with live broker traffic directly from the browser:
 
@@ -289,6 +313,8 @@ Monitor MQTT topics and trigger actions when conditions are met:
 ---
 
 ### 🧠 BunkerAI — AI Assistant
+
+
 
 **BunkerAI** is the AI intelligence layer for BunkerM. Subscribe at [bunkerai.dev](https://bunkerai.dev) to unlock a natural-language assistant that reads your live broker data, publishes messages, and creates automation agents — all through plain English conversation.
 
