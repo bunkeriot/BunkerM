@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
+import Image from 'next/image'
 import { ArrowRight, Check, ChevronDown, ChevronLeft, Eye, EyeOff, Loader2, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -371,9 +372,7 @@ export default function SetupPage() {
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground text-xs font-bold">B</span>
-          </div>
+          <Image src="/BunkerM_Logo.png" alt="BunkerM" width={28} height={28} className="rounded-lg" />
           <span className="font-semibold text-sm">BunkerM</span>
         </div>
         <span className="text-xs text-muted-foreground">{stepIndex + 1} / {STEPS.length}</span>
@@ -386,6 +385,7 @@ export default function SetupPage() {
           {/* Welcome banner — step 0 only */}
           {isFirstStep && (
             <div className="mb-8 text-center">
+              <Image src="/BunkerM_Logo.png" alt="BunkerM" width={96} height={96} className="mx-auto mb-5" />
               <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">Welcome to BunkerM</p>
               <p className="text-muted-foreground text-base">Please create your first BunkerM Admin account.</p>
             </div>

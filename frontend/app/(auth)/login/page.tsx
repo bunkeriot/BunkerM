@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
+import Image from 'next/image'
 import { Loader2, Lock, Mail } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
@@ -58,8 +59,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-primary rounded-xl mb-4">
-            <Lock className="w-6 h-6 text-primary-foreground" />
+          <div className="inline-flex items-center justify-center mb-4">
+            <Image src="/BunkerM_Logo.png" alt="BunkerM" width={64} height={64} className="rounded-xl" />
           </div>
           <h1 className="text-2xl font-bold">BunkerM</h1>
           <p className="text-muted-foreground text-sm mt-1">MQTT Broker Manager</p>

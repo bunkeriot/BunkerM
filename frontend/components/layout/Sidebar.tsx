@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
@@ -10,7 +11,6 @@ import {
   FileText,
   Activity,
   Settings,
-  Lock,
   ChevronRight,
   Wifi,
   Tag,
@@ -114,9 +114,7 @@ export function Sidebar({ className, onNavClick }: SidebarProps) {
       >
         {/* Logo */}
         <div className="flex items-center gap-2 px-4 h-14 border-b border-sidebar-border">
-          <div className="flex items-center justify-center w-8 h-8 bg-sidebar-primary rounded-lg">
-            <Lock className="w-4 h-4 text-white" />
-          </div>
+          <Image src="/BunkerM_Logo.png" alt="BunkerM" width={32} height={32} className="rounded-lg" />
           <span className="font-bold text-lg">BunkerM</span>
         </div>
 

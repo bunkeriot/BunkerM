@@ -28,9 +28,9 @@ interface PlanDef {
 
 // Fallback shown while loading or if cloud is unreachable
 const PLANS_FALLBACK: PlanDef[] = [
-  { id: 'starter',  label: 'Starter',  price: 5,    interactions: 300,  agents: 2,    connectors: ['webchat'], instances: 1 },
-  { id: 'pro',      label: 'Pro',      price: 15,   interactions: 1500, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
-  { id: 'team',     label: 'Team',     price: 49,   interactions: 1500, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 5 },
+  { id: 'starter',  label: 'Starter',  price: 5,    interactions: 100,  agents: 2,    connectors: ['webchat'], instances: 1 },
+  { id: 'pro',      label: 'Pro',      price: 15,   interactions: 500,  agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
+  { id: 'team',     label: 'Team',     price: 49,   interactions: 2000, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1 },
   { id: 'business', label: 'Business', price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
 ]
 
@@ -55,12 +55,14 @@ function PlanCard({
   isConnected,
   onSelect,
   loading,
+  onContactSales,
 }: {
   plan: PlanDef
   isCurrent: boolean
   isConnected: boolean
   onSelect: (planId: string) => void
   loading: boolean
+  onContactSales: () => void
 }) {
   const isBusiness = plan.id === 'business'
 
@@ -124,16 +126,6 @@ function PlanCard({
             {plan.agents != null ? `Up to ${plan.agents} agents` : 'Unlimited agents'}
           </span>
         </li>
-        <li className="flex items-start gap-2">
-          <Check className="h-3.5 w-3.5 text-green-500 shrink-0 mt-0.5" />
-          <span>
-            {plan.instances != null
-              ? plan.instances === 1
-                ? '1 BunkerM instance'
-                : `Up to ${plan.instances} instances`
-              : 'Unlimited instances'}
-          </span>
-        </li>
       </ul>
 
       {isCurrent ? (
@@ -142,12 +134,10 @@ function PlanCard({
           Current plan
         </div>
       ) : isBusiness ? (
-        <a href="mailto:hello@bunkerai.dev" target="_blank" rel="noopener noreferrer">
-          <Button variant="outline" className="w-full gap-1.5">
-            Contact sales
-            <ExternalLink className="h-3.5 w-3.5" />
-          </Button>
-        </a>
+        <Button variant="outline" className="w-full gap-1.5" onClick={onContactSales}>
+          Contact sales
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Button>
       ) : (
         <Button
           className="w-full gap-1.5"
@@ -181,6 +171,16 @@ function SubscriptionPage() {
   const [upgrading, setUpgrading] = useState<string | null>(null)
   const [portalLoading, setPortalLoading] = useState(false)
   const [activating, setActivating] = useState(false)
+  const [salesModalOpen, setSalesModalOpen] = useState(false)
+  const [emailCopied, setEmailCopied] = useState(false)
+
+  function copySalesEmail() {
+    navigator.clipboard.writeText('sales@bunkerai.dev').then(() => {
+      setEmailCopied(true)
+      toast.success('Email copied to clipboard!')
+      setTimeout(() => setEmailCopied(false), 2500)
+    })
+  }
 
   const fetchSubscription = useCallback(async (): Promise<SubscriptionData | null> => {
     try {
@@ -307,7 +307,7 @@ function SubscriptionPage() {
     return (
       <div className="flex flex-col items-center justify-center h-48 gap-3 text-muted-foreground">
         <Globe className="h-6 w-6 animate-pulse" />
-        <p className="text-sm">Connecting to BunkerAI Cloud…</p>
+        <p className="text-sm">Connecting to BunkerAI…</p>
       </div>
     )
   }
@@ -320,37 +320,7 @@ function SubscriptionPage() {
     </div>
   ) : null
 
-  // Connection failed (no activation key yet, or network error)
-  if (connectError) {
-    return (
-      <div className="space-y-6 max-w-xl">
-        <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="h-6 w-6" />
-            Subscription
-          </h1>
-        </div>
-        <div className="rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-800 p-5 space-y-3">
-          <div className="flex items-start gap-3">
-            <WifiOff className="h-5 w-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-            <div className="space-y-1">
-              <p className="font-medium text-sm text-amber-800 dark:text-amber-200">
-                Could not connect to BunkerAI Cloud
-              </p>
-              <p className="text-xs text-amber-700 dark:text-amber-300">{connectError}</p>
-              <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
-                Make sure your BunkerM container has internet access and restart it, then try again.
-              </p>
-            </div>
-          </div>
-          <Button size="sm" variant="outline" onClick={init} className="gap-1.5">
-            <RefreshCw className="h-3.5 w-3.5" />
-            Retry
-          </Button>
-        </div>
-      </div>
-    )
-  }
+  // connectError is rendered as a non-blocking banner below — plans still render
 
   const plan = data?.plan ?? null
   const planLabel = data?.plan_label ?? null
@@ -393,6 +363,25 @@ function SubscriptionPage() {
       </div>
 
       {activatingBanner}
+
+      {/* ── BunkerAI not yet connected (non-blocking) ── */}
+      {connectError && (
+        <div className="rounded-lg border border-muted bg-muted/40 p-4 flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <WifiOff className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <p className="text-sm font-medium">BunkerAI not connected yet</p>
+              <p className="text-xs text-muted-foreground">
+                Automatic connection is in progress. Make sure the container has internet access and restart it if this persists.
+              </p>
+            </div>
+          </div>
+          <Button size="sm" variant="outline" onClick={init} className="shrink-0 gap-1.5">
+            <RefreshCw className="h-3.5 w-3.5" />
+            Retry
+          </Button>
+        </div>
+      )}
 
       {/* ── Suspended warning ── */}
       {isSuspended && (
@@ -530,6 +519,7 @@ function SubscriptionPage() {
               isConnected={isConnected}
               onSelect={handleUpgrade}
               loading={upgrading === p.id}
+              onContactSales={() => setSalesModalOpen(true)}
             />
           ))}
         </div>
@@ -537,6 +527,44 @@ function SubscriptionPage() {
           All plans billed monthly · cancel anytime · powered by Stripe
         </p>
       </div>
+
+      {/* Sales modal */}
+      {salesModalOpen && (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+        onClick={(e) => { if (e.target === e.currentTarget) setSalesModalOpen(false) }}
+      >
+        <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-150">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-base">Contact Sales</h3>
+            <button
+              onClick={() => setSalesModalOpen(false)}
+              className="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none"
+            >
+              &times;
+            </button>
+          </div>
+          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            Interested in a Business or custom deployment? Click the email below to copy it to your clipboard and reach out.
+          </p>
+          <button
+            onClick={copySalesEmail}
+            className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-border bg-muted/40 hover:border-primary transition-colors font-mono text-sm"
+          >
+            <span>sales@bunkerai.dev</span>
+            <span className="text-muted-foreground text-xs">
+              {emailCopied ? '✓ Copied!' : '📋 Copy'}
+            </span>
+          </button>
+          {emailCopied && (
+            <p className="text-xs text-primary font-medium text-center mt-2">
+              Email address copied to clipboard!
+            </p>
+          )}
+        </div>
+      </div>
+    )}
 
     </div>
   )

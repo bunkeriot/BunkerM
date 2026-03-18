@@ -143,6 +143,7 @@ RUN chmod +x /docker-entrypoint.d/config-env.sh
 # Copy Next.js standalone output
 COPY --from=nextjs-build /frontend/.next/standalone /nextjs/
 COPY --from=nextjs-build /frontend/.next/static /nextjs/.next/static
+COPY --from=nextjs-build /frontend/public /nextjs/public
 
 # Set permissions
 RUN chown -R mosquitto:mosquitto /var/lib/mosquitto && \
@@ -186,7 +187,9 @@ ENV MQTT_BROKER=localhost \
     PYTHONPATH=/app/monitor \
     NODE_ENV=production \
     BROKER_LOG_PATH=/var/log/mosquitto/mosquitto.log \
-    CLIENT_LOG_PATH=/var/log/api/api_activity.log
+    CLIENT_LOG_PATH=/var/log/api/api_activity.log \
+    BUNKERAI_API_KEY="" \
+    BUNKERAI_WS_URL="wss://api.bunkerai.dev/connect"
 
 # Startup script
 COPY start.sh /start.sh
