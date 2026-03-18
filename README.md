@@ -183,13 +183,9 @@ volumes:
 
 Real-time overview of your broker health:
 
-![Connected Clients](docs/assets/images/connected-clients.png)
-
 ![Broker Logs](docs/assets/images/broker-logs.png)
 
 ![Client Logs](docs/assets/images/client-logs.png)
-
-![Broker Configuration](docs/assets/images/broker-configuration.png)
 
 - Connected clients count and history
 - Message publish/receive rates
@@ -213,13 +209,14 @@ Full dynamic security management powered by Mosquitto's Dynamic Security plugin:
 
 ![Add Client](docs/assets/images/add-client.png)
 
+![Connected Clients](docs/assets/images/connected-clients.png)
+
 #### Role Management
 - Create roles with fine-grained topic ACL rules
 - Define `allow` / `deny` permissions per topic
 - Wildcard topic support (`#`, `+`)
 - ACL types: `publishClientSend`, `subscribeLiteral`, and more
 
-![Role Management](docs/assets/images/role-management.png)
 
 #### Group Management
 - Create groups and assign roles to them
@@ -229,7 +226,7 @@ Full dynamic security management powered by Mosquitto's Dynamic Security plugin:
 ![ACL Groups](docs/assets/images/ACL-group.png)
 
 #### ACL Import / Export
-![Password Management](docs/assets/images/password-management.png)
+
 
 Back up and restore your complete security configuration in one click:
 - **Export** — downloads a JSON snapshot of all clients (including password hashes), roles, and groups
