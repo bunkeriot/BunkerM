@@ -18,6 +18,7 @@ import { toast } from 'sonner'
 interface PlanDef {
   id: string
   label: string
+  description: string
   price: number | null
   interactions: number | null
   agents: number | null
@@ -26,19 +27,27 @@ interface PlanDef {
   popular?: boolean
 }
 
+const PLAN_DESCRIPTIONS: Record<string, string> = {
+  starter:  'Perfect for hobbyists and IoT tinkerers exploring AI-assisted broker control for the first time.',
+  pro:      'Built for power users and home lab enthusiasts who demand full AI control from any channel, anytime.',
+  team:     'Made for small teams and growing businesses managing multiple deployments with serious AI usage.',
+  business: 'Enterprise-grade for large-scale, regulated, or air-gapped environments. Fully custom — let\'s talk.',
+}
+
 // Fallback shown while loading or if cloud is unreachable
 const PLANS_FALLBACK: PlanDef[] = [
-  { id: 'starter',  label: 'Starter',  price: 5,    interactions: 100,  agents: 2,    connectors: ['webchat'], instances: 1 },
-  { id: 'pro',      label: 'Pro',      price: 15,   interactions: 500,  agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
-  { id: 'team',     label: 'Team',     price: 49,   interactions: 2000, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1 },
-  { id: 'business', label: 'Business', price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
+  { id: 'starter',  label: 'Starter',  description: PLAN_DESCRIPTIONS.starter,  price: 5,    interactions: 100,  agents: 2,    connectors: ['webchat'], instances: 1 },
+  { id: 'pro',      label: 'Pro',      description: PLAN_DESCRIPTIONS.pro,       price: 15,   interactions: 500,  agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
+  { id: 'team',     label: 'Team',     description: PLAN_DESCRIPTIONS.team,      price: 49,   interactions: 2000, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1 },
+  { id: 'business', label: 'Business', description: PLAN_DESCRIPTIONS.business,  price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
 ]
 
 function normalizePlans(raw: Record<string, unknown>[]): PlanDef[] {
   return raw.map(p => ({
     id:           String(p.id ?? ''),
     label:        String(p.label ?? p.id ?? ''),
-    price:        p.price_usd != null ? Number(p.price_usd) : null,
+    description:  PLAN_DESCRIPTIONS[String(p.id ?? '')] ?? '',
+    price:        p.price_eur != null ? Number(p.price_eur) : null,
     interactions: p.interactions_limit != null ? Number(p.interactions_limit) : null,
     agents:       p.agents_limit != null ? Number(p.agents_limit) : null,
     connectors:   Array.isArray(p.connectors) ? p.connectors as string[] : ['webchat'],
@@ -65,6 +74,7 @@ function PlanCard({
   onContactSales: () => void
 }) {
   const isBusiness = plan.id === 'business'
+  const displayPrice = plan.price != null ? `€${plan.price}` : null
 
   return (
     <div
@@ -84,10 +94,11 @@ function PlanCard({
 
       <div>
         <p className="font-semibold text-base">{plan.label}</p>
-        <p className="mt-1">
-          {plan.price != null ? (
+        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{plan.description}</p>
+        <p className="mt-2">
+          {displayPrice != null ? (
             <>
-              <span className="text-2xl font-bold">${plan.price}</span>
+              <span className="text-2xl font-bold">{displayPrice}</span>
               <span className="text-muted-foreground text-sm">/month</span>
             </>
           ) : (
@@ -101,8 +112,8 @@ function PlanCard({
           <Zap className="h-3.5 w-3.5 text-yellow-500 shrink-0 mt-0.5" />
           <span>
             {plan.interactions != null
-              ? `${plan.interactions.toLocaleString()} interactions/month`
-              : 'Unlimited interactions'}
+              ? `${plan.interactions.toLocaleString()} AI interactions/month`
+              : 'Unlimited AI interactions'}
           </span>
         </li>
         <li className="flex items-start gap-2">
@@ -214,7 +225,10 @@ function SubscriptionPage() {
         setPlans(normalizePlans(plansRes.value.plans))
       }
       const subData = subRes.status === 'fulfilled' ? subRes.value : null
-      if (subData) { setData(subData); setIsConnected(true) }
+      if (subData) {
+        setData(subData)
+        setIsConnected(true)
+      }
     } catch { /* ignore */ }
     finally { setLoading(false) }
   }, [fetchSubscription])
@@ -407,8 +421,10 @@ function SubscriptionPage() {
               <div>
                 <p className="text-sm font-medium opacity-80 mb-0.5">Current Plan</p>
                 <p className="text-3xl font-bold">{planLabel}</p>
-                {data?.price_usd != null && (
-                  <p className="text-sm opacity-70 mt-1">${data.price_usd}/month · cancel anytime</p>
+                {data?.price_eur != null && (
+                  <p className="text-sm opacity-70 mt-1">
+                    €{data.price_eur}/month · cancel anytime
+                  </p>
                 )}
               </div>
               <Badge

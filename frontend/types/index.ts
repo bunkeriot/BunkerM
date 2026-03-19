@@ -245,7 +245,8 @@ export interface SubscriptionData {
   allowed_connectors: string[]
   agents_limit: number | null         // null = unlimited
   max_instances: number
-  price_usd: number | null            // null = contact us
+  price_eur: number | null            // null = contact us; prices are in EUR
+  country: string | null              // ISO-2 code or full name
 }
 
 // ── Smart Anomaly Detection types ────────────────────────────────────────────

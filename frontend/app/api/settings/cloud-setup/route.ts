@@ -7,6 +7,19 @@ const ACTIVATION_FILE = '/nextjs/data/activation.json'
 const INSTANCE_FILE  = '/nextjs/data/instance_id'
 const CLOUD_URL      = process.env.BUNKERAI_CLOUD_URL ?? 'https://api.bunkerai.dev'
 
+const USERS_FILE = '/nextjs/data/users.json'
+
+function readAdminProfile(): { email: string | null; country: string | null } {
+  try {
+    if (existsSync(USERS_FILE)) {
+      const users = JSON.parse(readFileSync(USERS_FILE, 'utf-8'))
+      const admin = Array.isArray(users) ? users.find((u: { role?: string }) => u.role === 'admin') : null
+      return { email: admin?.email ?? null, country: admin?.country ?? null }
+    }
+  } catch { /* ignore */ }
+  return { email: null, country: null }
+}
+
 export async function POST(_request: NextRequest) {
   // Read locally-stored activation key (written by agent-api on auto-activation)
   let activationKey = ''
@@ -30,13 +43,15 @@ export async function POST(_request: NextRequest) {
     )
   }
 
+  const { email: adminEmail, country: adminCountry } = readAdminProfile()
+
   // Register tenant on the cloud using the signed activation key (no admin secret needed)
   let tenantData: { tenant_id: string; api_key: string }
   try {
     const res = await fetch(`${CLOUD_URL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activation_key: activationKey, instance_id: instanceId }),
+      body: JSON.stringify({ activation_key: activationKey, instance_id: instanceId, email: adminEmail, country: adminCountry }),
     })
 
     if (!res.ok) {
