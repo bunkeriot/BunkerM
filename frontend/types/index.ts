@@ -247,6 +247,7 @@ export interface SubscriptionData {
   max_instances: number
   price_eur: number | null            // null = contact us; prices are in EUR
   country: string | null              // ISO-2 code or full name
+  email_verified: boolean
 }
 
 // ── Smart Anomaly Detection types ────────────────────────────────────────────

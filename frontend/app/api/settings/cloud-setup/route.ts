@@ -54,6 +54,13 @@ export async function POST(_request: NextRequest) {
       body: JSON.stringify({ activation_key: activationKey, instance_id: instanceId, email: adminEmail, country: adminCountry }),
     })
 
+    if (res.status === 409) {
+      // Duplicate verified email — invite the user to log in instead
+      return NextResponse.json(
+        { error: 'EMAIL_ALREADY_REGISTERED', email: adminEmail },
+        { status: 409 }
+      )
+    }
     if (!res.ok) {
       const text = await res.text()
       return NextResponse.json(

@@ -445,7 +445,28 @@ export const subscriptionApi = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ plan, return_url: returnUrl }),
-    }).then((r) => r.json()) as Promise<{ checkout_url?: string; error?: string }>,
+    }).then((r) => r.json()) as Promise<{ checkout_url?: string; error?: string; detail?: string }>,
+  resendVerification: () =>
+    fetch('/api/ai/billing/resend-verification', { method: 'POST' })
+      .then((r) => r.json()) as Promise<{ message?: string; error?: string }>,
+  recoverApiKey: (email: string) =>
+    fetch('/api/ai/billing/recover-api-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    }).then((r) => r.json()) as Promise<{ message?: string; error?: string }>,
+  cloudLogin: (email: string, password: string) =>
+    fetch('/api/ai/billing/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    }).then((r) => r.json()) as Promise<{ api_key?: string; tenant_id?: string; detail?: string; error?: string }>,
+  forgotPassword: (email: string) =>
+    fetch('/api/ai/billing/forgot-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    }).then((r) => r.json()) as Promise<{ message?: string; error?: string }>,
 }
 
 // Keep creditsApi as alias for backward compatibility

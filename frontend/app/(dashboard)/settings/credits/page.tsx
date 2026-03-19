@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Zap, CheckCircle, XCircle, RefreshCw, ExternalLink,
-  AlertTriangle, Sparkles, ArrowRight, Check, Globe, WifiOff,
+  AlertTriangle, Sparkles, ArrowRight, Check, Globe, WifiOff, Mail, Key,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -62,6 +62,7 @@ function PlanCard({
   plan,
   isCurrent,
   isConnected,
+  emailVerified,
   onSelect,
   loading,
   onContactSales,
@@ -69,6 +70,7 @@ function PlanCard({
   plan: PlanDef
   isCurrent: boolean
   isConnected: boolean
+  emailVerified: boolean
   onSelect: (planId: string) => void
   loading: boolean
   onContactSales: () => void
@@ -153,7 +155,8 @@ function PlanCard({
         <Button
           className="w-full gap-1.5"
           variant={plan.popular ? 'default' : 'outline'}
-          disabled={loading || !isConnected}
+          disabled={loading || !isConnected || !emailVerified}
+          title={!emailVerified ? 'Verify your email first' : undefined}
           onClick={() => onSelect(plan.id)}
         >
           {loading ? (
@@ -184,6 +187,18 @@ function SubscriptionPage() {
   const [activating, setActivating] = useState(false)
   const [salesModalOpen, setSalesModalOpen] = useState(false)
   const [emailCopied, setEmailCopied] = useState(false)
+  const [resendingVerification, setResendingVerification] = useState(false)
+  const [recoverModalOpen, setRecoverModalOpen] = useState(false)
+  const [recoverEmail, setRecoverEmail] = useState('')
+  const [recoverSent, setRecoverSent] = useState(false)
+  const [recoverLoading, setRecoverLoading] = useState(false)
+  // Duplicate email login flow
+  const [cloudLoginEmail, setCloudLoginEmail] = useState('')
+  const [cloudLoginModalOpen, setCloudLoginModalOpen] = useState(false)
+  const [cloudLoginPassword, setCloudLoginPassword] = useState('')
+  const [cloudLoginError, setCloudLoginError] = useState('')
+  const [cloudLoginLoading, setCloudLoginLoading] = useState(false)
+  const [forgotPasswordSent, setForgotPasswordSent] = useState(false)
 
   function copySalesEmail() {
     navigator.clipboard.writeText('sales@bunkerai.dev').then(() => {
@@ -210,6 +225,12 @@ function SubscriptionPage() {
       if (!config.api_key) {
         const setupRes = await fetch('/api/settings/cloud-setup', { method: 'POST' })
         const setupData = await setupRes.json()
+        if (setupRes.status === 409 && setupData.error === 'EMAIL_ALREADY_REGISTERED') {
+          setCloudLoginEmail(setupData.email ?? '')
+          setCloudLoginModalOpen(true)
+          setLoading(false)
+          return
+        }
         if (!setupRes.ok) {
           setConnectError(setupData.error ?? 'Could not connect to BunkerAI Cloud.')
           setLoading(false)
@@ -285,12 +306,79 @@ function SubscriptionPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  async function handleCloudLogin() {
+    if (!cloudLoginPassword) return
+    setCloudLoginLoading(true)
+    setCloudLoginError('')
+    try {
+      const res = await subscriptionApi.cloudLogin(cloudLoginEmail, cloudLoginPassword)
+      if (res.api_key && res.tenant_id) {
+        // Save the recovered API key and restart connector-agent
+        await fetch('/api/settings/cloud-connect', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ api_key: res.api_key, tenant_id: res.tenant_id }),
+        })
+        setCloudLoginModalOpen(false)
+        toast.success('Subscription recovered! Reconnecting…')
+        setTimeout(() => init(), 1500)
+      } else {
+        setCloudLoginError(res.detail ?? res.error ?? 'Invalid email or password.')
+      }
+    } catch {
+      setCloudLoginError('Could not reach BunkerAI Cloud.')
+    } finally {
+      setCloudLoginLoading(false)
+    }
+  }
+
+  async function handleForgotPassword() {
+    if (!cloudLoginEmail) return
+    setCloudLoginLoading(true)
+    try {
+      await subscriptionApi.forgotPassword(cloudLoginEmail)
+      setForgotPasswordSent(true)
+    } catch { /* ignore */ }
+    finally { setCloudLoginLoading(false) }
+  }
+
+  async function handleResendVerification() {
+    setResendingVerification(true)
+    try {
+      const res = await subscriptionApi.resendVerification()
+      if (res.error) {
+        toast.error(res.error)
+      } else {
+        toast.success('Verification email sent! Check your inbox.')
+      }
+    } catch {
+      toast.error('Failed to send verification email.')
+    } finally {
+      setResendingVerification(false)
+    }
+  }
+
+  async function handleRecoverApiKey() {
+    if (!recoverEmail.trim()) return
+    setRecoverLoading(true)
+    try {
+      await subscriptionApi.recoverApiKey(recoverEmail.trim())
+      setRecoverSent(true)
+    } catch {
+      toast.error('Failed to reach BunkerAI Cloud.')
+    } finally {
+      setRecoverLoading(false)
+    }
+  }
+
   async function handleUpgrade(planId: string) {
     setUpgrading(planId)
     try {
       const res = await subscriptionApi.subscribe(planId, window.location.href)
       if (res.checkout_url) {
         window.location.href = res.checkout_url
+      } else if ((res as { detail?: string }).detail === 'EMAIL_NOT_VERIFIED') {
+        toast.error('Please verify your email before subscribing. Check your inbox or click Resend.')
       } else {
         toast.error(res.error ?? 'Could not create checkout session. Try again.')
       }
@@ -346,6 +434,7 @@ function SubscriptionPage() {
   const pct = limit ? Math.min(100, Math.round((used / limit) * 100)) : 0
   const hasSubscription = !!data?.plan
   const isSuspended = tenantStatus === 'suspended'
+  const emailVerified = data?.email_verified !== false  // treat null/undefined as true for existing tenants
 
   return (
     <div className="space-y-8 max-w-4xl">
@@ -377,6 +466,31 @@ function SubscriptionPage() {
       </div>
 
       {activatingBanner}
+
+      {/* ── Email not verified ── */}
+      {isConnected && !emailVerified && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-800 p-4 flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <Mail className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <p className="text-sm font-medium text-amber-800 dark:text-amber-200">Verify your email to subscribe</p>
+              <p className="text-xs text-amber-700 dark:text-amber-300">
+                Check the inbox you used when setting up BunkerM for a verification link. You must verify before subscribing.
+              </p>
+            </div>
+          </div>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handleResendVerification}
+            disabled={resendingVerification}
+            className="shrink-0 gap-1.5 border-amber-300 dark:border-amber-700"
+          >
+            {resendingVerification ? <RefreshCw className="h-3.5 w-3.5 animate-spin" /> : <Mail className="h-3.5 w-3.5" />}
+            Resend
+          </Button>
+        </div>
+      )}
 
       {/* ── BunkerAI not yet connected (non-blocking) ── */}
       {connectError && (
@@ -533,6 +647,7 @@ function SubscriptionPage() {
               plan={p}
               isCurrent={plan === p.id}
               isConnected={isConnected}
+              emailVerified={emailVerified}
               onSelect={handleUpgrade}
               loading={upgrading === p.id}
               onContactSales={() => setSalesModalOpen(true)}
@@ -543,6 +658,122 @@ function SubscriptionPage() {
           All plans billed monthly · cancel anytime · powered by Stripe
         </p>
       </div>
+
+      {/* ── Cloud login modal (duplicate email) ── */}
+      {cloudLoginModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}>
+          <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center gap-3 mb-2">
+              <Mail className="h-5 w-5 text-amber-500 shrink-0" />
+              <h3 className="font-semibold text-base">Email already registered</h3>
+            </div>
+            {forgotPasswordSent ? (
+              <div className="space-y-3 text-center py-2">
+                <p className="text-sm text-muted-foreground">
+                  A password reset link has been sent to <strong>{cloudLoginEmail}</strong>. Check your inbox, then come back here to log in.
+                </p>
+                <Button variant="outline" className="w-full" onClick={() => setForgotPasswordSent(false)}>Back to login</Button>
+              </div>
+            ) : (
+              <>
+                <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+                  <strong>{cloudLoginEmail}</strong> is already associated with a BunkerAI subscription.
+                  Enter your BunkerAI password to restore it on this instance.<br/>
+                  <span className="text-amber-600 dark:text-amber-400">We&apos;ve also emailed your API key to that address as a backup.</span>
+                </p>
+                <input
+                  type="password"
+                  placeholder="BunkerAI password"
+                  value={cloudLoginPassword}
+                  onChange={(e) => { setCloudLoginPassword(e.target.value); setCloudLoginError('') }}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleCloudLogin() }}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary mb-2"
+                  autoFocus
+                />
+                {cloudLoginError && <p className="text-xs text-destructive mb-2">{cloudLoginError}</p>}
+                <Button className="w-full mb-2" onClick={handleCloudLogin} disabled={cloudLoginLoading || !cloudLoginPassword}>
+                  {cloudLoginLoading ? <RefreshCw className="h-4 w-4 animate-spin" /> : 'Log in & restore subscription'}
+                </Button>
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <button onClick={handleForgotPassword} disabled={cloudLoginLoading}
+                    className="hover:text-foreground transition-colors underline underline-offset-2">
+                    Forgot password?
+                  </button>
+                  <button onClick={() => setCloudLoginModalOpen(false)}
+                    className="hover:text-foreground transition-colors">
+                    Cancel
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Recover existing subscription ── */}
+      {!hasSubscription && isConnected && (
+        <div className="text-center pt-2">
+          <button
+            onClick={() => { setRecoverModalOpen(true); setRecoverSent(false); setRecoverEmail('') }}
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+          >
+            <Key className="h-3 w-3" />
+            Already have a BunkerAI subscription? Recover it here
+          </button>
+        </div>
+      )}
+
+      {/* Recover API key modal */}
+      {recoverModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+          onClick={(e) => { if (e.target === e.currentTarget) setRecoverModalOpen(false) }}
+        >
+          <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-base flex items-center gap-2">
+                <Key className="h-4 w-4" />
+                Recover Subscription
+              </h3>
+              <button onClick={() => setRecoverModalOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors text-xl leading-none">&times;</button>
+            </div>
+            {recoverSent ? (
+              <div className="text-center py-4 space-y-3">
+                <Mail className="h-8 w-8 mx-auto text-primary" />
+                <p className="text-sm font-medium">Check your inbox</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  If <strong>{recoverEmail}</strong> is registered with BunkerAI, your API key has been sent to it.
+                  Paste it in <strong>Settings → BunkerM Cloud</strong> to restore your subscription.
+                </p>
+                <Button size="sm" variant="outline" className="w-full" onClick={() => setRecoverModalOpen(false)}>Close</Button>
+              </div>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  Enter the email you used when first setting up BunkerM. We&apos;ll send your API key to that address.
+                </p>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={recoverEmail}
+                  onChange={(e) => setRecoverEmail(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleRecoverApiKey() }}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary mb-3"
+                />
+                <Button
+                  className="w-full"
+                  onClick={handleRecoverApiKey}
+                  disabled={recoverLoading || !recoverEmail.trim()}
+                >
+                  {recoverLoading ? <RefreshCw className="h-4 w-4 animate-spin" /> : 'Send recovery email'}
+                </Button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Sales modal */}
       {salesModalOpen && (
