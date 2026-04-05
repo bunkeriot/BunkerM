@@ -48,9 +48,14 @@ export function getRoleFromToken(token: string): 'admin' | 'user' | null {
 }
 
 export function cookieOptions(maxAge?: number) {
+  // COOKIE_SECURE must be explicitly set to 'true' to enable the Secure flag.
+  // Do NOT derive this from NODE_ENV — the Docker image sets NODE_ENV=production
+  // even for plain-HTTP deployments, which causes browsers to silently drop the
+  // cookie and break login on any remote server without HTTPS.
+  const secure = process.env.COOKIE_SECURE === 'true'
   return {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure,
     sameSite: 'lax' as const,
     path: '/',
     maxAge: maxAge ?? 60 * 60 * 24, // 24h

@@ -19,6 +19,9 @@ services:
       - JWT_SECRET=${JWT_SECRET:-default_jwt_secret_replace_in_production}
       - API_KEY=${API_KEY:-default_api_key_replace_in_production}
       - AUTH_SECRET=${AUTH_SECRET:-bunkerm-secret-please-change-in-production}
+      # Set COOKIE_SECURE=true ONLY when running behind HTTPS.
+      # Leaving it unset (default false) is correct for plain HTTP deployments.
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
       # ── App settings ────────────────────────────────────────────────────────
       - FRONTEND_URL=http://localhost:2000
       - ALLOWED_ORIGINS=*
