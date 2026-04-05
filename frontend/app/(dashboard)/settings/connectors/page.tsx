@@ -5,9 +5,10 @@ import {
   Eye, EyeOff, Copy, RefreshCw, KeyRound, Check,
   Globe, Loader2, Wifi, Bot,
   ShieldOff, Hash, BellRing, Lock, ChevronDown, ChevronUp, ArrowRight,
+  Cpu, RefreshCcw,
 } from 'lucide-react'
 import { toast } from 'sonner'
-import { adminApi, subscriptionApi } from '@/lib/api'
+import { adminApi, subscriptionApi, localLlmApi } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -78,6 +79,15 @@ export default function IntegrationsPage() {
   // Subscription data (for plan-gating)
   const [subscription, setSubscription] = useState<SubscriptionData | null>(null)
 
+  // Local LLM (LM Studio)
+  const [llmConfig, setLlmConfig] = useState<{ enabled: boolean; url: string; model: string }>({
+    enabled: false, url: 'http://host.docker.internal:1234', model: '',
+  })
+  const [llmModels, setLlmModels] = useState<string[]>([])
+  const [llmLoadingModels, setLlmLoadingModels] = useState(false)
+  const [llmSaving, setLlmSaving] = useState(false)
+  const [llmModelsError, setLlmModelsError] = useState('')
+
   // ── Fetch ──────────────────────────────────────────────────────────────────
 
   const fetchApiKey = useCallback(async () => {
@@ -115,7 +125,31 @@ export default function IntegrationsPage() {
     setSlackStartUrl(
       `/api/settings/slack-oauth-start?return_to=${encodeURIComponent(window.location.origin)}`
     )
+    localLlmApi.getConfig().then(cfg => {
+      if (!cfg.error) setLlmConfig(cfg)
+    }).catch(() => {})
   }, [fetchApiKey, fetchCloudState, fetchSubscription])
+
+  async function fetchLlmModels() {
+    setLlmLoadingModels(true)
+    setLlmModelsError('')
+    try {
+      const res = await localLlmApi.getModels()
+      if (res.error) { setLlmModelsError(res.error); setLlmModels([]) }
+      else setLlmModels(res.models)
+    } catch {
+      setLlmModelsError('Failed to fetch models')
+    } finally { setLlmLoadingModels(false) }
+  }
+
+  async function saveLlmConfig() {
+    setLlmSaving(true)
+    try {
+      await localLlmApi.saveConfig(llmConfig)
+      toast.success('Local LLM settings saved')
+    } catch { toast.error('Failed to save settings') }
+    finally { setLlmSaving(false) }
+  }
 
   // Slack OAuth redirect detection
   useEffect(() => {
@@ -238,6 +272,100 @@ export default function IntegrationsPage() {
         <p className="text-muted-foreground text-sm mt-1">
           Connect BunkerAI Cloud, manage messaging bots, and configure alert forwarding.
         </p>
+      </div>
+
+      {/* ── Local AI / LM Studio ── */}
+      <div>
+        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-1">
+          Local AI
+        </h2>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Cpu className="h-4 w-4" />
+              LM Studio
+              <Badge variant={llmConfig.enabled ? 'default' : 'secondary'} className="ml-auto font-normal text-xs">
+                {llmConfig.enabled ? 'Enabled' : 'Disabled'}
+              </Badge>
+            </CardTitle>
+            <CardDescription>
+              Connect BunkerM AI chat to a local LLM running in LM Studio — no cloud account required.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="llm-url">LM Studio URL</Label>
+              <Input
+                id="llm-url"
+                placeholder="http://host.docker.internal:1234"
+                value={llmConfig.url}
+                onChange={e => setLlmConfig(c => ({ ...c, url: e.target.value }))}
+              />
+              <p className="text-xs text-muted-foreground">
+                Default port is 1234. Use <code className="text-xs bg-muted px-1 rounded">host.docker.internal</code> to reach your host machine from Docker.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={fetchLlmModels}
+                disabled={llmLoadingModels}
+                className="gap-1.5"
+              >
+                {llmLoadingModels
+                  ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  : <RefreshCcw className="h-3.5 w-3.5" />}
+                Fetch Models
+              </Button>
+              {llmModelsError && (
+                <span className="text-xs text-destructive">{llmModelsError}</span>
+              )}
+            </div>
+
+            {llmModels.length > 0 && (
+              <div className="space-y-1.5">
+                <Label htmlFor="llm-model">Active Model</Label>
+                <select
+                  id="llm-model"
+                  value={llmConfig.model}
+                  onChange={e => setLlmConfig(c => ({ ...c, model: e.target.value }))}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="">— select a model —</option>
+                  {llmModels.map(m => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between pt-1">
+              <div className="flex items-center gap-2 text-sm">
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={llmConfig.enabled}
+                  onClick={() => {
+                    const next = !llmConfig.enabled
+                    setLlmConfig(c => ({ ...c, enabled: next }))
+                    // Auto-fetch models when enabling
+                    if (next) fetchLlmModels()
+                  }}
+                  className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${llmConfig.enabled ? 'bg-primary' : 'bg-input'}`}
+                >
+                  <span className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-background shadow ring-0 transition-transform ${llmConfig.enabled ? 'translate-x-4' : 'translate-x-0'}`} />
+                </button>
+                <span className="text-muted-foreground">Enable local LLM chat</span>
+              </div>
+              <Button size="sm" onClick={saveLlmConfig} disabled={llmSaving} className="gap-1.5">
+                {llmSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
+                Save
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* ── BunkerAI Cloud status (read-only) ── */}

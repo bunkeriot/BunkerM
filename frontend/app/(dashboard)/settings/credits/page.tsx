@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Zap, CheckCircle, XCircle, RefreshCw, ExternalLink,
-  AlertTriangle, Sparkles, ArrowRight, Check, Globe, WifiOff, Mail, Key,
+  AlertTriangle, Sparkles, ArrowRight, Check, Globe, WifiOff, Mail, Key, Cpu, Plus,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -56,7 +56,87 @@ function normalizePlans(raw: Record<string, unknown>[]): PlanDef[] {
   }))
 }
 
-// ─── Plan card ────────────────────────────────────────────────────────────────
+// ─── Feature row helpers ──────────────────────────────────────────────────────
+
+function FRow({ children, muted }: { children: React.ReactNode; muted?: boolean }) {
+  return (
+    <li className={`flex items-center gap-2 text-sm ${muted ? 'text-muted-foreground' : ''}`}>
+      {muted
+        ? <XCircle className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50" />
+        : <Check className="h-3.5 w-3.5 shrink-0 text-green-500" />}
+      {children}
+    </li>
+  )
+}
+
+function FRowBase({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-center gap-2 text-sm text-muted-foreground italic">
+      <ArrowRight className="h-3 w-3 shrink-0" />
+      {children}
+    </li>
+  )
+}
+
+// ─── Community (free) card ────────────────────────────────────────────────────
+
+function CommunityCard() {
+  return (
+    <div className="relative rounded-xl border-2 border-dashed border-border bg-muted/20 p-5 flex flex-col gap-3">
+      <div>
+        <div className="flex items-center gap-2">
+          <p className="font-semibold text-base">Community</p>
+          <span className="text-[10px] font-semibold uppercase tracking-wider bg-green-500/15 text-green-700 dark:text-green-400 px-2 py-0.5 rounded-full">Free</span>
+        </div>
+        <p className="mt-2">
+          <span className="text-2xl font-bold">€0</span>
+          <span className="text-muted-foreground text-sm">/mo</span>
+        </p>
+      </div>
+      <ul className="space-y-1.5 flex-1">
+        <FRow>Full MQTT management</FRow>
+        <FRow>Local LLM <span className="ml-1 text-xs text-muted-foreground">(LM Studio)</span></FRow>
+        <FRow>2 agents</FRow>
+        <FRow muted>No Cloud AI</FRow>
+        <FRow muted>No Telegram / Slack</FRow>
+      </ul>
+      <div className="flex items-center gap-1.5 text-xs font-medium text-green-600 dark:text-green-400 mt-1">
+        <CheckCircle className="h-3.5 w-3.5" />
+        Your current plan
+      </div>
+    </div>
+  )
+}
+
+// ─── Paid plan cards ──────────────────────────────────────────────────────────
+
+const PLAN_FEATURES: Record<string, React.ReactNode[]> = {
+  starter: [
+    <FRowBase key="base">Everything in Community</FRowBase>,
+    <FRow key="cloud"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> BunkerAI Cloud assistant</FRow>,
+    <FRow key="ai">100 Cloud AI interactions/mo</FRow>,
+    <FRow key="chat">Cloud Web Chat</FRow>,
+    <FRow key="agents">Up to 2 agents</FRow>,
+    <FRow key="bots" muted>No Telegram / Slack</FRow>,
+  ],
+  pro: [
+    <FRowBase key="base">Everything in Starter</FRowBase>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 500 Cloud AI interactions/mo</FRow>,
+    <FRow key="bots">Telegram + Slack bots</FRow>,
+    <FRow key="agents">Unlimited agents</FRow>,
+  ],
+  team: [
+    <FRowBase key="base">Everything in Pro</FRowBase>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 2 000 Cloud AI interactions/mo</FRow>,
+    <FRow key="agents">Unlimited agents</FRow>,
+  ],
+  business: [
+    <FRowBase key="base">Everything in Team</FRowBase>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> Unlimited interactions</FRow>,
+    <FRow key="sla">Dedicated support + SLA</FRow>,
+    <FRow key="sec">Enterprise-grade security &amp; compliance</FRow>,
+  ],
+}
 
 function PlanCard({
   plan,
@@ -77,15 +157,12 @@ function PlanCard({
 }) {
   const isBusiness = plan.id === 'business'
   const displayPrice = plan.price != null ? `€${plan.price}` : null
+  const features = PLAN_FEATURES[plan.id] ?? []
 
   return (
     <div
-      className={`relative rounded-xl border p-5 flex flex-col gap-4 transition-colors ${
-        isCurrent
-          ? 'border-primary bg-primary/5'
-          : plan.popular
-          ? 'border-primary/40'
-          : 'border-border'
+      className={`relative rounded-xl border p-5 flex flex-col gap-3 transition-colors ${
+        isCurrent ? 'border-primary bg-primary/5' : plan.popular ? 'border-primary/40' : 'border-border'
       }`}
     >
       {plan.popular && !isCurrent && (
@@ -96,77 +173,39 @@ function PlanCard({
 
       <div>
         <p className="font-semibold text-base">{plan.label}</p>
-        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{plan.description}</p>
         <p className="mt-2">
           {displayPrice != null ? (
             <>
               <span className="text-2xl font-bold">{displayPrice}</span>
-              <span className="text-muted-foreground text-sm">/month</span>
+              <span className="text-muted-foreground text-sm">/mo</span>
             </>
           ) : (
-            <span className="text-lg font-medium text-muted-foreground">Contact us</span>
+            <span className="text-lg font-medium text-muted-foreground">Custom</span>
           )}
         </p>
       </div>
 
-      <ul className="space-y-1.5 text-sm flex-1">
-        <li className="flex items-start gap-2">
-          <Zap className="h-3.5 w-3.5 text-yellow-500 shrink-0 mt-0.5" />
-          <span>
-            {plan.interactions != null
-              ? `${plan.interactions.toLocaleString()} AI interactions/month`
-              : 'Unlimited AI interactions'}
-          </span>
-        </li>
-        <li className="flex items-start gap-2">
-          <Check className="h-3.5 w-3.5 text-green-500 shrink-0 mt-0.5" />
-          <span>Web Chat</span>
-        </li>
-        {plan.connectors.includes('telegram') ? (
-          <li className="flex items-start gap-2">
-            <Check className="h-3.5 w-3.5 text-green-500 shrink-0 mt-0.5" />
-            <span>Telegram + Slack</span>
-          </li>
-        ) : (
-          <li className="flex items-start gap-2">
-            <XCircle className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
-            <span className="text-muted-foreground">No Telegram / Slack</span>
-          </li>
-        )}
-        <li className="flex items-start gap-2">
-          <Check className="h-3.5 w-3.5 text-green-500 shrink-0 mt-0.5" />
-          <span>
-            {plan.agents != null ? `Up to ${plan.agents} agents` : 'Unlimited agents'}
-          </span>
-        </li>
-      </ul>
+      <ul className="space-y-1.5 flex-1">{features}</ul>
 
       {isCurrent ? (
-        <div className="flex items-center gap-2 text-sm font-medium text-primary">
-          <CheckCircle className="h-4 w-4" />
+        <div className="flex items-center gap-1.5 text-xs font-medium text-primary mt-1">
+          <CheckCircle className="h-3.5 w-3.5" />
           Current plan
         </div>
       ) : isBusiness ? (
-        <Button variant="outline" className="w-full gap-1.5" onClick={onContactSales}>
-          Contact sales
-          <ExternalLink className="h-3.5 w-3.5" />
+        <Button variant="outline" size="sm" className="w-full gap-1.5 mt-1" onClick={onContactSales}>
+          Contact sales <ExternalLink className="h-3.5 w-3.5" />
         </Button>
       ) : (
         <Button
-          className="w-full gap-1.5"
+          size="sm"
+          className="w-full gap-1.5 mt-1"
           variant={plan.popular ? 'default' : 'outline'}
           disabled={loading || !isConnected || !emailVerified}
           title={!emailVerified ? 'Verify your email first' : undefined}
           onClick={() => onSelect(plan.id)}
         >
-          {loading ? (
-            <RefreshCw className="h-4 w-4 animate-spin" />
-          ) : (
-            <>
-              Get {plan.label}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </>
-          )}
+          {loading ? <RefreshCw className="h-3.5 w-3.5 animate-spin" /> : <>Get {plan.label} <ArrowRight className="h-3.5 w-3.5" /></>}
         </Button>
       )}
     </div>
@@ -605,42 +644,14 @@ function SubscriptionPage() {
         </div>
       )}
 
-      {/* ── Community state ── */}
-      {!hasSubscription && !activating && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-muted-foreground" />
-              BunkerM Community
-              <Badge variant="secondary" className="ml-1 font-normal">Free forever</Badge>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2 text-sm">
-            {[
-              { label: 'MQTT broker management', ok: true },
-              { label: 'Dashboard & monitoring', ok: true },
-              { label: 'ACL management (clients, roles, groups)', ok: true },
-              { label: 'AI Chat assistant', ok: false },
-              { label: 'Telegram / Slack connectors', ok: false },
-              { label: 'Schedulers & Watchers (agents)', ok: false },
-            ].map(({ label, ok }) => (
-              <div key={label} className="flex items-center gap-2.5">
-                {ok
-                  ? <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
-                  : <XCircle className="h-4 w-4 text-muted-foreground shrink-0" />}
-                <span className={ok ? '' : 'text-muted-foreground'}>{label}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
       {/* ── Plan grid ── */}
       <div>
         <h2 className="text-base font-semibold mb-4">
           {hasSubscription ? 'Switch Plan' : 'Choose a Plan'}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+          {/* Community free card — always first */}
+          <CommunityCard />
           {plans.map((p) => (
             <PlanCard
               key={p.id}
@@ -655,7 +666,7 @@ function SubscriptionPage() {
           ))}
         </div>
         <p className="text-xs text-muted-foreground mt-3 text-center">
-          All plans billed monthly · cancel anytime · powered by Stripe
+          Paid plans billed monthly · cancel anytime · powered by Stripe
         </p>
       </div>
 

@@ -1,25 +1,50 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { MessageSquare, Send, Loader2, Info, Check, X } from 'lucide-react'
+import { MessageSquare, Send, Loader2, Info, Check, X, Cpu, Cloud, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { chatApi } from '@/lib/api'
+import { chatApi, localLlmApi } from '@/lib/api'
 import { useAuth } from '@/contexts/AuthContext'
 import type { ChatMessage, PendingAction } from '@/types'
 
 // ─── Local storage helpers ───────────────────────────────────────────────────
-// Up to 50 messages are kept per user. Old messages fall off the end.
 const MAX_LOCAL = 50
+const CHAT_MODE_KEY = 'bunkerm_chat_mode'
 
 function storageKey(userId: string) {
   return `bunkerm_chat_${userId}`
 }
 
+function localLlmStorageKey(userId: string) {
+  return `bunkerm_local_llm_chat_${userId}`
+}
+
+function readChatMode(): ChatMode {
+  try {
+    const v = localStorage.getItem(CHAT_MODE_KEY)
+    if (v === 'local' || v === 'cloud') return v
+  } catch {}
+  return 'cloud'
+}
+
+function writeChatMode(mode: ChatMode) {
+  try { localStorage.setItem(CHAT_MODE_KEY, mode) } catch {}
+}
+
 function readLocal(userId: string): ChatMessage[] {
   try {
     const raw = localStorage.getItem(storageKey(userId))
+    return raw ? (JSON.parse(raw) as ChatMessage[]) : []
+  } catch {
+    return []
+  }
+}
+
+function readLocalLlm(userId: string): ChatMessage[] {
+  try {
+    const raw = localStorage.getItem(localLlmStorageKey(userId))
     return raw ? (JSON.parse(raw) as ChatMessage[]) : []
   } catch {
     return []
@@ -32,7 +57,13 @@ function writeLocal(userId: string, msgs: ChatMessage[]) {
   } catch {}
 }
 
-// ─── Pending action confirm/cancel ───────────────────────────────────────────
+function writeLocalLlm(userId: string, msgs: ChatMessage[]) {
+  try {
+    localStorage.setItem(localLlmStorageKey(userId), JSON.stringify(msgs.slice(-MAX_LOCAL)))
+  } catch {}
+}
+
+// ─── Pending action confirm/cancel (cloud mode only) ─────────────────────────
 
 function PendingButtons({
   pending,
@@ -142,36 +173,63 @@ function MessageBubble({
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
+type ChatMode = 'cloud' | 'local'
+
 export default function ChatPage() {
   const { user, isLoading: authLoading } = useAuth()
   const userId = user?.id ?? 'web'
 
+  const [mode, setMode] = useState<ChatMode>(() => {
+    if (typeof window !== 'undefined') return readChatMode()
+    return 'cloud'
+  })
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [isSending, setIsSending] = useState(false)
   const [isConfigured, setIsConfigured] = useState<boolean | null>(null)
 
+  // Local LLM state
+  const [llmEnabled, setLlmEnabled] = useState(false)
+  const [llmModel, setLlmModel] = useState('')
+  const [llmReady, setLlmReady] = useState<boolean | null>(null)
+
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const didInitialScroll = useRef(false)
-  // Track whether we've already initialised for this userId to avoid double-runs
   const initialisedFor = useRef<string | null>(null)
 
   // ── Initialise once auth has settled ──────────────────────────────────────
   useEffect(() => {
     if (authLoading) return
-    // Don't re-run if we already loaded for this user (handles StrictMode double-invoke)
     if (initialisedFor.current === userId) return
     initialisedFor.current = userId
 
-    // 1. Show localStorage immediately — zero latency, survives navigation & logout
+    // Check cloud config
+    chatApi.isConfigured().then(setIsConfigured).catch(() => setIsConfigured(false))
+
+    // Check local LLM config
+    localLlmApi.getConfig().then(cfg => {
+      setLlmEnabled(cfg.enabled ?? false)
+      setLlmModel(cfg.model ?? '')
+      if (cfg.enabled && cfg.model) setLlmReady(true)
+      else setLlmReady(false)
+    }).catch(() => setLlmReady(false))
+  }, [authLoading, userId])
+
+  // ── Load messages when mode or userId changes ──────────────────────────────
+  useEffect(() => {
+    if (authLoading) return
+    didInitialScroll.current = false
+
+    if (mode === 'local') {
+      const cached = readLocalLlm(userId)
+      setMessages(cached)
+      return
+    }
+
+    // Cloud mode
     const cached = readLocal(userId)
     if (cached.length) setMessages(cached)
 
-    // 2. Check whether the cloud is configured (enables/disables the input)
-    chatApi.isConfigured().then(setIsConfigured).catch(() => setIsConfigured(false))
-
-    // 3. Background sync with server — shared history across all connectors.
-    //    Failure is silent: localStorage stays as the display source.
     chatApi.getHistory()
       .then(({ messages: serverMsgs }) => {
         if (!serverMsgs?.length) return
@@ -186,17 +244,15 @@ export default function ChatPage() {
         writeLocal(userId, normalised)
       })
       .catch(() => {})
-  }, [authLoading, userId])
+  }, [authLoading, userId, mode])
 
-  // Reset scroll sentinel when userId changes (different user logs in)
+  // Reset on user change
   useEffect(() => {
     didInitialScroll.current = false
     initialisedFor.current = null
   }, [userId])
 
-  // ── Scroll behaviour ──────────────────────────────────────────────────────
-  // After history appears: jump to bottom instantly (no jarring animation).
-  // After each new message: smooth scroll.
+  // ── Scroll ────────────────────────────────────────────────────────────────
   useEffect(() => {
     const el = scrollAreaRef.current
     if (!el) return
@@ -208,16 +264,34 @@ export default function ChatPage() {
     }
   }, [messages, isSending])
 
-  // ── Persist to localStorage on every message change ───────────────────────
+  // ── Persist on change ─────────────────────────────────────────────────────
   useEffect(() => {
     if (!messages.length || userId === 'web') return
-    writeLocal(userId, messages)
-  }, [messages, userId])
+    if (mode === 'local') writeLocalLlm(userId, messages)
+    else writeLocal(userId, messages)
+  }, [messages, userId, mode])
+
+  // ── Clear history ─────────────────────────────────────────────────────────
+  function clearHistory() {
+    setMessages([])
+    if (mode === 'local') {
+      try { localStorage.removeItem(localLlmStorageKey(userId)) } catch {}
+    } else {
+      try { localStorage.removeItem(storageKey(userId)) } catch {}
+    }
+    setInput('')
+  }
 
   // ── Send ──────────────────────────────────────────────────────────────────
   async function sendMessage() {
     const text = input.trim()
     if (!text || isSending) return
+
+    // Handle /reset command
+    if (text === '/reset') {
+      clearHistory()
+      return
+    }
 
     const userMsg: ChatMessage = {
       id: crypto.randomUUID(),
@@ -230,6 +304,40 @@ export default function ChatPage() {
     setInput('')
     setIsSending(true)
 
+    if (mode === 'local') {
+      // Build messages array for local LLM
+      const history = [...messages, userMsg]
+        .filter(m => m.role === 'user' || m.role === 'assistant')
+        .map(m => ({ role: m.role, content: m.content }))
+
+      try {
+        const result = await localLlmApi.chat(history, llmModel)
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: 'assistant',
+            content: result.reply ?? result.error ?? 'No response received.',
+            ts: new Date().toISOString(),
+          },
+        ])
+      } catch {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: 'assistant',
+            content: 'Failed to reach LM Studio. Make sure it is running and the model is loaded.',
+            ts: new Date().toISOString(),
+          },
+        ])
+      } finally {
+        setIsSending(false)
+      }
+      return
+    }
+
+    // Cloud mode
     try {
       const result = await chatApi.send(text, userId)
       setMessages((prev) => [
@@ -284,7 +392,9 @@ export default function ChatPage() {
     )
   }
 
-  const inputDisabled = isSending || !isConfigured
+  const cloudInputDisabled = isSending || !isConfigured
+  const localInputDisabled = isSending || !llmReady
+  const inputDisabled = mode === 'local' ? localInputDisabled : cloudInputDisabled
 
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] max-w-3xl mx-auto">
@@ -296,36 +406,89 @@ export default function ChatPage() {
             BunkerAI Chat
           </h1>
           <p className="text-muted-foreground text-sm">
-            Control and monitor your MQTT devices with AI:
-            Ask questions, get summaries, or send commands in natural language.
+            Control and monitor your MQTT devices with AI.
           </p>
         </div>
-        {isConfigured !== null && (
-          <Badge variant={isConfigured ? 'default' : 'outline'} className="gap-1">
-            <span className={`h-2 w-2 rounded-full ${isConfigured ? 'bg-green-500' : 'bg-gray-400'}`} />
-            {isConfigured ? 'Connected' : 'Not configured'}
-          </Badge>
-        )}
+        <div className="flex items-center gap-2">
+          {/* Mode toggle */}
+          <div className="flex items-center rounded-lg border p-0.5 gap-0.5">
+            <Button
+              size="sm"
+              variant={mode === 'cloud' ? 'default' : 'ghost'}
+              className="h-7 gap-1.5 text-xs px-2.5"
+              onClick={() => { setMode('cloud'); writeChatMode('cloud') }}
+            >
+              <Cloud className="h-3.5 w-3.5" />
+              Cloud
+            </Button>
+            <Button
+              size="sm"
+              variant={mode === 'local' ? 'default' : 'ghost'}
+              className="h-7 gap-1.5 text-xs px-2.5"
+              onClick={() => { setMode('local'); writeChatMode('local') }}
+            >
+              <Cpu className="h-3.5 w-3.5" />
+              Local LLM
+            </Button>
+          </div>
+
+          {mode === 'cloud' && isConfigured !== null && (
+            <Badge variant={isConfigured ? 'default' : 'outline'} className="gap-1">
+              <span className={`h-2 w-2 rounded-full ${isConfigured ? 'bg-green-500' : 'bg-gray-400'}`} />
+              {isConfigured ? 'Connected' : 'Not configured'}
+            </Badge>
+          )}
+          {mode === 'local' && llmReady !== null && (
+            <Badge variant={llmReady ? 'default' : 'outline'} className="gap-1">
+              <span className={`h-2 w-2 rounded-full ${llmReady ? 'bg-green-500' : 'bg-gray-400'}`} />
+              {llmReady ? llmModel || 'Ready' : 'Not configured'}
+            </Badge>
+          )}
+          {messages.length > 0 && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={clearHistory}
+              title="Clear chat history (/reset)"
+              className="h-8 w-8 text-muted-foreground hover:text-destructive"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </div>
 
-      {/* Not configured callout */}
-      {isConfigured === false && (
+      {/* Not configured callouts */}
+      {mode === 'cloud' && isConfigured === false && (
         <div className="flex gap-3 rounded-md border bg-muted/50 p-4 text-sm text-muted-foreground mt-4 shrink-0">
           <Info className="h-4 w-4 mt-0.5 shrink-0" />
           <p>
             Set up BunkerAI Cloud in{' '}
             <a href="/settings/connectors" className="underline hover:text-foreground">
-              Settings
+              Settings → Integrations
             </a>{' '}
-            to use BunkerAI Chat.
+            to use cloud AI chat.
           </p>
         </div>
       )}
 
-      {/* Message area — scrollable, flex-1 */}
+      {mode === 'local' && llmReady === false && (
+        <div className="flex gap-3 rounded-md border bg-muted/50 p-4 text-sm text-muted-foreground mt-4 shrink-0">
+          <Info className="h-4 w-4 mt-0.5 shrink-0" />
+          <p>
+            Configure LM Studio in{' '}
+            <a href="/settings/connectors" className="underline hover:text-foreground">
+              Settings → Integrations
+            </a>
+            {': '}
+            enter the LM Studio URL, fetch models, select one, enable it, and save.
+          </p>
+        </div>
+      )}
+
+      {/* Message area */}
       <div ref={scrollAreaRef} className="flex-1 overflow-y-auto py-4 space-y-3 min-h-0">
-        {/* Empty state */}
-        {messages.length === 0 && isConfigured && (
+        {messages.length === 0 && (mode === 'cloud' ? isConfigured : llmReady) && (
           <div className="text-center text-muted-foreground text-sm pt-8">
             <MessageSquare className="h-10 w-10 mx-auto mb-2 opacity-20" />
             <p>Ask anything about your broker.</p>
@@ -356,7 +519,11 @@ export default function ChatPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask anything about your broker… (Enter to send, Shift+Enter for newline)"
+            placeholder={
+              mode === 'local'
+                ? 'Ask your local LLM… (Enter to send, Shift+Enter for newline)'
+                : 'Ask anything about your broker… (Enter to send, Shift+Enter for newline)'
+            }
             rows={2}
             disabled={inputDisabled}
             className="resize-none text-sm flex-1"

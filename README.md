@@ -59,7 +59,8 @@
   - [MQTT Explorer](#-mqtt-explorer)
   - [Smart Anomaly Detection](#-smart-anomaly-detection)
   - [Agents — Schedulers & Watchers](#-agents--schedulers--watchers)
-  - [BunkerAI — AI Assistant](#-bunkerai--ai-assistant)
+  - [Local LLM — Private AI via LM Studio](#️-local-llm--private-ai-via-lm-studio)
+  - [BunkerAI — Cloud AI Assistant](#-bunkerai--cloud-ai-assistant)
   - [Cloud Bridge Integrations](#-cloud-bridge-integrations)
 - [Feature Comparison](#-feature-comparison)
 - [Community vs BunkerAI](#-bunkerm-community-vs-bunkerai)
@@ -74,7 +75,7 @@
 
 **BunkerM** is a free, open-source, containerized MQTT management platform. It bundles **Eclipse Mosquitto** with a full-featured web dashboard, packaging everything into a single Docker container — one command to get a production-ready MQTT broker with a management UI.
 
-On top of the core broker management, BunkerM includes a **local statistical engine** (smart anomaly detection) and a **local automation engine** (schedulers and watchers) that run entirely inside your container. **BunkerAI** is the AI intelligence layer — an optional cloud service that adds a natural-language assistant to your BunkerM instance, reachable via Telegram, Slack, or a built-in web chat.
+On top of the core broker management, BunkerM includes a **local statistical engine** (smart anomaly detection), a **local automation engine** (schedulers and watchers), and a **local AI engine** (LM Studio integration) — all running entirely inside your container. **BunkerAI** is the optional cloud AI layer that adds a more powerful natural-language assistant reachable via Telegram, Slack, or the built-in web chat.
 
 **What you get out of the box:**
 
@@ -84,8 +85,9 @@ On top of the core broker management, BunkerM includes a **local statistical eng
 - MQTT Explorer — live topic tree with publish-from-browser
 - Statistical anomaly detection (Z-score, EWMA, spike, silence detectors)
 - Local automation agents — cron schedulers and condition-based watchers
+- **Local LLM AI assistant** via [LM Studio](https://lmstudio.ai) — fully private, no cloud required
 - AWS IoT Core and Azure IoT Hub bridge configuration
-- Optional BunkerAI subscription — natural-language assistant powered by Claude
+- Optional BunkerAI subscription — cloud AI assistant with Telegram, Slack, and unlimited interactions
 
 ---
 
@@ -288,16 +290,43 @@ Monitor MQTT topics and trigger actions when conditions are met:
 
 ---
 
-### 🧠 BunkerAI — AI Assistant
+### 🖥️ Local LLM — Private AI via LM Studio
 
-**BunkerAI** is the AI intelligence layer for BunkerM. Subscribe at [bunkerai.dev](https://bunkerai.dev) to unlock a natural-language assistant that reads your live broker data, publishes messages, and creates automation agents — all through plain English conversation.
+BunkerM Community includes a built-in **Local LLM** integration. Connect any model running in [LM Studio](https://lmstudio.ai) to get a fully private, offline-capable AI assistant that understands your live broker state and can take actions on your behalf — no cloud account or subscription required.
 
-> BunkerM handles your local broker. BunkerAI handles the intelligence.
+#### How it works
+
+On every chat message, BunkerM injects a live snapshot of your broker (connected clients, active topics with their latest payloads, broker stats, registered ACL clients) directly into the model's context. The model can then respond accurately to questions about your live MQTT environment and execute actions through BunkerM's internal APIs.
+
+#### Capabilities
+
+- **Plain-English device control** — say "turn off my room light" and the AI figures out the right topic and payload from your annotations and context, then publishes it
+- **ACL management** — create, enable, disable, delete MQTT clients and batch-create multiple clients at once
+- **Live topic queries** — "What is the current value of the door sensor?" returns the actual retained payload
+- **Broker awareness** — ask about connected clients, message rates, subscriptions, and uptime
+
+#### Setup
+
+1. Install [LM Studio](https://lmstudio.ai) and load a model (Qwen2.5-7B-Instruct or Llama-3-Instruct recommended)
+2. Start the LM Studio local server (default port: 1234)
+3. In BunkerM go to **Settings → Integrations → Local LLM**, enter `http://host.docker.internal:1234`, fetch models, and save
+4. Switch to **Local LLM** mode in **AI → Chat**
+
+> Full guide: [bunkerai.dev/docs/local-llm](https://bunkerai.dev/docs/local-llm)
+
+---
+
+### 🧠 BunkerAI — Cloud AI Assistant
+
+**BunkerAI** is the optional cloud AI layer for BunkerM. Subscribe at [bunkerai.dev](https://bunkerai.dev) to unlock a more powerful natural-language assistant with cross-channel memory, Telegram and Slack integrations, and higher interaction limits.
+
+> BunkerM handles your local broker. BunkerAI handles the cloud intelligence.
 
 #### Capabilities
 - **READ** — query live broker stats, topic payloads, connected clients, anomaly alerts, and topic annotations
 - **WRITE** — publish MQTT messages by describing the intent ("turn on light 1", "set thermostat to 22°C")
 - **CREATE** — build schedulers and watchers through natural conversation ("alert me if temperature exceeds 80")
+- **MANAGE** — full ACL management, broker configuration, and agent control through plain English
 
 #### Channels
 

@@ -312,6 +312,29 @@ export const chatApi = {
     }).then((r) => r.json()) as Promise<{ ok?: boolean }>,
 }
 
+// ─── Local LLM API (LM Studio) ───────────────────────────────────────────────
+
+export const localLlmApi = {
+  getConfig: () =>
+    fetch('/api/ai/local-llm/config').then((r) => r.json()) as Promise<{
+      enabled: boolean; url: string; model: string; error?: string
+    }>,
+  saveConfig: (config: { enabled: boolean; url: string; model: string }) =>
+    fetch('/api/ai/local-llm/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(config),
+    }).then((r) => r.json()) as Promise<{ enabled: boolean; url: string; model: string; error?: string }>,
+  getModels: () =>
+    fetch('/api/ai/local-llm/models').then((r) => r.json()) as Promise<{ models: string[]; error?: string }>,
+  chat: (messages: Array<{ role: string; content: string }>, model: string) =>
+    fetch('/api/ai/local-llm/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages, model }),
+    }).then((r) => r.json()) as Promise<{ reply?: string; error?: string }>,
+}
+
 // ─── Admin Users API ─────────────────────────────────────────────────────────
 
 import type { User } from '@/types'
