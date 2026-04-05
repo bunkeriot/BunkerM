@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/integrations/web-chat/">
       
       
+        <link rel="prev" href="../home-assistant/">
+      
+      
+        <link rel="next" href="../slack/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Web Chat - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#web-chat" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Web Chat
             
           </span>
         </div>
@@ -264,11 +268,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../integrations/home-assistant/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../home-assistant/" class="md-tabs__link">
           
   
   
@@ -1440,8 +1446,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1459,21 +1467,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1491,7 +1500,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1509,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/home-assistant/" class="md-nav__link">
+      <a href="../home-assistant/" class="md-nav__link">
         
   
   
@@ -1534,10 +1543,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../integrations/web-chat/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Chat
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1553,6 +1589,186 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-web-chat-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Web Chat Is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-ask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Can Ask
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You Can Ask">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#broker-status-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broker status and monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-and-connection-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client and connection history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topic-analysis-and-anomaly-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic analysis and anomaly summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACL management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watcher-and-scheduler-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watcher and scheduler management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help-and-explanations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help and explanations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversation-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation History
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ai-has-context-of-your-broker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The AI Has Context of Your Broker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-for-better-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips for Better Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clearing-conversation-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing Conversation History
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1565,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/slack/" class="md-nav__link">
+      <a href="../slack/" class="md-nav__link">
         
   
   
@@ -1593,7 +1809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/telegram/" class="md-nav__link">
+      <a href="../telegram/" class="md-nav__link">
         
   
   
@@ -1621,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/shared-memory/" class="md-nav__link">
+      <a href="../shared-memory/" class="md-nav__link">
         
   
   
@@ -1843,65 +2059,98 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
-<ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
-</ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
-<ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
-</ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<h1 id="web-chat">Web Chat</h1>
+<p>The Web Chat is a built-in AI chat interface embedded directly in the BunkerM dashboard. It connects you to BunkerAI so you can ask questions, give instructions, and control your broker using plain language - without leaving the web UI.</p>
+<hr />
+<h2 id="what-the-web-chat-is">What the Web Chat Is</h2>
+<p>The Web Chat provides a conversational interface to BunkerAI inside your browser. It is the most direct way to interact with the AI - no Slack workspace or Telegram setup required. The chat is always available in the BunkerM dashboard once you have a BunkerAI Cloud connection.</p>
+<p>Unlike static dashboards that show you what is happening, the Web Chat lets you ask questions and take action in natural language. You can query state, make changes, and get explanations - all by typing.</p>
+<hr />
+<h2 id="how-to-access">How to Access</h2>
+<p>There are two ways to open the Web Chat:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>Click <strong>Ask BunkerAI</strong> in the left sidebar.</li>
+<li>Navigate to <strong>Tools &gt; AI Chat</strong> from the sidebar menu.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
-<ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
-</ol>
-<h2 id="related-documentation">Related Documentation</h2>
+<p>The chat opens in the main content area with a message input at the bottom and your conversation history above.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
+<li><strong>BunkerAI Cloud connected</strong> is required for full AI capabilities. Connect in Settings &gt; Integrations.</li>
+<li>On the Community plan, a starter credit allocation is provided to try Web Chat.</li>
+<li>Without BunkerAI Cloud, the Web Chat interface is not available.</li>
 </ul>
+<hr />
+<h2 id="what-you-can-ask">What You Can Ask</h2>
+<h3 id="broker-status-and-monitoring">Broker status and monitoring</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>What is my broker status right now?
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>How many messages per second is the broker processing?
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Show me the broker statistics for today.
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>How many clients connected in the last hour?
+</code></pre></div>
+<h3 id="client-and-connection-history">Client and connection history</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>List all currently connected clients.
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>When did sensor-kitchen-01 last connect?
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Show me clients that have not connected in the last 7 days.
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Which clients are connecting from unusual IP addresses?
+</code></pre></div>
+<h3 id="topic-analysis-and-anomaly-summaries">Topic analysis and anomaly summaries</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>What topics are most active right now?
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Summarize anomalies from the past 24 hours.
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Are there any active anomalies I should address?
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>What was happening on my broker yesterday afternoon?
+</code></pre></div>
+<h3 id="acl-management">ACL management</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Create a new client called gateway-01 with password mysecretpass.
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Give client gateway-01 publish access to sensor/# and subscribe access to config/gateway-01.
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Create a role called sensor-write that allows publishing to sensor/+/data.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Add client sensor-01 to the sensors group.
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Disable client broken-device.
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Show me all clients in the actuators group.
+</code></pre></div>
+<h3 id="watcher-and-scheduler-management">Watcher and scheduler management</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Create a watcher on sensor/temp/kitchen that alerts me when the value goes above 35.
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Show me all active watchers.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Create a scheduled job that publishes online to system/heartbeat every minute.
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Pause the midnight-light-off job.
+</code></pre></div>
+<h3 id="help-and-explanations">Help and explanations</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>What is the difference between QoS 0, 1, and 2?
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Explain how MQTT wildcards work.
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Why would a client get disconnected by the broker?
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>What does the # wildcard match?
+</code></pre></div>
+<hr />
+<h2 id="conversation-history">Conversation History</h2>
+<p>Your Web Chat history is preserved between sessions. When you come back to the Web Chat, you will see your previous messages and the AI's responses. You do not need to re-explain your setup every time.</p>
+<p>Conversation history is also shared with your Slack and Telegram integrations. A conversation started in Slack can be continued in Web Chat, and vice versa. See <a href="../shared-memory/">Shared AI Memory</a> for a full explanation.</p>
+<hr />
+<h2 id="the-ai-has-context-of-your-broker">The AI Has Context of Your Broker</h2>
+<p>BunkerAI does not just answer general MQTT questions - it has direct access to your broker's state and can take actions on your behalf:</p>
+<ul>
+<li>It can see your current connected clients and their metadata</li>
+<li>It knows your ACL configuration (clients, roles, groups)</li>
+<li>It can read topic values via the broker</li>
+<li>It can access your anomaly history and current alerts</li>
+<li>It can create, update, and delete clients, roles, groups, and agents</li>
+</ul>
+<p>When you say "create a client called sensor-01", it actually creates the client in Mosquitto's dynamic security. When you ask "what is the temperature in the kitchen?", it reads the actual retained value from your broker.</p>
+<hr />
+<h2 id="tips-for-better-results">Tips for Better Results</h2>
+<p><strong>Be specific about topics and clients.</strong> Instead of "show me temperature", say "show me the current value of sensor/kitchen/temperature". The more specific you are, the more targeted the response.</p>
+<p><strong>Use topic annotations.</strong> If you annotate your topics in Settings &gt; Annotations, the AI understands what they represent without you having to explain. "Show me all temperature sensors" works if your temperature topics are annotated.</p>
+<p><strong>Confirm destructive actions.</strong> When you ask the AI to delete or disable something, it will confirm with you before proceeding. Read the confirmation carefully.</p>
+<p><strong>Ask for explanations.</strong> The AI can explain what it is doing and why. If a response is not what you expected, ask "why did you do that?" or "explain what just changed".</p>
+<p><strong>Use context from previous messages.</strong> You do not need to repeat yourself. If you mentioned a client in a previous message, you can refer to it as "that client" in follow-up questions.</p>
+<hr />
+<h2 id="clearing-conversation-history">Clearing Conversation History</h2>
+<p>To clear your chat history:</p>
+<ol>
+<li>Open the Web Chat.</li>
+<li>Click the <strong>Clear History</strong> or <strong>New Conversation</strong> button (typically in the chat header or settings area).</li>
+<li>Confirm the clear.</li>
+</ol>
+<p>After clearing, the AI starts fresh without memory of previous conversations. This is useful when switching to a different topic or troubleshooting session.</p>
 
 
 

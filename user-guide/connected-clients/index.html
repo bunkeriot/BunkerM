@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/user-guide/connected-clients/">
       
       
+        <link rel="prev" href="../../ui/dashboard/">
+      
+      
+        <link rel="next" href="../acl-clients/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Connected Clients - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#connected-clients" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Connected Clients
             
           </span>
         </div>
@@ -242,10 +246,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../ui/dashboard/" class="md-tabs__link">
           
   
@@ -597,8 +603,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -622,21 +630,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -654,7 +663,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -697,10 +706,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../user-guide/connected-clients/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connected Clients
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -716,6 +752,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Shows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-refresh-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Refresh Behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-a-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling a Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-a-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling a Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-when-a-client-is-disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens When a Client Is Disabled
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connected-clients-vs-acl-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connected Clients vs ACL Clients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases-for-disabling-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases for Disabling Clients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -742,10 +886,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -754,7 +901,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   
@@ -790,7 +937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-clients/" class="md-nav__link">
+      <a href="../acl-clients/" class="md-nav__link">
         
   
   
@@ -818,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-roles/" class="md-nav__link">
+      <a href="../acl-roles/" class="md-nav__link">
         
   
   
@@ -846,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-groups/" class="md-nav__link">
+      <a href="../acl-groups/" class="md-nav__link">
         
   
   
@@ -882,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/mqtt-browser/" class="md-nav__link">
+      <a href="../mqtt-browser/" class="md-nav__link">
         
   
   
@@ -922,10 +1069,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -934,7 +1084,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
             
   
   
@@ -970,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/agents/" class="md-nav__link">
+      <a href="../agents/" class="md-nav__link">
         
   
   
@@ -998,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/anomalies/" class="md-nav__link">
+      <a href="../anomalies/" class="md-nav__link">
         
   
   
@@ -1046,10 +1196,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1058,7 +1211,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
             
   
   
@@ -1094,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/broker-logs/" class="md-nav__link">
+      <a href="../broker-logs/" class="md-nav__link">
         
   
   
@@ -1122,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/client-logs/" class="md-nav__link">
+      <a href="../client-logs/" class="md-nav__link">
         
   
   
@@ -1174,10 +1327,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1186,7 +1342,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
             
   
   
@@ -1222,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-broker/" class="md-nav__link">
+      <a href="../settings-broker/" class="md-nav__link">
         
   
   
@@ -1250,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-integrations/" class="md-nav__link">
+      <a href="../settings-integrations/" class="md-nav__link">
         
   
   
@@ -1278,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-annotations/" class="md-nav__link">
+      <a href="../settings-annotations/" class="md-nav__link">
         
   
   
@@ -1306,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-subscription/" class="md-nav__link">
+      <a href="../settings-subscription/" class="md-nav__link">
         
   
   
@@ -1352,10 +1508,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1364,7 +1523,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
             
   
   
@@ -1400,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/admin-users/" class="md-nav__link">
+      <a href="../admin-users/" class="md-nav__link">
         
   
   
@@ -1843,64 +2002,127 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
-<ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
-</ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
-<ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
-</ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<h1 id="connected-clients">Connected Clients</h1>
+<p>The Connected Clients page gives you a real-time view of every MQTT client currently connected to your broker. Use it to monitor active sessions, identify unexpected connections, and take immediate action by enabling or disabling clients on the fly.</p>
+<hr />
+<h2 id="what-it-shows">What It Shows</h2>
+<p>The Connected Clients page displays a live list of all MQTT sessions currently open on the broker. Each row in the table represents one active client connection with the following information:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Client ID</strong></td>
+<td>The MQTT client identifier provided during connection</td>
+</tr>
+<tr>
+<td><strong>Username</strong></td>
+<td>The username used to authenticate (if applicable)</td>
+</tr>
+<tr>
+<td><strong>IP Address</strong></td>
+<td>The remote IP address of the connected device</td>
+</tr>
+<tr>
+<td><strong>Protocol Version</strong></td>
+<td>MQTT protocol version in use (3.1, 3.1.1, or 5.0)</td>
+</tr>
+<tr>
+<td><strong>Connected Since</strong></td>
+<td>Timestamp showing when the connection was established</td>
+</tr>
+<tr>
+<td><strong>Keep Alive</strong></td>
+<td>The keep-alive interval negotiated with the client (in seconds)</td>
+</tr>
+<tr>
+<td><strong>Clean Session</strong></td>
+<td>Whether the client connected with a clean session flag</td>
+</tr>
+</tbody>
+</table>
+<p>The table refreshes automatically to reflect newly connected and disconnected clients.</p>
+<hr />
+<h2 id="auto-refresh-behavior">Auto-Refresh Behavior</h2>
+<p>The page polls the broker at regular intervals to keep the client list current. There is no manual refresh needed. New connections appear within a few seconds of the client connecting. Clients that disconnect are removed from the list on the next refresh cycle.</p>
+<hr />
+<h2 id="enabling-a-client">Enabling a Client</h2>
+<p>If a client has been previously disabled, it will appear in the list but will be blocked from sending or receiving messages. To re-enable it:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>Locate the client in the Connected Clients table.</li>
+<li>Click the toggle or enable button next to the client.</li>
+<li>The client's status changes to enabled immediately. It can now connect and exchange messages normally.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
+<hr />
+<h2 id="disabling-a-client">Disabling a Client</h2>
+<p>Disabling a client takes effect immediately and performs two actions:</p>
 <ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
+<li>The client is <strong>kicked from the broker</strong> - its current connection is terminated.</li>
+<li>The client is <strong>blocked from reconnecting</strong> until you re-enable it. Any reconnection attempts will be rejected by the broker.</li>
 </ol>
-<h2 id="related-documentation">Related Documentation</h2>
+<p>To disable a client:</p>
+<ol>
+<li>Locate the client in the Connected Clients table.</li>
+<li>Click the toggle or disable button next to the client.</li>
+<li>The broker immediately closes that client's connection.</li>
+</ol>
+<p>This is useful when you need to quickly cut off a specific device without modifying its credentials or deleting its account.</p>
+<hr />
+<h2 id="what-happens-when-a-client-is-disabled">What Happens When a Client Is Disabled</h2>
+<p>When you disable a client from the Connected Clients page:</p>
 <ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
+<li>The broker terminates the TCP/MQTT connection immediately.</li>
+<li>If the client has <code>clean_session=false</code>, its queued messages are held but not delivered while disabled.</li>
+<li>If the client attempts to reconnect, the broker rejects the connection with an authorization error.</li>
+<li>The client remains in your ACL client list but is flagged as disabled.</li>
+<li>Re-enabling the client allows it to reconnect normally.</li>
+</ul>
+<hr />
+<h2 id="connected-clients-vs-acl-clients">Connected Clients vs ACL Clients</h2>
+<p>These are two different views serving different purposes:</p>
+<table>
+<thead>
+<tr>
+<th>Connected Clients</th>
+<th>ACL Clients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shows only clients <strong>currently connected</strong></td>
+<td>Shows <strong>all configured</strong> MQTT client accounts</td>
+</tr>
+<tr>
+<td>Real-time session data (IP, protocol, uptime)</td>
+<td>Account management (credentials, roles, groups)</td>
+</tr>
+<tr>
+<td>Changes take effect on live connections</td>
+<td>Changes affect authentication and authorization</td>
+</tr>
+<tr>
+<td>A client disappears when it disconnects</td>
+<td>Clients persist even when offline</td>
+</tr>
+</tbody>
+</table>
+<p>Think of ACL Clients as your user account database, and Connected Clients as the live session monitor.</p>
+<hr />
+<h2 id="use-cases-for-disabling-clients">Use Cases for Disabling Clients</h2>
+<p><strong>Security incident</strong> - A device has been compromised or is sending unexpected traffic. Disable it immediately to cut it off from the broker without needing to change passwords or delete the account.</p>
+<p><strong>Maintenance</strong> - A device needs to go offline for firmware update or physical maintenance. Disable it in BunkerM so queued messages do not pile up and other clients are not affected.</p>
+<p><strong>Testing</strong> - You want to test how your system behaves when a specific client goes offline without physically disconnecting the device.</p>
+<p><strong>Suspicious activity</strong> - You notice a client connecting from an unexpected IP address or at unusual hours. Disable it while you investigate.</p>
+<hr />
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Disabling a client from the Connected Clients page is equivalent to disabling it from the ACL Clients page. Both update the same underlying state in Mosquitto's dynamic security.</li>
+<li>If a client has multiple simultaneous connections (allowed in some MQTT configurations), disabling it closes all of them.</li>
+<li>The Connected Clients page requires the broker to have dynamic security enabled. BunkerM enables this by default.</li>
 </ul>
 
 

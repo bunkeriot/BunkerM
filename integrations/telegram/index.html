@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/integrations/telegram/">
       
       
+        <link rel="prev" href="../slack/">
+      
+      
+        <link rel="next" href="../shared-memory/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Telegram - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#telegram-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Telegram
             
           </span>
         </div>
@@ -264,11 +268,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../integrations/home-assistant/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../home-assistant/" class="md-tabs__link">
           
   
   
@@ -1440,8 +1446,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1459,21 +1467,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1491,7 +1500,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1509,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/home-assistant/" class="md-nav__link">
+      <a href="../home-assistant/" class="md-nav__link">
         
   
   
@@ -1537,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/web-chat/" class="md-nav__link">
+      <a href="../web-chat/" class="md-nav__link">
         
   
   
@@ -1565,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/slack/" class="md-nav__link">
+      <a href="../slack/" class="md-nav__link">
         
   
   
@@ -1590,10 +1599,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../integrations/telegram/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1609,6 +1645,219 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-telegram-integration-enables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Telegram Integration Enables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-telegram-bot-via-botfather" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a Telegram Bot via BotFather
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-connect-bunkerai-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Connect BunkerAI Cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-open-the-telegram-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Open the Telegram Section
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-connect-your-bot-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Connect Your Bot Token
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-start-chatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Start Chatting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do-via-telegram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Can Do via Telegram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You Can Do via Telegram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#broker-status-and-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broker status and statistics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broker-and-acl-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broker and ACL management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anomaly-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anomaly queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiving-anomaly-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Receiving Anomaly Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-memory-across-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared Memory Across Channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revoking-the-telegram-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revoking the Telegram Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1621,7 +1870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/shared-memory/" class="md-nav__link">
+      <a href="../shared-memory/" class="md-nav__link">
         
   
   
@@ -1843,65 +2092,122 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
+<h1 id="telegram-integration">Telegram Integration</h1>
+<p>The Telegram integration lets you control your MQTT broker and interact with BunkerAI through a Telegram bot. Chat with the bot to check broker status, query topics, manage clients, and receive anomaly alerts as Telegram messages.</p>
+<hr />
+<h2 id="what-the-telegram-integration-enables">What the Telegram Integration Enables</h2>
+<p>Once connected, you can message your BunkerAI Telegram bot to:</p>
 <ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
+<li>Ask questions about your broker and connected clients</li>
+<li>Query the current payload of any MQTT topic</li>
+<li>Receive anomaly alerts as Telegram messages</li>
+<li>Manage clients, roles, and ACLs with natural-language commands</li>
+<li>Monitor your broker from your phone, anywhere</li>
 </ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
+<li>A BunkerAI Cloud account with an active plan and available credits</li>
+<li>BunkerM instance with BunkerAI Cloud connected</li>
+<li>A Telegram account</li>
 </ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<hr />
+<h2 id="step-1-create-a-telegram-bot-via-botfather">Step 1: Create a Telegram Bot via BotFather</h2>
+<p>You need to create your own Telegram bot to connect to BunkerAI. This takes about 2 minutes:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>Open Telegram and search for <strong>@BotFather</strong> (the official Telegram bot management service).</li>
+<li>Start a conversation and send the command <code>/newbot</code>.</li>
+<li>BotFather will ask for a <strong>name</strong> for your bot - this is the display name users see (e.g., "My BunkerM Bot").</li>
+<li>BotFather will then ask for a <strong>username</strong> for your bot - this must end in <code>bot</code> (e.g., <code>mybunkerm_bot</code>). The username must be unique across all of Telegram.</li>
+<li>BotFather will respond with your bot token. It looks like:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1234567890:ABCdefGHIjklMNOpqrSTUvwxYZ
+</code></pre></div></li>
+<li>Copy this token. You will need it in the next step.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
+<p><strong>Keep your bot token secret.</strong> Anyone with this token can control your bot.</p>
+<hr />
+<h2 id="step-2-connect-bunkerai-cloud">Step 2: Connect BunkerAI Cloud</h2>
+<p>Make sure BunkerAI Cloud is connected to your BunkerM instance:</p>
 <ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
+<li>Go to <strong>Settings &gt; Integrations</strong> in the BunkerM dashboard.</li>
+<li>Find the <strong>BunkerAI Cloud</strong> section.</li>
+<li>Enter your API key and click <strong>Connect</strong>.</li>
 </ol>
-<h2 id="related-documentation">Related Documentation</h2>
-<ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
-</ul>
+<p>If already connected, skip to Step 3.</p>
+<hr />
+<h2 id="step-3-open-the-telegram-section">Step 3: Open the Telegram Section</h2>
+<ol>
+<li>Navigate to <strong>Settings &gt; Integrations</strong>.</li>
+<li>Scroll to the <strong>Telegram Bot</strong> section.</li>
+</ol>
+<hr />
+<h2 id="step-4-connect-your-bot-token">Step 4: Connect Your Bot Token</h2>
+<ol>
+<li>Paste your bot token into the <strong>Bot Token</strong> field.</li>
+<li>Click <strong>Connect</strong>.</li>
+</ol>
+<p>BunkerM verifies the token with Telegram and links the bot to your BunkerAI instance. The Telegram section will show a connected status with your bot's username.</p>
+<hr />
+<h2 id="step-5-start-chatting">Step 5: Start Chatting</h2>
+<ol>
+<li>Open Telegram and search for your bot by its username.</li>
+<li>Click <strong>Start</strong> or send <code>/start</code>.</li>
+<li>Try sending a message: <code>What is my broker status?</code> or <code>Hello</code>.</li>
+</ol>
+<p>The bot will respond using BunkerAI.</p>
+<hr />
+<h2 id="what-you-can-do-via-telegram">What You Can Do via Telegram</h2>
+<h3 id="broker-status-and-statistics">Broker status and statistics</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Show me the broker status.
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>How many clients are connected?
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>What is the current message rate?
+</code></pre></div>
+<h3 id="client-queries">Client queries</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>List all online clients.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>When did sensor-kitchen-01 last connect?
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Show me all clients that connected in the last hour.
+</code></pre></div>
+<h3 id="topic-queries">Topic queries</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>What is the latest value on sensor/kitchen/temperature?
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Show me all active topics under home/.
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Which topics are receiving messages right now?
+</code></pre></div>
+<h3 id="broker-and-acl-management">Broker and ACL management</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Create a client called new-device with password pass123.
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Disable client compromised-device.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Add client sensor-01 to the sensors group.
+</code></pre></div>
+<h3 id="anomaly-queries">Anomaly queries</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Are there any anomalies I should know about?
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Show me critical anomalies from today.
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Summarize the last 24 hours.
+</code></pre></div>
+<h3 id="agents">Agents</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Create a watcher on home/alarm that fires when value = &quot;triggered&quot;.
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>List my scheduled jobs.
+</code></pre></div>
+<hr />
+<h2 id="receiving-anomaly-alerts">Receiving Anomaly Alerts</h2>
+<p>To get anomaly alerts forwarded to Telegram:</p>
+<ol>
+<li>Go to <strong>Settings &gt; Integrations</strong> in BunkerM.</li>
+<li>Make sure the Telegram bot is connected.</li>
+<li>Enable <strong>Alert Forwarding</strong>.</li>
+</ol>
+<p>When BunkerAI detects an anomaly, it sends a message directly to your Telegram conversation with the bot.</p>
+<hr />
+<h2 id="shared-memory-across-channels">Shared Memory Across Channels</h2>
+<p>Your conversation history is shared across Slack, Telegram, and Web Chat. You can start a conversation in Telegram and continue it in the Web Chat or Slack without losing context. See <a href="../shared-memory/">Shared AI Memory</a> for more information.</p>
+<hr />
+<h2 id="revoking-the-telegram-integration">Revoking the Telegram Integration</h2>
+<p>To disconnect your Telegram bot from BunkerAI:</p>
+<ol>
+<li>Go to <strong>Settings &gt; Integrations</strong>.</li>
+<li>Find the Telegram Bot section.</li>
+<li>Click <strong>Revoke</strong> or <strong>Disconnect</strong>.</li>
+</ol>
+<p>Your BunkerM broker and AI features continue to work normally. Only the Telegram channel is removed.</p>
+<p>If you also want to delete the bot entirely, send <code>/deletebot</code> to @BotFather in Telegram. Note that deleting the bot also removes it for anyone else who may have been chatting with it.</p>
 
 
 

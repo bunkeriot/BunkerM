@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/user-guide/mqtt-browser/">
       
       
+        <link rel="prev" href="../acl-groups/">
+      
+      
+        <link rel="next" href="../agents/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>MQTT Browser - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#mqtt-browser" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              MQTT Browser
             
           </span>
         </div>
@@ -242,10 +246,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../ui/dashboard/" class="md-tabs__link">
           
   
@@ -597,8 +603,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -622,21 +630,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -654,7 +663,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -700,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/connected-clients/" class="md-nav__link">
+      <a href="../connected-clients/" class="md-nav__link">
         
   
   
@@ -742,10 +751,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -754,7 +766,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   
@@ -790,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-clients/" class="md-nav__link">
+      <a href="../acl-clients/" class="md-nav__link">
         
   
   
@@ -818,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-roles/" class="md-nav__link">
+      <a href="../acl-roles/" class="md-nav__link">
         
   
   
@@ -846,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-groups/" class="md-nav__link">
+      <a href="../acl-groups/" class="md-nav__link">
         
   
   
@@ -879,10 +891,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../user-guide/mqtt-browser/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT Browser
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -898,6 +937,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-mqtt-browser-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the MQTT Browser Is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-the-topic-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigating the Topic Tree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-a-topics-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing a Topic's Payload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subscribing-to-topics-for-live-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscribing to Topics for Live Updates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-a-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing a Message
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-and-searching-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering and Searching Topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-topic-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Topic Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-message-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Message Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -922,10 +1091,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -934,7 +1106,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
             
   
   
@@ -970,7 +1142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/agents/" class="md-nav__link">
+      <a href="../agents/" class="md-nav__link">
         
   
   
@@ -998,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/anomalies/" class="md-nav__link">
+      <a href="../anomalies/" class="md-nav__link">
         
   
   
@@ -1046,10 +1218,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1058,7 +1233,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
             
   
   
@@ -1094,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/broker-logs/" class="md-nav__link">
+      <a href="../broker-logs/" class="md-nav__link">
         
   
   
@@ -1122,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/client-logs/" class="md-nav__link">
+      <a href="../client-logs/" class="md-nav__link">
         
   
   
@@ -1174,10 +1349,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1186,7 +1364,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
             
   
   
@@ -1222,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-broker/" class="md-nav__link">
+      <a href="../settings-broker/" class="md-nav__link">
         
   
   
@@ -1250,7 +1428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-integrations/" class="md-nav__link">
+      <a href="../settings-integrations/" class="md-nav__link">
         
   
   
@@ -1278,7 +1456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-annotations/" class="md-nav__link">
+      <a href="../settings-annotations/" class="md-nav__link">
         
   
   
@@ -1306,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-subscription/" class="md-nav__link">
+      <a href="../settings-subscription/" class="md-nav__link">
         
   
   
@@ -1352,10 +1530,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1364,7 +1545,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
             
   
   
@@ -1400,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/admin-users/" class="md-nav__link">
+      <a href="../admin-users/" class="md-nav__link">
         
   
   
@@ -1843,65 +2024,137 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
+<h1 id="mqtt-browser">MQTT Browser</h1>
+<p>The MQTT Browser is a built-in tool in the BunkerM dashboard that lets you explore your broker's topic tree and message payloads in real time - directly from your browser, without needing any external MQTT client like MQTT Explorer or mosquitto_sub.</p>
+<hr />
+<h2 id="what-the-mqtt-browser-is">What the MQTT Browser Is</h2>
+<p>The MQTT Browser connects to your BunkerM broker using your BunkerM credentials and provides a graphical interface for:</p>
 <ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
+<li>Browsing all topics that have retained messages</li>
+<li>Viewing the current payload of any retained topic</li>
+<li>Subscribing to topics to see live message updates</li>
+<li>Publishing messages to any topic</li>
+<li>Exploring the topic hierarchy visually</li>
 </ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
+<p>It is especially useful during development, debugging, and when you want a quick look at what your devices are publishing without leaving the BunkerM dashboard.</p>
+<hr />
+<h2 id="connection-note">Connection Note</h2>
+<p>The MQTT Browser uses your BunkerM session credentials to connect to the broker. It connects as a special internal client with the permissions needed to read topics. You do not need to configure a separate MQTT client or enter credentials manually.</p>
+<hr />
+<h2 id="navigating-the-topic-tree">Navigating the Topic Tree</h2>
+<p>The left panel shows a hierarchical tree of all topics that have retained messages on the broker. Topics are organized by their path segments:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>home/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  living-room/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    temperature
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    humidity
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    light-level
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  kitchen/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    temperature
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    motion
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>sensor/
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  floor1/
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    temp
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    humidity
+</code></pre></div>
+<p>Click any parent node to expand or collapse that branch of the tree. Topics with retained messages show their most recent payload. Topics with recent activity may show a live update indicator.</p>
+<hr />
+<h2 id="viewing-a-topics-payload">Viewing a Topic's Payload</h2>
+<p>Click on any topic name in the tree to view its current retained payload in the detail panel on the right. You will see:</p>
 <ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
+<li><strong>Payload</strong> - the raw message content, displayed as text or formatted JSON if applicable</li>
+<li><strong>QoS level</strong> - Quality of Service level for the retained message (0, 1, or 2)</li>
+<li><strong>Retain flag</strong> - always true for topics shown in the tree (only retained messages appear in the tree)</li>
+<li><strong>Timestamp</strong> - when the last message was received</li>
+<li><strong>Size</strong> - payload size in bytes</li>
 </ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<hr />
+<h2 id="subscribing-to-topics-for-live-updates">Subscribing to Topics for Live Updates</h2>
+<p>The topic tree shows retained messages, but many topics carry live messages without the retain flag. To watch a topic in real time:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>Click on a topic in the tree (or type a topic pattern in the subscribe box).</li>
+<li>Click <strong>Subscribe</strong>.</li>
+<li>New messages on that topic appear in the message panel as they arrive, with timestamps and payloads.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
-<ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
-</ol>
-<h2 id="related-documentation">Related Documentation</h2>
+<p>You can subscribe to wildcard patterns to watch multiple topics at once:</p>
 <ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
+<li><code>sensor/#</code> - all topics under sensor/</li>
+<li><code>home/+/temperature</code> - temperature topics one level deep under home/</li>
 </ul>
+<p>To stop watching a topic, click <strong>Unsubscribe</strong> next to the subscription entry.</p>
+<hr />
+<h2 id="publishing-a-message">Publishing a Message</h2>
+<p>You can publish a message to any topic directly from the MQTT Browser:</p>
+<ol>
+<li>Click <strong>Publish</strong> or find the publish panel.</li>
+<li>Enter the <strong>Topic</strong> - the full topic path to publish to.</li>
+<li>Enter the <strong>Payload</strong> - the message content (text, JSON, or any string value).</li>
+<li>Select the <strong>QoS level</strong> (0, 1, or 2).</li>
+<li>Check <strong>Retain</strong> if you want the broker to retain this message for future subscribers.</li>
+<li>Click <strong>Publish</strong>.</li>
+</ol>
+<p>The message is published immediately. If you are subscribed to that topic, you will see it appear in the live message feed.</p>
+<hr />
+<h2 id="filtering-and-searching-topics">Filtering and Searching Topics</h2>
+<p>When you have many topics, use the search or filter field at the top of the topic tree to narrow down what you see:</p>
+<ul>
+<li>Type a partial topic path to filter the tree to matching topics only.</li>
+<li>Use MQTT wildcard patterns (<code>sensor/#</code>, <code>home/+/temp</code>) to show a subset of topics.</li>
+<li>Clear the filter to return to the full topic tree.</li>
+</ul>
+<hr />
+<h2 id="understanding-topic-hierarchy">Understanding Topic Hierarchy</h2>
+<p>MQTT topics use <code>/</code> as a path separator, similar to a file system. The MQTT Browser displays this as a tree:</p>
+<ul>
+<li><strong>Parent topics</strong> are shown as expandable nodes.</li>
+<li><strong>Leaf topics</strong> are the endpoints that carry actual messages.</li>
+<li>A topic like <code>home/living-room/temperature</code> has three levels: <code>home</code>, <code>living-room</code>, <code>temperature</code>.</li>
+</ul>
+<p>You can publish to any level of the hierarchy. Parent levels (<code>home/</code>, <code>home/living-room/</code>) can also carry their own messages independently of their children.</p>
+<hr />
+<h2 id="viewing-message-metadata">Viewing Message Metadata</h2>
+<p>For each message displayed in the MQTT Browser, you can see:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Topic</strong></td>
+<td>Full topic path</td>
+</tr>
+<tr>
+<td><strong>Payload</strong></td>
+<td>Message content</td>
+</tr>
+<tr>
+<td><strong>QoS</strong></td>
+<td>Quality of Service level (0 = at most once, 1 = at least once, 2 = exactly once)</td>
+</tr>
+<tr>
+<td><strong>Retain</strong></td>
+<td>Whether the message is retained on the broker</td>
+</tr>
+<tr>
+<td><strong>Timestamp</strong></td>
+<td>Date and time the message was received by the broker</td>
+</tr>
+<tr>
+<td><strong>Size</strong></td>
+<td>Payload size in bytes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="use-cases">Use Cases</h2>
+<p><strong>Debugging a device</strong> - Your sensor is not behaving as expected. Open the MQTT Browser, find its topic, and check what payload it is actually publishing. Compare against what you expect.</p>
+<p><strong>Verifying payloads</strong> - After deploying a new firmware version, confirm that the payload format matches what your subscribers expect.</p>
+<p><strong>Exploring an existing setup</strong> - Taking over an existing MQTT deployment and want to understand what topics are in use? Browse the retained topic tree to get a full picture.</p>
+<p><strong>Manual testing</strong> - Publish a test command to an actuator topic to verify that the device responds correctly, without needing a separate MQTT client.</p>
+<p><strong>Live monitoring</strong> - Subscribe to <code>#</code> to watch all traffic in real time during a test or debugging session.</p>
+<p><strong>Checking retained state</strong> - Quickly check the current known state of all your devices by browsing the retained topic tree.</p>
 
 
 

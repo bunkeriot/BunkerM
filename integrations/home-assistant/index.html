@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/integrations/home-assistant/">
       
       
+        <link rel="prev" href="../../user-guide/admin-users/">
+      
+      
+        <link rel="next" href="../web-chat/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Home Assistant - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#home-assistant-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Home Assistant
             
           </span>
         </div>
@@ -264,11 +268,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../integrations/home-assistant/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -1440,8 +1446,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1459,21 +1467,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1491,7 +1500,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1506,10 +1515,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../integrations/home-assistant/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Assistant
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1525,6 +1561,147 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-ha-add-on-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the HA Add-On Does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-add-the-bunkerm-add-on-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add the BunkerM Add-On Repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-install-bunkerm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install BunkerM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-configure-the-add-on-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Configure the Add-On Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-start-the-add-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Start the Add-On
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-open-the-bunkerm-web-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Open the BunkerM Web UI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-connect-home-assistants-mqtt-integration-to-bunkerm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Connect Home Assistant's MQTT Integration to BunkerM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt-port-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MQTT Port Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1537,7 +1714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/web-chat/" class="md-nav__link">
+      <a href="../web-chat/" class="md-nav__link">
         
   
   
@@ -1565,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/slack/" class="md-nav__link">
+      <a href="../slack/" class="md-nav__link">
         
   
   
@@ -1593,7 +1770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/telegram/" class="md-nav__link">
+      <a href="../telegram/" class="md-nav__link">
         
   
   
@@ -1621,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/shared-memory/" class="md-nav__link">
+      <a href="../shared-memory/" class="md-nav__link">
         
   
   
@@ -1843,65 +2020,133 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
+<h1 id="home-assistant-setup">Home Assistant Setup</h1>
+<p>BunkerM is available as a native Home Assistant add-on. Running as an add-on means BunkerM is managed by Home Assistant's supervisor - it starts and stops with Home Assistant, logs are accessible from the HA UI, and all data is stored in HA's persistent data directory.</p>
+<hr />
+<h2 id="what-the-ha-add-on-does">What the HA Add-On Does</h2>
+<p>The BunkerM Home Assistant add-on runs the complete BunkerM stack - Mosquitto broker, web management dashboard, and all backend services - as a native HA add-on. You get the same full-featured BunkerM experience you would from a Docker deployment, but integrated into your Home Assistant environment.</p>
+<p>This is the recommended way to run BunkerM if you are already on Home Assistant OS or Home Assistant Supervised.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
+<li><strong>Home Assistant OS</strong> or <strong>Home Assistant Supervised</strong> (Supervisor support required)</li>
+<li>Internet access from the HA host (to download the add-on)</li>
+<li>Access to the Home Assistant web interface</li>
 </ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
-<ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
-</ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<hr />
+<h2 id="step-1-add-the-bunkerm-add-on-repository">Step 1: Add the BunkerM Add-On Repository</h2>
+<p>Home Assistant add-ons from third-party repositories need to be added manually:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>In Home Assistant, go to <strong>Settings &gt; Add-ons</strong>.</li>
+<li>Click <strong>Add-on Store</strong> in the bottom-right corner.</li>
+<li>Click the <strong>three-dot menu</strong> (top-right) and select <strong>Repositories</strong>.</li>
+<li>In the "Manage add-on repositories" dialog, enter:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://github.com/bunkeriot/bunkerm-ha-addons
+</code></pre></div></li>
+<li>Click <strong>Add</strong> and then <strong>Close</strong>.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
+<p>The BunkerM repository is now registered with your Home Assistant instance.</p>
+<hr />
+<h2 id="step-2-install-bunkerm">Step 2: Install BunkerM</h2>
 <ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
+<li>In the Add-on Store, scroll down or search for <strong>BunkerM</strong>.</li>
+<li>Click on the BunkerM add-on card.</li>
+<li>Click <strong>Install</strong> and wait for the download and installation to complete.</li>
 </ol>
-<h2 id="related-documentation">Related Documentation</h2>
+<p>Installation may take a few minutes depending on your internet connection and hardware.</p>
+<hr />
+<h2 id="step-3-configure-the-add-on-options">Step 3: Configure the Add-On Options</h2>
+<p>Before starting the add-on, configure your credentials in the <strong>Configuration</strong> tab:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mqtt_username</code></td>
+<td><code>bunker</code></td>
+<td>Username for MQTT broker connections</td>
+</tr>
+<tr>
+<td><code>mqtt_password</code></td>
+<td><code>bunker</code></td>
+<td>Password for MQTT broker connections</td>
+</tr>
+<tr>
+<td><code>admin_email</code></td>
+<td><code>admin@bunker.local</code></td>
+<td>Login email for the BunkerM web UI</td>
+</tr>
+<tr>
+<td><code>admin_password</code></td>
+<td><code>admin123</code></td>
+<td>Login password for the BunkerM web UI</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> Change the default credentials before connecting any devices. The defaults are public and should not be used in production.</p>
+<p>After setting your options, click <strong>Save</strong>.</p>
+<hr />
+<h2 id="step-4-start-the-add-on">Step 4: Start the Add-On</h2>
+<ol>
+<li>Go to the <strong>Info</strong> tab of the BunkerM add-on.</li>
+<li>Click <strong>Start</strong>.</li>
+<li>Wait for the add-on to initialize (typically 10-20 seconds).</li>
+<li>Optionally enable <strong>Start on boot</strong> and <strong>Watchdog</strong> so the add-on automatically starts with Home Assistant and restarts if it crashes.</li>
+</ol>
+<hr />
+<h2 id="step-5-open-the-bunkerm-web-ui">Step 5: Open the BunkerM Web UI</h2>
+<p>Once the add-on is running, access the web interface at:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>http://homeassistant.local:2000
+</code></pre></div>
+<p>Or substitute your Home Assistant's IP address:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>http://192.168.1.x:2000
+</code></pre></div>
+<p>You can also click <strong>Open Web UI</strong> from the add-on info page in Home Assistant.</p>
+<p>Log in with the <code>admin_email</code> and <code>admin_password</code> you configured in Step 3.</p>
+<hr />
+<h2 id="step-6-connect-home-assistants-mqtt-integration-to-bunkerm">Step 6: Connect Home Assistant's MQTT Integration to BunkerM</h2>
+<p>Now configure Home Assistant to use your BunkerM broker:</p>
+<ol>
+<li>In Home Assistant, go to <strong>Settings &gt; Devices &amp; Services</strong>.</li>
+<li>Click <strong>Add Integration</strong> and search for <strong>MQTT</strong>.</li>
+<li>If you already have an MQTT integration configured, click on it and update the broker settings.</li>
+<li>Enter the broker connection details:</li>
+<li><strong>Broker:</strong> <code>homeassistant.local</code> or your HA IP address</li>
+<li><strong>Port:</strong> <code>1883</code></li>
+<li><strong>Username:</strong> the <code>mqtt_username</code> you set in the add-on options</li>
+<li><strong>Password:</strong> the <code>mqtt_password</code> you set in the add-on options</li>
+<li>Click <strong>Submit</strong> and then <strong>Finish</strong>.</li>
+</ol>
+<p>Home Assistant is now connected to your BunkerM MQTT broker.</p>
+<hr />
+<h2 id="mqtt-port-note">MQTT Port Note</h2>
+<p>In the Home Assistant add-on, BunkerM uses the standard MQTT port <strong>1883</strong> (not 1900 as in the standalone Docker deployment). This is because most Home Assistant integrations and devices expect the standard MQTT port. Configure all your MQTT devices to connect on port 1883 when using the HA add-on.</p>
+<hr />
+<h2 id="persistence">Persistence</h2>
+<p>All BunkerM data is stored in Home Assistant's <code>/data</code> directory for the add-on. This means:</p>
 <ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
+<li>MQTT clients, ACLs, roles, and groups persist across add-on restarts</li>
+<li>Web UI user accounts are preserved</li>
+<li>Broker configuration is maintained</li>
+<li>BunkerAI settings and agent data are stored persistently</li>
 </ul>
+<p>Data is preserved when you restart or update the add-on. It is also included in Home Assistant backups if you use HA's snapshot/backup feature.</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>Add-on does not start:</strong>
+Check the add-on logs in the <strong>Log</strong> tab. Common issues include port conflicts if another service is already using port 2000 or 1883.</p>
+<p><strong>Cannot access the web UI:</strong>
+Verify the add-on is running (green status indicator). Check that port 2000 is not blocked by your network or HA host firewall.</p>
+<p><strong>HA MQTT integration cannot connect:</strong>
+Verify the username and password match what you set in the add-on options. Check the BunkerM ACL Clients page to confirm the broker user account exists and is enabled.</p>
+<p><strong>Add-on crashes repeatedly:</strong>
+Check the Log tab for error messages. If the issue persists, try stopping the add-on, waiting 30 seconds, and starting it again.</p>
+<p>For additional help, open an issue on the <a href="https://github.com/bunkeriot/bunkerm">BunkerM GitHub repository</a>.</p>
 
 
 

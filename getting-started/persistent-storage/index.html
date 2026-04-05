@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/getting-started/persistent-storage/">
       
       
+        <link rel="prev" href="../first-login/">
+      
+      
+        <link rel="next" href="../../ui/dashboard/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Persistent Storage - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#running-bunkerm-with-persistent-storage" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Persistent Storage
             
           </span>
         </div>
@@ -220,11 +224,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../installation/" class="md-tabs__link">
           
   
   
@@ -414,8 +420,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -431,21 +439,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -463,7 +472,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -481,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -509,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/quick-start/" class="md-nav__link">
+      <a href="../quick-start/" class="md-nav__link">
         
   
   
@@ -537,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/first-login/" class="md-nav__link">
+      <a href="../first-login/" class="md-nav__link">
         
   
   
@@ -562,10 +571,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../getting-started/persistent-storage/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persistent Storage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -581,6 +617,220 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-persistence-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Persistence Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-data-bunkerm-stores-and-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Data BunkerM Stores and Where
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-setup-with-docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Setup with docker run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-setup-with-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Setup with Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-volumes-vs-bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named Volumes vs Bind Mounts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Named Volumes vs Bind Mounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#named-volumes-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named volumes (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bind mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backing-up-named-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up named volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backing-up-bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up bind mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-daily-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automated daily backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading-bunkerm-while-preserving-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading BunkerM While Preserving Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-directory-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Directory Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Directory Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nextjsdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /nextjs/data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varlibmosquitto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /var/lib/mosquitto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etcmosquitto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /etc/mosquitto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1843,65 +2093,202 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
+<h1 id="running-bunkerm-with-persistent-storage">Running BunkerM with Persistent Storage</h1>
+<p>By default, if you run BunkerM without any volumes, all data is stored inside the container's writable layer. When you stop and remove the container, everything is lost - your MQTT clients, ACL rules, broker configuration, web UI accounts, and agent data all disappear.</p>
+<p>Persistent storage keeps your data intact across container restarts, upgrades, and recreation.</p>
+<hr />
+<h2 id="why-persistence-matters">Why Persistence Matters</h2>
+<p>BunkerM stores several categories of data that you almost always want to keep:</p>
 <ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
+<li><strong>MQTT clients and ACLs</strong> - every client account, role, and group you have created</li>
+<li><strong>Broker configuration</strong> - your Mosquitto settings, port configuration, and options</li>
+<li><strong>Dynamic security</strong> - the full Mosquitto dynamic security JSON file</li>
+<li><strong>Web UI users</strong> - BunkerM admin and user accounts</li>
+<li><strong>BunkerAI settings</strong> - API keys, integration tokens, and configuration</li>
+<li><strong>Agents</strong> - Watchers and Scheduled Jobs you have defined</li>
+<li><strong>Anomaly history</strong> - detected anomalies and their status</li>
+<li><strong>Topic annotations</strong> - AI context hints for your topics</li>
+<li><strong>Client logs</strong> - connection event history</li>
 </ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
-<ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
-</ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<p>Without volumes, all of this is recreated from scratch every time the container starts.</p>
+<hr />
+<h2 id="what-data-bunkerm-stores-and-where">What Data BunkerM Stores and Where</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Location inside container</th>
+<th>Volume to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web UI users, BunkerAI settings, agents, anomaly data, annotations, client logs</td>
+<td><code>/nextjs/data</code></td>
+<td><code>bunkerm_data</code></td>
+</tr>
+<tr>
+<td>MQTT persistence (retained messages, QoS queues), dynamic security (clients/ACLs)</td>
+<td><code>/var/lib/mosquitto</code></td>
+<td><code>mosquitto_data</code></td>
+</tr>
+<tr>
+<td>Mosquitto configuration files</td>
+<td><code>/etc/mosquitto</code></td>
+<td><code>mosquitto_conf</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="volume-setup-with-docker-run">Volume Setup with <code>docker run</code></h2>
+<p>Full command with all three persistent volumes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-v<span class="w"> </span>bunkerm_data:/nextjs/data<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>-v<span class="w"> </span>mosquitto_data:/var/lib/mosquitto<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>-v<span class="w"> </span>mosquitto_conf:/etc/mosquitto<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span>--name<span class="w"> </span>bunkerm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span>bunkeriot/bunkerm:latest
+</code></pre></div>
+<p>Docker creates the named volumes automatically on first run. On subsequent starts, the same data is mounted back into the container.</p>
+<hr />
+<h2 id="volume-setup-with-docker-compose">Volume Setup with Docker Compose</h2>
+<p>Create a <code>docker-compose.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">bunkerm</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bunkeriot/bunkerm:latest</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;1900:1900&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2000:2000&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bunkerm_data:/nextjs/data</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mosquitto_data:/var/lib/mosquitto</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mosquitto_conf:/etc/mosquitto</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">bunkerm_data</span><span class="p">:</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">mosquitto_data</span><span class="p">:</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">mosquitto_conf</span><span class="p">:</span>
+</code></pre></div>
+<p>Start:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Stop (data is preserved):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<p>Stop and remove containers AND volumes (data is deleted):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<p>Only use <code>-v</code> if you intentionally want to wipe all data and start fresh.</p>
+<hr />
+<h2 id="named-volumes-vs-bind-mounts">Named Volumes vs Bind Mounts</h2>
+<p>You can use either named volumes (as shown above) or bind mounts (host directory paths).</p>
+<h3 id="named-volumes-recommended">Named volumes (recommended)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>-v<span class="w"> </span>bunkerm_data:/nextjs/data
+</code></pre></div>
+<p>Docker manages the volume storage location. Data lives at <code>/var/lib/docker/volumes/bunkerm_data/</code> on the host. Named volumes are portable, easy to back up, and work the same way on any Docker host.</p>
+<h3 id="bind-mounts">Bind mounts</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>-v<span class="w"> </span>/home/user/bunkerm/data:/nextjs/data
+</code></pre></div>
+<p>The container writes directly to a directory on your host filesystem. Useful if you want easy direct access to the files, or if you are integrating with other tools that read from specific paths.</p>
+<p>Full docker run example with bind mounts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/bunkerm/data<span class="w"> </span>/opt/bunkerm/mosquitto/data<span class="w"> </span>/opt/bunkerm/mosquitto/conf
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">1900</span>:1900<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">2000</span>:2000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>-v<span class="w"> </span>/opt/bunkerm/data:/nextjs/data<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>-v<span class="w"> </span>/opt/bunkerm/mosquitto/data:/var/lib/mosquitto<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span>-v<span class="w"> </span>/opt/bunkerm/mosquitto/conf:/etc/mosquitto<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span>--name<span class="w"> </span>bunkerm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span>bunkeriot/bunkerm:latest
+</code></pre></div>
+<hr />
+<h2 id="backup-strategy">Backup Strategy</h2>
+<h3 id="backing-up-named-volumes">Backing up named volumes</h3>
+<p>Use <code>docker run</code> with a temporary container to archive a volume's contents:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Back up bunkerm_data</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-v<span class="w"> </span>bunkerm_data:/source:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/bunkerm_data_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/source<span class="w"> </span>.
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Back up mosquitto_data</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span>-v<span class="w"> </span>mosquitto_data:/source:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/mosquitto_data_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/source<span class="w"> </span>.
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Back up mosquitto_conf</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span>-v<span class="w"> </span>mosquitto_conf:/source:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/mosquitto_conf_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/source<span class="w"> </span>.
+</code></pre></div>
+<h3 id="backing-up-bind-mounts">Backing up bind mounts</h3>
+<p>Simply copy the directories:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cp<span class="w"> </span>-r<span class="w"> </span>/opt/bunkerm/data<span class="w"> </span>/opt/bunkerm/data.backup.<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>/opt/bunkerm/mosquitto<span class="w"> </span>/opt/bunkerm/mosquitto.backup.<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
+</code></pre></div>
+<h3 id="automated-daily-backup">Automated daily backup</h3>
+<p>Add a cron job to run backups automatically:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>0 2 * * * docker run --rm -v bunkerm_data:/source:ro -v /backups:/backup alpine tar czf /backup/bunkerm_$(date +\%Y\%m\%d).tar.gz -C /source . 2&gt;/dev/null
+</code></pre></div>
+<hr />
+<h2 id="upgrading-bunkerm-while-preserving-data">Upgrading BunkerM While Preserving Data</h2>
+<p>Because your data lives in volumes outside the container, upgrading is safe and straightforward:</p>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
-</ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
-<ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
 <li>
-<p>A confirmation notification will appear when the action is complete</p>
+<p><strong>Pull the new image:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>bunkeriot/bunkerm:latest
+</code></pre></div></p>
 </li>
 <li>
-<p>To enable a previously disabled client:</p>
+<p><strong>Stop and remove the current container</strong> (data stays in volumes):
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># or</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>docker<span class="w"> </span>stop<span class="w"> </span>bunkerm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>bunkerm
+</code></pre></div></p>
 </li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
+<li>
+<p><strong>Start a new container</strong> with the same volumes (Docker Compose does this automatically):
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># or</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>...<span class="w"> </span><span class="o">(</span>same<span class="w"> </span><span class="nb">command</span><span class="w"> </span>with<span class="w"> </span>same<span class="w"> </span>volume<span class="w"> </span>flags<span class="o">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Verify</strong> the new container started and your data is intact:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>bunkerm
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># Open http://localhost:2000 and confirm your clients and settings are present</span>
+</code></pre></div></p>
+</li>
 </ol>
-<h2 id="related-documentation">Related Documentation</h2>
-<ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
-</ul>
+<p>The new container reads from the same volumes and picks up right where the old one left off. Your MQTT clients, ACL rules, web UI accounts, and all other data are preserved.</p>
+<hr />
+<h2 id="data-directory-overview">Data Directory Overview</h2>
+<p>Inside the container, here is what lives where:</p>
+<h3 id="nextjsdata"><code>/nextjs/data</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>/nextjs/data/
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  users.json                 - Web UI user accounts
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  smart-anomaly.db           - Anomaly detection SQLite database (agents, anomalies, metrics)
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  .bunkerai_status.json      - BunkerAI connection status
+</code></pre></div>
+<h3 id="varlibmosquitto"><code>/var/lib/mosquitto</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>/var/lib/mosquitto/
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  dynamic-security.json      - All MQTT clients, roles, groups, and ACL rules
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  mosquitto.db               - MQTT persistence (retained messages, QoS 1/2 queues)
+</code></pre></div>
+<h3 id="etcmosquitto"><code>/etc/mosquitto</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>/etc/mosquitto/
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  mosquitto.conf             - Main Mosquitto configuration
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  conf.d/                    - Additional configuration snippets
+</code></pre></div>
 
 
 

@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/monitoring/connect-clients/">
+        <link rel="canonical" href="https://bunkeriot.github.io/BunkerM/user-guide/acl-roles/">
       
       
+        <link rel="prev" href="../acl-clients/">
+      
+      
+        <link rel="next" href="../acl-groups/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>MQTT Clients Listing - BunkerM - MQTT Made Easy!</title>
+        <title>Roles - BunkerM - MQTT Made Easy!</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mqtt-clients-listing" class="md-skip">
+        <a href="#acl-roles" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT Clients Listing
+              Roles
             
           </span>
         </div>
@@ -242,10 +246,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../ui/dashboard/" class="md-tabs__link">
           
   
@@ -597,8 +603,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -622,21 +630,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -654,7 +663,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -700,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/connected-clients/" class="md-nav__link">
+      <a href="../connected-clients/" class="md-nav__link">
         
   
   
@@ -725,8 +734,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -741,20 +752,21 @@
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   
@@ -772,7 +784,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -790,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-clients/" class="md-nav__link">
+      <a href="../acl-clients/" class="md-nav__link">
         
   
   
@@ -815,10 +827,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../user-guide/acl-roles/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roles
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -834,6 +873,236 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-roles-are" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Roles Are
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-acl-rules-to-a-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding ACL Rules to a Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-topic-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Topic Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding Topic Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-multi-level-wildcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # - Multi-level wildcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-single-level-wildcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        + - Single-level wildcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-topic-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples of topic patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigning-a-role-to-a-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigning a Role to a Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigning-a-role-to-a-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigning a Role to a Group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-a-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing a Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting-a-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deleting a Role
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-and-rule-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority and Rule Ordering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practice-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practice Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practice Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensor-read-only-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sensor-read-only role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actuator-write-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        actuator-write role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitor-subscribe-all-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        monitor-subscribe-all role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-full-access-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        admin-full-access role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny-exception-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deny exception pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -846,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/acl-groups/" class="md-nav__link">
+      <a href="../acl-groups/" class="md-nav__link">
         
   
   
@@ -882,7 +1151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/mqtt-browser/" class="md-nav__link">
+      <a href="../mqtt-browser/" class="md-nav__link">
         
   
   
@@ -922,10 +1191,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -934,7 +1206,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
             
   
   
@@ -970,7 +1242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/agents/" class="md-nav__link">
+      <a href="../agents/" class="md-nav__link">
         
   
   
@@ -998,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/anomalies/" class="md-nav__link">
+      <a href="../anomalies/" class="md-nav__link">
         
   
   
@@ -1046,10 +1318,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1058,7 +1333,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
             
   
   
@@ -1094,7 +1369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/broker-logs/" class="md-nav__link">
+      <a href="../broker-logs/" class="md-nav__link">
         
   
   
@@ -1122,7 +1397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/client-logs/" class="md-nav__link">
+      <a href="../client-logs/" class="md-nav__link">
         
   
   
@@ -1174,10 +1449,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1186,7 +1464,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
             
   
   
@@ -1222,7 +1500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-broker/" class="md-nav__link">
+      <a href="../settings-broker/" class="md-nav__link">
         
   
   
@@ -1250,7 +1528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-integrations/" class="md-nav__link">
+      <a href="../settings-integrations/" class="md-nav__link">
         
   
   
@@ -1278,7 +1556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-annotations/" class="md-nav__link">
+      <a href="../settings-annotations/" class="md-nav__link">
         
   
   
@@ -1306,7 +1584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/settings-subscription/" class="md-nav__link">
+      <a href="../settings-subscription/" class="md-nav__link">
         
   
   
@@ -1352,10 +1630,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1364,7 +1645,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
             
   
   
@@ -1400,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/admin-users/" class="md-nav__link">
+      <a href="../admin-users/" class="md-nav__link">
         
   
   
@@ -1843,65 +2124,240 @@
 
 
 
-<h1 id="mqtt-clients-listing">MQTT Clients Listing</h1>
-<p>This feature provides a comprehensive interface for monitoring and managing MQTT client connections in real-time. This feature allows administrators to track client connection events, view detailed information about connected clients, and manage client access.</p>
-<h2 id="overview">Overview</h2>
-<p>The Connect Clients interface displays a table of recent MQTT events, focusing on client connections and disconnections. Each entry in the table provides detailed information about the client and the event, allowing administrators to monitor client activity and troubleshoot connection issues.</p>
-<p><img alt="Connect Clients Interface" src="../../assets/images/connected-clients.png" /></p>
-<h2 id="features">Features</h2>
-<h3 id="real-time-event-monitoring">Real-time Event Monitoring</h3>
+<h1 id="acl-roles">ACL - Roles</h1>
+<p>Roles are named sets of ACL rules that control which MQTT topics a client can publish to or subscribe to. Instead of defining topic permissions on each client individually, you define a role once and assign it to as many clients or groups as needed.</p>
+<hr />
+<h2 id="what-roles-are">What Roles Are</h2>
+<p>A role is a reusable permission template. It contains one or more ACL rules, each specifying:</p>
 <ul>
-<li><strong>Automatic Updates</strong>: The interface polls for new events every 5 seconds, ensuring you always have the most up-to-date information.</li>
-<li><strong>Event Filtering</strong>: Easily filter out system clients (like 'bunker') to focus on user connections.</li>
-<li><strong>Search Functionality</strong>: Quickly find specific clients or events using the search bar.</li>
+<li>A <strong>topic pattern</strong> - which topic or set of topics the rule applies to</li>
+<li>An <strong>action</strong> - whether the rule controls publishing, subscribing, or both</li>
+<li>An <strong>effect</strong> - whether the action is allowed or denied</li>
 </ul>
-<h3 id="event-information">Event Information</h3>
-<p>Each event in the table includes the following information:</p>
-<ul>
-<li><strong>Timestamp</strong>: When the event occurred (displayed in your local time format).</li>
-<li><strong>Event Type</strong>: The type of event (e.g., "Client Connection" or "Client Disconnection").</li>
-<li><strong>Username</strong>: The username used for authentication.</li>
-<li><strong>Client ID</strong>: A unique identifier for the client.</li>
-<li><strong>Protocol</strong>: The MQTT protocol level used by the client.</li>
-<li><strong>Details</strong>: Additional information about the event.</li>
-<li><strong>Status</strong>: Visual indicator showing connection status (green check for connected, red stop for disconnected).</li>
-</ul>
-<h3 id="client-management">Client Management</h3>
-<p>The interface provides direct actions for managing client access:</p>
-<ul>
-<li><strong>Disable Client</strong>: For connected clients, you can immediately disable their access with a single click.</li>
-<li><strong>Enable Client</strong>: For disabled clients, you can restore their access privileges.</li>
-<li><strong>Notification System</strong>: Receive immediate feedback on actions with color-coded notifications.</li>
-</ul>
-<h2 id="how-to-use">How to Use</h2>
-<h3 id="monitoring-clients">Monitoring Clients</h3>
+<p>When a client attempts to publish or subscribe, Mosquitto evaluates the ACL rules from all roles assigned to that client (directly and through groups). If a matching allow rule is found, the action proceeds. If a deny rule matches first, the action is blocked.</p>
+<hr />
+<h2 id="creating-a-role">Creating a Role</h2>
 <ol>
-<li>Navigate to the Connect Clients page in the Monitoring section.</li>
-<li>Review the table of recent events to see client connection activity.</li>
-<li>Use the search bar to filter for specific clients, usernames, or event types.</li>
-<li>Click on a client ID to view more detailed information about that client.</li>
+<li>Navigate to <strong>ACL &gt; Roles</strong> in the sidebar.</li>
+<li>Click <strong>Add Role</strong>.</li>
+<li>Enter a <strong>Role Name</strong> - use something descriptive like <code>sensor-read-only</code> or <code>admin-full-access</code>.</li>
+<li>Click <strong>Save</strong> to create the role.</li>
+<li>The role is created empty. Click on it to add ACL rules.</li>
 </ol>
-<h3 id="managing-client-access">Managing Client Access</h3>
+<hr />
+<h2 id="adding-acl-rules-to-a-role">Adding ACL Rules to a Role</h2>
+<p>Once you have a role, open it and add rules:</p>
 <ol>
-<li>To disable a client's access:</li>
-<li>Locate the client in the table</li>
-<li>Click the "Disable" button in the Actions column</li>
-<li>
-<p>A confirmation notification will appear when the action is complete</p>
-</li>
-<li>
-<p>To enable a previously disabled client:</p>
-</li>
-<li>Find the disabled client in the table</li>
-<li>Click the "Enable" button in the Actions column</li>
-<li>A confirmation notification will appear when the action is complete</li>
+<li>Click <strong>Add Rule</strong>.</li>
+<li>Enter a <strong>Topic Pattern</strong> (see topic patterns section below).</li>
+<li>Select the <strong>Action</strong>:</li>
+<li><code>subscribe</code> - controls the ability to subscribe to the topic</li>
+<li><code>publish</code> - controls the ability to publish to the topic</li>
+<li><code>all</code> - applies to both subscribe and publish</li>
+<li>Select the <strong>Effect</strong>:</li>
+<li><code>allow</code> - permit the action</li>
+<li><code>deny</code> - block the action</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
-<h2 id="related-documentation">Related Documentation</h2>
+<p>Repeat for each rule you want to add to the role.</p>
+<hr />
+<h2 id="understanding-topic-patterns">Understanding Topic Patterns</h2>
+<p>Topic patterns support two MQTT wildcards:</p>
+<h3 id="-multi-level-wildcard"><code>#</code> - Multi-level wildcard</h3>
+<p>Matches everything from that position in the hierarchy downward.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sensor/#
+</code></pre></div>
+<p>Matches: <code>sensor/temp</code>, <code>sensor/humidity</code>, <code>sensor/floor2/temp</code>, <code>sensor/floor2/room1/temp</code></p>
+<p>Use <code>#</code> at the end of a pattern to grant access to an entire subtree.</p>
+<h3 id="-single-level-wildcard"><code>+</code> - Single-level wildcard</h3>
+<p>Matches exactly one topic level.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sensor/+/temperature
+</code></pre></div>
+<p>Matches: <code>sensor/kitchen/temperature</code>, <code>sensor/bedroom/temperature</code></p>
+<p>Does NOT match: <code>sensor/temperature</code>, <code>sensor/floor2/room1/temperature</code></p>
+<h3 id="examples-of-topic-patterns">Examples of topic patterns</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sensor/temp</code></td>
+<td>Exact topic only</td>
+</tr>
+<tr>
+<td><code>sensor/#</code></td>
+<td>All topics under sensor/</td>
+</tr>
+<tr>
+<td><code>sensor/+/temp</code></td>
+<td>One level deep under sensor/, ending in /temp</td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>Every topic on the broker</td>
+</tr>
+<tr>
+<td><code>home/+/+/status</code></td>
+<td>Two levels under home/, ending in /status</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="assigning-a-role-to-a-client">Assigning a Role to a Client</h2>
+<ol>
+<li>Go to <strong>ACL &gt; Clients</strong>.</li>
+<li>Find the client and open its detail view.</li>
+<li>Click <strong>Add Role</strong> under the Roles section.</li>
+<li>Select the role from the dropdown.</li>
+<li>Set an optional priority and click <strong>Save</strong>.</li>
+</ol>
+<p>The client immediately gains all permissions defined in that role.</p>
+<hr />
+<h2 id="assigning-a-role-to-a-group">Assigning a Role to a Group</h2>
+<ol>
+<li>Go to <strong>ACL &gt; Groups</strong>.</li>
+<li>Find the group and open its detail view.</li>
+<li>Click <strong>Add Role</strong>.</li>
+<li>Select the role.</li>
+<li>Set an optional priority and click <strong>Save</strong>.</li>
+</ol>
+<p>All clients in the group immediately inherit the role's permissions.</p>
+<hr />
+<h2 id="editing-a-role">Editing a Role</h2>
+<ol>
+<li>Go to <strong>ACL &gt; Roles</strong>.</li>
+<li>Click on the role name to open it.</li>
+<li>Add, edit, or delete individual ACL rules.</li>
+<li>Changes take effect immediately on all clients that have this role assigned.</li>
+</ol>
+<hr />
+<h2 id="deleting-a-role">Deleting a Role</h2>
+<ol>
+<li>Go to <strong>ACL &gt; Roles</strong>.</li>
+<li>Find the role and click <strong>Delete</strong>.</li>
+<li>Confirm the deletion.</li>
+</ol>
+<p>Deleting a role removes it from all clients and groups that had it assigned. Those clients lose the permissions the role was granting. Make sure you are not removing access that devices depend on.</p>
+<hr />
+<h2 id="priority-and-rule-ordering">Priority and Rule Ordering</h2>
+<p>When a client has multiple roles (from direct assignment and group membership), Mosquitto evaluates rules in priority order. Higher priority numbers take precedence over lower ones.</p>
+<p>Within a single role, rules are evaluated in the order they are listed. The first matching rule wins.</p>
+<p><strong>Key points:</strong></p>
 <ul>
-<li><a href="../../mqtt/broker-configuration/">MQTT Broker Configuration</a></li>
-<li><a href="../advanced/authentication.md">User Authentication</a></li>
-<li><a href="../broker-logs/">Broker Logs</a> </li>
+<li>A <code>deny</code> rule matching before an <code>allow</code> rule will block the action.</li>
+<li>If no rule matches, the action is denied by default (Mosquitto's default-deny behavior).</li>
+<li>You can use explicit <code>deny</code> rules to carve exceptions out of broad <code>allow</code> rules.</li>
 </ul>
+<hr />
+<h2 id="best-practice-examples">Best Practice Examples</h2>
+<h3 id="sensor-read-only-role"><code>sensor-read-only</code> role</h3>
+<p>For sensors that should only publish their data and not subscribe to anything:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sensor/+/data</code></td>
+<td>publish</td>
+<td>allow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="actuator-write-role"><code>actuator-write</code> role</h3>
+<p>For actuators that receive commands:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>actuator/+/command</code></td>
+<td>subscribe</td>
+<td>allow</td>
+</tr>
+<tr>
+<td><code>actuator/+/status</code></td>
+<td>publish</td>
+<td>allow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="monitor-subscribe-all-role"><code>monitor-subscribe-all</code> role</h3>
+<p>For a dashboard or monitoring tool that reads everything:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#</code></td>
+<td>subscribe</td>
+<td>allow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="admin-full-access-role"><code>admin-full-access</code> role</h3>
+<p>For administrative clients that need unrestricted access:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#</code></td>
+<td>all</td>
+<td>allow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deny-exception-pattern">Deny exception pattern</h3>
+<p>Allow everything in a subtree except one sensitive topic:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Action</th>
+<th>Effect</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>home/private/#</code></td>
+<td>all</td>
+<td>deny</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>home/#</code></td>
+<td>all</td>
+<td>allow</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Higher priority deny rule blocks the private subtree even though the broader allow rule would otherwise permit it.</p>
 
 
 
