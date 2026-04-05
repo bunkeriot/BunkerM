@@ -1,5 +1,29 @@
 #!/bin/sh
 
+# ── Bind-mount safety ──────────────────────────────────────────────────────────
+# When users replace /etc/mosquitto or /var/lib/mosquitto with a bind mount,
+# the host directory wins and wipes the files baked into the image. Restore
+# them from /defaults/ if missing. Named-volume deployments are unaffected
+# because the files already exist and these checks are skipped.
+if [ ! -f /etc/mosquitto/mosquitto.conf ]; then
+    echo "[BunkerM] mosquitto.conf missing — restoring default (bind mount with empty directory)"
+    mkdir -p /etc/mosquitto/conf.d
+    cp /defaults/mosquitto/mosquitto.conf /etc/mosquitto/mosquitto.conf
+    chmod 644 /etc/mosquitto/mosquitto.conf
+fi
+if [ ! -d /etc/mosquitto/conf.d ]; then
+    mkdir -p /etc/mosquitto/conf.d
+fi
+cp -n /defaults/mosquitto/conf.d/. /etc/mosquitto/conf.d/ 2>/dev/null || true
+if [ ! -f /var/lib/mosquitto/dynamic-security.json ]; then
+    echo "[BunkerM] dynamic-security.json missing — restoring default (bind mount with empty directory)"
+    mkdir -p /var/lib/mosquitto
+    cp /defaults/mosquitto_data/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
+    chown mosquitto:mosquitto /var/lib/mosquitto/dynamic-security.json
+    chmod 664 /var/lib/mosquitto/dynamic-security.json
+fi
+# ──────────────────────────────────────────────────────────────────────────────
+
 # Create required directories and files
 mkdir -p /var/log/mosquitto /var/log/supervisor /var/log/nginx /var/log/api /nextjs/data
 touch /var/log/mosquitto/mosquitto.log
@@ -32,7 +56,7 @@ elif [ -f "$KEY_FILE" ] && [ -s "$KEY_FILE" ]; then
     export API_KEY=$(cat "$KEY_FILE")
     echo "[BunkerM] Loaded existing API key from persistent storage."
 else
-    export API_KEY=$(openssl rand -hex 32)
+    export API_KEY=$(python3 -c "import secrets; print(secrets.token_hex(32))")
     echo "$API_KEY" > "$KEY_FILE"
     chmod 600 "$KEY_FILE"
     echo "[BunkerM] Generated new API key and saved to persistent storage."

@@ -136,6 +136,12 @@ COPY backend/app /app
 RUN touch /app/monitor/__init__.py
 COPY backend/mosquitto/dynsec/dynamic-security.json /var/lib/mosquitto/dynamic-security.json
 
+# Store defaults separately so start.sh can restore them when bind mounts are used
+RUN mkdir -p /defaults/mosquitto/conf.d /defaults/mosquitto_data
+COPY backend/mosquitto/config/mosquitto.conf /defaults/mosquitto/mosquitto.conf
+COPY backend/etc/mosquitto/conf.d/ /defaults/mosquitto/conf.d/
+COPY backend/mosquitto/dynsec/dynamic-security.json /defaults/mosquitto_data/dynamic-security.json
+
 # Copy config-env script
 COPY config-env.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/config-env.sh
