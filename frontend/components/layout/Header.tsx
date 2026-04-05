@@ -150,7 +150,7 @@ export function Header({ onMenuClick }: HeaderProps) {
               </a>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <a href="https://bunkeriot.github.io/BunkerM/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <a href="https://bunkerai.dev/docs/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                 <BookOpen className="mr-2 h-4 w-4" />
                 Documentation
               </a>

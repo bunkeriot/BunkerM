@@ -11,16 +11,16 @@ function readConfig() {
 
 async function tryTelegramNotify(resetUrl: string): Promise<boolean> {
   const config = readConfig()
-  if (!config.cloud_url || !config.admin_secret || !config.tenant_id) return false
+  if (!config.cloud_url || !config.api_key) return false
 
   try {
     const resp = await fetch(
-      `${config.cloud_url}/admin/tenants/${config.tenant_id}/notify`,
+      `${config.cloud_url}/tenant/notify`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Admin-Secret': config.admin_secret,
+          'x-api-key': config.api_key,
         },
         body: JSON.stringify({
           text: `BunkerM password reset requested.\n\nClick the link below to set a new password (valid 15 minutes):\n${resetUrl}`,
