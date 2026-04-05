@@ -1,13 +1,17 @@
 site_name: BunkerM - MQTT Made Easy!
+site_url: https://bunkeriot.github.io/BunkerM/
 
 theme:
   name: material
   custom_dir: theme
   features:
-    - navigation.tabs.sticky  # Updated from navigation.tabs
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
-    - toc.integrate
+    - navigation.expand
     - navigation.top
+    - navigation.indexes
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -17,14 +21,14 @@ theme:
   palette:
     - scheme: default
       toggle:
-        icon: material/toggle-switch-off-outline 
+        icon: material/toggle-switch-off-outline
         name: Switch to dark mode
       primary: "#011D8F"
-      accent: purple 
-    - scheme: slate 
+      accent: purple
+    - scheme: slate
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode    
+        name: Switch to light mode
       primary: "#011D8F"
       accent: lime
   icon:
@@ -33,6 +37,46 @@ theme:
 
 plugins:
   - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quick-start.md
+    - First Login: getting-started/first-login.md
+    - Persistent Storage: getting-started/persistent-storage.md
+  - User Guide:
+    - Dashboard: ui/dashboard.md
+    - Connected Clients: user-guide/connected-clients.md
+    - ACL Management:
+      - Clients: user-guide/acl-clients.md
+      - Roles: user-guide/acl-roles.md
+      - Groups: user-guide/acl-groups.md
+    - MQTT Browser: user-guide/mqtt-browser.md
+    - Tools:
+      - Agents: user-guide/agents.md
+      - Anomalies: user-guide/anomalies.md
+    - Logs:
+      - Broker Logs: user-guide/broker-logs.md
+      - Client Logs: user-guide/client-logs.md
+    - Settings:
+      - Broker: user-guide/settings-broker.md
+      - Integrations: user-guide/settings-integrations.md
+      - Annotations: user-guide/settings-annotations.md
+      - Subscription: user-guide/settings-subscription.md
+    - Admin:
+      - Users: user-guide/admin-users.md
+  - Integrations:
+    - Home Assistant: integrations/home-assistant.md
+    - Web Chat: integrations/web-chat.md
+    - Slack: integrations/slack.md
+    - Telegram: integrations/telegram.md
+    - Shared AI Memory: integrations/shared-memory.md
+  - Advanced:
+    - Dynamic Security: advanced/dynamic-security.md
+    - Password Management: advanced/password-management.md
+  - FAQ: faq.md
+  - Troubleshooting: troubleshooting.md
 
 extra:
   social:
@@ -56,7 +100,10 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - attr_list
-  - pymdownx.emoji
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 copyright: |
   &copy; 2025 <a href="https://github.com/bunkeriot" target="_blank" rel="noopener">BunkerM</a>
