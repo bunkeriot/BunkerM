@@ -1,4 +1,7 @@
 import logging
+import os
+import time
+from pathlib import Path
 
 import httpx
 
@@ -8,6 +11,31 @@ logger = logging.getLogger(__name__)
 
 DYNSEC_URL = "http://127.0.0.1:1000"
 AI_CLIENT_ID = "BunkerAI"
+_KEY_FILE = Path("/nextjs/data/.api_key")
+_DEFAULT_KEY = "default_api_key_replace_in_production"
+_key_cache: dict = {"key": "", "ts": 0.0}
+
+
+def _get_current_api_key() -> str:
+    """Resolve the dynsec API key using the same logic as the dynsec service itself:
+    env var first, then /nextjs/data/.api_key, then the default placeholder.
+    Result is cached for 5 seconds to match dynsec's refresh interval."""
+    now = time.monotonic()
+    if _key_cache["key"] and now - _key_cache["ts"] < 5.0:
+        return _key_cache["key"]
+    key = os.environ.get("API_KEY", "")
+    if not key or key == _DEFAULT_KEY:
+        try:
+            file_key = _KEY_FILE.read_text().strip()
+            if file_key:
+                key = file_key
+        except Exception:
+            pass
+    if not key:
+        key = _DEFAULT_KEY
+    _key_cache["key"] = key
+    _key_cache["ts"] = now
+    return key
 
 HANDLERS = {
     # Read tools
@@ -47,8 +75,9 @@ HANDLERS = {
 }
 
 
-async def _is_client_disabled(api_key: str) -> bool:
+async def _is_client_disabled() -> bool:
     """Return True if the BunkerAI MQTT client is disabled in dynsec."""
+    api_key = _get_current_api_key()
     try:
         async with httpx.AsyncClient(timeout=3.0) as client:
             r = await client.get(
@@ -67,11 +96,15 @@ async def dispatch(tool_name: str, params: dict, api_key: str) -> dict:
     if not handler:
         return {"success": False, "error": f"Unknown tool: {tool_name}"}
 
-    if await _is_client_disabled(api_key):
+    # Always resolve API key fresh from env/file — same logic as the dynsec service.
+    # This ensures we never get stuck with a stale key from container startup.
+    resolved_key = _get_current_api_key()
+
+    if await _is_client_disabled():
         return {"success": False, "error": "BunkerAI client is disabled. Enable it in ACL → Clients to allow tool execution."}
 
     try:
-        data = await handler(params, api_key)
+        data = await handler(params, resolved_key)
         return {"success": True, "data": data}
     except Exception as e:
         logger.exception(f"Tool '{tool_name}' raised an exception")

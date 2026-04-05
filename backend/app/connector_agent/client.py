@@ -77,7 +77,8 @@ class ConnectorClient:
     async def _ensure_ai_mqtt_client(self):
         """Create the BunkerAI MQTT client with admin role if it doesn't already exist.
         Retries up to 5 times with a 3-second delay to handle dynsec-api startup race."""
-        headers = {"X-API-Key": self.internal_api_key}
+        from connector_agent.tools.dispatcher import _get_current_api_key
+        headers = {"X-API-Key": _get_current_api_key()}
         for attempt in range(1, 6):
             try:
                 async with httpx.AsyncClient(timeout=5.0) as client:

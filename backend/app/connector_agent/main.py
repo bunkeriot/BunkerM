@@ -55,6 +55,15 @@ def main():
         sys.exit(0)  # clean exit; supervisor won't restart (exitcodes=0)
 
     internal_api_key = os.environ.get("API_KEY", "default_api_key_replace_in_production")
+    _DEFAULT_KEY = "default_api_key_replace_in_production"
+    if not internal_api_key or internal_api_key == _DEFAULT_KEY:
+        try:
+            file_key = Path("/nextjs/data/.api_key").read_text().strip()
+            if file_key:
+                internal_api_key = file_key
+        except Exception:
+            pass
+
     client = ConnectorClient(
         api_key=api_key,
         ws_url=ws_url,
