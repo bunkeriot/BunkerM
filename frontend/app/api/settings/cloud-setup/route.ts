@@ -36,9 +36,32 @@ export async function POST(_request: NextRequest) {
     // files may not exist yet
   }
 
+  // If activation.json was not written by agent-api (e.g. startup auto-activation failed
+  // because internet was not ready, or the activation banner was suppressed in HA addon mode),
+  // attempt activation inline so the cloud-setup flow is self-contained.
+  if (!activationKey && instanceId) {
+    try {
+      const activateRes = await fetch(`${CLOUD_URL}/activate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ instance_id: instanceId }),
+      })
+      if (activateRes.ok) {
+        const data = await activateRes.json()
+        activationKey = data.key ?? ''
+        if (activationKey) {
+          mkdirSync('/nextjs/data', { recursive: true })
+          writeFileSync(ACTIVATION_FILE, JSON.stringify({ key: activationKey }), { mode: 0o600 })
+        }
+      }
+    } catch {
+      // network unavailable — handled by the check below
+    }
+  }
+
   if (!activationKey || !instanceId) {
     return NextResponse.json(
-      { error: 'Instance is not activated yet. Ensure the BunkerM container has internet access and restart it.' },
+      { error: 'Instance is not activated yet. Ensure the BunkerM container has internet access and try again.' },
       { status: 503 }
     )
   }
@@ -93,5 +116,5 @@ export async function POST(_request: NextRequest) {
     // Non-fatal
   }
 
-  return NextResponse.json({ ok: true, api_key: tenantData.api_key, tenant_id: tenantData.tenant_id })
+  return NextResponse.json({ ok: true })
 }

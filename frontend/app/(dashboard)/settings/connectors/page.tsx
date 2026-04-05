@@ -20,7 +20,7 @@ import type { SubscriptionData } from '@/types'
 type KeySource = 'env' | 'file' | 'default'
 interface ApiKeyInfo { key: string; source: KeySource }
 interface CloudConfig {
-  cloud_url?: string; admin_secret?: string; api_key?: string; tenant_id?: string
+  cloud_url?: string; api_key?: string; tenant_id?: string
   telegram_connected?: string; telegram_bot_token?: string
   slack_connected?: string; forward_alerts?: boolean
 }

@@ -10,15 +10,15 @@ function readConfig(): Record<string, string> {
 
 export async function DELETE() {
   const config = readConfig()
-  const { cloud_url, admin_secret, tenant_id } = config
-  if (!cloud_url || !admin_secret || !tenant_id) {
-    return NextResponse.json({ error: 'Incomplete cloud config' }, { status: 400 })
+  const { cloud_url, api_key } = config
+  if (!cloud_url || !api_key) {
+    return NextResponse.json({ error: 'BunkerM Cloud not configured' }, { status: 400 })
   }
 
   try {
-    const res = await fetch(`${cloud_url}/admin/tenants/${tenant_id}/connectors/slack`, {
+    const res = await fetch(`${cloud_url}/connectors/slack`, {
       method: 'DELETE',
-      headers: { 'X-Admin-Secret': admin_secret },
+      headers: { 'x-api-key': api_key },
     })
     if (!res.ok && res.status !== 404) {
       const text = await res.text()
