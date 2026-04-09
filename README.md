@@ -2,7 +2,7 @@
   <img src="frontend/public/BunkerM_Logo.png" alt="BunkerM Logo" width="220" />
 </p>
 
-<h1 align="center">BunkerM: AI-Powered MQTT Management Platform</h1>
+<h1 align="center">BunkerM: Mosquitto MQTT Management Platform</h1>
 
 <p align="center">
   The world's first all-in-one, self-hosted MQTT broker manager with built-in AI assistant, smart anomaly detection, and local automation agents.

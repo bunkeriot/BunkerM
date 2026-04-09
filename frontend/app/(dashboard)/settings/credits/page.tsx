@@ -95,9 +95,9 @@ function CommunityCard() {
       </div>
       <ul className="space-y-1.5 flex-1">
         <FRow>Full MQTT management</FRow>
-        <FRow>Local LLM <span className="ml-1 text-xs text-muted-foreground">(LM Studio)</span></FRow>
+        <FRow>Local LLM <span className="ml-1 text-xs text-muted-foreground">(requires LM Studio + your hardware)</span></FRow>
         <FRow>2 agents</FRow>
-        <FRow muted>No Cloud AI</FRow>
+        <FRow muted>No Cloud AI — bring your own model</FRow>
         <FRow muted>No Telegram / Slack</FRow>
       </ul>
       <div className="flex items-center gap-1.5 text-xs font-medium text-green-600 dark:text-green-400 mt-1">
@@ -113,26 +113,23 @@ function CommunityCard() {
 const PLAN_FEATURES: Record<string, React.ReactNode[]> = {
   starter: [
     <FRowBase key="base">Everything in Community</FRowBase>,
-    <FRow key="cloud"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> BunkerAI Cloud assistant</FRow>,
-    <FRow key="ai">100 Cloud AI interactions/mo</FRow>,
-    <FRow key="chat">Cloud Web Chat</FRow>,
-    <FRow key="agents">Up to 2 agents</FRow>,
+    <FRow key="cloud"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> <span>BunkerAI Cloud AI <span className="text-xs text-muted-foreground font-normal">— no hardware, zero setup</span></span></FRow>,
+    <FRow key="ai">100 Cloud AI interactions / mo</FRow>,
     <FRow key="bots" muted>No Telegram / Slack</FRow>,
   ],
   pro: [
     <FRowBase key="base">Everything in Starter</FRowBase>,
-    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 500 Cloud AI interactions/mo</FRow>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 500 Cloud AI interactions / mo</FRow>,
     <FRow key="bots">Telegram + Slack bots</FRow>,
     <FRow key="agents">Unlimited agents</FRow>,
   ],
   team: [
     <FRowBase key="base">Everything in Pro</FRowBase>,
-    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 2 000 Cloud AI interactions/mo</FRow>,
-    <FRow key="agents">Unlimited agents</FRow>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 2 000 Cloud AI interactions / mo</FRow>,
   ],
   business: [
     <FRowBase key="base">Everything in Team</FRowBase>,
-    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> Unlimited interactions</FRow>,
+    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> Unlimited Cloud AI interactions</FRow>,
     <FRow key="sla">Dedicated support + SLA</FRow>,
     <FRow key="sec">Enterprise-grade security &amp; compliance</FRow>,
   ],
