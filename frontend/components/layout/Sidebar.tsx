@@ -20,6 +20,7 @@ import {
   Cable,
   Server,
   Bot,
+  History,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -65,8 +66,9 @@ const navGroups: NavGroup[] = [
     {
     title: 'Logs',
     items: [
-      { label: 'Broker Logs', href: '/mqtt/broker-logs', icon: FileText },
-      { label: 'Client Logs', href: '/mqtt/client-logs', icon: Activity },
+      { label: 'Broker Logs',      href: '/mqtt/broker-logs', icon: FileText },
+      { label: 'Client Logs',      href: '/mqtt/client-logs', icon: Activity },
+      { label: 'Message History',  href: '/mqtt/history',     icon: History  },
     ],
   },
   {

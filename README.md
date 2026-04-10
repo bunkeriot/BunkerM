@@ -57,6 +57,7 @@
   - [Broker Dashboard](#broker-dashboard)
   - [ACL & Client Management](#-acl--client-management)
   - [MQTT Explorer](#-mqtt-explorer)
+  - [Message History & Replay](#-message-history--replay)
   - [Smart Anomaly Detection](#-smart-anomaly-detection)
   - [Agents — Schedulers & Watchers](#-agents--schedulers--watchers)
   - [Local LLM — Private AI via LM Studio](#️-local-llm--private-ai-via-lm-studio)
@@ -83,6 +84,7 @@ On top of the core broker management, BunkerM includes a **local statistical eng
 - Web-based ACL management — clients, roles, groups, topic permissions
 - Real-time monitoring dashboard, connected clients, and event logs
 - MQTT Explorer — live topic tree with publish-from-browser
+- **Message History & Replay** — every MQTT message stored locally in SQLite, searchable and replayable
 - Statistical anomaly detection (Z-score, EWMA, spike, silence detectors)
 - Local automation agents — cron schedulers and condition-based watchers
 - **Local LLM AI assistant** via [LM Studio](https://lmstudio.ai) — fully private, no cloud required
@@ -226,6 +228,60 @@ Inspect and interact with live broker traffic directly from the browser:
 - **Per-topic metadata** — latest value, message count, QoS, retain flag, last-updated timestamp
 - **Search & filter** — instantly narrow the tree by typing a topic path fragment
 - **Publish panel** — send messages from the browser: pick a client, enter a topic, choose payload type (RAW / JSON / XML with built-in validation), set QoS and retain flag
+
+---
+
+### 📼 Message History & Replay
+
+Every MQTT message published through your broker is automatically captured and stored in a local SQLite database — no configuration required. History starts accumulating from the moment BunkerM starts, and it keeps running silently in the background.
+
+#### What gets stored
+
+All messages published to the broker are captured, excluding internal `$SYS/` diagnostics. Each record stores:
+
+| Field | Description |
+|-------|-------------|
+| Timestamp | Millisecond-precision UTC time of receipt |
+| Topic | Full topic path |
+| Payload | Message content (binary payloads stored as base64) |
+| QoS | Quality of service level (0 / 1 / 2) |
+| Retain flag | Whether the message was retained |
+| Size | Payload size in bytes |
+
+#### Querying history
+
+Navigate to **Logs → Message History** in the sidebar to access:
+
+- **Stats overview** — total stored messages, unique topic count, database size on disk, and retention window
+- **Topic filter** — dropdown populated from all topics seen by the broker, with message counts
+- **Free-text search** — matches against topic path or payload content
+- **Paginated table** — 100 messages per page, newest-first, with full metadata
+
+#### Replay
+
+Every message row has a **Replay** button. Click it to open a dialog pre-filled with the original topic and payload. You can edit the payload, choose QoS and retain flag, then publish directly back to the broker — useful for retesting device logic or simulating conditions.
+
+#### Retention limits
+
+By default, BunkerM keeps up to **50,000 messages** and **7 days** of history. Older messages are pruned automatically. These limits are configurable via environment variables:
+
+```bash
+-e HISTORY_MAX_MESSAGES=50000   # max records in the database
+-e HISTORY_MAX_AGE_DAYS=7       # max age of any stored message
+```
+
+#### Storage
+
+History is stored in a SQLite file at `/var/lib/history/history.db` inside the container. To persist history across container restarts, mount a Docker volume:
+
+```bash
+docker run -d \
+  -p 1900:1900 -p 2000:2000 \
+  -v history_data:/var/lib/history \
+  bunkeriot/bunkerm:latest
+```
+
+The Docker Compose file already includes this volume by default.
 
 ---
 
@@ -404,6 +460,7 @@ Forward MQTT traffic to major cloud providers:
 | Broker Dashboard & Stats | ✓ | ✓ | ✓ |
 | Connected Clients Listing | ✓ | ✓ | ✓ |
 | Real-time MQTT Event Logs | ✓ | ✓ | ✓ |
+| Message History & Replay (50K messages, 7d) | ✓ | ✓ | ✓ |
 | Statistical Anomaly Detection | ✓ | ✓ | ✓ |
 | AI Metrics Engine (1h / 24h baselines) | ✓ | ✓ | ✓ |
 | Smart Alert Feed with Severity Levels | ✓ | ✓ | ✓ |

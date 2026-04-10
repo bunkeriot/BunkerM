@@ -11,6 +11,8 @@ const SERVICES: Record<string, string> = {
   config:        'http://127.0.0.1:1005/api/v1',
   // Smart Anomaly Detection service (runs inside the same container)
   ai:            process.env.AI_SERVICE_URL || 'http://127.0.0.1:8100',
+  // Message History & Replay
+  history:       'http://127.0.0.1:1007/api/v1',
 }
 
 const KEY_FILE = '/nextjs/data/.api_key'

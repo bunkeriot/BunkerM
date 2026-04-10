@@ -118,7 +118,8 @@ RUN mkdir -p \
     /var/lib/mosquitto/db \
     /tmp/mosquitto_backups \
     /tmp/dynsec_backups \
-    /nextjs/data && \
+    /nextjs/data \
+    /var/lib/history && \
     touch /etc/mosquitto/mosquitto_passwd && \
     chmod 644 /etc/mosquitto/mosquitto_passwd
 

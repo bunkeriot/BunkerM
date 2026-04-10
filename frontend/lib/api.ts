@@ -494,3 +494,38 @@ export const subscriptionApi = {
 
 // Keep creditsApi as alias for backward compatibility
 export const creditsApi = subscriptionApi
+
+// ─── History API ─────────────────────────────────────────────────────────────
+
+const HISTORY_API_URL = '/api/proxy/history'
+
+export const historyApi = {
+  getStats: () =>
+    request<import('@/types').HistoryStats>(buildUrl(HISTORY_API_URL, '/stats')),
+
+  getTopics: () =>
+    request<{ topics: import('@/types').HistoryTopic[] }>(buildUrl(HISTORY_API_URL, '/topics')),
+
+  getMessages: (params: import('@/types').HistoryQuery = {}) => {
+    const qs = new URLSearchParams()
+    if (params.topic)   qs.set('topic',   params.topic)
+    if (params.search)  qs.set('search',  params.search)
+    if (params.from_ts !== undefined) qs.set('from_ts', String(params.from_ts))
+    if (params.to_ts   !== undefined) qs.set('to_ts',   String(params.to_ts))
+    if (params.limit   !== undefined) qs.set('limit',   String(params.limit))
+    if (params.offset  !== undefined) qs.set('offset',  String(params.offset))
+    const suffix = qs.toString() ? `/messages?${qs}` : '/messages'
+    return request<{ total: number; messages: import('@/types').HistoryMessage[] }>(
+      buildUrl(HISTORY_API_URL, suffix)
+    )
+  },
+
+  replay: (data: { topic: string; payload?: string; qos?: number; retain?: boolean }) =>
+    request<{ status: string; topic: string }>(buildUrl(HISTORY_API_URL, '/replay'), {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  clearHistory: () =>
+    request<{ status: string }>(buildUrl(HISTORY_API_URL, '/messages'), { method: 'DELETE' }),
+}

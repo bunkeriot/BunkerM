@@ -250,6 +250,43 @@ export interface SubscriptionData {
   email_verified: boolean
 }
 
+// ── Message History & Replay types ───────────────────────────────────────────
+
+export interface HistoryMessage {
+  id: number
+  ts: number
+  topic: string
+  payload: string | null
+  enc: 'utf8' | 'base64'
+  qos: number
+  retain: number
+  size: number
+}
+
+export interface HistoryTopic {
+  topic: string
+  count: number
+  last_seen: number
+}
+
+export interface HistoryStats {
+  total: number
+  oldest_ts: number | null
+  newest_ts: number | null
+  db_size_bytes: number
+  max_messages: number
+  max_age_days: number
+}
+
+export interface HistoryQuery {
+  topic?: string
+  search?: string
+  from_ts?: number
+  to_ts?: number
+  limit?: number
+  offset?: number
+}
+
 // ── Smart Anomaly Detection types ────────────────────────────────────────────
 
 export type AlertSeverity = 'low' | 'medium' | 'high' | 'critical'

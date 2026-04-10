@@ -9,6 +9,7 @@ services:
     volumes:
       - next_data:/nextjs/data          # Persistent: user accounts & app data
       - mosquitto_data:/var/lib/mosquitto  # Persistent: broker clients & ACLs
+      - history_data:/var/lib/history      # Persistent: message history (SQLite)
     environment:
       # ── MQTT broker ─────────────────────────────────────────────────────────
       - MQTT_BROKER=localhost
@@ -55,4 +56,6 @@ volumes:
   next_data:
     driver: local
   mosquitto_data:
+    driver: local
+  history_data:
     driver: local
