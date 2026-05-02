@@ -28,18 +28,14 @@ interface PlanDef {
 }
 
 const PLAN_DESCRIPTIONS: Record<string, string> = {
-  starter:  'Perfect for hobbyists and IoT tinkerers exploring AI-assisted broker control for the first time.',
-  pro:      'Built for power users and home lab enthusiasts who demand full AI control from any channel, anytime.',
-  team:     'Made for small teams and growing businesses managing multiple deployments with serious AI usage.',
-  business: 'Enterprise-grade for large-scale, regulated, or air-gapped environments. Fully custom — let\'s talk.',
+  pro:        'Built for power users and home lab enthusiasts who demand full AI control from any channel, anytime.',
+  enterprise: 'Built for industrial OT teams. Native Sparkplug B, unlimited AI interactions, and dedicated support for production-line deployments.',
 }
 
 // Fallback shown while loading or if cloud is unreachable
 const PLANS_FALLBACK: PlanDef[] = [
-  { id: 'starter',  label: 'Starter',  description: PLAN_DESCRIPTIONS.starter,  price: 5,    interactions: 100,  agents: 2,    connectors: ['webchat'], instances: 1 },
-  { id: 'pro',      label: 'Pro',      description: PLAN_DESCRIPTIONS.pro,       price: 15,   interactions: 500,  agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
-  { id: 'team',     label: 'Team',     description: PLAN_DESCRIPTIONS.team,      price: 49,   interactions: 2000, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1 },
-  { id: 'business', label: 'Business', description: PLAN_DESCRIPTIONS.business,  price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
+  { id: 'pro',        label: 'Pro',        description: PLAN_DESCRIPTIONS.pro,        price: 15,   interactions: 500,  agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: 1, popular: true },
+  { id: 'enterprise', label: 'Enterprise', description: PLAN_DESCRIPTIONS.enterprise, price: null, interactions: null, agents: null, connectors: ['webchat', 'telegram', 'slack'], instances: null },
 ]
 
 function normalizePlans(raw: Record<string, unknown>[]): PlanDef[] {
@@ -111,27 +107,21 @@ function CommunityCard() {
 // ─── Paid plan cards ──────────────────────────────────────────────────────────
 
 const PLAN_FEATURES: Record<string, React.ReactNode[]> = {
-  starter: [
+  pro: [
     <FRowBase key="base">Everything in Community</FRowBase>,
     <FRow key="cloud"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> <span>BunkerAI Cloud AI <span className="text-xs text-muted-foreground font-normal">— no hardware, zero setup</span></span></FRow>,
-    <FRow key="ai">100 Cloud AI interactions / mo</FRow>,
-    <FRow key="bots" muted>No Telegram / Slack</FRow>,
-  ],
-  pro: [
-    <FRowBase key="base">Everything in Starter</FRowBase>,
-    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 500 Cloud AI interactions / mo</FRow>,
+    <FRow key="ai">500 Cloud AI interactions / mo</FRow>,
     <FRow key="bots">Telegram + Slack bots</FRow>,
     <FRow key="agents">Unlimited agents</FRow>,
   ],
-  team: [
+  enterprise: [
     <FRowBase key="base">Everything in Pro</FRowBase>,
-    <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> 2 000 Cloud AI interactions / mo</FRow>,
-  ],
-  business: [
-    <FRowBase key="base">Everything in Team</FRowBase>,
+    <FRow key="spb"><Sparkles className="h-3 w-3 text-yellow-500 shrink-0" /> Native Sparkplug B support</FRow>,
+    <FRow key="reg">Auto device registry from birth certificates</FRow>,
+    <FRow key="cmd">DCMD / NCMD AI command execution</FRow>,
     <FRow key="ai"><Zap className="h-3 w-3 text-yellow-500 shrink-0" /> Unlimited Cloud AI interactions</FRow>,
     <FRow key="sla">Dedicated support + SLA</FRow>,
-    <FRow key="sec">Enterprise-grade security &amp; compliance</FRow>,
+    <FRow key="sec">Air-gapped &amp; on-premises deployment</FRow>,
   ],
 }
 
@@ -152,7 +142,7 @@ function PlanCard({
   loading: boolean
   onContactSales: () => void
 }) {
-  const isBusiness = plan.id === 'business'
+  const isEnterprise = plan.id === 'enterprise'
   const displayPrice = plan.price != null ? `€${plan.price}` : null
   const features = PLAN_FEATURES[plan.id] ?? []
 
@@ -189,7 +179,7 @@ function PlanCard({
           <CheckCircle className="h-3.5 w-3.5" />
           Current plan
         </div>
-      ) : isBusiness ? (
+      ) : isEnterprise ? (
         <Button variant="outline" size="sm" className="w-full gap-1.5 mt-1" onClick={onContactSales}>
           Contact sales <ExternalLink className="h-3.5 w-3.5" />
         </Button>
@@ -801,7 +791,7 @@ function SubscriptionPage() {
             </button>
           </div>
           <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-            Interested in a Business or custom deployment? Click the email below to copy it to your clipboard and reach out.
+            Interested in BunkerM Enterprise or a custom deployment? Click the email below to copy it to your clipboard and reach out.
           </p>
           <button
             onClick={copySalesEmail}

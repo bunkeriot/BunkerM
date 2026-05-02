@@ -254,7 +254,7 @@ export default function IntegrationsPage() {
   const hasTelegram   = cloudConfig?.telegram_connected === 'true'
   const hasSlack      = cloudConfig?.slack_connected === 'true'
   const currentPlan   = subscription?.plan ?? null
-  const canUseTelegram = currentPlan && ['pro', 'team', 'business'].includes(currentPlan)
+  const canUseTelegram = currentPlan && ['pro', 'enterprise'].includes(currentPlan)
 
   const maskedKey = keyInfo
     ? `${keyInfo.key.slice(0, 6)}${'•'.repeat(20)}${keyInfo.key.slice(-4)}`
